@@ -1,4 +1,5 @@
-# ConcordiaGO
+# ConcordiaGO [![HitCount](http://hits.dwyl.com/Pwnagebird/ConcordiaGO.svg)](http://hits.dwyl.com/Pwnagebird/ConcordiaGO)
+
 
 A mobile app helping Concordians discover their campus, coming soon to you! Developed using Flutter and Google APIs
 
