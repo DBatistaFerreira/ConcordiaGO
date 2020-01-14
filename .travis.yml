@@ -4,7 +4,6 @@ jobs:
     - stage: Unit Testing
       language: generic
       os: linux
-      env: running unit and widget tests with code coverage
       before_script:
         - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
         - git clone https://github.com/flutter/flutter.git -b beta
