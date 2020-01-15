@@ -1,43 +1,33 @@
 language: dart
-before_install:
+install:
   - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
   - git clone https://github.com/flutter/flutter.git -b beta
   - export PATH="$PATH":"$HOME/.pub-cache/bin"
   - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
   - flutter precache
   - flutter doctor -v
-install: pub global activate coverage
+  - pub global activate coverage
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
   - tool/send.sh success $WEBHOOK_URL
 after_failure:
   - tool/send.sh failure $WEBHOOK_URL
 
 jobs:
   include:
-    - stage: analyze_and_format
-      name: "Check if formatting is good"
+    - stage: tests
+      name: "Static Tests"
       dart: stable
       os: linux
-
       script: dartfmt lib/ -n --set-exit-if-changed
-    - stage: unit_test
-      name: "Check if Unit tests are passing"
+
+    - stage: tests
+      name: "Unit Tests"
       dart: stable
       os: linux
-      before_script:
-        - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
-        - git clone https://github.com/flutter/flutter.git -b beta
-        - export PATH="$PATH":"$HOME/.pub-cache/bin"
-        - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
-        - flutter precache
-        - flutter doctor -v
-        - flutter pub global activate coverage
-      script: flutter test --coverage
+      script: flutter test --coverage && bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
 
 stages:
-  - analyze_and_format
-  - unit_test
+  - tests
 
 # Only building master means that we don't run two builds for each pull request.
 branches:
