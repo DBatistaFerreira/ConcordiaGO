@@ -35,8 +35,7 @@ class DrawerComponentState extends State<DrawerComponent> {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      body: Drawer(
+    return Drawer(
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
@@ -94,8 +93,7 @@ class DrawerComponentState extends State<DrawerComponent> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }
 

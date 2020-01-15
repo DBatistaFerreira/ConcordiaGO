@@ -26,8 +26,8 @@ class HomePageState extends State<HomeScreen> {
             backgroundColor: Color(0xff800206),
           )),
       body: GoogleMapsComponent(),
-        drawer: Padding(padding: EdgeInsets.fromLTRB(0, 0, 70, 0)
-            ,child:DrawerComponent()),
+        drawer:
+            DrawerComponent(),
     );
   }
 }
