@@ -1,6 +1,6 @@
+language: generic
 jobs:
   include:
-
     - stage: Unit Testing
       language: generic
       os: linux
@@ -14,3 +14,6 @@ jobs:
         - pub global activate coverage
       script: flutter test --coverage
       after_success: bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
+      cache:
+        directories:
+          - $HOME/.pub-cache
