@@ -2,43 +2,38 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/blocs/BlocProvider.dart';
+import 'package:flutter_app/blocs/LocationBloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_app/widgets/component/MapSearchBarComponent.dart';
-import 'package:flutter_app/utilities/ConcordiaConstants.dart' as ConcordiaConstants;
-
-
-Completer<GoogleMapController> _controller = Completer();
-String currentCampus = 'SGW';
-Set<Marker> markers = Set();
-
-Completer<GoogleMapController> getController(){
-  return _controller;
-}
+import 'package:flutter_app/utilities/ConcordiaConstants.dart'
+    as ConcordiaConstants;
 
 class GoogleMapsComponent extends StatefulWidget {
   @override
   State<GoogleMapsComponent> createState() => GoogleMapsComponentState();
 }
 
-
 class GoogleMapsComponentState extends State<GoogleMapsComponent> {
-
+  Completer<GoogleMapController> _controller = Completer();
+  String currentCampus = 'SGW';
 
   Future<void> _switchCampus() async {
     final GoogleMapController controller = await _controller.future;
     if (currentCampus == 'SGW') {
-      controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.loyolaCampus));
+      controller.animateCamera(
+          CameraUpdate.newCameraPosition(ConcordiaConstants.loyolaCampus));
       currentCampus = 'Loyola';
     } else {
-      controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.sgwCampus));
+      controller.animateCamera(
+          CameraUpdate.newCameraPosition(ConcordiaConstants.sgwCampus));
       currentCampus = 'SGW';
     }
   }
-  void _setSingleMarker(LatLng coordinates) {
-    setState(() {
-      markers.clear();
-      markers.add(Marker(markerId: MarkerId('currentBuilding'), position: coordinates));
-    });
+
+  Future<void> goToBuilding(LatLng coordinates) async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: coordinates, zoom: 17.5)));
   }
 
   Future<void> _zoomIn() async {
@@ -50,6 +45,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.zoomOut());
   }
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
@@ -59,24 +55,29 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Expanded(
-              child: Stack(children: <Widget>[
-                GoogleMap(
+          // listens to the LocationBloc's stream and rebuilds the GoogleMap widget whenever data is received
+          StreamBuilder(
+            stream: BlocProvider.of<LocationBloc>(context).locationStream,
+            initialData: ConcordiaConstants.sgwCampus.target,
+            builder: (BuildContext context, AsyncSnapshot<LatLng> snapshot) {
+              goToBuilding(snapshot.data);
+              return Expanded(
+                child: GoogleMap(
                   mapType: MapType.normal,
-                  initialCameraPosition: ConcordiaConstants.sgwCampus,
+                  initialCameraPosition:
+                      CameraPosition(target: snapshot.data, zoom: 15.5),
                   onMapCreated: (GoogleMapController controller) {
                     _controller.complete(controller);
                   },
-                  markers: markers,
+                  markers: {
+                    Marker(
+                        markerId: MarkerId('some marker'),
+                        position: snapshot.data),
+                  },
                 ),
-                SizedBox(
-                    height: screenHeight / 9,
-                    width: screenWidth,
-                    child: Padding(
-                      padding: EdgeInsets.all((10.0)),
-                      child: MapSearchBar(),
-                    ))
-              ])),
+              );
+            },
+          ),
         ],
       ),
       floatingActionButton: Column(
@@ -123,5 +124,3 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     );
   }
 }
-
-
