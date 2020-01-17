@@ -1,20 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'utilities/ApplicationConstants.dart' as ApplicationConstants;
+import 'widgets/screens/HomeScreen.dart';
 
-class MyApp extends StatelessWidget {
+void main() => runApp(Application());
+
+class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Concordia GO',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Concordia GO'),
-        ),
-        body: Center(
-          child: Text('Concordia GO is gonna be awesome!'),
-        ),
-      ),
+      title: ApplicationConstants.APPLICATION_NAME,
+      home: HomeScreen(),
     );
   }
 }
