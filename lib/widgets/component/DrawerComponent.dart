@@ -39,9 +39,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(LatLng(
-                  ConcordiaConstants.H_BUILDING_LATITUDE,
-                  ConcordiaConstants.H_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
+                  LatLng(ConcordiaConstants.H_BUILDING_LATITUDE,
+                      ConcordiaConstants.H_BUILDING_LONGITUDE));
             },
           ),
           ListTile(
@@ -50,9 +50,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(LatLng(
-                  ConcordiaConstants.EV_BUILDING_LATITUDE,
-                  ConcordiaConstants.EV_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
+                  LatLng(ConcordiaConstants.EV_BUILDING_LATITUDE,
+                      ConcordiaConstants.EV_BUILDING_LONGITUDE));
             },
           ),
           ListTile(
@@ -61,9 +61,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(LatLng(
-                  ConcordiaConstants.LB_BUILDING_LATITUDE,
-                  ConcordiaConstants.LB_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
+                  LatLng(ConcordiaConstants.LB_BUILDING_LATITUDE,
+                      ConcordiaConstants.LB_BUILDING_LONGITUDE));
             },
           ),
           ListTile(
@@ -72,9 +72,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(LatLng(
-                  ConcordiaConstants.MB_BUILDING_LATITUDE,
-                  ConcordiaConstants.MB_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
+                  LatLng(ConcordiaConstants.MB_BUILDING_LATITUDE,
+                      ConcordiaConstants.MB_BUILDING_LONGITUDE));
             },
           ),
           ListTile(
@@ -83,9 +83,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(LatLng(
-                  ConcordiaConstants.FG_BUILDING_LATITUDE,
-                  ConcordiaConstants.FG_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
+                  LatLng(ConcordiaConstants.FG_BUILDING_LATITUDE,
+                      ConcordiaConstants.FG_BUILDING_LONGITUDE));
             },
           ),
         ],

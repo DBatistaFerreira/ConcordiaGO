@@ -1,17 +1,18 @@
 library ConcordiaConstants;
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // Loyola Buildings Names, Initials and Coordinates
-  //TODO
+//TODO
 
 // SGW Building Names, Initials and Coordinates
-  //TODO
-  // Real names need to be added (https://www.concordia.ca/maps/sgw-campus.html)
+//TODO
+// Real names need to be added (https://www.concordia.ca/maps/sgw-campus.html)
 
 const String H_BUILDING_NAME = "Hall";
 const String H_BUILDING_INITIAL = "H";
 const double H_BUILDING_LATITUDE = 45.497249;
-const double H_BUILDING_LONGITUDE =  -73.578954;
+const double H_BUILDING_LONGITUDE = -73.578954;
 
 const String EV_BUILDING_NAME = "EV";
 const String EV_BUILDING_INITIAL = "EV";

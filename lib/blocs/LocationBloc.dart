@@ -4,10 +4,12 @@ import 'package:flutter_app/blocs/Bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationBloc implements Bloc {
-  final StreamController<Marker> _markerController = StreamController<Marker>.broadcast();
+  final StreamController<Marker> _markerController =
+      StreamController<Marker>.broadcast();
   Stream<Marker> get markerOutput => _markerController.stream;
 
-  final StreamController<LatLng> _locationController = StreamController<LatLng>();
+  final StreamController<LatLng> _locationController =
+      StreamController<LatLng>();
   Sink<LatLng> get locationCoordinates => _locationController.sink;
 
   LocationBloc() {
@@ -15,7 +17,8 @@ class LocationBloc implements Bloc {
   }
 
   void createMarker(LatLng coordinates) {
-    Marker marker = Marker(markerId: MarkerId('current building'), position: coordinates);
+    Marker marker =
+        Marker(markerId: MarkerId('current building'), position: coordinates);
     _markerController.sink.add(marker);
   }
 
