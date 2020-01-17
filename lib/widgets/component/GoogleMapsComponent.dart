@@ -56,24 +56,21 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // listens to the LocationBloc's stream and rebuilds the GoogleMap widget whenever data is received
-          StreamBuilder(
-            stream: BlocProvider.of<LocationBloc>(context).locationStream,
-            initialData: ConcordiaConstants.sgwCampus.target,
-            builder: (BuildContext context, AsyncSnapshot<LatLng> snapshot) {
-              goToBuilding(snapshot.data);
+          StreamBuilder<Marker>(
+            stream: BlocProvider.of<LocationBloc>(context).markerOutput,
+            initialData: Marker(
+                markerId: MarkerId('initial marker'),
+                position: ConcordiaConstants.sgwCampus.target),
+            builder: (BuildContext context, AsyncSnapshot<Marker> snapshot) {
+              goToBuilding(snapshot.data.position);
               return Expanded(
                 child: GoogleMap(
                   mapType: MapType.normal,
-                  initialCameraPosition:
-                      CameraPosition(target: snapshot.data, zoom: 15.5),
+                  initialCameraPosition: ConcordiaConstants.sgwCampus,
                   onMapCreated: (GoogleMapController controller) {
                     _controller.complete(controller);
                   },
-                  markers: {
-                    Marker(
-                        markerId: MarkerId('some marker'),
-                        position: snapshot.data),
-                  },
+                  markers: {snapshot.data},
                 ),
               );
             },
