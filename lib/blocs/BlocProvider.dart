@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/blocs/Bloc.dart';
+import 'package:concordia_go/blocs/Bloc.dart';
 
 /*
 This is a simple implementation of a BLoC provider for this prototype.
@@ -10,8 +10,7 @@ class BlocProvider<T extends Bloc> extends StatefulWidget {
   final Widget child;
   final T bloc;
 
-  const BlocProvider({Key key, @required this.bloc, @required this.child})
-      : super(key: key);
+  const BlocProvider({Key key, @required this.bloc, @required this.child}) : super(key: key);
 
   static T of<T extends Bloc>(BuildContext context) {
     final BlocProvider<T> provider = context.findAncestorWidgetOfExactType();

@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/blocs/LocationBloc.dart';
+import 'package:concordia_go/blocs/LocationBloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_app/utilities/ConcordiaConstants.dart'
-    as ConcordiaConstants;
-import 'package:flutter_app/blocs/BlocProvider.dart';
+import 'package:concordia_go/utilities/ConcordiaConstants.dart' as concordia_constants;
+import 'package:concordia_go/blocs/BlocProvider.dart';
 
 class DrawerComponent extends StatefulWidget {
   @override
@@ -39,9 +38,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
-                  LatLng(ConcordiaConstants.H_BUILDING_LATITUDE,
-                      ConcordiaConstants.H_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context)
+                  .locationCoordinates
+                  .add(LatLng(concordia_constants.H_BUILDING_LATITUDE, concordia_constants.H_BUILDING_LONGITUDE));
             },
           ),
           ListTile(
@@ -50,9 +49,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
-                  LatLng(ConcordiaConstants.EV_BUILDING_LATITUDE,
-                      ConcordiaConstants.EV_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context)
+                  .locationCoordinates
+                  .add(LatLng(concordia_constants.EV_BUILDING_LATITUDE, concordia_constants.EV_BUILDING_LONGITUDE));
             },
           ),
           ListTile(
@@ -61,9 +60,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
-                  LatLng(ConcordiaConstants.LB_BUILDING_LATITUDE,
-                      ConcordiaConstants.LB_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context)
+                  .locationCoordinates
+                  .add(LatLng(concordia_constants.LB_BUILDING_LATITUDE, concordia_constants.LB_BUILDING_LONGITUDE));
             },
           ),
           ListTile(
@@ -72,9 +71,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
-                  LatLng(ConcordiaConstants.MB_BUILDING_LATITUDE,
-                      ConcordiaConstants.MB_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context)
+                  .locationCoordinates
+                  .add(LatLng(concordia_constants.MB_BUILDING_LATITUDE, concordia_constants.MB_BUILDING_LONGITUDE));
             },
           ),
           ListTile(
@@ -83,9 +82,9 @@ class DrawerComponentState extends State<DrawerComponent> {
             onTap: () {
               Navigator.pop(context);
               // accesses the sink of the LocationBloc provided to HomeScreen
-              BlocProvider.of<LocationBloc>(context).locationCoordinates.add(
-                  LatLng(ConcordiaConstants.FG_BUILDING_LATITUDE,
-                      ConcordiaConstants.FG_BUILDING_LONGITUDE));
+              BlocProvider.of<LocationBloc>(context)
+                  .locationCoordinates
+                  .add(LatLng(concordia_constants.FG_BUILDING_LATITUDE, concordia_constants.FG_BUILDING_LONGITUDE));
             },
           ),
         ],
