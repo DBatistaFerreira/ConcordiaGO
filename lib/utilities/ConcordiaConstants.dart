@@ -1,4 +1,4 @@
-library ConcordiaConstants;
+library concordia_constants;
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 

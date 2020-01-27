@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/blocs/LocationBloc.dart';
-import 'package:flutter_app/widgets/component/DrawerComponent.dart';
+import 'package:concordia_go/blocs/LocationBloc.dart';
+import 'package:concordia_go/widgets/component/DrawerComponent.dart';
 import '../component/GoogleMapsComponent.dart';
-import 'package:flutter_app/blocs/BlocProvider.dart';
+import 'package:concordia_go/blocs/BlocProvider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

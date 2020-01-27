@@ -1,12 +1,14 @@
 language: dart
+os: linux
 install:
   - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
+  - cd ..
   - git clone https://github.com/flutter/flutter.git -b beta
   - export PATH="$PATH":"$HOME/.pub-cache/bin"
   - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
+  - cd ConcordiaGO
   - flutter precache
   - flutter doctor -v
-  - pub global activate coverage
 after_success:
   - tool/send.sh success $WEBHOOK_URL
 after_failure:
@@ -18,13 +20,17 @@ jobs:
       name: "Static Tests"
       dart: stable
       os: linux
-      script: dartfmt lib/ -n --set-exit-if-changed
+      script:
+        - dartfmt . -l 120 --fix -n --set-exit-if-changed
+        - flutter analyze
 
     - stage: tests
       name: "Unit Tests"
       dart: stable
       os: linux
-      script: flutter test --coverage && bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
+      script:
+        - pub global activate coverage
+        - flutter test --coverage && bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
 
 stages:
   - tests
