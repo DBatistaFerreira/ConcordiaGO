@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:concordia_go/blocs/BlocProvider.dart';
 import 'package:concordia_go/blocs/LocationBloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_app/utilities/ConcordiaConstants.dart' as ConcordiaConstants;
+import 'package:concordia_go/utilities/ConcordiaConstants.dart' as ConcordiaConstants;
 
 class GoogleMapsComponent extends StatefulWidget {
   @override
@@ -90,7 +90,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                 child: GoogleMap(
                   polygons: buildingPolygons(),
                   mapType: MapType.normal,
-                  initialCameraPosition: concordia_constants.sgwCampus,
+                  initialCameraPosition: ConcordiaConstants.sgwCampus,
                   onMapCreated: (GoogleMapController controller) {
                     _controller.complete(controller);
                   },
