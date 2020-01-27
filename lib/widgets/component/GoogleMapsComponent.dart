@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:concordia_go/blocs/BlocProvider.dart';
 import 'package:concordia_go/blocs/LocationBloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_app/utilities/ConcordiaConstants.dart' as ConcordiaConstants;
+import 'package:concordia_go/utilities/ConcordiaConstants.dart' as concordia_constants;
 
 class GoogleMapsComponent extends StatefulWidget {
   @override
@@ -23,12 +23,12 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   }
 
   Set<Polygon> buildingPolygons() {
-    Set<Polygon> allBuildings = new Set();
-    for (int i = 0; i < ConcordiaConstants.buildingCoords.length; i++) {
-      List<LatLng> coords = new List();
-      List<double> xCoords = ConcordiaConstants.buildingCoords[i]['xcoords'] as List<double>;
-      List<double> yCoords = ConcordiaConstants.buildingCoords[i]['ycoords'] as List<double>;
-      for (int j = 0; j < (ConcordiaConstants.buildingCoords[i]['xcoords'] as List<double>).length; j++) {
+    Set<Polygon> allBuildings = Set();
+    for (int i = 0; i < concordia_constants.buildingCoords.length; i++) {
+      List<LatLng> coords = List();
+      List<double> xCoords = concordia_constants.buildingCoords[i]['xcoords'] as List<double>;
+      List<double> yCoords = concordia_constants.buildingCoords[i]['ycoords'] as List<double>;
+      for (int j = 0; j < (concordia_constants.buildingCoords[i]['xcoords'] as List<double>).length; j++) {
         coords.add(LatLng(xCoords[j], yCoords[j]));
       }
 
@@ -36,8 +36,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
           points: coords,
           visible: polygonVisibility,
           consumeTapEvents: true,
-          onTap: () => _infoPanel(ConcordiaConstants.buildingCoords[i]['code']),
-          polygonId: PolygonId(ConcordiaConstants.buildingCoords[i]['Building']),
+          onTap: () => _infoPanel(concordia_constants.buildingCoords[i]['code']),
+          polygonId: PolygonId(concordia_constants.buildingCoords[i]['Building']),
           fillColor: Colors.redAccent.withOpacity(0.4),
           strokeColor: Colors.red));
     }
@@ -48,10 +48,10 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   Future<void> _switchCampus() async {
     final GoogleMapController controller = await _controller.future;
     if (currentCampus == 'SGW') {
-      await controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.loyolaCampus));
+      await controller.animateCamera(CameraUpdate.newCameraPosition(concordia_constants.loyolaCampus));
       currentCampus = 'Loyola';
     } else {
-      await controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.sgwCampus));
+      await controller.animateCamera(CameraUpdate.newCameraPosition(concordia_constants.sgwCampus));
       currentCampus = 'SGW';
     }
   }
@@ -83,7 +83,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
           // listens to the LocationBloc's stream and rebuilds the GoogleMap widget whenever data is received
           StreamBuilder<Marker>(
             stream: BlocProvider.of<LocationBloc>(context).markerOutput,
-            initialData: Marker(markerId: MarkerId('initial marker'), position: ConcordiaConstants.sgwCampus.target),
+            initialData: Marker(markerId: MarkerId('initial marker'), position: concordia_constants.sgwCampus.target),
             builder: (BuildContext context, AsyncSnapshot<Marker> snapshot) {
               goToBuilding(snapshot.data.position);
               return Expanded(
