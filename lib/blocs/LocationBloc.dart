@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_app/blocs/Bloc.dart';
+import 'package:concordia_go/blocs/Bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationBloc implements Bloc {

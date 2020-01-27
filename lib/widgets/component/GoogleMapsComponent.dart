@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/blocs/BlocProvider.dart';
-import 'package:flutter_app/blocs/LocationBloc.dart';
+import 'package:concordia_go/blocs/BlocProvider.dart';
+import 'package:concordia_go/blocs/LocationBloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_app/utilities/ConcordiaConstants.dart' as ConcordiaConstants;
 
@@ -48,27 +48,27 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   Future<void> _switchCampus() async {
     final GoogleMapController controller = await _controller.future;
     if (currentCampus == 'SGW') {
-      controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.loyolaCampus));
+      await controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.loyolaCampus));
       currentCampus = 'Loyola';
     } else {
-      controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.sgwCampus));
+      await controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.sgwCampus));
       currentCampus = 'SGW';
     }
   }
 
   Future<void> goToBuilding(LatLng coordinates) async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: 17.5)));
+    await controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: 17.5)));
   }
 
   Future<void> _zoomIn() async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.zoomIn());
+    await controller.animateCamera(CameraUpdate.zoomIn());
   }
 
   Future<void> _zoomOut() async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.zoomOut());
+    await controller.animateCamera(CameraUpdate.zoomOut());
   }
 
   @override
@@ -90,7 +90,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                 child: GoogleMap(
                   polygons: buildingPolygons(),
                   mapType: MapType.normal,
-                  initialCameraPosition: ConcordiaConstants.sgwCampus,
+                  initialCameraPosition: concordia_constants.sgwCampus,
                   onMapCreated: (GoogleMapController controller) {
                     _controller.complete(controller);
                   },

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/blocs/Bloc.dart';
+import 'package:concordia_go/blocs/Bloc.dart';
 
 /*
 This is a simple implementation of a BLoC provider for this prototype.
