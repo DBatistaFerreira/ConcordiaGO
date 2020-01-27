@@ -24,11 +24,11 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
 
   Set<Polygon> buildingPolygons() {
     Set<Polygon> allBuildings = new Set();
-    for (int i = 0; i < ConcordiaConstants.BUILDING_COORDS.length; i++) {
+    for (int i = 0; i < ConcordiaConstants.buildingCoords.length; i++) {
       List<LatLng> coords = new List();
-      List<double> xCoords = ConcordiaConstants.BUILDING_COORDS[i]['xcoords'] as List<double>;
-      List<double> yCoords = ConcordiaConstants.BUILDING_COORDS[i]['ycoords'] as List<double>;
-      for (int j = 0; j < (ConcordiaConstants.BUILDING_COORDS[i]['xcoords'] as List<double>).length; j++) {
+      List<double> xCoords = ConcordiaConstants.buildingCoords[i]['xcoords'] as List<double>;
+      List<double> yCoords = ConcordiaConstants.buildingCoords[i]['ycoords'] as List<double>;
+      for (int j = 0; j < (ConcordiaConstants.buildingCoords[i]['xcoords'] as List<double>).length; j++) {
         coords.add(LatLng(xCoords[j], yCoords[j]));
       }
 
@@ -36,8 +36,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
           points: coords,
           visible: polygonVisibility,
           consumeTapEvents: true,
-          onTap: () => _infoPanel(ConcordiaConstants.BUILDING_COORDS[i]['code']),
-          polygonId: PolygonId(ConcordiaConstants.BUILDING_COORDS[i]['Building']),
+          onTap: () => _infoPanel(ConcordiaConstants.buildingCoords[i]['code']),
+          polygonId: PolygonId(ConcordiaConstants.buildingCoords[i]['Building']),
           fillColor: Colors.redAccent.withOpacity(0.4),
           strokeColor: Colors.red));
     }

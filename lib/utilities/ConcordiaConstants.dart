@@ -34,7 +34,7 @@ const String FG_BUILDING_INITIAL = "FG";
 const double FG_BUILDING_LATITUDE = 45.494354;
 const double FG_BUILDING_LONGITUDE = -73.578428;
 
-var BUILDING_COORDS = [
+var buildingCoords = [
   {
     'Building': 'Hall Building',
     'code': 'H',
