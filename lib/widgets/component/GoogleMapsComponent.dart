@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/blocs/BlocProvider.dart';
 import 'package:flutter_app/blocs/LocationBloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_app/utilities/ConcordiaConstants.dart'
-    as ConcordiaConstants;
+import 'package:flutter_app/utilities/ConcordiaConstants.dart' as ConcordiaConstants;
 
 class GoogleMapsComponent extends StatefulWidget {
   @override
@@ -16,24 +15,50 @@ class GoogleMapsComponent extends StatefulWidget {
 class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   Completer<GoogleMapController> _controller = Completer();
   String currentCampus = 'SGW';
+  bool polygonVisibility = true;
+
+  void _infoPanel(String buildingCode) {
+    print(buildingCode);
+    // This method is triggered when a polygon is clicked. Currently it only prints the building code for the building you tap
+  }
+
+  Set<Polygon> buildingPolygons() {
+    Set<Polygon> allBuildings = new Set();
+    for (int i = 0; i < ConcordiaConstants.BUILDING_COORDS.length; i++) {
+      List<LatLng> coords = new List();
+      List<double> xCoords = ConcordiaConstants.BUILDING_COORDS[i]['xcoords'] as List<double>;
+      List<double> yCoords = ConcordiaConstants.BUILDING_COORDS[i]['ycoords'] as List<double>;
+      for (int j = 0; j < (ConcordiaConstants.BUILDING_COORDS[i]['xcoords'] as List<double>).length; j++) {
+        coords.add(LatLng(xCoords[j], yCoords[j]));
+      }
+
+      allBuildings.add(Polygon(
+          points: coords,
+          visible: polygonVisibility,
+          consumeTapEvents: true,
+          onTap: () => _infoPanel(ConcordiaConstants.BUILDING_COORDS[i]['code']),
+          polygonId: PolygonId(ConcordiaConstants.BUILDING_COORDS[i]['Building']),
+          fillColor: Colors.redAccent.withOpacity(0.4),
+          strokeColor: Colors.red));
+    }
+
+    return allBuildings;
+  }
 
   Future<void> _switchCampus() async {
     final GoogleMapController controller = await _controller.future;
     if (currentCampus == 'SGW') {
-      controller.animateCamera(
-          CameraUpdate.newCameraPosition(ConcordiaConstants.loyolaCampus));
+      controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.loyolaCampus));
       currentCampus = 'Loyola';
     } else {
-      controller.animateCamera(
-          CameraUpdate.newCameraPosition(ConcordiaConstants.sgwCampus));
+      controller.animateCamera(CameraUpdate.newCameraPosition(ConcordiaConstants.sgwCampus));
       currentCampus = 'SGW';
     }
   }
 
   Future<void> goToBuilding(LatLng coordinates) async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(target: coordinates, zoom: 17.5)));
+    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: 17.5)));
   }
 
   Future<void> _zoomIn() async {
@@ -58,13 +83,12 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
           // listens to the LocationBloc's stream and rebuilds the GoogleMap widget whenever data is received
           StreamBuilder<Marker>(
             stream: BlocProvider.of<LocationBloc>(context).markerOutput,
-            initialData: Marker(
-                markerId: MarkerId('initial marker'),
-                position: ConcordiaConstants.sgwCampus.target),
+            initialData: Marker(markerId: MarkerId('initial marker'), position: ConcordiaConstants.sgwCampus.target),
             builder: (BuildContext context, AsyncSnapshot<Marker> snapshot) {
               goToBuilding(snapshot.data.position);
               return Expanded(
                 child: GoogleMap(
+                  polygons: buildingPolygons(),
                   mapType: MapType.normal,
                   initialCameraPosition: ConcordiaConstants.sgwCampus,
                   onMapCreated: (GoogleMapController controller) {
