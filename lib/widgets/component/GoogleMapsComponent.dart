@@ -15,6 +15,35 @@ class GoogleMapsComponent extends StatefulWidget {
 class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   Completer<GoogleMapController> _controller = Completer();
   String currentCampus = 'SGW';
+  bool polygonVisibility = true;
+
+  void _infoPanel(String buildingCode) {
+    print(buildingCode);
+    // This method is triggered when a polygon is clicked. Currently it only prints the building code for the building you tap
+  }
+
+  Set<Polygon> buildingPolygons() {
+    Set<Polygon> allBuildings = Set();
+    for (int i = 0; i < concordia_constants.buildingCoords.length; i++) {
+      List<LatLng> coords = List();
+      List<double> xCoords = concordia_constants.buildingCoords[i]['xcoords'] as List<double>;
+      List<double> yCoords = concordia_constants.buildingCoords[i]['ycoords'] as List<double>;
+      for (int j = 0; j < (concordia_constants.buildingCoords[i]['xcoords'] as List<double>).length; j++) {
+        coords.add(LatLng(xCoords[j], yCoords[j]));
+      }
+
+      allBuildings.add(Polygon(
+          points: coords,
+          visible: polygonVisibility,
+          consumeTapEvents: true,
+          onTap: () => _infoPanel(concordia_constants.buildingCoords[i]['code']),
+          polygonId: PolygonId(concordia_constants.buildingCoords[i]['Building']),
+          fillColor: Colors.redAccent.withOpacity(0.4),
+          strokeColor: Colors.red));
+    }
+
+    return allBuildings;
+  }
 
   Future<void> _switchCampus() async {
     final GoogleMapController controller = await _controller.future;
@@ -59,6 +88,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
               goToBuilding(snapshot.data.position);
               return Expanded(
                 child: GoogleMap(
+                  polygons: buildingPolygons(),
                   mapType: MapType.normal,
                   initialCameraPosition: concordia_constants.sgwCampus,
                   onMapCreated: (GoogleMapController controller) {
