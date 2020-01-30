@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:concordia_go/blocs/LocationBloc.dart';
-import 'package:concordia_go/widgets/component/DrawerComponent.dart';
-import '../component/GoogleMapsComponent.dart';
-import 'package:concordia_go/blocs/BlocProvider.dart';
+import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/widgets/component/quick_menu.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../component/google_maps_component.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,15 +11,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomePageState extends State<HomeScreen> {
-  final bloc = LocationBloc();
-
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
 
-    // This BlocProvider provides a LocationBloc at the HomeScreen level that can be accessed by descendants of HomeScreen
-    return BlocProvider<LocationBloc>(
-      bloc: bloc,
+    return BlocProvider<MapBloc>(
+      create: (context) => MapBloc(),
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(screenHeight / 12),
@@ -28,7 +25,7 @@ class HomePageState extends State<HomeScreen> {
               backgroundColor: Color(0xff800206),
             )),
         body: GoogleMapsComponent(),
-        drawer: DrawerComponent(),
+        drawer: QuickMenu(),
       ),
     );
   }
