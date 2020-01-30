@@ -48,10 +48,10 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   }
 
   Future<void> _switchCampus(LatLng currentPosition) async {
-    double distanceToSGW =
-        await Geolocator().distanceBetween(currentPosition.latitude, currentPosition.longitude, concordia_constants.sgwCoordinates.latitude, concordia_constants.sgwCoordinates.longitude);
-    double distanceToLoyola =
-        await Geolocator().distanceBetween(currentPosition.latitude, currentPosition.longitude, concordia_constants.loyolaCoordinates.latitude, concordia_constants.loyolaCoordinates.longitude);
+    double distanceToSGW = await Geolocator().distanceBetween(currentPosition.latitude, currentPosition.longitude,
+        concordia_constants.sgwCoordinates.latitude, concordia_constants.sgwCoordinates.longitude);
+    double distanceToLoyola = await Geolocator().distanceBetween(currentPosition.latitude, currentPosition.longitude,
+        concordia_constants.loyolaCoordinates.latitude, concordia_constants.loyolaCoordinates.longitude);
 
     if (distanceToSGW < distanceToLoyola) {
       BlocProvider.of<MapBloc>(context).add(CameraMove(concordia_constants.loyolaCoordinates, 16.5, false));
@@ -115,7 +115,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   child: GoogleMap(
                     mapType: MapType.normal,
                     initialCameraPosition: CameraPosition(
-                      target: LatLng(concordia_constants.sgwCoordinates.latitude, concordia_constants.sgwCoordinates.longitude),
+                      target: LatLng(
+                          concordia_constants.sgwCoordinates.latitude, concordia_constants.sgwCoordinates.longitude),
                       zoom: 15.5,
                     ),
                     onMapCreated: (GoogleMapController controller) {

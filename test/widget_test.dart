@@ -9,7 +9,7 @@ void main() {
     await tester.pumpWidget(Application());
 
     expect(find.byType(GoogleMap), findsOneWidget);
-    expect(find.byType(FloatingActionButton), findsNWidgets(3));
+    expect(find.byType(FloatingActionButton), findsNWidgets(4));
     var zoom_out = find.byIcon(Icons.zoom_out);
     var zoom_in = find.byIcon(Icons.zoom_in);
     var switch_views = find.byIcon(Icons.sync);

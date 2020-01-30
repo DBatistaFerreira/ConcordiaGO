@@ -38,7 +38,10 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('Hall Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(LatLng(concordia_constants.H_BUILDING_LATITUDE, concordia_constants.H_BUILDING_LONGITUDE), 17.5, true));
+              bloc.add(CameraMove(
+                  LatLng(concordia_constants.H_BUILDING_LATITUDE, concordia_constants.H_BUILDING_LONGITUDE),
+                  17.5,
+                  true));
             },
           ),
           ListTile(
@@ -46,7 +49,10 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('EV Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(LatLng(concordia_constants.EV_BUILDING_LATITUDE, concordia_constants.EV_BUILDING_LONGITUDE), 17.5, true));
+              bloc.add(CameraMove(
+                  LatLng(concordia_constants.EV_BUILDING_LATITUDE, concordia_constants.EV_BUILDING_LONGITUDE),
+                  17.5,
+                  true));
             },
           ),
           ListTile(
@@ -54,7 +60,10 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('Library Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(LatLng(concordia_constants.LB_BUILDING_LATITUDE, concordia_constants.LB_BUILDING_LONGITUDE), 17.5, true));
+              bloc.add(CameraMove(
+                  LatLng(concordia_constants.LB_BUILDING_LATITUDE, concordia_constants.LB_BUILDING_LONGITUDE),
+                  17.5,
+                  true));
             },
           ),
           ListTile(
@@ -62,7 +71,10 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('JMSB Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(LatLng(concordia_constants.MB_BUILDING_LATITUDE, concordia_constants.MB_BUILDING_LONGITUDE), 17.5, true));
+              bloc.add(CameraMove(
+                  LatLng(concordia_constants.MB_BUILDING_LATITUDE, concordia_constants.MB_BUILDING_LONGITUDE),
+                  17.5,
+                  true));
             },
           ),
           ListTile(
@@ -70,7 +82,10 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('FG Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(LatLng(concordia_constants.FG_BUILDING_LATITUDE, concordia_constants.FG_BUILDING_LONGITUDE), 17.5, true));
+              bloc.add(CameraMove(
+                  LatLng(concordia_constants.FG_BUILDING_LATITUDE, concordia_constants.FG_BUILDING_LONGITUDE),
+                  17.5,
+                  true));
             },
           ),
         ],
