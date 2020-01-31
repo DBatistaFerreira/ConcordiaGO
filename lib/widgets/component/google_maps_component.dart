@@ -18,45 +18,40 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   Completer<GoogleMapController> _controller = Completer();
   bool polygonVisibility = true;
 
-  void _infoPanel(String buildingCode) {
-    print(buildingCode);
+  void _infoPanel(String buildingName) {
+    print(buildingName);
     // This method is triggered when a polygon is clicked. Currently it only prints the building code for the building you tap
   }
 
-  Set<Polygon> buildingPolygons() {
-    Set<Polygon> allBuildings = Set();
-    for (int i = 0; i < concordia_constants.buildingCoordinates.length; i++) {
-      List<LatLng> vertexCoordinates = List();
-      List<double> xCoordinates = concordia_constants.buildingCoordinates[i]['xcoords'] as List<double>;
-      List<double> yCoordinates = concordia_constants.buildingCoordinates[i]['ycoords'] as List<double>;
-      for (int j = 0; j < (concordia_constants.buildingCoordinates[i]['xcoords'] as List<double>).length; j++) {
-        vertexCoordinates.add(LatLng(xCoordinates[j], yCoordinates[j]));
-      }
-
-      allBuildings.add(Polygon(
-        points: vertexCoordinates,
+  Set<Polygon> _buildingShapes() {
+    Set<Polygon> buildingPolygons = Set<Polygon>();
+    for (var building in concordia_constants.buildings.values) {
+      buildingPolygons.add(Polygon(
         visible: polygonVisibility,
-        consumeTapEvents: true,
-        onTap: () => _infoPanel(concordia_constants.buildingCoordinates[i]['code']),
-        polygonId: PolygonId(concordia_constants.buildingCoordinates[i]['Building']),
+        points: building['vertices'],
+        polygonId: PolygonId(building['name']),
         fillColor: Colors.redAccent.withOpacity(0.15),
         strokeColor: Colors.red,
         strokeWidth: 2,
+        onTap: () => _infoPanel(building['name']),
       ));
     }
-    return allBuildings;
+    return buildingPolygons;
   }
 
   Future<void> _switchCampus(LatLng currentPosition) async {
-    double distanceToSGW = await Geolocator().distanceBetween(currentPosition.latitude, currentPosition.longitude,
-        concordia_constants.sgwCoordinates.latitude, concordia_constants.sgwCoordinates.longitude);
-    double distanceToLoyola = await Geolocator().distanceBetween(currentPosition.latitude, currentPosition.longitude,
-        concordia_constants.loyolaCoordinates.latitude, concordia_constants.loyolaCoordinates.longitude);
+    LatLng sgwCoordinates = concordia_constants.sgwCampus['coordinates'];
+    LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'];
+
+    double distanceToSGW = await Geolocator().distanceBetween(
+        currentPosition.latitude, currentPosition.longitude, sgwCoordinates.latitude, sgwCoordinates.longitude);
+    double distanceToLoyola = await Geolocator().distanceBetween(
+        currentPosition.latitude, currentPosition.longitude, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
 
     if (distanceToSGW < distanceToLoyola) {
-      BlocProvider.of<MapBloc>(context).add(CameraMove(concordia_constants.loyolaCoordinates, 16.5, false));
+      BlocProvider.of<MapBloc>(context).add(CameraMove(loyolaCoordinates, concordia_constants.campusZoomLevel, false));
     } else {
-      BlocProvider.of<MapBloc>(context).add(CameraMove(concordia_constants.sgwCoordinates, 16.5, false));
+      BlocProvider.of<MapBloc>(context).add(CameraMove(sgwCoordinates, concordia_constants.campusZoomLevel, false));
     }
   }
 
@@ -91,7 +86,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     final bloc = BlocProvider.of<MapBloc>(context);
-    LatLng currentCameraPosition = concordia_constants.sgwCoordinates;
+    LatLng currentCameraPosition = concordia_constants.sgwCampus['coordinates'];
 
     return Scaffold(
       body: Column(
@@ -115,8 +110,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   child: GoogleMap(
                     mapType: MapType.normal,
                     initialCameraPosition: CameraPosition(
-                      target: LatLng(
-                          concordia_constants.sgwCoordinates.latitude, concordia_constants.sgwCoordinates.longitude),
+                      target: concordia_constants.sgwCampus['coordinates'],
                       zoom: 15.5,
                     ),
                     onMapCreated: (GoogleMapController controller) {
@@ -126,7 +120,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                     myLocationButtonEnabled: false,
                     buildingsEnabled: false,
                     markers: markers,
-                    polygons: buildingPolygons(),
+                    polygons: _buildingShapes(),
                     onCameraMove: (value) {
                       currentCameraPosition = value.target;
                     },

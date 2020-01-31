@@ -10,7 +10,7 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: application_constants.APPLICATION_NAME,
+      title: application_constants.applicationName,
       home: HomeScreen(),
     );
   }

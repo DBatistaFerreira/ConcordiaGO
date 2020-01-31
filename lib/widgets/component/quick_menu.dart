@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 
 class QuickMenu extends StatefulWidget {
@@ -39,9 +38,7 @@ class QuickMenuState extends State<QuickMenu> {
             onTap: () {
               Navigator.pop(context);
               bloc.add(CameraMove(
-                  LatLng(concordia_constants.H_BUILDING_LATITUDE, concordia_constants.H_BUILDING_LONGITUDE),
-                  17.5,
-                  true));
+                  concordia_constants.buildings['H']['coordinates'], concordia_constants.poiZoomLevel, true));
             },
           ),
           ListTile(
@@ -50,9 +47,7 @@ class QuickMenuState extends State<QuickMenu> {
             onTap: () {
               Navigator.pop(context);
               bloc.add(CameraMove(
-                  LatLng(concordia_constants.EV_BUILDING_LATITUDE, concordia_constants.EV_BUILDING_LONGITUDE),
-                  17.5,
-                  true));
+                  concordia_constants.buildings['EV']['coordinates'], concordia_constants.poiZoomLevel, true));
             },
           ),
           ListTile(
@@ -61,9 +56,7 @@ class QuickMenuState extends State<QuickMenu> {
             onTap: () {
               Navigator.pop(context);
               bloc.add(CameraMove(
-                  LatLng(concordia_constants.LB_BUILDING_LATITUDE, concordia_constants.LB_BUILDING_LONGITUDE),
-                  17.5,
-                  true));
+                  concordia_constants.buildings['LB']['coordinates'], concordia_constants.poiZoomLevel, true));
             },
           ),
           ListTile(
@@ -72,9 +65,7 @@ class QuickMenuState extends State<QuickMenu> {
             onTap: () {
               Navigator.pop(context);
               bloc.add(CameraMove(
-                  LatLng(concordia_constants.MB_BUILDING_LATITUDE, concordia_constants.MB_BUILDING_LONGITUDE),
-                  17.5,
-                  true));
+                  concordia_constants.buildings['MB']['coordinates'], concordia_constants.poiZoomLevel, true));
             },
           ),
           ListTile(
@@ -83,9 +74,7 @@ class QuickMenuState extends State<QuickMenu> {
             onTap: () {
               Navigator.pop(context);
               bloc.add(CameraMove(
-                  LatLng(concordia_constants.FG_BUILDING_LATITUDE, concordia_constants.FG_BUILDING_LONGITUDE),
-                  17.5,
-                  true));
+                  concordia_constants.buildings['FG']['coordinates'], concordia_constants.poiZoomLevel, true));
             },
           ),
         ],
