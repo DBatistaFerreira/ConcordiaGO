@@ -33,6 +33,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
         fillColor: Colors.redAccent.withOpacity(0.15),
         strokeColor: Colors.red,
         strokeWidth: 2,
+        consumeTapEvents: true,
         onTap: () => _infoPanel(building['name']),
       ));
     }
