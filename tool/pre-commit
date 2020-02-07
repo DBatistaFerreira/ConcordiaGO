@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Exporting flutter and dart"
+export PATH=$HOME/flutter/bin:$HOME/flutter/bin/cache/dart-sdk/bin:$PATH
+echo "Checking format..."
+dartfmt . -l 120 --fix -n --set-exit-if-changed && echo "Formatting is good"
+echo "Linting code..."
+flutter analyze .
