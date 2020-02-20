@@ -2,6 +2,7 @@ library concordia_constants;
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+
 const sgwCampus = {
   'name': 'Sir George Williams Campus',
   'code': 'SGW',
@@ -28,6 +29,8 @@ const buildings = {
       LatLng(45.497175, -73.5795483),
       LatLng(45.4977167, -73.579045)
     ],
+    'address' : '1455 Maisonneuve Blvd W, Montreal, QC H3G 1M8',
+    'campus': 'SGW Campus',
   },
   'LB': {
     'name': 'Webster Library',
@@ -40,6 +43,8 @@ const buildings = {
       LatLng(45.4965014, -73.5774675),
       LatLng(45.4962589, -73.5776955)
     ],
+    'address': '1400 Maisonneuve Blvd W, Montreal, QC H3G 1M8',
+    'campus': 'SGW Campus',
   },
   'MB': {
     'name': 'John Molson Building',
@@ -50,6 +55,8 @@ const buildings = {
       LatLng(45.495191, -73.578513),
       LatLng(45.495014, -73.578711)
     ],
+    'address': '1450 Guy St, Montreal, QC H3H 1J5',
+    'campus': 'SGW Campus',
   },
   'EV': {
     'name': 'EV Building',
@@ -62,6 +69,8 @@ const buildings = {
       LatLng(45.4958349, -73.5772469),
       LatLng(45.4952187, -73.577887)
     ],
+    'address':'1515 Saint-Catherine St W, Montreal, QC H3G 2W1',
+    'campus': 'SGW Campus',
   },
   'FG': {
     'name': 'Faubourg St-Catherines Building',
@@ -72,6 +81,8 @@ const buildings = {
       LatLng(45.494238, -73.5782266),
       LatLng(45.4941722, -73.5783051)
     ],
+    'address': '1610 Saint-Catherine St W, Montreal, QC H3H 1L9',
+    'campus': 'SGW Campus',
   },
   'B': {
     'name': 'ECA B-Annex',
@@ -82,6 +93,8 @@ const buildings = {
       LatLng(45.497915, -73.579456),
       LatLng(45.497882, -73.579391)
     ],
+    'address': '2160 Bishop St, Montreal, QC H3G 2E9',
+    'campus': 'SGW Campus',
   },
   'CB': {
     'name': 'CB Building',
@@ -98,6 +111,8 @@ const buildings = {
       LatLng(45.495194, -73.5739947),
       LatLng(45.495163, -73.5739347)
     ],
+    'address':'1425 René-Lévesque Blvd W, Montreal, QC H3G 1T7',
+    'campus': 'SGW Campus',
   },
   'CI': {
     'name': 'CI Annex',
@@ -108,6 +123,8 @@ const buildings = {
       LatLng(45.49758, -73.579835),
       LatLng(45.4975439, -73.5797592)
     ],
+    'address': '2149 Mackay St, Montreal, QC H3G 2J2',
+    'campus': 'SGW Campus',
   },
   'CL': {
     'name': 'CL Annex',
@@ -118,6 +135,8 @@ const buildings = {
       LatLng(45.494339, -73.579427),
       LatLng(45.494465, -73.579285)
     ],
+    'address': '1665 Saint-Catherine St W, Montreal, QC H3H 1L9',
+    'campus': 'SGW Campus',
   },
   'D': {
     'name': 'D Annex',
@@ -128,6 +147,8 @@ const buildings = {
       LatLng(45.49781, -73.579235),
       LatLng(45.497848, -73.579311)
     ],
+    'address': '2140 Bishop St, Montreal, QC H3G 2E9',
+    'campus': 'SGW Campus',
   },
   'EN': {
     'name': 'EN Annex',
@@ -138,6 +159,8 @@ const buildings = {
       LatLng(45.4969461, -73.5796669),
       LatLng(45.496964, -73.579705)
     ],
+    'address': '2070 Mackay St, Montreal, QC H3G 2J1',
+    'campus': 'SGW Campus',
   },
   'ER': {
     'name': 'ER Building',
@@ -148,6 +171,8 @@ const buildings = {
       LatLng(45.496392, -73.579752),
       LatLng(45.496524, -73.579629)
     ],
+    'address': '2155 Guy St, Montreal, QC H3H 2L9',
+    'campus': 'SGW Campus',
   },
   'FA': {
     'name': 'FA Annex',
@@ -158,6 +183,8 @@ const buildings = {
       LatLng(45.4969075, -73.579581),
       LatLng(45.496817, -73.579675)
     ],
+    'address': '2060 MacKay, Montreal, QC H3G 2J1',
+    'campus': 'SGW Campus',
   },
   'FB': {
     'name': 'Faubourg Building',
@@ -168,6 +195,8 @@ const buildings = {
       LatLng(45.494646, -73.577214),
       LatLng(45.494912, -73.577766)
     ],
+    'address': '1250 Guy St, Montreal, QC H3H 2T4',
+    'campus': 'SGW Campus',
   },
   'GM': {
     'name': 'Guy-De Maisonneuve Building',
@@ -178,6 +207,8 @@ const buildings = {
       LatLng(45.495807, -73.578558),
       LatLng(45.496026, -73.578903)
     ],
+    'address': '1550 De Maisonneuve West, Montreal, QC',
+    'campus': 'SGW Campus',
   },
   'GN': {
     'name': 'Grey Nuns Building',
@@ -188,6 +219,8 @@ const buildings = {
       LatLng(45.49335, -73.576693),
       LatLng(45.493436, -73.576848)
     ],
+    'address': '1175 St Mathieu St, Montreal, QC H3H 2P7',
+    'campus': 'SGW Campus',
   },
   'GS': {
     'name': 'GS Building',
@@ -198,6 +231,8 @@ const buildings = {
       LatLng(45.496473, -73.581118),
       LatLng(45.496592, -73.581031)
     ],
+    'address': '1538 Sherbrooke St W, Montreal, QC H3H 2L9',
+    'campus': 'SGW Campus',
   },
   'K': {
     'name': 'K Annex',
@@ -208,6 +243,8 @@ const buildings = {
       LatLng(45.497705, -73.579558),
       LatLng(45.497737, -73.57963)
     ],
+    'address' : '2150 Bishop St, Montreal, QC H3G 2E9',
+    'campus': 'SGW Campus',
   },
   'LD': {
     'name': 'LD Building',
@@ -218,6 +255,8 @@ const buildings = {
       LatLng(45.496856, -73.577164),
       LatLng(45.496856, -73.577164)
     ],
+    'address': '1424 Bishop St, Montreal, QC H3G 2E6',
+    'campus': 'SGW Campus',
   },
   'LS': {
     'name': 'Learning Square Building',
@@ -230,6 +269,8 @@ const buildings = {
       LatLng(45.496188, -73.579741),
       LatLng(45.496052, -73.579866)
     ],
+    'address' : '1535 Boul. de Maisonneuve O, Montréal, QC H3G 1M9',
+    'campus': 'SGW Campus',
   },
   'M': {
     'name': 'M Annex',
@@ -240,6 +281,8 @@ const buildings = {
       LatLng(45.49742, -73.579751),
       LatLng(45.49739, -73.579681)
     ],
+    'address' : '2135 Mackay St, Montreal, QC H3G 2J2',
+    'campus': 'SGW Campus',
   },
   'MI': {
     'name': 'MI Annex',
@@ -252,6 +295,8 @@ const buildings = {
       LatLng(45.497694, -73.579282),
       LatLng(45.497682, -73.579259)
     ],
+    'address':'2130 Bishop St, Montreal, QC H3G 2E9',
+    'campus': 'SGW Campus',
   },
   'MU': {
     'name': 'MU Annex',
@@ -262,6 +307,8 @@ const buildings = {
       LatLng(45.497957, -73.579541),
       LatLng(45.497783, -73.579698)
     ],
+    'address': '2170 Bishop St, Montreal, QC H3G 2E9',
+    'campus': 'SGW Campus',
   },
   'P': {
     'name': 'P Annex',
@@ -272,6 +319,8 @@ const buildings = {
       LatLng(45.49672, -73.579167),
       LatLng(45.496626, -73.579266)
     ],
+    'address': '2020 Mackay St, Montreal, QC H3G 2M2',
+    'campus': 'SGW Campus',
   },
   'PR': {
     'name': 'PR Annex',
@@ -282,6 +331,8 @@ const buildings = {
       LatLng(45.497045, -73.579839),
       LatLng(45.496947, -73.579941)
     ],
+    'address': '2100 Mackay St, Montreal, QC H3G 2J1',
+    'campus': 'SGW Campus',
   },
   'Q': {
     'name': 'Q Annex',
@@ -292,6 +343,8 @@ const buildings = {
       LatLng(45.49667, -73.579082),
       LatLng(45.496643, -73.57903)
     ],
+    'address': '2010 Mackay St, Montreal, QC H3G 2J1',
+    'campus': 'SGW Campus',
   },
   'R': {
     'name': 'R Annex',
@@ -302,6 +355,8 @@ const buildings = {
       LatLng(45.496834, -73.5794),
       LatLng(45.496747, -73.579483)
     ],
+    'address': '2050 Mackay St, Montreal, QC H3G 2J1',
+    'campus': 'SGW Campus',
   },
   'RR': {
     'name': 'RR Annex',
@@ -312,6 +367,8 @@ const buildings = {
       LatLng(45.496756, -73.579259),
       LatLng(45.496613, -73.579402)
     ],
+    'address':'2040 Mackay St, Montreal, QC H3G 2J1',
+    'campus': 'SGW Campus',
   },
   'S': {
     'name': 'S Annex',
@@ -324,6 +381,8 @@ const buildings = {
       LatLng(45.497424, -73.579762),
       LatLng(45.497329, -73.57986)
     ],
+    'address':'2145 Mackay St, Montreal, QC H3G 2J2',
+    'campus': 'SGW Campus',
   },
   'SB': {
     'name': 'Samuel Bronfman Building',
@@ -334,6 +393,8 @@ const buildings = {
       LatLng(45.496621, -73.585972),
       LatLng(45.496672, -73.586086)
     ],
+    'address': '1590 Docteur Penfield, Montreal, QC',
+    'campus': 'SGW Campus',
   },
   'T': {
     'name': 'T Annex',
@@ -344,6 +405,8 @@ const buildings = {
       LatLng(45.496711, -73.579189),
       LatLng(45.496631, -73.579269)
     ],
+    'address':'2030 MacKay, Montreal, QC H3G 2J1',
+    'campus': 'SGW Campus',
   },
   'TD': {
     'name': 'Toronto Dominion Building',
@@ -354,6 +417,9 @@ const buildings = {
       LatLng(45.495089, -73.57823),
       LatLng(45.495019, -73.578318)
     ],
+    'address': '1410 Guy St, Montreal, QC H3H 2L7',
+    'campus': 'SGW Campus',
+
   },
   'V': {
     'name': 'V Annex',
@@ -364,6 +430,8 @@ const buildings = {
       LatLng(45.497085, -73.579915),
       LatLng(45.496981, -73.580015)
     ],
+    'address': '2110 Mackay St, Montreal, QC H3G 2J1',
+    'campus': 'SGW Campus',
   },
   'VA': {
     'name': 'Visual Arts Building',
@@ -376,6 +444,8 @@ const buildings = {
       LatLng(45.495809, -73.573826),
       LatLng(45.495656, -73.573509)
     ],
+    'address':'1395 René-Lévesque W, Montreal, QC H3G 2M5',
+    'campus': 'SGW Campus',
   },
   //******************************************************************************************************************
   // Loyola Buildings
@@ -400,6 +470,8 @@ const buildings = {
       LatLng(45.457915, -73.639833),
       LatLng(45.457874, -73.639778)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'BB': {
     'name': 'BB Annex',
@@ -410,6 +482,8 @@ const buildings = {
       LatLng(45.459809, -73.639169),
       LatLng(45.459723, -73.639237)
     ],
+    'address':'3502 Avenue Belmore, Montréal, QC H4B 2B9',
+    'campus': 'Loyola Campus'
   },
   'BH': {
     'name': 'BH Annex',
@@ -420,6 +494,8 @@ const buildings = {
       LatLng(45.45975, -73.639026),
       LatLng(45.459665, -73.639092)
     ],
+    'address':'3500 Avenue Belmore, Montréal, QC H4B 2B9',
+    'campus': 'Loyola Campus'
   },
   'CC': {
     'name': 'Central Building',
@@ -430,6 +506,8 @@ const buildings = {
       LatLng(45.458509, -73.640686),
       LatLng(45.458379, -73.640794)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'CJ': {
     'name': 'Communications Studies and Journalism Building',
@@ -455,6 +533,8 @@ const buildings = {
       LatLng(45.457273, -73.640651),
       LatLng(45.457178, -73.640394)
     ],
+    'address':'7141 Sherbrooke St, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'DO': {
     'name': 'Stinger Dome',
@@ -465,6 +545,8 @@ const buildings = {
       LatLng(45.457901, -73.635263),
       LatLng(45.458319, -73.63597)
     ],
+    'address':'7141 Sherbrooke St, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'FC': {
     'name': 'F.C. Smith Building',
@@ -480,6 +562,8 @@ const buildings = {
       LatLng(45.458715, -73.639422),
       LatLng(45.458739, -73.63962)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'GE': {
     'name': 'Centre for Structural and Functional Genomics',
@@ -490,6 +574,8 @@ const buildings = {
       LatLng(45.457033, -73.64018),
       LatLng(45.457169, -73.640566)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'HA': {
     'name': 'Hingston Hall - HA Wing',
@@ -500,6 +586,8 @@ const buildings = {
       LatLng(45.459479, -73.640895),
       LatLng(45.459248, -73.641066)
     ],
+    'address':'7141 Sherbrooke St, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'HB': {
     'name': 'Hingston Hall - HB Wing',
@@ -512,6 +600,8 @@ const buildings = {
       LatLng(45.459001, -73.641885),
       LatLng(45.458968, -73.641809)
     ],
+    'address':'7141 Sherbrooke St, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'HC': {
     'name': 'Hingston Hall - HC Wing',
@@ -522,6 +612,8 @@ const buildings = {
       LatLng(45.459886, -73.642011),
       LatLng(45.45962, -73.642268)
     ],
+    'address':'7141 Sherbrooke St, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'HU': {
     'name': 'Applied Science Hub',
@@ -532,6 +624,8 @@ const buildings = {
       LatLng(45.459225, -73.642782),
       LatLng(45.458789, -73.643153)
     ],
+    'address':'7141 Sherbrooke St, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'JR': {
     'name': 'Jesuit Residence',
@@ -542,6 +636,8 @@ const buildings = {
       LatLng(45.458627, -73.643307),
       LatLng(45.458491, -73.643392)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'PC': {
     'name': 'Perform Centre',
@@ -552,6 +648,8 @@ const buildings = {
       LatLng(45.456939, -73.636797),
       LatLng(45.457266, -73.63762)
     ],
+    'address': '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'PS': {
     'name': 'Physical Services Building',
@@ -564,6 +662,8 @@ const buildings = {
       LatLng(45.459597, -73.639221),
       LatLng(45.459964, -73.640121)
     ],
+    'address': '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'PT': {
     'name': 'Oscar Peterson Concert Hall',
@@ -574,6 +674,8 @@ const buildings = {
       LatLng(45.459477, -73.639135),
       LatLng(45.459351, -73.638829)
     ],
+    'address': '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'PY': {
     'name': 'Psychology Building',
@@ -584,6 +686,8 @@ const buildings = {
       LatLng(45.458759, -73.6404),
       LatLng(45.459107, -73.640121)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'RA': {
     'name': 'Recreation and Athletics Complex',
@@ -594,6 +698,8 @@ const buildings = {
       LatLng(45.456397, -73.637384),
       LatLng(45.456691, -73.63813)
     ],
+    'address': '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
+    'campus': 'Loyola Campus'
   },
   'RF': {
     'name': 'Jesuit Hall and Conference Centre',
@@ -612,6 +718,8 @@ const buildings = {
       LatLng(45.458591, -73.640876),
       LatLng(45.458681, -73.640802)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'SC': {
     'name': 'Student Centre',
@@ -622,6 +730,7 @@ const buildings = {
       LatLng(45.458995, -73.639122),
       LatLng(45.459106, -73.639414)
     ],
+    'campus': 'Loyola Campus'
   },
   'SI': {
     'name': 'Saint Ignatius of Loyola',
@@ -632,6 +741,8 @@ const buildings = {
       LatLng(45.457964, -73.64206),
       LatLng(45.457576, -73.642402)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'SP': {
     'name': 'Richard J. Renaud Science Complex',
@@ -646,6 +757,8 @@ const buildings = {
       LatLng(45.457638, -73.641845),
       LatLng(45.457433, -73.641996)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'TA': {
     'name': 'Terrebonne Building',
@@ -656,6 +769,8 @@ const buildings = {
       LatLng(45.460074, -73.640891),
       LatLng(45.460036, -73.6408)
     ],
+    'address':'7079 Rue de Terrebonne, Montreal, QC H4B 1E1',
+    'campus': 'Loyola Campus'
   },
   'VE': {
     'name': 'Vanier Extension',
@@ -666,6 +781,8 @@ const buildings = {
       LatLng(45.458853, -73.639007),
       LatLng(45.458619, -73.638457)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
   'VL': {
     'name': 'Vanier Library',
@@ -680,5 +797,7 @@ const buildings = {
       LatLng(45.458909, -73.638),
       LatLng(45.458939, -73.638191)
     ],
+    'address':'7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus'
   },
 };
