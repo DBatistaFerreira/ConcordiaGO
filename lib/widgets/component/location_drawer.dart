@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Color mainColor = Color(0xff800206);
 
 class location_drawer {
-  static void settingModalBottomSheet(context, buildingName, campus, coordinates, address) {
+  static void buildingInfoDrawer(context, buildingName, campus, coordinates, address) {
     showModalBottomSheet(
         context: context,
         backgroundColor: mainColor,
@@ -145,7 +145,7 @@ class location_drawer {
                             child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0), side: BorderSide(color: Colors.white)),
-                                onPressed: ()=>{},
+                                onPressed: () => {},
                                 child: Text(
                                   "Get there",
                                   textAlign: TextAlign.center,

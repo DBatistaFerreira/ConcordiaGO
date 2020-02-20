@@ -21,7 +21,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
 
   void _infoPanel(String buildingName, String campus, LatLng coordinates, String address) {
     setState(() {
-      location_drawer.settingModalBottomSheet(context, buildingName, campus, coordinates, address);
+      location_drawer.buildingInfoDrawer(context, buildingName, campus, coordinates, address);
     });
     // This method is triggered when a polygon is clicked. Currently it only prints the building code for the building you tap
   }
