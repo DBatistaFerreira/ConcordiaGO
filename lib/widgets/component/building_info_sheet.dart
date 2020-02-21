@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 Color mainColor = Color(0xff800206);
+PersistentBottomSheetController bottomSheetController;
 
 class building_info_sheet {
   static void buildingInfoSheet(context, buildingName, campus, coordinates, address) {
-    showBottomSheet(
+    bottomSheetController = showBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       builder: (BuildContext bc) {
@@ -82,6 +83,10 @@ class building_info_sheet {
                               size: iconSize,
                             ),
                           ),
+//                          InkWell(
+//                            child: Text("https://www.concordia.ca"),
+//                            onTap: () {},
+//                          ),
                           Text("https://www.concordia.ca"),
                         ],
                       ),

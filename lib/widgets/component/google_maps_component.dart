@@ -129,7 +129,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                       currentCameraPosition = value.target;
                     },
                     onTap: (value) {
-                      Navigator.pop(context);
+                      bottomSheetController.close();
                     },
                   ),
                 );
