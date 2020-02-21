@@ -1,4 +1,6 @@
+import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Color mainColor = Color(0xff800206);
 PersistentBottomSheetController bottomSheetController;
@@ -83,11 +85,15 @@ class building_info_sheet {
                               size: iconSize,
                             ),
                           ),
-//                          InkWell(
-//                            child: Text("https://www.concordia.ca"),
-//                            onTap: () {},
-//                          ),
-                          Text("https://www.concordia.ca"),
+                          InkWell(
+                            child: Text(
+                              concordia_constants.concordiaUrl,
+                              style: TextStyle(decoration: TextDecoration.underline),
+                            ),
+                            onTap: () {
+                              _launchUrl(concordia_constants.concordiaUrl);
+                            },
+                          ),
                         ],
                       ),
                       Row(
@@ -99,7 +105,7 @@ class building_info_sheet {
                               size: iconSize,
                             ),
                           ),
-                          Text("(514) 848-2424"),
+                          Text(concordia_constants.concordiaPhone),
                         ],
                       ),
                       Row(
@@ -111,7 +117,7 @@ class building_info_sheet {
                               size: iconSize,
                             ),
                           ),
-                          Text("Opening hours variable here"),
+                          Text('Opening hours variable here'),
                         ],
                       ),
                     ],
@@ -141,7 +147,7 @@ class building_info_sheet {
                             size: screenWidth / 12,
                           ),
                           label: Text(
-                            "Go",
+                            'Go',
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.black, fontSize: 16.0),
                           ),
@@ -156,5 +162,13 @@ class building_info_sheet {
         );
       },
     );
+  }
+
+  static void _launchUrl(url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

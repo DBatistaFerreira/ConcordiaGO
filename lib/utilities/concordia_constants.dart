@@ -2,6 +2,9 @@ library concordia_constants;
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+const concordiaUrl = 'https://www.concordia.ca';
+const concordiaPhone = '(514) 848-2424';
+
 const sgwCampus = {
   'name': 'Sir George Williams Campus',
   'code': 'SGW',
