@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
-import 'package:concordia_go/widgets/component/location_drawer.dart';
+import 'package:concordia_go/widgets/component/building_info_sheet.dart';
 
 class GoogleMapsComponent extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
 
   void _infoPanel(String buildingName, String campus, LatLng coordinates, String address) {
     setState(() {
-      location_drawer.buildingInfoDrawer(context, buildingName, campus, coordinates, address);
+      building_info_sheet.buildingInfoSheet(context, buildingName, campus, coordinates, address);
     });
     // This method is triggered when a polygon is clicked. Currently it only prints the building code for the building you tap
   }
@@ -127,6 +127,9 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                     polygons: _buildingShapes(),
                     onCameraMove: (value) {
                       currentCameraPosition = value.target;
+                    },
+                    onTap: (value) {
+                      Navigator.pop(context);
                     },
                   ),
                 );
