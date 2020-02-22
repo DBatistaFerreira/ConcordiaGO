@@ -15,8 +15,15 @@ class HomePageState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
 
-    return BlocProvider<MapBloc>(
-      create: (context) => MapBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MapBloc>(
+          create: (context) => MapBloc(),
+        ),
+        BlocProvider<BuildingInfoBloc>(
+          create: (context) => BuildingInfoBloc(),
+        ),
+      ],
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(screenHeight / 12),

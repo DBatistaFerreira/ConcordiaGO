@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 
 class QuickMenu extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class QuickMenuState extends State<QuickMenu> {
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
-    final bloc = BlocProvider.of<MapBloc>(context);
+    final mapBloc = BlocProvider.of<MapBloc>(context);
 
     return Drawer(
       child: ListView(
@@ -37,8 +36,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('Hall Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(
-                  concordia_constants.buildings['H']['coordinates'], concordia_constants.poiZoomLevel, true));
+              mapBloc.add(CameraMoveConcordia('H', context));
             },
           ),
           ListTile(
@@ -46,8 +44,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('EV Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(
-                  concordia_constants.buildings['EV']['coordinates'], concordia_constants.poiZoomLevel, true));
+              mapBloc.add(CameraMoveConcordia('EV', context));
             },
           ),
           ListTile(
@@ -55,8 +52,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('Library Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(
-                  concordia_constants.buildings['LB']['coordinates'], concordia_constants.poiZoomLevel, true));
+              mapBloc.add(CameraMoveConcordia('LB', context));
             },
           ),
           ListTile(
@@ -64,8 +60,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('JMSB Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(
-                  concordia_constants.buildings['MB']['coordinates'], concordia_constants.poiZoomLevel, true));
+              mapBloc.add(CameraMoveConcordia('MB', context));
             },
           ),
           ListTile(
@@ -73,8 +68,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('FG Building'),
             onTap: () {
               Navigator.pop(context);
-              bloc.add(CameraMove(
-                  concordia_constants.buildings['FG']['coordinates'], concordia_constants.poiZoomLevel, true));
+              mapBloc.add(CameraMoveConcordia('FG', context));
             },
           ),
         ],

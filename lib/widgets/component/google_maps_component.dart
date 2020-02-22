@@ -19,26 +19,24 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   Completer<GoogleMapController> _controller = Completer();
   bool polygonVisibility = true;
 
-  void _infoPanel(String buildingName, String campus, LatLng coordinates, String address) {
-    setState(() {
-      building_info_sheet.buildingInfoSheet(context, buildingName, campus, coordinates, address);
-    });
-    // This method is triggered when a polygon is clicked. Currently it only prints the building code for the building you tap
+  void _infoPanel() {
+    building_info_sheet.buildingInfoSheet(context);
   }
 
   Set<Polygon> _buildingShapes() {
     Set<Polygon> buildingPolygons = Set<Polygon>();
-    for (var building in concordia_constants.buildings.values) {
+    for (var building in concordia_constants.buildings.entries) {
       buildingPolygons.add(Polygon(
-        visible: polygonVisibility,
-        points: building['vertices'],
-        polygonId: PolygonId(building['name']),
-        fillColor: Colors.redAccent.withOpacity(0.15),
-        strokeColor: Colors.red,
-        strokeWidth: 2,
-        consumeTapEvents: true,
-        onTap: () => _infoPanel(building['name'], building['campus'], building['coordinates'], building['address']),
-      ));
+          visible: polygonVisibility,
+          points: building.value['vertices'],
+          polygonId: PolygonId(building.value['name']),
+          fillColor: Colors.redAccent.withOpacity(0.15),
+          strokeColor: Colors.red,
+          strokeWidth: 2,
+          consumeTapEvents: true,
+          onTap: () {
+            BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfo(building.key));
+          }));
     }
     return buildingPolygons;
   }
@@ -53,25 +51,15 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
         currentPosition.latitude, currentPosition.longitude, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
 
     if (distanceToSGW < distanceToLoyola) {
-      BlocProvider.of<MapBloc>(context).add(CameraMove(loyolaCoordinates, concordia_constants.campusZoomLevel, false));
+      BlocProvider.of<MapBloc>(context).add(CameraMove(loyolaCoordinates, concordia_constants.campusZoomLevel));
     } else {
-      BlocProvider.of<MapBloc>(context).add(CameraMove(sgwCoordinates, concordia_constants.campusZoomLevel, false));
+      BlocProvider.of<MapBloc>(context).add(CameraMove(sgwCoordinates, concordia_constants.campusZoomLevel));
     }
   }
 
   Future<void> _goToLocation(LatLng coordinates, double zoom) async {
     final GoogleMapController controller = await _controller.future;
     await controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: zoom)));
-  }
-
-  Future<void> _zoomIn() async {
-    final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.zoomIn());
-  }
-
-  Future<void> _zoomOut() async {
-    final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.zoomOut());
   }
 
   Future<LatLng> _getMyLocation() async {
@@ -89,27 +77,44 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    final bloc = BlocProvider.of<MapBloc>(context);
+    final mapBloc = BlocProvider.of<MapBloc>(context);
+    final buildingInfoBloc = BlocProvider.of<BuildingInfoBloc>(context);
     LatLng currentCameraPosition = concordia_constants.sgwCampus['coordinates'];
+    Set<Marker> markers = Set<Marker>();
 
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          BlocListener<MapBloc, MapState>(
-            listener: (context, state) {
-              if (state is ExplorationMap) {
-                _goToLocation(state.cameraPosition, state.zoom);
-              }
-            },
+          MultiBlocListener(
+            listeners: [
+              BlocListener<MapBloc, MapState>(
+                listener: (context, state) {
+                  if (state is MapNoMarker) {
+                    _goToLocation(state.cameraPosition, state.zoom);
+                  }
+                  if (state is MapWithMarker) {
+                    _goToLocation(state.cameraPosition, state.zoom);
+                    markers.clear();
+                    markers.add(Marker(
+                      markerId: MarkerId(state.buildingCode),
+                      position: state.cameraPosition,
+                      consumeTapEvents: true,
+                      onTap: () {
+                        buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
+                      },
+                    ));
+                  }
+                },
+              ),
+              BlocListener<BuildingInfoBloc, BuildingInfoState>(
+                listener: (context, state) {
+                  _infoPanel();
+                },
+              )
+            ],
             child: BlocBuilder<MapBloc, MapState>(
               builder: (context, state) {
-                Set<Marker> markers;
-                if (state is InitialMap) {
-                  markers = state.markers;
-                } else if (state is ExplorationMap) {
-                  markers = state.markers;
-                }
                 return Expanded(
                   child: GoogleMap(
                     mapType: MapType.normal,
@@ -129,7 +134,9 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                       currentCameraPosition = value.target;
                     },
                     onTap: (value) {
-                      bottomSheetController.close();
+                      if (building_info_sheet.bottomSheetController != null) {
+                        building_info_sheet.bottomSheetController.close();
+                      }
                     },
                   ),
                 );
@@ -142,19 +149,19 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Container(
-            height: screenHeight / 13,
-            width: screenHeight / 13,
-            padding: EdgeInsets.all(5.0),
+            height: screenHeight / 11,
+            width: screenHeight / 11,
+            padding: EdgeInsets.all(6.0),
             child: FloatingActionButton(
               heroTag: null,
-              child: Icon(Icons.gps_fixed, size: screenWidth / 15),
+              child: Icon(Icons.gps_fixed, size: screenWidth / 14),
               backgroundColor: Color(0xff800206),
               onPressed: () {
                 GeolocationStatus status;
                 Geolocator().checkGeolocationPermissionStatus().then((result) => status = result);
                 _getMyLocation().then((myLocation) {
                   if (myLocation != null) {
-                    bloc.add(CameraMove(myLocation, 17.5, false));
+                    mapBloc.add(CameraMove(myLocation, 17.5));
                   } else if (status == GeolocationStatus.denied) {
                     Scaffold.of(context).showSnackBar(SnackBar(
                       content: Text('Allow location permissions to access My Location'),
@@ -169,38 +176,12 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
             ),
           ),
           Container(
-            height: screenHeight / 13,
-            width: screenHeight / 13,
-            padding: EdgeInsets.all(5.0),
+            height: screenHeight / 11,
+            width: screenHeight / 11,
+            padding: EdgeInsets.all(6.0),
             child: FloatingActionButton(
               heroTag: null,
-              child: Icon(Icons.zoom_in, size: screenWidth / 12),
-              backgroundColor: Color(0xff800206),
-              onPressed: () {
-                _zoomIn();
-              },
-            ),
-          ),
-          Container(
-            height: screenHeight / 13,
-            width: screenHeight / 13,
-            padding: EdgeInsets.all(5.0),
-            child: FloatingActionButton(
-              heroTag: null,
-              child: Icon(Icons.zoom_out, size: screenWidth / 12),
-              backgroundColor: Color(0xff800206),
-              onPressed: () {
-                _zoomOut();
-              },
-            ),
-          ),
-          Container(
-            height: screenHeight / 10,
-            width: screenHeight / 10,
-            padding: EdgeInsets.all(5.0),
-            child: FloatingActionButton(
-              heroTag: null,
-              child: Icon(Icons.sync, size: screenWidth / 10),
+              child: Icon(Icons.sync, size: screenWidth / 11),
               backgroundColor: Color(0xff800206),
               onPressed: () {
                 _switchCampus(currentCameraPosition);
