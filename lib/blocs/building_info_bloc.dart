@@ -18,7 +18,9 @@ class BuildingInfoBloc extends Bloc<BuildingInfoEvent, BuildingInfoState> {
       LatLng coordinates = concordia_constants.buildings[event.buildingCode]['coordinates'];
       String address = concordia_constants.buildings[event.buildingCode]['address'];
 
-      yield BuildingInfoSheet(name, campus, address, coordinates);
+      yield BuildingInfo(name, campus, address, coordinates, false);
+    } else if (event is ToggleHoursEvent) {
+      yield (state as BuildingInfo).toggleHours(event.expandHours);
     }
   }
 }

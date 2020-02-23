@@ -10,3 +10,9 @@ class ConcordiaBuildingInfo extends BuildingInfoEvent {
 
   const ConcordiaBuildingInfo(this.buildingCode);
 }
+
+class ToggleHoursEvent extends BuildingInfoEvent {
+  final bool expandHours;
+
+  const ToggleHoursEvent(this.expandHours);
+}

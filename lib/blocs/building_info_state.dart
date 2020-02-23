@@ -8,11 +8,22 @@ abstract class BuildingInfoState {
 
 class InitialBuildingInfoState extends BuildingInfoState {}
 
-class BuildingInfoSheet extends BuildingInfoState {
+class BuildingInfo extends BuildingInfoState {
   final String buildingName;
   final String campus;
   final String address;
   final LatLng coordinates;
+  final bool expandHours;
 
-  const BuildingInfoSheet(this.buildingName, this.campus, this.address, this.coordinates);
+  const BuildingInfo(this.buildingName, this.campus, this.address, this.coordinates, this.expandHours);
+
+  BuildingInfo toggleHours(bool expandHours) {
+    return BuildingInfo(
+      this.buildingName,
+      this.campus,
+      this.address,
+      this.coordinates,
+      expandHours,
+    );
+  }
 }

@@ -1,10 +1,11 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class building_info_sheet {
+class BuildingInfoSheet {
   static Color mainColor = Color(0xff800206);
   static PersistentBottomSheetController bottomSheetController;
 
@@ -19,16 +20,20 @@ class building_info_sheet {
 
         return BlocBuilder<BuildingInfoBloc, BuildingInfoState>(
           builder: (context, state) {
+            double sheetHeight = screenHeight / 2.15;
             String buildingName = 'Unavailable';
             String campus = 'Unavailable';
             String address = 'Unavailable';
-            if (state is BuildingInfoSheet) {
+            if (state is BuildingInfo) {
               buildingName = state.buildingName;
               campus = state.campus;
               address = state.address;
+              if (state.expandHours) {
+                sheetHeight = screenHeight / 1.48;
+              }
             }
             return Container(
-              height: screenHeight / 2.5,
+              height: sheetHeight,
               child: Column(
                 children: [
                   Container(
@@ -43,7 +48,7 @@ class building_info_sheet {
                     child: Row(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 5.0, right: 8.0),
+                          padding: EdgeInsets.only(left: 10.0, right: 20.0),
                           child: Icon(
                             Icons.school,
                             color: Colors.white,
@@ -68,69 +73,101 @@ class building_info_sheet {
                   Expanded(
                     child: Container(
                       color: Colors.white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      child: ListView(
                         children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 11.0, right: 10.0),
-                                child: Icon(
-                                  Icons.place,
-                                  size: iconSize,
-                                ),
-                              ),
-                              Flexible(
-                                child: Text(
-                                  address,
-                                  overflow: TextOverflow.fade,
-                                ),
-                              ),
-                            ],
+                          ListTile(
+                            leading: Icon(
+                              Icons.place,
+                              size: iconSize,
+                            ),
+                            title: Text(
+                              address,
+                              overflow: TextOverflow.fade,
+                            ),
+                            dense: true,
                           ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 11.0, right: 10.0),
-                                child: Icon(
-                                  Icons.language,
-                                  size: iconSize,
-                                ),
+                          Material(
+                            color: Colors.white,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.language,
+                                size: iconSize,
                               ),
-                              InkWell(
-                                child: Text(
-                                  concordia_constants.concordiaUrl,
-                                  style: TextStyle(decoration: TextDecoration.underline),
-                                ),
-                                onTap: () {
-                                  _launchUrl(concordia_constants.concordiaUrl);
-                                },
-                              ),
-                            ],
+                              title: Text(concordia_constants.concordiaUrl),
+                              onTap: () {
+                                _launchUrl(concordia_constants.concordiaUrl);
+                              },
+                              dense: true,
+                            ),
                           ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 11.0, right: 10.0),
-                                child: Icon(
-                                  Icons.phone,
-                                  size: iconSize,
-                                ),
+                          Material(
+                            color: Colors.white,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.phone,
+                                size: iconSize,
                               ),
-                              Text(concordia_constants.concordiaPhone),
-                            ],
+                              title: Text(concordia_constants.concordiaPhone),
+                              dense: true,
+                              onTap: () {
+                                _launchUrl('tel://${concordia_constants.concordiaPhone}');
+                              },
+                            ),
                           ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 11.0, right: 10.0),
-                                child: Icon(
-                                  Icons.access_time,
-                                  size: iconSize,
+                          ExpansionTile(
+                            leading: Icon(
+                              Icons.access_time,
+                              size: iconSize,
+                            ),
+                            title: Text(
+                              'Opening Hours',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            children: <Widget>[
+                              Container(
+                                height: 150,
+                                padding: EdgeInsets.only(bottom: 5.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text('Mon', textAlign: TextAlign.left),
+                                        Text('Tue', textAlign: TextAlign.left),
+                                        Text('Wed', textAlign: TextAlign.left),
+                                        Text('Thu', textAlign: TextAlign.left),
+                                        Text('Fri', textAlign: TextAlign.left),
+                                        Text('Sat', textAlign: TextAlign.left),
+                                        Text('Sun', textAlign: TextAlign.left),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text('9:00 - 5:00'),
+                                        Text('9:00 - 5:00'),
+                                        Text('9:00 - 5:00'),
+                                        Text('9:00 - 5:00'),
+                                        Text('9:00 - 5:00'),
+                                        Text('9:00 - 5:00'),
+                                        Text('9:00 - 5:00'),
+                                      ],
+                                    )
+                                  ],
                                 ),
                               ),
-                              Text(buildingName),
                             ],
+                            onExpansionChanged: (isExpanding) {
+                              if (isExpanding) {
+                                BlocProvider.of<BuildingInfoBloc>(context).add(ToggleHoursEvent(true));
+                              } else {
+                                BlocProvider.of<BuildingInfoBloc>(context).add(ToggleHoursEvent(false));
+                              }
+                            },
+                            initiallyExpanded: (state as BuildingInfo).expandHours,
                           ),
                         ],
                       ),

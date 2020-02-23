@@ -20,7 +20,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   bool polygonVisibility = true;
 
   void _infoPanel() {
-    building_info_sheet.buildingInfoSheet(context);
+    BuildingInfoSheet.buildingInfoSheet(context);
   }
 
   Set<Polygon> _buildingShapes() {
@@ -134,8 +134,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                       currentCameraPosition = value.target;
                     },
                     onTap: (value) {
-                      if (building_info_sheet.bottomSheetController != null) {
-                        building_info_sheet.bottomSheetController.close();
+                      if (BuildingInfoSheet.bottomSheetController != null) {
+                        BuildingInfoSheet.bottomSheetController.close();
                       }
                     },
                   ),
