@@ -109,7 +109,9 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
               ),
               BlocListener<BuildingInfoBloc, BuildingInfoState>(
                 listener: (context, state) {
-                  _infoPanel();
+                  if (!(state as BuildingInfo).fromToggle) {
+                    _infoPanel();
+                  }
                 },
               )
             ],

@@ -14,16 +14,11 @@ class BuildingInfo extends BuildingInfoState {
   final String address;
   final LatLng coordinates;
   final bool expandHours;
+  final bool fromToggle;
 
-  const BuildingInfo(this.buildingName, this.campus, this.address, this.coordinates, this.expandHours);
+  const BuildingInfo(this.buildingName, this.campus, this.address, this.coordinates, this.expandHours, this.fromToggle);
 
   BuildingInfo toggleHours(bool expandHours) {
-    return BuildingInfo(
-      this.buildingName,
-      this.campus,
-      this.address,
-      this.coordinates,
-      expandHours,
-    );
+    return BuildingInfo(this.buildingName, this.campus, this.address, this.coordinates, expandHours, true);
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:flutter/cupertino.dart';
@@ -164,7 +166,9 @@ class BuildingInfoSheet {
                               if (isExpanding) {
                                 BlocProvider.of<BuildingInfoBloc>(context).add(ToggleHoursEvent(true));
                               } else {
-                                BlocProvider.of<BuildingInfoBloc>(context).add(ToggleHoursEvent(false));
+                                Timer(Duration(milliseconds: 100), () {
+                                  BlocProvider.of<BuildingInfoBloc>(context).add(ToggleHoursEvent(false));
+                                });
                               }
                             },
                             initiallyExpanded: (state as BuildingInfo).expandHours,
