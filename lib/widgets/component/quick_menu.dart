@@ -1,3 +1,4 @@
+import 'package:concordia_go/widgets/component/sgw_campus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/blocs/bloc.dart';
@@ -32,44 +33,51 @@ class QuickMenuState extends State<QuickMenu> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Hall Building'),
+            leading: Icon(Icons.flag),
+            title: Text('Your Next Class'),
+            onTap: () {
+              Navigator.pop(context);
+              // TODO
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text('Favorite Places'),
+            onTap: () {
+              Navigator.pop(context);
+              // TODO
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.school),
+            title: Text('SGW Campus'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SGWCampusBuildingList()));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.school),
+            title: Text('Loyola Campus'),
             onTap: () {
               Navigator.pop(context);
               mapBloc.add(CameraMoveConcordia('H', context));
             },
           ),
           ListTile(
-            leading: Icon(Icons.language),
-            title: Text('EV Building'),
-            onTap: () {
-              Navigator.pop(context);
-              mapBloc.add(CameraMoveConcordia('EV', context));
-            },
+            leading: Icon(Icons.new_releases),
+            title: Text('Points of Interest'),
+            // TODO
           ),
           ListTile(
-            leading: Icon(Icons.import_contacts),
-            title: Text('Library Building'),
-            onTap: () {
-              Navigator.pop(context);
-              mapBloc.add(CameraMoveConcordia('LB', context));
-            },
+            leading: Icon(Icons.calendar_today),
+            title: Text('My Schedule'),
+            // TODO
           ),
           ListTile(
-            leading: Icon(Icons.trending_up),
-            title: Text('JMSB Building'),
-            onTap: () {
-              Navigator.pop(context);
-              mapBloc.add(CameraMoveConcordia('MB', context));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.location_city),
-            title: Text('FG Building'),
-            onTap: () {
-              Navigator.pop(context);
-              mapBloc.add(CameraMoveConcordia('FG', context));
-            },
+            leading: Icon(Icons.settings),
+            title: Text('Settings'),
+            // TODO
           ),
         ],
       ),
