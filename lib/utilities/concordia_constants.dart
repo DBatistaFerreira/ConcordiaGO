@@ -33,6 +33,15 @@ const buildings = {
     ],
     'address': '1455 Maisonneuve Blvd W, Montreal, QC H3G 1M8',
     'campus': 'SGW Campus',
+    'hours': {
+      'mon': '6:00 - 23:00',
+      'tue': '6:00 - 23:00',
+      'wed': '6:00 - 23:00',
+      'thu': '6:00 - 23:00',
+      'fri': '6:00 - 23:00',
+      'sat': '6:00 - 23:00',
+      'sun': '6:00 - 23:00',
+    },
   },
   'LB': {
     'name': 'Webster Library',
@@ -47,6 +56,15 @@ const buildings = {
     ],
     'address': '1400 Maisonneuve Blvd W, Montreal, QC H3G 1M8',
     'campus': 'SGW Campus',
+    'hours': {
+      'mon': 'Open 24 h',
+      'tue': 'Open 24 h',
+      'wed': 'Open 24 h',
+      'thu': 'Open 24 h',
+      'fri': 'Open 24 h',
+      'sat': 'Open 24 h',
+      'sun': 'Open 24 h',
+    },
   },
   'MB': {
     'name': 'John Molson Building',
@@ -59,6 +77,9 @@ const buildings = {
     ],
     'address': '1450 Guy St, Montreal, QC H3H 1J5',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'EV': {
     'name': 'EV Building',
@@ -73,6 +94,15 @@ const buildings = {
     ],
     'address': '1515 Saint-Catherine St W, Montreal, QC H3G 2W1',
     'campus': 'SGW Campus',
+    'hours': {
+      'mon': '6:30 - 23:00',
+      'tue': '6:30 - 23:00',
+      'wed': '6:30 - 23:00',
+      'thu': '6:30 - 23:00',
+      'fri': '6:30 - 23:00',
+      'sat': '6:30 - 23:00',
+      'sun': '6:30 - 23:00',
+    },
   },
   'FG': {
     'name': 'Faubourg St-Catherines Building',
@@ -85,6 +115,9 @@ const buildings = {
     ],
     'address': '1610 Saint-Catherine St W, Montreal, QC H3H 1L9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'B': {
     'name': 'ECA B-Annex',
@@ -97,6 +130,9 @@ const buildings = {
     ],
     'address': '2160 Bishop St, Montreal, QC H3G 2E9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'CB': {
     'name': 'CB Building',
@@ -115,6 +151,9 @@ const buildings = {
     ],
     'address': '1425 René-Lévesque Blvd W, Montreal, QC H3G 1T7',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'CI': {
     'name': 'CI Annex',
@@ -127,6 +166,9 @@ const buildings = {
     ],
     'address': '2149 Mackay St, Montreal, QC H3G 2J2',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'CL': {
     'name': 'CL Annex',
@@ -139,6 +181,9 @@ const buildings = {
     ],
     'address': '1665 Saint-Catherine St W, Montreal, QC H3H 1L9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'D': {
     'name': 'D Annex',
@@ -151,6 +196,9 @@ const buildings = {
     ],
     'address': '2140 Bishop St, Montreal, QC H3G 2E9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'EN': {
     'name': 'EN Annex',
@@ -163,6 +211,9 @@ const buildings = {
     ],
     'address': '2070 Mackay St, Montreal, QC H3G 2J1',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'ER': {
     'name': 'ER Building',
@@ -175,6 +226,9 @@ const buildings = {
     ],
     'address': '2155 Guy St, Montreal, QC H3H 2L9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'FA': {
     'name': 'FA Annex',
@@ -187,6 +241,9 @@ const buildings = {
     ],
     'address': '2060 MacKay, Montreal, QC H3G 2J1',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'FB': {
     'name': 'Faubourg Building',
@@ -199,6 +256,9 @@ const buildings = {
     ],
     'address': '1250 Guy St, Montreal, QC H3H 2T4',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'GM': {
     'name': 'Guy-De Maisonneuve Building',
@@ -211,6 +271,9 @@ const buildings = {
     ],
     'address': '1550 De Maisonneuve West, Montreal, QC',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'GN': {
     'name': 'Grey Nuns Building',
@@ -223,6 +286,9 @@ const buildings = {
     ],
     'address': '1175 St Mathieu St, Montreal, QC H3H 2P7',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'GS': {
     'name': 'GS Building',
@@ -235,6 +301,9 @@ const buildings = {
     ],
     'address': '1538 Sherbrooke St W, Montreal, QC H3H 2L9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'K': {
     'name': 'K Annex',
@@ -247,6 +316,9 @@ const buildings = {
     ],
     'address': '2150 Bishop St, Montreal, QC H3G 2E9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'LD': {
     'name': 'LD Building',
@@ -259,6 +331,9 @@ const buildings = {
     ],
     'address': '1424 Bishop St, Montreal, QC H3G 2E6',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'LS': {
     'name': 'Learning Square Building',
@@ -273,6 +348,9 @@ const buildings = {
     ],
     'address': '1535 Boul. de Maisonneuve O, Montréal, QC H3G 1M9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'M': {
     'name': 'M Annex',
@@ -285,6 +363,9 @@ const buildings = {
     ],
     'address': '2135 Mackay St, Montreal, QC H3G 2J2',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'MI': {
     'name': 'MI Annex',
@@ -299,6 +380,9 @@ const buildings = {
     ],
     'address': '2130 Bishop St, Montreal, QC H3G 2E9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'MU': {
     'name': 'MU Annex',
@@ -311,6 +395,9 @@ const buildings = {
     ],
     'address': '2170 Bishop St, Montreal, QC H3G 2E9',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'P': {
     'name': 'P Annex',
@@ -323,6 +410,9 @@ const buildings = {
     ],
     'address': '2020 Mackay St, Montreal, QC H3G 2M2',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'PR': {
     'name': 'PR Annex',
@@ -335,6 +425,9 @@ const buildings = {
     ],
     'address': '2100 Mackay St, Montreal, QC H3G 2J1',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'Q': {
     'name': 'Q Annex',
@@ -347,6 +440,9 @@ const buildings = {
     ],
     'address': '2010 Mackay St, Montreal, QC H3G 2J1',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'R': {
     'name': 'R Annex',
@@ -359,6 +455,9 @@ const buildings = {
     ],
     'address': '2050 Mackay St, Montreal, QC H3G 2J1',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'RR': {
     'name': 'RR Annex',
@@ -371,6 +470,9 @@ const buildings = {
     ],
     'address': '2040 Mackay St, Montreal, QC H3G 2J1',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'S': {
     'name': 'S Annex',
@@ -385,6 +487,9 @@ const buildings = {
     ],
     'address': '2145 Mackay St, Montreal, QC H3G 2J2',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'SB': {
     'name': 'Samuel Bronfman Building',
@@ -397,6 +502,9 @@ const buildings = {
     ],
     'address': '1590 Docteur Penfield, Montreal, QC',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'T': {
     'name': 'T Annex',
@@ -409,6 +517,9 @@ const buildings = {
     ],
     'address': '2030 MacKay, Montreal, QC H3G 2J1',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'TD': {
     'name': 'Toronto Dominion Building',
@@ -421,6 +532,9 @@ const buildings = {
     ],
     'address': '1410 Guy St, Montreal, QC H3H 2L7',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'V': {
     'name': 'V Annex',
@@ -433,6 +547,9 @@ const buildings = {
     ],
     'address': '2110 Mackay St, Montreal, QC H3G 2J1',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'VA': {
     'name': 'Visual Arts Building',
@@ -447,6 +564,9 @@ const buildings = {
     ],
     'address': '1395 René-Lévesque W, Montreal, QC H3G 2M5',
     'campus': 'SGW Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   //******************************************************************************************************************
   // Loyola Buildings
@@ -472,7 +592,10 @@ const buildings = {
       LatLng(45.457874, -73.639778)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'BB': {
     'name': 'BB Annex',
@@ -484,7 +607,10 @@ const buildings = {
       LatLng(45.459723, -73.639237)
     ],
     'address': '3502 Avenue Belmore, Montréal, QC H4B 2B9',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'BH': {
     'name': 'BH Annex',
@@ -496,7 +622,10 @@ const buildings = {
       LatLng(45.459665, -73.639092)
     ],
     'address': '3500 Avenue Belmore, Montréal, QC H4B 2B9',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'CC': {
     'name': 'Central Building',
@@ -508,7 +637,10 @@ const buildings = {
       LatLng(45.458379, -73.640794)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'CJ': {
     'name': 'Communications Studies and Journalism Building',
@@ -535,7 +667,10 @@ const buildings = {
       LatLng(45.457178, -73.640394)
     ],
     'address': '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'DO': {
     'name': 'Stinger Dome',
@@ -547,7 +682,10 @@ const buildings = {
       LatLng(45.458319, -73.63597)
     ],
     'address': '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'FC': {
     'name': 'F.C. Smith Building',
@@ -564,7 +702,10 @@ const buildings = {
       LatLng(45.458739, -73.63962)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'GE': {
     'name': 'Centre for Structural and Functional Genomics',
@@ -576,7 +717,10 @@ const buildings = {
       LatLng(45.457169, -73.640566)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'HA': {
     'name': 'Hingston Hall - HA Wing',
@@ -588,7 +732,10 @@ const buildings = {
       LatLng(45.459248, -73.641066)
     ],
     'address': '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'HB': {
     'name': 'Hingston Hall - HB Wing',
@@ -602,7 +749,10 @@ const buildings = {
       LatLng(45.458968, -73.641809)
     ],
     'address': '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'HC': {
     'name': 'Hingston Hall - HC Wing',
@@ -614,7 +764,10 @@ const buildings = {
       LatLng(45.45962, -73.642268)
     ],
     'address': '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'HU': {
     'name': 'Applied Science Hub',
@@ -626,7 +779,10 @@ const buildings = {
       LatLng(45.458789, -73.643153)
     ],
     'address': '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'JR': {
     'name': 'Jesuit Residence',
@@ -638,7 +794,10 @@ const buildings = {
       LatLng(45.458491, -73.643392)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'PC': {
     'name': 'Perform Centre',
@@ -650,7 +809,10 @@ const buildings = {
       LatLng(45.457266, -73.63762)
     ],
     'address': '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'PS': {
     'name': 'Physical Services Building',
@@ -664,7 +826,10 @@ const buildings = {
       LatLng(45.459964, -73.640121)
     ],
     'address': '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'PT': {
     'name': 'Oscar Peterson Concert Hall',
@@ -676,7 +841,10 @@ const buildings = {
       LatLng(45.459351, -73.638829)
     ],
     'address': '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'PY': {
     'name': 'Psychology Building',
@@ -688,7 +856,10 @@ const buildings = {
       LatLng(45.459107, -73.640121)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'RA': {
     'name': 'Recreation and Athletics Complex',
@@ -700,7 +871,10 @@ const buildings = {
       LatLng(45.456691, -73.63813)
     ],
     'address': '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'RF': {
     'name': 'Jesuit Hall and Conference Centre',
@@ -720,7 +894,10 @@ const buildings = {
       LatLng(45.458681, -73.640802)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'SC': {
     'name': 'Student Centre',
@@ -731,7 +908,11 @@ const buildings = {
       LatLng(45.458995, -73.639122),
       LatLng(45.459106, -73.639414)
     ],
-    'campus': 'Loyola Campus'
+    'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'SI': {
     'name': 'Saint Ignatius of Loyola',
@@ -743,7 +924,10 @@ const buildings = {
       LatLng(45.457576, -73.642402)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'SP': {
     'name': 'Richard J. Renaud Science Complex',
@@ -759,7 +943,10 @@ const buildings = {
       LatLng(45.457433, -73.641996)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'TA': {
     'name': 'Terrebonne Building',
@@ -771,7 +958,10 @@ const buildings = {
       LatLng(45.460036, -73.6408)
     ],
     'address': '7079 Rue de Terrebonne, Montreal, QC H4B 1E1',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'VE': {
     'name': 'Vanier Extension',
@@ -783,7 +973,10 @@ const buildings = {
       LatLng(45.458619, -73.638457)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
   'VL': {
     'name': 'Vanier Library',
@@ -799,6 +992,9 @@ const buildings = {
       LatLng(45.458939, -73.638191)
     ],
     'address': '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    'campus': 'Loyola Campus'
+    'campus': 'Loyola Campus',
+    'hours': {
+      'none': 'Unavailable',
+    },
   },
 };

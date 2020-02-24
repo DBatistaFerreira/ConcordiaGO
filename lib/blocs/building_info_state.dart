@@ -9,16 +9,36 @@ abstract class BuildingInfoState {
 class InitialBuildingInfoState extends BuildingInfoState {}
 
 class BuildingInfo extends BuildingInfoState {
+  final String buildingCode;
   final String buildingName;
   final String campus;
   final String address;
   final LatLng coordinates;
+  final Map<String, String> hours;
   final bool expandHours;
   final bool fromToggle;
 
-  const BuildingInfo(this.buildingName, this.campus, this.address, this.coordinates, this.expandHours, this.fromToggle);
+  const BuildingInfo(
+    this.buildingCode,
+    this.buildingName,
+    this.campus,
+    this.address,
+    this.coordinates,
+    this.hours,
+    this.expandHours,
+    this.fromToggle,
+  );
 
   BuildingInfo toggleHours(bool expandHours) {
-    return BuildingInfo(this.buildingName, this.campus, this.address, this.coordinates, expandHours, true);
+    return BuildingInfo(
+      this.buildingCode,
+      this.buildingName,
+      this.campus,
+      this.address,
+      this.coordinates,
+      this.hours,
+      expandHours,
+      true,
+    );
   }
 }
