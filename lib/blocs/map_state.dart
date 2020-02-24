@@ -9,12 +9,19 @@ class InitialMap extends MapState {
   const InitialMap();
 }
 
-class ExplorationMap extends MapState {
+class MapNoMarker extends MapState {
   final LatLng cameraPosition;
   final double zoom;
-  final Set<Marker> markers;
 
-  const ExplorationMap(this.cameraPosition, this.zoom, this.markers);
+  const MapNoMarker(this.cameraPosition, this.zoom);
+}
+
+class MapWithMarker extends MapState {
+  final String buildingCode;
+  final LatLng cameraPosition;
+  final double zoom;
+
+  const MapWithMarker(this.buildingCode, this.cameraPosition, this.zoom);
 }
 
 class DirectionMap extends MapState {
