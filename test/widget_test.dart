@@ -10,12 +10,8 @@ void main() {
 
     expect(find.byType(GoogleMap), findsOneWidget);
     expect(find.byType(FloatingActionButton), findsNWidgets(2));
-    var zoom_out = find.byIcon(Icons.zoom_out);
-    var zoom_in = find.byIcon(Icons.zoom_in);
     var switch_views = find.byIcon(Icons.sync);
     var my_location = find.byIcon(Icons.gps_fixed);
-    await tester.tap(zoom_out);
-    await tester.tap(zoom_in);
     await tester.tap(switch_views);
     await tester.tap(my_location);
   });
