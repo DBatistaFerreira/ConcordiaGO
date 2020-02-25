@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_maps_util/google_maps_util.dart';
@@ -15,9 +16,10 @@ int currentInstruction = 0;
 class OutdoorPathService {
 
 
-  static void _testFunction(startLat, startLng, endLat, endLng) async {
+  static void transitDirections(startLat, startLng, endLat, endLng) async {
     listDirections = Journey();
-    String url = "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=transit&key=AIzaSyCSfOQPeMpgh41izZJjUWVF625BL-NimZs";
+    var apiKey;
+    String url = "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=transit&key=${apiKey}";
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
@@ -48,16 +50,6 @@ class OutdoorPathService {
 
     }
     setDirections();
-    print("-------------------------------------");
-    print("List Directions");
-    print("-------------------------------------");
-    listDirections.printRoute();
-    print("-------------------------------------");
-    print("Play by play directions");
-    print("-------------------------------------");
-    for(int i=0; i<singleDirections.length;i++){
-      print(singleDirections[i].instruction);
-    }
   }
 
 
@@ -88,7 +80,7 @@ class OutdoorPathService {
 
   static Set<Polyline> buildPolylines(startLat, startLng, endLat, endLng){
 
-    _testFunction(startLat, startLng, endLat, endLng);
+    transitDirections(startLat, startLng, endLat, endLng);
     return polyLines;
 
 

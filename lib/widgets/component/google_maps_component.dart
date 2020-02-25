@@ -132,6 +132,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                     buildingsEnabled: false,
                     markers: markers,
                     polygons: _buildingShapes(),
+                    polylines: _polyLines,
                     onCameraMove: (value) {
                       currentCameraPosition = value.target;
                     },
