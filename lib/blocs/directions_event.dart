@@ -6,10 +6,9 @@ abstract class DirectionsEvent {
   const DirectionsEvent();
 }
 
-class PolylineUpdate extends DirectionsEvent{
+class PolylineUpdate extends DirectionsEvent {
   final LatLng startCoordinates;
   final LatLng endCoordinates;
 
   const PolylineUpdate(this.startCoordinates, this.endCoordinates);
-
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_maps_util/google_maps_util.dart';
@@ -8,18 +7,17 @@ import 'package:concordia_go/utilities/Segment.dart';
 import 'package:concordia_go/utilities/Journey.dart';
 import 'package:flutter/material.dart';
 
-final Set<Polyline> polyLines={};
+final Set<Polyline> polyLines = {};
 Journey listDirections = Journey();
 List<Direction> singleDirections;
 int currentInstruction = 0;
 
 class OutdoorPathService {
-
-
   static void transitDirections(startLat, startLng, endLat, endLng) async {
     listDirections = Journey();
     var apiKey;
-    String url = "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=transit&key=${apiKey}";
+    String url =
+        "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=transit&key=${apiKey}";
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
@@ -36,65 +34,56 @@ class OutdoorPathService {
         }
 
         addNewPolyline(Colors.pink, pointArray, i);
-      }
-      else {
+      } else {
         var newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.transit);
         newSegment = Segment(newDirection);
 
-        newDirection = endTransit(values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'], modeOfTransport.transit);
+        newDirection = endTransit(
+            values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'], modeOfTransport.transit);
         newSegment.addSubstep(newDirection);
 
         addNewPolyline(Colors.teal, pointArray, i);
       }
       listDirections.addSegment(newSegment);
-
     }
     setDirections();
   }
 
-
-
-  static Direction toDirection(apiJson, modeOfTransport transportType){
+  static Direction toDirection(apiJson, modeOfTransport transportType) {
     var instruction = apiJson['html_instructions'];
     var lat = apiJson['start_location']['lat'];
     var lng = apiJson['start_location']['lng'];
-    LatLng coordinate = LatLng(lat,lng);
+    LatLng coordinate = LatLng(lat, lng);
     return Direction(instruction, coordinate, transportType);
   }
 
-  static Direction endTransit(apiJson, modeOfTransport transportType){
+  static Direction endTransit(apiJson, modeOfTransport transportType) {
     var instruction = "Get off at ${apiJson['name']}";
     var lat = apiJson['location']['lat'];
     var lng = apiJson['location']['lng'];
-    LatLng coordinate = LatLng(lat,lng);
+    LatLng coordinate = LatLng(lat, lng);
     return Direction(instruction, coordinate, transportType);
   }
 
-  static void addNewPolyline(Color colorChoice, pointValues, index){
-    polyLines.add(Polyline(
-        polylineId: PolylineId('${index}'),
-        width: 4,
-        points: pointValues,
-        color: colorChoice));
+  static void addNewPolyline(Color colorChoice, pointValues, index) {
+    polyLines.add(Polyline(polylineId: PolylineId('${index}'), width: 4, points: pointValues, color: colorChoice));
   }
 
-  static Set<Polyline> buildPolylines(startLat, startLng, endLat, endLng){
-
+  static Set<Polyline> buildPolylines(startLat, startLng, endLat, endLng) {
     transitDirections(startLat, startLng, endLat, endLng);
     return polyLines;
-
-
   }
 
-  static Journey returnRoute(){
+  static Journey returnRoute() {
     return listDirections;
   }
 
-  static Direction returnFirstInstruction(){
+  static Direction returnFirstInstruction() {
     return singleDirections[currentInstruction];
   }
-  static Direction returnNextInstruction(){
-    if(currentInstruction == singleDirections.length-1){
+
+  static Direction returnNextInstruction() {
+    if (currentInstruction == singleDirections.length - 1) {
       //Do something here to end transit
       clearAll();
       return null;
@@ -102,27 +91,26 @@ class OutdoorPathService {
     return singleDirections[++currentInstruction];
   }
 
-  static Direction returnPreviousInstruction(){
-    if (currentInstruction == 0){
+  static Direction returnPreviousInstruction() {
+    if (currentInstruction == 0) {
       return singleDirections[currentInstruction];
-    }else{
+    } else {
       return singleDirections[--currentInstruction];
     }
   }
 
-  static void clearAll(){
+  static void clearAll() {
     singleDirections.clear();
     listDirections.resetList();
     currentInstruction = 0;
   }
 
-  static void setDirections(){
+  static void setDirections() {
     singleDirections.clear();
     var tempDirections = listDirections.toDirection();
-    for(int i=0;i<tempDirections.length;i++){
+    for (int i = 0; i < tempDirections.length; i++) {
       // print(tempDirections.length);
       singleDirections.add(tempDirections[i]);
     }
   }
-
 }

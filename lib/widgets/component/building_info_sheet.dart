@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:concordia_go/services/OutdoorPathService.dart';
-import 'package:concordia_go/widgets/component/google_maps_component.dart' as map;
 
 class BuildingInfoSheet {
   static Color mainColor = Color(0xff800206);
@@ -202,7 +201,8 @@ class BuildingInfoSheet {
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
                                 onPressed: () => {
-                                  BlocProvider.of<DirectionsBloc>(context).add(PolylineUpdate(LatLng(45.4973844, -73.578354),LatLng(45.4573095, -73.6400314)))
+                                  BlocProvider.of<DirectionsBloc>(context).add(
+                                      PolylineUpdate(LatLng(45.4973844, -73.578354), LatLng(45.4573095, -73.6400314)))
                                 },
                                 icon: Icon(
                                   Icons.directions,
@@ -237,7 +237,7 @@ class BuildingInfoSheet {
     );
   }
 
- static Set<Polyline> setPath(startLat, startLng, endLat, endLng){
+  static Set<Polyline> setPath(startLat, startLng, endLat, endLng) {
     var polyLines = OutdoorPathService.buildPolylines(startLat, startLng, endLat, endLng);
 
     //UPDATE BLOC HERE INSTEAD OF RETURN
@@ -245,14 +245,13 @@ class BuildingInfoSheet {
     return polyLines;
   }
 
-  Set<Polyline> deletePath(){
+  Set<Polyline> deletePath() {
     var polyLines = Set<Polyline>();
     polyLines.clear();
 
     //UPDATE BLOC HERE INSTEAD OF RETURN
 
     return polyLines;
-    
   }
 
   static void _launchUrl(url) async {

@@ -9,9 +9,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
-import 'package:concordia_go/services/OutdoorPathService.dart';
-
-Set<Polyline> _polyLines={};
 
 class GoogleMapsComponent extends StatefulWidget {
   @override
@@ -25,7 +22,6 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   void _infoPanel() {
     BuildingInfoSheet.buildingInfoSheet(context);
   }
-
 
   Set<Polygon> _buildingShapes() {
     Set<Polygon> buildingPolygons = Set<Polygon>();
@@ -119,33 +115,43 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                 },
               )
             ],
-            child: BlocBuilder<MapBloc, MapState>(
-              builder: (context, state) {
-                return Expanded(
-                  child: GoogleMap(
-                    mapType: MapType.normal,
-                    initialCameraPosition: CameraPosition(
-                      target: concordia_constants.sgwCampus['coordinates'],
-                      zoom: 15.5,
-                    ),
-                    onMapCreated: (GoogleMapController controller) {
-                      _controller.complete(controller);
-                    },
-                    myLocationEnabled: true,
-                    myLocationButtonEnabled: false,
-                    buildingsEnabled: false,
-                    markers: markers,
-                    polygons: _buildingShapes(),
-                    polylines: _polyLines,  // THIS IS THE VALUE THAT IS CONTROLLED BY THE BLOC
-                    onCameraMove: (value) {
-                      currentCameraPosition = value.target;
-                    },
-                    onTap: (value) {
-                      if (BuildingInfoSheet.bottomSheetController != null) {
-                        BuildingInfoSheet.bottomSheetController.close();
-                      }
-                    },
-                  ),
+            child: BlocBuilder<DirectionsBloc, DirectionsState>(
+              builder: (context, polylineState) {
+                Set<Polyline> _polylines;
+                if (polylineState is polyUpdates) {
+                  _polylines = polylineState.finalPolyline;
+                } else {
+                  _polylines = Set<Polyline>();
+                }
+                return BlocBuilder<MapBloc, MapState>(
+                  builder: (context, state) {
+                    return Expanded(
+                      child: GoogleMap(
+                        mapType: MapType.normal,
+                        initialCameraPosition: CameraPosition(
+                          target: concordia_constants.sgwCampus['coordinates'],
+                          zoom: 15.5,
+                        ),
+                        onMapCreated: (GoogleMapController controller) {
+                          _controller.complete(controller);
+                        },
+                        myLocationEnabled: true,
+                        myLocationButtonEnabled: false,
+                        buildingsEnabled: false,
+                        markers: markers,
+                        polygons: _buildingShapes(),
+                        polylines: _polylines,
+                        onCameraMove: (value) {
+                          currentCameraPosition = value.target;
+                        },
+                        onTap: (value) {
+                          if (BuildingInfoSheet.bottomSheetController != null) {
+                            BuildingInfoSheet.bottomSheetController.close();
+                          }
+                        },
+                      ),
+                    );
+                  },
                 );
               },
             ),

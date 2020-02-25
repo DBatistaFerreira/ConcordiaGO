@@ -1,25 +1,20 @@
 import 'package:concordia_go/utilities/Direction.dart';
 
-class Segment{
+class Segment {
   Direction mainDirective;
   List<Direction> substeps;
   bool HasSubstep;
 
-
-  Segment(this.mainDirective){
+  Segment(this.mainDirective) {
     substeps = List<Direction>();
   }
 
-  void addSubstep(Direction substep){
+  void addSubstep(Direction substep) {
     HasSubstep = true;
-    if (substep == null){
+    if (substep == null) {
       print(substep);
-    }
-    else{
+    } else {
       substeps.add(substep);
     }
   }
-
-
-
 }
