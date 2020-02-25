@@ -1,9 +1,11 @@
-import 'package:concordia_go/widgets/component/sgw_campus.dart';
+import 'package:concordia_go/widgets/component/sgw_campus_building_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+
+import 'loyola_campus_building_menu.dart';
 
 
 class QuickMenu extends StatefulWidget {
@@ -26,7 +28,7 @@ class QuickMenuState extends State<QuickMenu> {
             height: screenHeight / 6,
             child: DrawerHeader(
               child: Text(
-                'Concordia Buildings',
+                'Quick Menu',
                 style: TextStyle(color: Colors.white, fontSize: 20.0),
               ),
               decoration: BoxDecoration(
@@ -63,7 +65,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('Loyola Campus'),
             onTap: () {
               Navigator.pop(context);
-              mapBloc.add(CameraMoveConcordia('H', context));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoyolaCampusBuildingList()));
             },
           ),
           ListTile(
