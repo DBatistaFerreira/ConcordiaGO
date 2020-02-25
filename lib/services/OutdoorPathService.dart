@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_maps_util/google_maps_util.dart';
@@ -9,11 +11,12 @@ import 'package:flutter/material.dart';
 
 final Set<Polyline> polyLines = {};
 Journey listDirections = Journey();
-List<Direction> singleDirections;
+List<Direction> singleDirections= List<Direction>();
 int currentInstruction = 0;
 
 class OutdoorPathService {
   static void transitDirections(startLat, startLng, endLat, endLng) async {
+    singleDirections = List<Direction>();
     listDirections = Journey();
     var apiKey;
     String url =
@@ -22,24 +25,27 @@ class OutdoorPathService {
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
     for (int i = 0; i < values['routes'][0]['legs'][0]['steps'].length; i++) {
+     // var arrival_time = values['routes'][0]['legs'][0]['arrival_time']['text'];
+     // print(arrival_time.runtimeType);
+      var arrival_time = '2:13PM';
       var pointArray = myPoints.decode(values['routes'][0]['legs'][0]['steps'][i]['polyline']['points']);
       Segment newSegment;
       if (values['routes'][0]['legs'][0]['steps'][i]['travel_mode'] == 'WALKING') {
-        var newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.walking);
+        var newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.walking,arrival_time);
         newSegment = Segment(newDirection);
 
         for (int j = 0; j < values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
-          newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], modeOfTransport.walking);
+          newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], modeOfTransport.walking,arrival_time);
           newSegment.addSubstep(newDirection);
         }
 
         addNewPolyline(Colors.pink, pointArray, i);
       } else {
-        var newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.transit);
+        var newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.transit,arrival_time);
         newSegment = Segment(newDirection);
 
         newDirection = endTransit(
-            values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'], modeOfTransport.transit);
+            values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'], modeOfTransport.transit,arrival_time);
         newSegment.addSubstep(newDirection);
 
         addNewPolyline(Colors.teal, pointArray, i);
@@ -49,20 +55,22 @@ class OutdoorPathService {
     setDirections();
   }
 
-  static Direction toDirection(apiJson, modeOfTransport transportType) {
+  static Direction toDirection(apiJson, modeOfTransport transportType, String arrival_time) {
     var instruction = apiJson['html_instructions'];
     var lat = apiJson['start_location']['lat'];
     var lng = apiJson['start_location']['lng'];
     LatLng coordinate = LatLng(lat, lng);
-    return Direction(instruction, coordinate, transportType);
+    var distance = apiJson['distance']['text'];
+    return Direction(instruction, coordinate, transportType,distance, arrival_time);
   }
 
-  static Direction endTransit(apiJson, modeOfTransport transportType) {
+  static Direction endTransit(apiJson, modeOfTransport transportType,String arrival_time) {
     var instruction = "Get off at ${apiJson['name']}";
     var lat = apiJson['location']['lat'];
     var lng = apiJson['location']['lng'];
     LatLng coordinate = LatLng(lat, lng);
-    return Direction(instruction, coordinate, transportType);
+    var distance = '';
+    return Direction(instruction, coordinate, transportType,distance,arrival_time);
   }
 
   static void addNewPolyline(Color colorChoice, pointValues, index) {

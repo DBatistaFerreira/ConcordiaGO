@@ -35,9 +35,9 @@ class Journey {
 
   void printRoute() {
     for (int i = 0; i < routeSegments.length; i++) {
-      routeSegments[i].mainDirective.printDirection();
+      routeSegments[i].mainDirective.arrival_time;
       for (int j = 0; j < routeSegments[i].substeps.length; j++) {
-        print("   -" + routeSegments[i].substeps[j].instruction);
+        print("   -" + routeSegments[i].substeps[j].arrival_time);
       }
     }
   }

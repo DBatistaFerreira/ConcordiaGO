@@ -4,10 +4,12 @@ enum modeOfTransport { walking, transit, driving }
 
 class Direction {
   String instruction;
+  String distance;
+  String arrival_time;
   LatLng point;
   modeOfTransport transitType;
 
-  Direction(this.instruction, this.point, this.transitType) {
+  Direction(this.instruction, this.point, this.transitType, this.distance,this.arrival_time) {
     RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
 
     this.instruction = this.instruction.replaceAll(exp, '');
