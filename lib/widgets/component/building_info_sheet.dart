@@ -5,7 +5,10 @@ import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_co
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:concordia_go/services/OutdoorPathService.dart';
+import 'package:concordia_go/widgets/component/google_maps_component.dart' as map;
 
 class BuildingInfoSheet {
   static Color mainColor = Color(0xff800206);
@@ -198,7 +201,8 @@ class BuildingInfoSheet {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
-                                onPressed: () => {},
+                                onPressed: () => {
+                                },
                                 icon: Icon(
                                   Icons.directions,
                                   size: screenWidth / 12,
@@ -230,6 +234,24 @@ class BuildingInfoSheet {
         );
       },
     );
+  }
+
+ static Set<Polyline> setPath(startLat, startLng, endLat, endLng){
+    var polyLines = OutdoorPathService.buildPolylines(startLat, startLng, endLat, endLng);
+
+    //UPDATE BLOC HERE INSTEAD OF RETURN
+
+    return polyLines;
+  }
+
+  Set<Polyline> deletePath(){
+    var polyLines = Set<Polyline>();
+    polyLines.clear();
+
+    //UPDATE BLOC HERE INSTEAD OF RETURN
+
+    return polyLines;
+    
   }
 
   static void _launchUrl(url) async {

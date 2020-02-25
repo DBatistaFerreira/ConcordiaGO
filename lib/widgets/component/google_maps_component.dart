@@ -9,6 +9,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
+import 'package:concordia_go/services/OutdoorPathService.dart';
+
+Set<Polyline> _polyLines={};
 
 class GoogleMapsComponent extends StatefulWidget {
   @override
@@ -22,6 +25,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   void _infoPanel() {
     BuildingInfoSheet.buildingInfoSheet(context);
   }
+
 
   Set<Polygon> _buildingShapes() {
     Set<Polygon> buildingPolygons = Set<Polygon>();
@@ -132,7 +136,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                     buildingsEnabled: false,
                     markers: markers,
                     polygons: _buildingShapes(),
-                    polylines: _polyLines,
+                    polylines: _polyLines,  // THIS IS THE VALUE THAT IS CONTROLLED BY THE BLOC
                     onCameraMove: (value) {
                       currentCameraPosition = value.target;
                     },
