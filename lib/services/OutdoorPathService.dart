@@ -1,4 +1,4 @@
-import 'dart:collection';
+
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 final Set<Polyline> polyLines = {};
 Journey listDirections = Journey();
-List<Direction> singleDirections= List<Direction>();
+List<Direction> singleDirections = List<Direction>();
 int currentInstruction = 0;
 
 class OutdoorPathService {
@@ -25,27 +25,28 @@ class OutdoorPathService {
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
     for (int i = 0; i < values['routes'][0]['legs'][0]['steps'].length; i++) {
-     // var arrival_time = values['routes'][0]['legs'][0]['arrival_time']['text'];
-     // print(arrival_time.runtimeType);
-      var arrival_time = '2:13PM';
+      var arrival_time = values['routes'][0]['legs'][0]['arrival_time']['text'];
       var pointArray = myPoints.decode(values['routes'][0]['legs'][0]['steps'][i]['polyline']['points']);
       Segment newSegment;
       if (values['routes'][0]['legs'][0]['steps'][i]['travel_mode'] == 'WALKING') {
-        var newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.walking,arrival_time);
+        var newDirection =
+            toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.walking, arrival_time);
         newSegment = Segment(newDirection);
 
         for (int j = 0; j < values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
-          newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], modeOfTransport.walking,arrival_time);
+          newDirection = toDirection(
+              values['routes'][0]['legs'][0]['steps'][i]['steps'][j], modeOfTransport.walking, arrival_time);
           newSegment.addSubstep(newDirection);
         }
 
         addNewPolyline(Colors.pink, pointArray, i);
       } else {
-        var newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.transit,arrival_time);
+        var newDirection =
+            toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.transit, arrival_time);
         newSegment = Segment(newDirection);
 
-        newDirection = endTransit(
-            values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'], modeOfTransport.transit,arrival_time);
+        newDirection = endTransit(values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'],
+            modeOfTransport.transit, arrival_time);
         newSegment.addSubstep(newDirection);
 
         addNewPolyline(Colors.teal, pointArray, i);
@@ -53,6 +54,8 @@ class OutdoorPathService {
       listDirections.addSegment(newSegment);
     }
     setDirections();
+    //  clearAll();
+    listDirections.printRoute();
   }
 
   static Direction toDirection(apiJson, modeOfTransport transportType, String arrival_time) {
@@ -61,16 +64,16 @@ class OutdoorPathService {
     var lng = apiJson['start_location']['lng'];
     LatLng coordinate = LatLng(lat, lng);
     var distance = apiJson['distance']['text'];
-    return Direction(instruction, coordinate, transportType,distance, arrival_time);
+    return Direction(instruction, coordinate, transportType, distance, arrival_time);
   }
 
-  static Direction endTransit(apiJson, modeOfTransport transportType,String arrival_time) {
+  static Direction endTransit(apiJson, modeOfTransport transportType, String arrival_time) {
     var instruction = "Get off at ${apiJson['name']}";
     var lat = apiJson['location']['lat'];
     var lng = apiJson['location']['lng'];
     LatLng coordinate = LatLng(lat, lng);
     var distance = '';
-    return Direction(instruction, coordinate, transportType,distance,arrival_time);
+    return Direction(instruction, coordinate, transportType, distance, arrival_time);
   }
 
   static void addNewPolyline(Color colorChoice, pointValues, index) {
@@ -111,6 +114,7 @@ class OutdoorPathService {
     singleDirections.clear();
     listDirections.resetList();
     currentInstruction = 0;
+    polyLines.clear();
   }
 
   static void setDirections() {
