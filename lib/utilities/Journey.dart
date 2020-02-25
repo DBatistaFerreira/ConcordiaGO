@@ -5,7 +5,8 @@ class Journey{
   List <Segment> routeSegments;
   int instructionCount;
 
-  TransitRoute(){
+
+  Journey(){
     instructionCount = 0;
     this.routeSegments = List<Segment>();
     instructionCount++;

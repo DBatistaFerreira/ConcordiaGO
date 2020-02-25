@@ -23,6 +23,9 @@ class HomePageState extends State<HomeScreen> {
         BlocProvider<BuildingInfoBloc>(
           create: (context) => BuildingInfoBloc(),
         ),
+        BlocProvider<DirectionsBloc>(
+          create: (context) => DirectionsBloc(),
+        ),
       ],
       child: Scaffold(
         appBar: PreferredSize(
