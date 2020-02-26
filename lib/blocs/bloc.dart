@@ -9,3 +9,7 @@ export 'building_info_state.dart';
 export 'directions_bloc.dart';
 export 'directions_event.dart';
 export 'directions_state.dart';
+
+export 'directions_ui_bloc.dart';
+export 'directions_ui_event.dart';
+export 'directions_ui_state.dart';
