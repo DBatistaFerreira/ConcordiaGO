@@ -1,12 +1,6 @@
-import 'package:concordia_go/widgets/component/sgw_campus_building_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:concordia_go/blocs/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
-
-import 'loyola_campus_building_menu.dart';
-
 
 class QuickMenu extends StatefulWidget {
   @override
@@ -17,7 +11,6 @@ class QuickMenuState extends State<QuickMenu> {
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
-    final mapBloc = BlocProvider.of<MapBloc>(context);
 
     return Drawer(
       child: ListView(
@@ -57,7 +50,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('SGW Campus'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SGWCampusBuildingList()));
+              Navigator.pushNamed(context, '/sgwbuildings');
             },
           ),
           ListTile(
@@ -65,7 +58,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: Text('Loyola Campus'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LoyolaCampusBuildingList()));
+              Navigator.pushNamed(context, '/loyolabuildings');
             },
           ),
           ListTile(
