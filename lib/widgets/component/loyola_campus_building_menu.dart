@@ -19,7 +19,7 @@ class LoyolaCampusBuildingList extends StatefulWidget {
 
 class LoyolaCampusBuildingListState extends State<LoyolaCampusBuildingList> {
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
 
     List<Building> buildings = List();
@@ -44,7 +44,7 @@ class LoyolaCampusBuildingListState extends State<LoyolaCampusBuildingList> {
                         fontFamily: 'Raleway',
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25,
+                        fontSize: application_constants.listElementTextSize,
                       ),
                     )),
                 color: application_constants.concordiaRed,
@@ -56,8 +56,8 @@ class LoyolaCampusBuildingListState extends State<LoyolaCampusBuildingList> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: Container(
-                      height: 50.0,
-                      width: 50.0,
+                      height: application_constants.initialedIconSize,
+                      width: application_constants.initialedIconSize,
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Ink(
@@ -71,10 +71,9 @@ class LoyolaCampusBuildingListState extends State<LoyolaCampusBuildingList> {
                                   ? buildings[index].buildingCode
                                   : buildings[index].buildingCode + ' ',
                               style: TextStyle(
-                                fontFamily: 'Raleway',
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 32,
+                                fontSize: application_constants.listElementTextSize,
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -84,7 +83,6 @@ class LoyolaCampusBuildingListState extends State<LoyolaCampusBuildingList> {
                     ),
                     title: Text(
                       buildings[index].name,
-                      style: Theme.of(context).textTheme.headline,
                     ),
                     onTap: () {
                       Navigator.pop(context);

@@ -44,7 +44,7 @@ class SGWCampusBuildingListState extends State<SGWCampusBuildingList> {
                         fontFamily: 'Raleway',
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25,
+                        fontSize: application_constants.listElementTextSize,
                       ),
                     )),
                 color: application_constants.concordiaRed,
@@ -56,8 +56,8 @@ class SGWCampusBuildingListState extends State<SGWCampusBuildingList> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: Container(
-                      height: 50.0,
-                      width: 50.0,
+                      height: application_constants.initialedIconSize,
+                      width: application_constants.initialedIconSize,
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Ink(
@@ -71,10 +71,9 @@ class SGWCampusBuildingListState extends State<SGWCampusBuildingList> {
                                   ? buildings[index].buildingCode
                                   : buildings[index].buildingCode + ' ',
                               style: TextStyle(
-                                fontFamily: 'Raleway',
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 32,
+                                fontSize: application_constants.listElementTextSize,
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -84,7 +83,6 @@ class SGWCampusBuildingListState extends State<SGWCampusBuildingList> {
                     ),
                     title: Text(
                       buildings[index].name,
-                      style: Theme.of(context).textTheme.headline,
                     ),
                     onTap: () {
                       Navigator.pop(context);
