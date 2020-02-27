@@ -121,7 +121,7 @@ const buildings = {
   },
   'B': {
     'name': 'ECA B-Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.495835, -73.578789), // TODO update with real value
     'vertices': [
       LatLng(45.497805, -73.57946),
       LatLng(45.497846, -73.579522),
@@ -136,7 +136,7 @@ const buildings = {
   },
   'CB': {
     'name': 'CB Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.495106, -73.574341),
     'vertices': [
       LatLng(45.4952441, -73.5738566),
       LatLng(45.495403, -73.5741855),
@@ -157,7 +157,7 @@ const buildings = {
   },
   'CI': {
     'name': 'CI Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.495835, -73.578789), // TODO update with real value
     'vertices': [
       LatLng(45.49737, -73.579938),
       LatLng(45.497402, -73.580014),
@@ -172,7 +172,8 @@ const buildings = {
   },
   'CL': {
     'name': 'CL Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.495835, -73.578789),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.494251, -73.578928),
       LatLng(45.4941404, -73.5790782),
@@ -187,7 +188,7 @@ const buildings = {
   },
   'D': {
     'name': 'D Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.495835, -73.578789), // TODO update with real value
     'vertices': [
       LatLng(45.497742, -73.57941),
       LatLng(45.4977059, -73.579339),
@@ -202,7 +203,7 @@ const buildings = {
   },
   'EN': {
     'name': 'EN Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496880, -73.579552),
     'vertices': [
       LatLng(45.496874, -73.579808),
       LatLng(45.4968502, -73.5797612),
@@ -217,7 +218,7 @@ const buildings = {
   },
   'ER': {
     'name': 'ER Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496238, -73.580104),
     'vertices': [
       LatLng(45.496588, -73.579785),
       LatLng(45.496454, -73.579893),
@@ -232,7 +233,7 @@ const buildings = {
   },
   'FA': {
     'name': 'FA Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496825, -73.579474),
     'vertices': [
       LatLng(45.496852, -73.5797514),
       LatLng(45.496945, -73.579659),
@@ -247,7 +248,7 @@ const buildings = {
   },
   'FB': {
     'name': 'Faubourg Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.494736, -73.577733),
     'vertices': [
       LatLng(45.494694, -73.578029),
       LatLng(45.494395, -73.577519),
@@ -262,7 +263,7 @@ const buildings = {
   },
   'GM': {
     'name': 'Guy-De Maisonneuve Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.495879, -73.578704),
     'vertices': [
       LatLng(45.495943, -73.578975),
       LatLng(45.49573, -73.578626),
@@ -277,7 +278,7 @@ const buildings = {
   },
   'GN': {
     'name': 'Grey Nuns Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.493978, -73.576233),
     'vertices': [
       LatLng(45.49411, -73.576226),
       LatLng(45.494024, -73.576009),
@@ -292,7 +293,7 @@ const buildings = {
   },
   'GS': {
     'name': 'GS Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496628, -73.581400),
     'vertices': [
       LatLng(45.496639, -73.581134),
       LatLng(45.496507, -73.581239),
@@ -307,7 +308,7 @@ const buildings = {
   },
   'K': {
     'name': 'K Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.497826, -73.579382),
     'vertices': [
       LatLng(45.497834, -73.579535),
       LatLng(45.497794, -73.57947),
@@ -322,7 +323,7 @@ const buildings = {
   },
   'LD': {
     'name': 'LD Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496790, -73.577180),
     'vertices': [
       LatLng(45.496525, -73.577388),
       LatLng(45.496561, -73.577459),
@@ -337,7 +338,7 @@ const buildings = {
   },
   'LS': {
     'name': 'Learning Square Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496274, -73.579469),
     'vertices': [
       LatLng(45.495952, -73.579633),
       LatLng(45.496111, -73.579479),
@@ -354,7 +355,7 @@ const buildings = {
   },
   'M': {
     'name': 'M Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.497344, -73.579783),
     'vertices': [
       LatLng(45.497291, -73.579778),
       LatLng(45.497323, -73.579845),
@@ -369,7 +370,7 @@ const buildings = {
   },
   'MI': {
     'name': 'MI Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.497791, -73.579204),
     'vertices': [
       LatLng(45.497777, -73.579171),
       LatLng(45.497809, -73.57923),
@@ -386,7 +387,7 @@ const buildings = {
   },
   'MU': {
     'name': 'MU Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.497946, -73.579510),
     'vertices': [
       LatLng(45.49775, -73.579628),
       LatLng(45.497919, -73.579464),
@@ -401,7 +402,7 @@ const buildings = {
   },
   'P': {
     'name': 'P Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496662, -73.579162),
     'vertices': [
       LatLng(45.496584, -73.579181),
       LatLng(45.496675, -73.579082),
@@ -416,7 +417,7 @@ const buildings = {
   },
   'PR': {
     'name': 'PR Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496981, -73.579809),
     'vertices': [
       LatLng(45.496961, -73.579973),
       LatLng(45.49706, -73.579867),
@@ -431,7 +432,7 @@ const buildings = {
   },
   'Q': {
     'name': 'Q Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496620, -73.579091),
     'vertices': [
       LatLng(45.496554, -73.579121),
       LatLng(45.496582, -73.579173),
@@ -446,7 +447,7 @@ const buildings = {
   },
   'R': {
     'name': 'R Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496772, -73.579415),
     'vertices': [
       LatLng(45.496713, -73.579424),
       LatLng(45.496802, -73.57933),
@@ -461,7 +462,7 @@ const buildings = {
   },
   'RR': {
     'name': 'RR Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496736, -73.579340),
     'vertices': [
       LatLng(45.496649, -73.579476),
       LatLng(45.496791, -73.579333),
@@ -476,7 +477,7 @@ const buildings = {
   },
   'S': {
     'name': 'S Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.497387, -73.579850),
     'vertices': [
       LatLng(45.497366, -73.579931),
       LatLng(45.497487, -73.579815),
@@ -493,7 +494,7 @@ const buildings = {
   },
   'SB': {
     'name': 'Samuel Bronfman Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496530, -73.586131),
     'vertices': [
       LatLng(45.496533, -73.586209),
       LatLng(45.496541, -73.586041),
@@ -508,7 +509,7 @@ const buildings = {
   },
   'T': {
     'name': 'T Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.496702, -73.579254),
     'vertices': [
       LatLng(45.496665, -73.579336),
       LatLng(45.496742, -73.579256),
@@ -523,7 +524,7 @@ const buildings = {
   },
   'TD': {
     'name': 'Toronto Dominion Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.495138, -73.578373),
     'vertices': [
       LatLng(45.494949, -73.578178),
       LatLng(45.495031, -73.578083),
@@ -538,7 +539,7 @@ const buildings = {
   },
   'V': {
     'name': 'V Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.497041, -73.579902),
     'vertices': [
       LatLng(45.496968, -73.579983),
       LatLng(45.497069, -73.57989),
@@ -553,7 +554,7 @@ const buildings = {
   },
   'VA': {
     'name': 'Visual Arts Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.495589, -73.573750),
     'vertices': [
       LatLng(45.495406, -73.573769),
       LatLng(45.49567, -73.574302),
@@ -572,7 +573,8 @@ const buildings = {
   // Loyola Buildings
   'AD': {
     'name': 'Administration Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.457794, -73.639837),
       LatLng(45.457911, -73.640125),
@@ -599,7 +601,8 @@ const buildings = {
   },
   'BB': {
     'name': 'BB Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.459695, -73.639171),
       LatLng(45.459782, -73.639099),
@@ -614,7 +617,8 @@ const buildings = {
   },
   'BH': {
     'name': 'BH Annex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.459693, -73.63916),
       LatLng(45.459777, -73.639089),
@@ -629,7 +633,8 @@ const buildings = {
   },
   'CC': {
     'name': 'Central Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.458075, -73.640015),
       LatLng(45.458215, -73.639907),
@@ -644,7 +649,8 @@ const buildings = {
   },
   'CJ': {
     'name': 'Communications Studies and Journalism Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.457407, -73.640214),
       LatLng(45.457358, -73.640078),
@@ -674,7 +680,8 @@ const buildings = {
   },
   'DO': {
     'name': 'Stinger Dome',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.457361, -73.637086),
       LatLng(45.456951, -73.636361),
@@ -689,7 +696,8 @@ const buildings = {
   },
   'FC': {
     'name': 'F.C. Smith Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.458652, -73.639694),
       LatLng(45.458581, -73.639578),
@@ -709,7 +717,8 @@ const buildings = {
   },
   'GE': {
     'name': 'Centre for Structural and Functional Genomics',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.456942, -73.640739),
       LatLng(45.456797, -73.640355),
@@ -724,7 +733,8 @@ const buildings = {
   },
   'HA': {
     'name': 'Hingston Hall - HA Wing',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.459431, -73.641546),
       LatLng(45.459668, -73.64135),
@@ -739,7 +749,8 @@ const buildings = {
   },
   'HB': {
     'name': 'Hingston Hall - HB Wing',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.459367, -73.641503),
       LatLng(45.45953, -73.641935),
@@ -756,7 +767,8 @@ const buildings = {
   },
   'HC': {
     'name': 'Hingston Hall - HC Wing',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.459526, -73.642026),
       LatLng(45.459817, -73.641843),
@@ -771,7 +783,8 @@ const buildings = {
   },
   'HU': {
     'name': 'Applied Science Hub',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.458201, -73.641672),
       LatLng(45.458635, -73.641371),
@@ -786,7 +799,8 @@ const buildings = {
   },
   'JR': {
     'name': 'Jesuit Residence',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.458401, -73.643157),
       LatLng(45.458539, -73.643065),
@@ -801,7 +815,8 @@ const buildings = {
   },
   'PC': {
     'name': 'Perform Centre',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.457018, -73.637827),
       LatLng(45.456692, -73.636991),
@@ -816,7 +831,8 @@ const buildings = {
   },
   'PS': {
     'name': 'Physical Services Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.4597016, -73.640309),
       LatLng(45.459403, -73.639525),
@@ -833,7 +849,8 @@ const buildings = {
   },
   'PT': {
     'name': 'Oscar Peterson Concert Hall',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.459216, -73.638938),
       LatLng(45.459344, -73.639228),
@@ -848,7 +865,8 @@ const buildings = {
   },
   'PY': {
     'name': 'Psychology Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.45927, -73.64052),
       LatLng(45.458875, -73.640812),
@@ -863,7 +881,8 @@ const buildings = {
   },
   'RA': {
     'name': 'Recreation and Athletics Complex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.457002, -73.637889),
       LatLng(45.456704, -73.637133),
@@ -878,7 +897,8 @@ const buildings = {
   },
   'RF': {
     'name': 'Jesuit Hall and Conference Centre',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.458806, -73.641156),
       LatLng(45.458505, -73.641373),
@@ -901,7 +921,8 @@ const buildings = {
   },
   'SC': {
     'name': 'Student Centre',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.459279, -73.639276),
       LatLng(45.459158, -73.638991),
@@ -916,7 +937,8 @@ const buildings = {
   },
   'SI': {
     'name': 'Saint Ignatius of Loyola',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.457642, -73.642569),
       LatLng(45.458045, -73.642281),
@@ -931,7 +953,8 @@ const buildings = {
   },
   'SP': {
     'name': 'Richard J. Renaud Science Complex',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.456991, -73.64083),
       LatLng(45.457199, -73.640683),
@@ -950,7 +973,8 @@ const buildings = {
   },
   'TA': {
     'name': 'Terrebonne Building',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.459934, -73.640868),
       LatLng(45.45998, -73.640966),
@@ -965,7 +989,8 @@ const buildings = {
   },
   'VE': {
     'name': 'Vanier Extension',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.458823, -73.638272),
       LatLng(45.45904, -73.638853),
@@ -980,7 +1005,8 @@ const buildings = {
   },
   'VL': {
     'name': 'Vanier Library',
-    'coordinates': LatLng(0, 0),
+    'coordinates': LatLng(45.458257, -73.640450),
+    // TODO update with real value,
     'vertices': [
       LatLng(45.458886, -73.638176),
       LatLng(45.459108, -73.638796),
