@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:concordia_go/services/OutdoorPathService.dart';
+import 'package:concordia_go/widgets/component/google_maps_component.dart';
 
 class BuildingInfoSheet {
   static Color mainColor = Color(0xff800206);
@@ -203,11 +204,13 @@ class BuildingInfoSheet {
                                 ),
                                 onPressed: () {
                                   Navigator.pop(context);
-                                  BlocProvider.of<DirectionsBloc>(mc).add(PolylineUpdate(
-                                    LatLng(45.457361, -73.637086),
-                                    LatLng(45.4973844, -73.578354),
-                                    mc,
-                                  ));
+                                  getCurrentLocation().then((value) {
+                                    BlocProvider.of<DirectionsBloc>(mc).add(PolylineUpdate(
+                                      value,
+                                      state.coordinates,
+                                      mc,
+                                    ));
+                                  });
                                 },
                                 icon: Icon(
                                   Icons.directions,

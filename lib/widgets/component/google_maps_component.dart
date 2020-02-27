@@ -223,7 +223,13 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
 }
 
 Future<void> moveCameraPosition(LatLng coordinates) async {
+  debugPrint("Camera move requested");
   final GoogleMapController controller = await _controller.future;
   await controller.animateCamera(
       CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: concordia_constants.navZoomLevel)));
+}
+
+Future<LatLng> getCurrentLocation() async {
+  var position = await Geolocator().getCurrentPosition();
+  return LatLng(position.latitude, position.longitude);
 }
