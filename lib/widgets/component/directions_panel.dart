@@ -81,7 +81,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                               state.newDirection.instruction,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 16,
+                                fontSize: 18,
                               ),
                             ),
                           ),
@@ -131,7 +131,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                       state.newDirection.distance,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 20,
                                       ),
                                     ),
                                   ),
@@ -149,7 +149,13 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                       Icons.close,
                                       color: Colors.white,
                                     ),
-                                    onPressed: () => {hidePanel()},
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) => exitNavAlert(context),
+                                        barrierDismissible: false,
+                                      );
+                                    },
                                   ),
                                 ),
                               ),
@@ -201,7 +207,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                             '12 min',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 18,
                             ),
                           ),
                         ),
@@ -217,6 +223,28 @@ class DirectionsPanelState extends State<DirectionsPanel> {
           return Container();
         }
       },
+    );
+  }
+
+  AlertDialog exitNavAlert(context) {
+    return AlertDialog(
+      title: Text('Exit navigation?'),
+      actions: <Widget>[
+        FlatButton(
+          child: Text('Yes'),
+          onPressed: () {
+            Navigator.pop(context, true);
+            hidePanel();
+            BlocProvider.of<DirectionsBloc>(context).add(ClearPolylines());
+          },
+        ),
+        FlatButton(
+          child: Text('No'),
+          onPressed: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      ],
     );
   }
 }
