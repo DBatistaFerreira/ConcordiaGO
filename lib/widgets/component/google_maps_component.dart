@@ -17,6 +17,7 @@ class GoogleMapsComponent extends StatefulWidget {
 
 class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   Completer<GoogleMapController> _controller = Completer();
+  Set<Marker> markers = Set<Marker>();
   bool polygonVisibility = true;
 
   void _infoPanel() {
@@ -80,7 +81,6 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     final mapBloc = BlocProvider.of<MapBloc>(context);
     final buildingInfoBloc = BlocProvider.of<BuildingInfoBloc>(context);
     LatLng currentCameraPosition = concordia_constants.sgwCampus['coordinates'];
-    Set<Marker> markers = Set<Marker>();
 
     return Scaffold(
       body: Column(
@@ -96,14 +96,16 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   if (state is MapWithMarker) {
                     _goToLocation(state.cameraPosition, state.zoom);
                     markers.clear();
-                    markers.add(Marker(
-                      markerId: MarkerId(state.buildingCode),
-                      position: state.cameraPosition,
-                      consumeTapEvents: true,
-                      onTap: () {
-                        buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
-                      },
-                    ));
+                    markers.add(
+                      Marker(
+                        markerId: MarkerId(state.buildingCode),
+                        position: state.cameraPosition,
+                        consumeTapEvents: true,
+                        onTap: () {
+                          buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
+                        },
+                      ),
+                    );
                   }
                 },
               ),
