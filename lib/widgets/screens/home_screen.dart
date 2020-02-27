@@ -12,7 +12,9 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => HomePageState();
 }
+
 PanelController _pc = PanelController();
+
 class HomePageState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,9 @@ class HomePageState extends State<HomeScreen> {
         BlocProvider<DirectionsBloc>(
           create: (context) => DirectionsBloc(),
         ),
+        BlocProvider<DirectionsUiBloc>(
+          create: (context) => DirectionsUiBloc(),
+        )
       ],
       child: Scaffold(
         appBar: PreferredSize(
@@ -57,11 +62,11 @@ class HomePageState extends State<HomeScreen> {
   }
 }
 
-void hidePanel(){
+void hidePanel() {
   OutdoorPathService.clearAll();
   _pc.hide();
 }
 
-void revealPanel(){
+void revealPanel() {
   _pc.open();
 }

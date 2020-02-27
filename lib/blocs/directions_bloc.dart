@@ -13,14 +13,15 @@ class DirectionsBloc extends Bloc<DirectionsEvent, DirectionsState> {
     DirectionsEvent event,
   ) async* {
     if (event is PolylineUpdate) {
-      var polyLines = OutdoorPathService.buildPolylines(event.startCoordinates.latitude,
-          event.startCoordinates.longitude, event.endCoordinates.latitude, event.endCoordinates.longitude);
+      var polyLines;
+      await OutdoorPathService.transitDirections(event.startCoordinates.latitude, event.startCoordinates.longitude,
+              event.endCoordinates.latitude, event.endCoordinates.longitude)
+          .then((value) => polyLines = value);
       yield polyUpdates(polyLines);
-    } else
-      if (event is ClearPolylines){
-        OutdoorPathService.clearAll();
-        var polyLines = Set<Polyline>();
-        yield polyUpdates(polyLines);
-      }
+    } else if (event is ClearPolylines) {
+      OutdoorPathService.clearAll();
+      var polyLines = Set<Polyline>();
+      yield polyUpdates(polyLines);
+    }
   }
 }

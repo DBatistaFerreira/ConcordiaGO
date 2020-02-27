@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_maps_util/google_maps_util.dart';
@@ -13,7 +15,7 @@ List<Direction> singleDirections = List<Direction>();
 int currentInstruction = 0;
 
 class OutdoorPathService {
-  static void transitDirections(startLat, startLng, endLat, endLng) async {
+  static Future<Set<Polyline>> transitDirections(startLat, startLng, endLat, endLng) async {
     singleDirections = List<Direction>();
     listDirections = Journey();
     var apiKey;
@@ -53,7 +55,8 @@ class OutdoorPathService {
     }
     setDirections();
     //  clearAll();
-    listDirections.printRoute();
+//    listDirections.printRoute();
+    return polyLines;
   }
 
   static Direction toDirection(apiJson, modeOfTransport transportType, String arrival_time) {

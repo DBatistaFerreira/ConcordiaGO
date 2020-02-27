@@ -200,9 +200,10 @@ class BuildingInfoSheet {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
-                                onPressed: () => {
+                                onPressed: () {
                                   BlocProvider.of<DirectionsBloc>(context).add(
-                                      PolylineUpdate(LatLng(45.4973844, -73.578354), LatLng(45.4573095, -73.6400314)))
+                                      PolylineUpdate(LatLng(45.4973844, -73.578354), LatLng(45.4573095, -73.6400314)));
+                                  BlocProvider.of<DirectionsUiBloc>(context).add(FirstDirection());
                                 },
                                 icon: Icon(
                                   Icons.directions,

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:concordia_go/services/OutdoorPathService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -82,8 +83,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     LatLng currentCameraPosition = concordia_constants.sgwCampus['coordinates'];
     Set<Marker> markers = Set<Marker>();
 
-    return Scaffold(
-      body: Column(
+    return Stack(children: [
+      Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           MultiBlocListener(
@@ -158,51 +159,66 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
           ),
         ],
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Container(
-            height: screenHeight / 11,
-            width: screenHeight / 11,
-            padding: EdgeInsets.all(6.0),
-            child: FloatingActionButton(
-              heroTag: null,
-              child: Icon(Icons.gps_fixed, size: screenWidth / 14),
-              backgroundColor: Color(0xff800206),
-              onPressed: () {
-                GeolocationStatus status;
-                Geolocator().checkGeolocationPermissionStatus().then((result) => status = result);
-                _getMyLocation().then((myLocation) {
-                  if (myLocation != null) {
-                    mapBloc.add(CameraMove(myLocation, 17.5));
-                  } else if (status == GeolocationStatus.denied) {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('Allow location permissions to access My Location'),
-                    ));
-                  } else {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('Location permission status unknown.'),
-                    ));
-                  }
-                });
-              },
+      Positioned(
+        right: 20,
+        bottom: 100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Container(
+              height: screenHeight / 11,
+              width: screenHeight / 11,
+              padding: EdgeInsets.all(6.0),
+              child: RawMaterialButton(
+                fillColor: Color(0xff800206),
+                shape: CircleBorder(),
+                elevation: 10.0,
+                child: Icon(
+                  Icons.gps_fixed,
+                  size: screenWidth / 14,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  GeolocationStatus status;
+                  Geolocator().checkGeolocationPermissionStatus().then((result) => status = result);
+                  _getMyLocation().then((myLocation) {
+                    if (myLocation != null) {
+                      mapBloc.add(CameraMove(myLocation, 17.5));
+                    } else if (status == GeolocationStatus.denied) {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text('Allow location permissions to access My Location'),
+                      ));
+                    } else {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text('Location permission status unknown.'),
+                      ));
+                    }
+                  });
+                },
+              ),
             ),
-          ),
-          Container(
-            height: screenHeight / 11,
-            width: screenHeight / 11,
-            padding: EdgeInsets.all(6.0),
-            child: FloatingActionButton(
-              heroTag: null,
-              child: Icon(Icons.sync, size: screenWidth / 11),
-              backgroundColor: Color(0xff800206),
-              onPressed: () {
-                _switchCampus(currentCameraPosition);
-              },
+            Container(
+              height: screenHeight / 11,
+              width: screenHeight / 11,
+              padding: EdgeInsets.all(6.0),
+              child: RawMaterialButton(
+                fillColor: Color(0xff800206),
+                shape: CircleBorder(),
+                elevation: 10.0,
+                child: Icon(
+                  Icons.sync,
+                  size: screenWidth / 11,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+//                  _switchCampus(currentCameraPosition);
+                  BlocProvider.of<DirectionsBloc>(context).add(ClearPolylines());
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    );
+    ]);
   }
 }

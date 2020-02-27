@@ -13,7 +13,6 @@ class PolylineUpdate extends DirectionsEvent {
   const PolylineUpdate(this.startCoordinates, this.endCoordinates);
 }
 
-class ClearPolylines extends DirectionsEvent{
-
+class ClearPolylines extends DirectionsEvent {
   const ClearPolylines();
 }
