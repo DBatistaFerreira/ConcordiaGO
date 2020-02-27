@@ -10,8 +10,9 @@ class Direction {
   LatLng point;
   modeOfTransport transitType;
   iconType icons;
+  String destination;
 
-  Direction(this.instruction, this.point, this.transitType, this.distance, this.arrival_time) {
+  Direction(this.instruction, this.point, this.transitType, this.distance, this.arrival_time, this.destination) {
     RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
 
     this.instruction = this.instruction.replaceAll(exp, '');

@@ -211,6 +211,7 @@ class BuildingInfoSheet {
                                           value,
                                           state.coordinates,
                                           mc,
+                                          state.buildingName,
                                         ),
                                       );
                                     },
@@ -249,8 +250,8 @@ class BuildingInfoSheet {
     );
   }
 
-  static Set<Polyline> setPath(startLat, startLng, endLat, endLng) {
-    var polyLines = OutdoorPathService.buildPolylines(startLat, startLng, endLat, endLng);
+  static Set<Polyline> setPath(startLat, startLng, endLat, endLng, destination) {
+    var polyLines = OutdoorPathService.buildPolylines(startLat, startLng, endLat, endLng, destination);
 
     //UPDATE BLOC HERE INSTEAD OF RETURN
 

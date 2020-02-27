@@ -11,8 +11,9 @@ class PolylineUpdate extends DirectionsEvent {
   final LatLng startCoordinates;
   final LatLng endCoordinates;
   final BuildContext context;
+  final String destination;
 
-  const PolylineUpdate(this.startCoordinates, this.endCoordinates, this.context);
+  const PolylineUpdate(this.startCoordinates, this.endCoordinates, this.context, this.destination);
 }
 
 class ClearPolylines extends DirectionsEvent {
