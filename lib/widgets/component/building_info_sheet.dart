@@ -18,7 +18,7 @@ class BuildingInfoSheet {
     bottomSheetController = showBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (BuildContext bc) {
+      builder: (context) {
         double screenHeight = MediaQuery.of(context).size.height;
         double screenWidth = MediaQuery.of(context).size.width;
         double iconSize = screenWidth / 14;
@@ -202,15 +202,12 @@ class BuildingInfoSheet {
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
                                 onPressed: () {
-                                  debugPrint('pressed');
-                                  revealPanel();
-                                  BlocProvider.of<DirectionsBloc>(context).add(PolylineUpdate(
+                                  Navigator.pop(context);
+                                  BlocProvider.of<DirectionsBloc>(mc).add(PolylineUpdate(
                                     LatLng(45.457361, -73.637086),
                                     LatLng(45.4973844, -73.578354),
-                                    context,
+                                    mc,
                                   ));
-                                  Navigator.pop(context);
-                                  debugPrint('sent UI');
                                 },
                                 icon: Icon(
                                   Icons.directions,

@@ -210,8 +210,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-//                  _switchCampus(currentCameraPosition);
-                  BlocProvider.of<DirectionsBloc>(context).add(ClearPolylines());
+                  _switchCampus(currentCameraPosition);
                 },
               ),
             ),

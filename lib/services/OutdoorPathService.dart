@@ -91,15 +91,14 @@ class OutdoorPathService {
   }
 
   static Direction returnFirstInstruction() {
-    debugPrint('starting return first instruction');
     return singleDirections[currentInstruction];
   }
 
   static Direction returnNextInstruction() {
     if (currentInstruction == singleDirections.length - 1) {
-      //Do something here to end transit
-      clearAll();
-      return null;
+//      clearAll();
+      return singleDirections[currentInstruction];
+      // HANDLE END OF NAVIGATION
     }
     return singleDirections[++currentInstruction];
   }

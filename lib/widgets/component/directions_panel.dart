@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/utilities/Direction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
@@ -19,13 +18,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
 
     return BlocBuilder<DirectionsUiBloc, DirectionsUiState>(
       builder: (context, state) {
-        debugPrint('building');
-        Direction direction;
         if (state is DirectionsUiUpdate) {
-          debugPrint('it is');
-          direction = state.newDirection;
-          debugPrint('its set');
-          debugPrint(direction.toString());
           return Container(
             color: Color(0xff800206),
             child: Row(
@@ -85,7 +78,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15.0, left: 10.0),
                             child: Text(
-                              direction.instruction,
+                              state.newDirection.instruction,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -129,16 +122,16 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                           child: Row(
                             children: [
                               Expanded(
-                                flex: 2,
+                                flex: 3,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 6.0),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      direction.distance,
+                                      state.newDirection.distance,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 28.0,
+                                        fontSize: 24.0,
                                       ),
                                     ),
                                   ),
@@ -205,7 +198,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            '2.3 km',
+                            '12 min',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 22,
@@ -220,8 +213,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
             ),
           );
         } else {
-          debugPrint('HIDING');
-          //hidePanel();
+          hidePanel();
           return Container();
         }
       },

@@ -6,7 +6,8 @@ import 'package:meta/meta.dart';
 abstract class DirectionsUiState {}
 
 class InitialDirectionsUiState extends DirectionsUiState {
-  final Direction currentDirection = Direction("NULL STATE", LatLng(45.457, -73.657), modeOfTransport.walking, "0km", "0:00PM");
+  final Direction currentDirection =
+      Direction("NULL STATE", LatLng(45.457, -73.657), modeOfTransport.walking, "0km", "0:00PM");
 }
 
 class DirectionsUiUpdate extends DirectionsUiState {
