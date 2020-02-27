@@ -25,24 +25,35 @@ class OutdoorPathService {
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
     for (int i = 0; i < values['routes'][0]['legs'][0]['steps'].length; i++) {
+      bool subInstruction = true;
       var arrival_time = values['routes'][0]['legs'][0]['arrival_time']['text'];
       var pointArray = myPoints.decode(values['routes'][0]['legs'][0]['steps'][i]['polyline']['points']);
       Segment newSegment;
       if (values['routes'][0]['legs'][0]['steps'][i]['travel_mode'] == 'WALKING') {
         var newDirection =
-            toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.walking, arrival_time);
+        toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.walking, arrival_time);
         newSegment = Segment(newDirection);
-
-        for (int j = 0; j < values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
-          newDirection = toDirection(
-              values['routes'][0]['legs'][0]['steps'][i]['steps'][j], modeOfTransport.walking, arrival_time);
+        try{
+          values['routes'][0]['legs'][0]['steps'][i]['steps']['html_instructions'];
+        }catch(Exception){
+          subInstruction = false;
+        }
+        if(subInstruction) {
+          for (int j = 0; j <
+              values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
+            newDirection = toDirection(
+                values['routes'][0]['legs'][0]['steps'][i]['steps'][j],
+                modeOfTransport.walking, arrival_time);
+            newSegment.addSubstep(newDirection);
+          }
+        }else{
           newSegment.addSubstep(newDirection);
         }
 
         addNewPolyline(Colors.pink, pointArray, i);
       } else {
         var newDirection =
-            toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.transit, arrival_time);
+        toDirection(values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.transit, arrival_time);
         newSegment = Segment(newDirection);
 
         newDirection = endTransit(values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'],
