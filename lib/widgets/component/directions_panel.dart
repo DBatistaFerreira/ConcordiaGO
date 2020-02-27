@@ -19,9 +19,13 @@ class DirectionsPanelState extends State<DirectionsPanel> {
 
     return BlocBuilder<DirectionsUiBloc, DirectionsUiState>(
       builder: (context, state) {
+        debugPrint('building');
         Direction direction;
         if (state is DirectionsUiUpdate) {
+          debugPrint('it is');
           direction = state.newDirection;
+          debugPrint('its set');
+          debugPrint(direction.toString());
           return Container(
             color: Color(0xff800206),
             child: Row(
@@ -216,6 +220,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
             ),
           );
         } else {
+          debugPrint('HIDING');
+          //hidePanel();
           return Container();
         }
       },

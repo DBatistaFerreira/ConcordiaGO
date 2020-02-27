@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:concordia_go/services/OutdoorPathService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -63,7 +62,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     await controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: zoom)));
   }
 
-  Future<LatLng> _getMyLocation() async {
+  Future<LatLng> getMyLocation() async {
     Position position;
     try {
       position = await Geolocator().getCurrentPosition();
@@ -181,7 +180,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                 onPressed: () {
                   GeolocationStatus status;
                   Geolocator().checkGeolocationPermissionStatus().then((result) => status = result);
-                  _getMyLocation().then((myLocation) {
+                  getMyLocation().then((myLocation) {
                     if (myLocation != null) {
                       mapBloc.add(CameraMove(myLocation, 17.5));
                     } else if (status == GeolocationStatus.denied) {

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -201,9 +202,15 @@ class BuildingInfoSheet {
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
                                 onPressed: () {
-                                  BlocProvider.of<DirectionsBloc>(context).add(
-                                      PolylineUpdate(LatLng(45.4973844, -73.578354), LatLng(45.4573095, -73.6400314)));
-                                  BlocProvider.of<DirectionsUiBloc>(context).add(FirstDirection());
+                                  debugPrint('pressed');
+                                  revealPanel();
+                                  BlocProvider.of<DirectionsBloc>(context).add(PolylineUpdate(
+                                    LatLng(45.457361, -73.637086),
+                                    LatLng(45.4973844, -73.578354),
+                                    context,
+                                  ));
+                                  Navigator.pop(context);
+                                  debugPrint('sent UI');
                                 },
                                 icon: Icon(
                                   Icons.directions,

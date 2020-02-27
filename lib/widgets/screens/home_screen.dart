@@ -68,5 +68,5 @@ void hidePanel() {
 }
 
 void revealPanel() {
-  _pc.open();
+  _pc.show();
 }

@@ -91,6 +91,7 @@ class OutdoorPathService {
   }
 
   static Direction returnFirstInstruction() {
+    debugPrint('starting return first instruction');
     return singleDirections[currentInstruction];
   }
 
