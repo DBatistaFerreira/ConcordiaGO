@@ -14,9 +14,9 @@ class GoogleMapsComponent extends StatefulWidget {
   @override
   State<GoogleMapsComponent> createState() => GoogleMapsComponentState();
 }
-
+Completer<GoogleMapController> _controller = Completer();
 class GoogleMapsComponentState extends State<GoogleMapsComponent> {
-  Completer<GoogleMapController> _controller = Completer();
+
   bool polygonVisibility = true;
 
   void _infoPanel() {
@@ -57,7 +57,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     }
   }
 
-  Future<void> _goToLocation(LatLng coordinates, double zoom) async {
+Future<void> _goToLocation(LatLng coordinates, double zoom) async {
     final GoogleMapController controller = await _controller.future;
     await controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: zoom)));
   }
@@ -219,4 +219,10 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
       ),
     ]);
   }
+}
+
+Future<void> moveCameraPosition(LatLng coordinates) async {
+  debugPrint("Camera move requested");
+  final GoogleMapController controller = await _controller.future;
+  await controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom:15.4746)));
 }

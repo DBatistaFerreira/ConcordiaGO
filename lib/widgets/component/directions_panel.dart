@@ -81,7 +81,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                               state.newDirection.instruction,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 16,
                               ),
                             ),
                           ),
@@ -131,7 +131,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                       state.newDirection.distance,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 24.0,
+                                        fontSize: 16,
                                       ),
                                     ),
                                   ),
@@ -201,7 +201,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                             '12 min',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 22,
+                              fontSize: 16,
                             ),
                           ),
                         ),
