@@ -1,4 +1,5 @@
 import 'package:concordia_go/widgets/component/directions_panel.dart';
+import 'package:concordia_go/services/OutdoorPathService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/blocs/bloc.dart';
@@ -11,7 +12,7 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => HomePageState();
 }
-
+PanelController _pc = PanelController();
 class HomePageState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class HomePageState extends State<HomeScreen> {
               backgroundColor: Color(0xff800206),
             )),
         body: SlidingUpPanel(
+          controller: _pc,
           panel: Container(
             height: 400,
             color: Colors.greenAccent,
@@ -53,4 +55,13 @@ class HomePageState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+void hidePanel(){
+  OutdoorPathService.clearAll();
+  _pc.hide();
+}
+
+void revealPanel(){
+  _pc.open();
 }

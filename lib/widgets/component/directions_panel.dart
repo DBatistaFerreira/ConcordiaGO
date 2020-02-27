@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:concordia_go/widgets/screens/home_screen.dart';
 
 class DirectionsPanel extends StatefulWidget {
   @override
@@ -143,7 +144,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                 Icons.close,
                                 color: Colors.white,
                               ),
-                              onPressed: () => {},
+                              onPressed: () => {hidePanel()},
                             ),
                           ),
                         ),
