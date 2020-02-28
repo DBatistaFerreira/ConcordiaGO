@@ -223,7 +223,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
             ),
           );
         } else {
-//          hidePanel();
+          hidePanel();
           return Container(
             height: 350,
             child: Text('ELSE PANEL'),

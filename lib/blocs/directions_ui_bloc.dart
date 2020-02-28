@@ -18,15 +18,15 @@ class DirectionsUiBloc extends Bloc<DirectionsUiEvent, DirectionsUiState> {
       Direction newDirection = OutdoorPathService.returnFirstInstruction();
       revealPanel();
       await moveCameraPosition(newDirection.point);
-      yield DirectionsUiUpdate(newDirection);
+      yield DirectionsUiUpdate(newDirection, OutdoorPathService.returnRoute());
     } else if (event is NextDirection) {
       Direction newDirection = OutdoorPathService.returnNextInstruction();
       await moveCameraPosition(newDirection.point);
-      yield DirectionsUiUpdate(newDirection);
+      yield DirectionsUiUpdate(newDirection, OutdoorPathService.returnRoute());
     } else if (event is PreviousDirection) {
       Direction newDirection = OutdoorPathService.returnPreviousInstruction();
       await moveCameraPosition(newDirection.point);
-      yield DirectionsUiUpdate(newDirection);
+      yield DirectionsUiUpdate(newDirection, OutdoorPathService.returnRoute());
     } else if (event is AllDirections) {
       revealPanel();
       yield AllDirectionsUpdate(OutdoorPathService.returnRoute());

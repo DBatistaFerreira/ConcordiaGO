@@ -41,7 +41,7 @@ class DirectionsListState extends State<DirectionsList> {
             flex: 8,
             child: BlocBuilder<DirectionsUiBloc, DirectionsUiState>(
               builder: (context, state) {
-                if (state is AllDirectionsUpdate) {
+                if (state is DirectionsUiUpdate) {
                   return ListView.builder(
                     itemCount: state.directionsList.length,
                     itemBuilder: (context, index) {
