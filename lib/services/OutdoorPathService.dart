@@ -34,8 +34,7 @@ class OutdoorPathService {
             values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
-          debugPrint(values['routes'][0]['legs'][0]['steps'][i]['steps'][0]['html_instructions']);
-          if(values['routes'][0]['legs'][0]['steps'][i]['steps'][0]['html_instructions']== null){
+          if (values['routes'][0]['legs'][0]['steps'][i]['steps'][0]['html_instructions'] == null) {
             subInstruction = false;
           }
         } catch (Exception) {

@@ -6,13 +6,13 @@ enum IconType { left, right, compass, walk, bus, subway, generic }
 class Direction {
   String instruction;
   String distance;
-  String arrival_time;
+  String arrivalTime;
   LatLng point;
   ModeOfTransport transitType;
   IconType icons;
   String destination;
 
-  Direction(this.instruction, this.point, this.transitType, this.distance, this.arrival_time, this.destination) {
+  Direction(this.instruction, this.point, this.transitType, this.distance, this.arrivalTime, this.destination) {
     RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
 
     instruction = instruction.replaceAll(exp, '');

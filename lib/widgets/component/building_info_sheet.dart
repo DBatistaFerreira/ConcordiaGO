@@ -202,6 +202,15 @@ class BuildingInfoSheet {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
+                                icon: Icon(
+                                  Icons.directions,
+                                  size: screenWidth / 12,
+                                ),
+                                label: Text(
+                                  'Go',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                                ),
                                 onPressed: () {
                                   Navigator.pop(context);
                                   getCurrentLocation().then(
@@ -217,15 +226,6 @@ class BuildingInfoSheet {
                                     },
                                   );
                                 },
-                                icon: Icon(
-                                  Icons.directions,
-                                  size: screenWidth / 12,
-                                ),
-                                label: Text(
-                                  'Go',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(color: Colors.black, fontSize: 16.0),
-                                ),
                               ),
                             ),
                           ),

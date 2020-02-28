@@ -207,7 +207,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                               ),
                             ),
                             Text(
-                              state.newDirection.arrival_time,
+                              state.newDirection.arrivalTime,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,

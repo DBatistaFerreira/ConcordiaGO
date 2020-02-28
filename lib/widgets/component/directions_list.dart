@@ -17,7 +17,13 @@ class DirectionsListState extends State<DirectionsList> {
           Expanded(
             flex: 1,
             child: Container(
-              color: Color(0xff800206),
+              decoration: BoxDecoration(
+                color: Color(0xff800206),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(18.0),
+                  topRight: Radius.circular(18.0),
+                ),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -39,24 +45,27 @@ class DirectionsListState extends State<DirectionsList> {
           ),
           Expanded(
             flex: 8,
-            child: BlocBuilder<DirectionsUiBloc, DirectionsUiState>(
-              builder: (context, state) {
-                if (state is DirectionsUiUpdate) {
-                  return ListView.builder(
-                    itemCount: state.directionsList.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(state.directionsList[index].instruction),
-                      );
-                    },
-                  );
-                } else {
-                  return Container(
-                    height: 350,
-                    child: Text('ELSE'),
-                  );
-                }
-              },
+            child: Container(
+              color: Colors.white,
+              child: BlocBuilder<DirectionsUiBloc, DirectionsUiState>(
+                builder: (context, state) {
+                  if (state is DirectionsUiUpdate) {
+                    return ListView.builder(
+                      itemCount: state.directionsList.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(state.directionsList[index].instruction),
+                        );
+                      },
+                    );
+                  } else {
+                    return Container(
+                      height: 350,
+                      child: Text('ELSE'),
+                    );
+                  }
+                },
+              ),
             ),
           ),
         ],

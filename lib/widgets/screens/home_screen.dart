@@ -30,6 +30,7 @@ class HomePageState extends State<HomeScreen> {
           )),
       body: SlidingUpPanel(
         controller: _pc,
+        color: Colors.transparent,
         panel: DirectionsList(),
         body: GoogleMapsComponent(),
         collapsed: DirectionsPanel(),
