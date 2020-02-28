@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -83,142 +84,147 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     LatLng currentCameraPosition = concordia_constants.sgwCampus['coordinates'];
     Set<Marker> markers = Set<Marker>();
 
-    return Stack(children: [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          MultiBlocListener(
-            listeners: [
-              BlocListener<MapBloc, MapState>(
-                listener: (context, state) {
-                  if (state is MapNoMarker) {
-                    _goToLocation(state.cameraPosition, state.zoom);
-                  }
-                  if (state is MapWithMarker) {
-                    _goToLocation(state.cameraPosition, state.zoom);
-                    markers.clear();
-                    markers.add(Marker(
-                      markerId: MarkerId(state.buildingCode),
-                      position: state.cameraPosition,
-                      consumeTapEvents: true,
-                      onTap: () {
-                        buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
-                      },
-                    ));
-                  }
-                },
-              ),
-              BlocListener<BuildingInfoBloc, BuildingInfoState>(
-                listener: (context, state) {
-                  if (!(state as BuildingInfo).fromToggle) {
-                    _infoPanel();
-                  }
-                },
-              )
-            ],
-            child: BlocBuilder<DirectionsBloc, DirectionsState>(
-              builder: (context, polylineState) {
-                Set<Polyline> _polylines;
-                if (polylineState is polyUpdates) {
-                  _polylines = polylineState.finalPolyline;
-                } else {
-                  _polylines = Set<Polyline>();
-                }
-                return BlocBuilder<MapBloc, MapState>(
-                  builder: (context, state) {
-                    return Expanded(
-                      child: GoogleMap(
-                        mapType: MapType.normal,
-                        initialCameraPosition: CameraPosition(
-                          target: concordia_constants.sgwCampus['coordinates'],
-                          zoom: 15.5,
-                        ),
-                        onMapCreated: (GoogleMapController controller) {
-                          _controller.complete(controller);
-                        },
-                        myLocationEnabled: true,
-                        myLocationButtonEnabled: false,
-                        buildingsEnabled: false,
-                        markers: markers,
-                        polygons: _buildingShapes(),
-                        polylines: _polylines,
-                        onCameraMove: (value) {
-                          currentCameraPosition = value.target;
-                        },
-                        onTap: (value) {
-                          if (BuildingInfoSheet.bottomSheetController != null) {
-                            BuildingInfoSheet.bottomSheetController.close();
-                          }
-                        },
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-      Positioned(
-        right: 20,
-        bottom: 100,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+    return Stack(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: screenHeight / 11,
-              width: screenHeight / 11,
-              padding: EdgeInsets.all(6.0),
-              child: RawMaterialButton(
-                fillColor: Color(0xff800206),
-                shape: CircleBorder(),
-                elevation: 10.0,
-                child: Icon(
-                  Icons.gps_fixed,
-                  size: screenWidth / 14,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  GeolocationStatus status;
-                  Geolocator().checkGeolocationPermissionStatus().then((result) => status = result);
-                  getMyLocation().then((myLocation) {
-                    if (myLocation != null) {
-                      mapBloc.add(CameraMove(myLocation, 17.5));
-                    } else if (status == GeolocationStatus.denied) {
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text('Allow location permissions to access My Location'),
-                      ));
-                    } else {
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text('Location permission status unknown.'),
+            MultiBlocListener(
+              listeners: [
+                BlocListener<MapBloc, MapState>(
+                  listener: (context, state) {
+                    if (state is MapNoMarker) {
+                      _goToLocation(state.cameraPosition, state.zoom);
+                    }
+                    if (state is MapWithMarker) {
+                      _goToLocation(state.cameraPosition, state.zoom);
+                      markers.clear();
+                      markers.add(Marker(
+                        markerId: MarkerId(state.buildingCode),
+                        position: state.cameraPosition,
+                        consumeTapEvents: true,
+                        onTap: () {
+                          buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
+                        },
                       ));
                     }
-                  });
-                },
-              ),
-            ),
-            Container(
-              height: screenHeight / 11,
-              width: screenHeight / 11,
-              padding: EdgeInsets.all(6.0),
-              child: RawMaterialButton(
-                fillColor: Color(0xff800206),
-                shape: CircleBorder(),
-                elevation: 10.0,
-                child: Icon(
-                  Icons.sync,
-                  size: screenWidth / 11,
-                  color: Colors.white,
+                  },
                 ),
-                onPressed: () {
-                  _switchCampus(currentCameraPosition);
+                BlocListener<BuildingInfoBloc, BuildingInfoState>(
+                  listener: (context, state) {
+                    if (!(state as BuildingInfo).fromToggle) {
+                      _infoPanel();
+                    }
+                  },
+                )
+              ],
+              child: BlocBuilder<DirectionsBloc, DirectionsState>(
+                builder: (context, polylineState) {
+                  Set<Polyline> _polylines;
+                  if (polylineState is polyUpdates) {
+                    _polylines = polylineState.finalPolyline;
+                  } else {
+                    _polylines = Set<Polyline>();
+                  }
+                  return BlocBuilder<MapBloc, MapState>(
+                    builder: (context, state) {
+                      return Expanded(
+                        child: GoogleMap(
+                          mapType: MapType.normal,
+                          initialCameraPosition: CameraPosition(
+                            target: concordia_constants.sgwCampus['coordinates'],
+                            zoom: 15.5,
+                          ),
+                          onMapCreated: (GoogleMapController controller) {
+                            _controller.complete(controller);
+                          },
+                          myLocationEnabled: true,
+                          myLocationButtonEnabled: false,
+                          buildingsEnabled: false,
+                          markers: markers,
+                          polygons: _buildingShapes(),
+                          polylines: _polylines,
+                          onCameraMove: (value) {
+                            currentCameraPosition = value.target;
+                          },
+                          onTap: (value) {
+                            if (BuildingInfoSheet.bottomSheetController != null) {
+                              BuildingInfoSheet.bottomSheetController.close();
+                            }
+                          },
+                        ),
+                      );
+                    },
+                  );
                 },
               ),
             ),
           ],
         ),
-      ),
-    ]);
+        Positioned(
+          right: 20,
+          bottom: 100,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                height: screenHeight / 11,
+                width: screenHeight / 11,
+                padding: EdgeInsets.all(6.0),
+                child: RawMaterialButton(
+                  fillColor: Color(0xff800206),
+                  shape: CircleBorder(),
+                  elevation: 10.0,
+                  child: Icon(
+                    Icons.gps_fixed,
+                    size: screenWidth / 14,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    GeolocationStatus status;
+                    Geolocator().checkGeolocationPermissionStatus().then((result) => status = result);
+                    getMyLocation().then((myLocation) {
+                      if (myLocation != null) {
+                        mapBloc.add(CameraMove(myLocation, 17.5));
+                      } else if (status == GeolocationStatus.denied) {
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Allow location permissions to access My Location'),
+                        ));
+                      } else {
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Location permission status unknown.'),
+                        ));
+                      }
+                    });
+                  },
+                ),
+              ),
+              Container(
+                height: screenHeight / 11,
+                width: screenHeight / 11,
+                padding: EdgeInsets.all(6.0),
+                child: RawMaterialButton(
+                  fillColor: Color(0xff800206),
+                  shape: CircleBorder(),
+                  elevation: 10.0,
+                  child: Icon(
+                    Icons.sync,
+                    size: screenWidth / 11,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    _switchCampus(currentCameraPosition);
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          child: SearchBar(),
+        ),
+      ],
+    );
   }
 }
 
