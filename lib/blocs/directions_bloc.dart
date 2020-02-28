@@ -20,6 +20,7 @@ class DirectionsBloc extends Bloc<DirectionsEvent, DirectionsState> {
           .then((value) {
         polyLines = value;
         BlocProvider.of<DirectionsUiBloc>(event.context).add(FirstDirection());
+//        BlocProvider.of<DirectionsUiBloc>(event.context).add(AllDirections());
       });
       yield polyUpdates(polyLines);
     } else if (event is ClearPolylines) {

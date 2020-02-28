@@ -15,3 +15,9 @@ class DirectionsUiUpdate extends DirectionsUiState {
 
   DirectionsUiUpdate(this.newDirection);
 }
+
+class AllDirectionsUpdate extends DirectionsUiState {
+  final List<Direction> directionsList;
+
+  AllDirectionsUpdate(this.directionsList);
+}

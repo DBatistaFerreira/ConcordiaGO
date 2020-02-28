@@ -95,8 +95,8 @@ class OutdoorPathService {
     return polyLines;
   }
 
-  static Journey returnRoute() {
-    return listDirections;
+  static List<Direction> returnRoute() {
+    return singleDirections;
   }
 
   static Direction returnFirstInstruction() {

@@ -1,3 +1,4 @@
+import 'package:concordia_go/widgets/component/directions_list.dart';
 import 'package:concordia_go/widgets/component/directions_panel.dart';
 import 'package:concordia_go/services/OutdoorPathService.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,17 +30,11 @@ class HomePageState extends State<HomeScreen> {
           )),
       body: SlidingUpPanel(
         controller: _pc,
-        panel: Container(
-          height: 400,
-          color: Colors.greenAccent,
-          child: Text(
-            'HELLO WORLD',
-            style: TextStyle(fontSize: 24),
-          ),
-        ),
+        panel: DirectionsList(),
         body: GoogleMapsComponent(),
         collapsed: DirectionsPanel(),
         minHeight: screenHeight / 3.5,
+        maxHeight: screenHeight / 1.4,
       ),
       drawer: QuickMenu(),
     );

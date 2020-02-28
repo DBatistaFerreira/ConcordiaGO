@@ -16,3 +16,7 @@ class NextDirection extends DirectionsUiEvent {
 class PreviousDirection extends DirectionsUiEvent {
   const PreviousDirection();
 }
+
+class AllDirections extends DirectionsUiEvent {
+  const AllDirections();
+}
