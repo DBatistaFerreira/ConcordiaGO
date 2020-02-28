@@ -1,30 +1,38 @@
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/models/building_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Building {
-  final String buildingCode;
-  final String name;
+class CampusBuildingListMenu extends StatefulWidget {
+  final String campusName;
 
-  Building(this.buildingCode, this.name);
-}
+  CampusBuildingListMenu(this.campusName);
 
-class SGWCampusBuildingList extends StatefulWidget {
   @override
-  State<SGWCampusBuildingList> createState() => SGWCampusBuildingListState();
+  State<CampusBuildingListMenu> createState() => CampusBuildingListMenuState(campusName);
 }
 
-class SGWCampusBuildingListState extends State<SGWCampusBuildingList> {
+class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
+  final String campusName;
+
+  CampusBuildingListMenuState(this.campusName);
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
 
     List<Building> buildings = List();
-    concordia_constants.buildings.forEach((code, building) =>
-        building['campus'] == 'SGW Campus' ? buildings.add(Building(code, building['name'])) : true);
+    concordia_constants.buildings.forEach((code, building) {
+      if (building['campus'] == campusName) {
+        Building b = Building();
+        b.code = code;
+        b.name = building['name'];
+        buildings.add(b);
+      }
+    });
 
     return Scaffold(
       appBar: PreferredSize(
@@ -40,7 +48,7 @@ class SGWCampusBuildingListState extends State<SGWCampusBuildingList> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                "SGW Campus Buildings",
+                campusName + " Buildings",
                 style: TextStyle(
                   fontFamily: 'Raleway',
                   color: Colors.white,
@@ -70,9 +78,7 @@ class SGWCampusBuildingListState extends State<SGWCampusBuildingList> {
                         ),
                         child: Center(
                           child: Text(
-                            buildings[index].buildingCode.length == 2
-                                ? buildings[index].buildingCode
-                                : buildings[index].buildingCode + ' ',
+                            buildings[index].code.length == 2 ? buildings[index].code : buildings[index].code + ' ',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -89,7 +95,7 @@ class SGWCampusBuildingListState extends State<SGWCampusBuildingList> {
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(buildings[index].buildingCode, context));
+                    BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(buildings[index].code, context));
                   },
                   trailing: Icon(Icons.keyboard_arrow_right),
                 );

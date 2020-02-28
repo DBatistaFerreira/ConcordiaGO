@@ -1,5 +1,4 @@
-import 'package:concordia_go/widgets/component/loyola_campus_building_menu.dart';
-import 'package:concordia_go/widgets/component/sgw_campus_building_menu.dart';
+import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,8 +32,8 @@ class Application extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => HomeScreen(),
-          '/sgwbuildings': (context) => SGWCampusBuildingList(),
-          '/loyolabuildings': (context) => LoyolaCampusBuildingList(),
+          '/sgwbuildings': (context) => CampusBuildingListMenu("SGW Campus"),
+          '/loyolabuildings': (context) => CampusBuildingListMenu("Loyola Campus"),
         },
       ),
     );
