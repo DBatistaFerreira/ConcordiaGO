@@ -1,5 +1,5 @@
-import 'package:concordia_go/utilities/Direction.dart';
-import 'package:concordia_go/utilities/Segment.dart';
+import 'package:concordia_go/utilities/direction.dart';
+import 'package:concordia_go/utilities/segment.dart';
 
 class Journey {
   List<Segment> routeSegments;

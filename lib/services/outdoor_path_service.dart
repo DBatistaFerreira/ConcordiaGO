@@ -2,9 +2,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_maps_util/google_maps_util.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:concordia_go/utilities/Direction.dart';
-import 'package:concordia_go/utilities/Segment.dart';
-import 'package:concordia_go/utilities/Journey.dart';
+import 'package:concordia_go/utilities/direction.dart';
+import 'package:concordia_go/utilities/segment.dart';
+import 'package:concordia_go/utilities/journey.dart';
 import 'package:flutter/material.dart';
 
 class OutdoorPathService {

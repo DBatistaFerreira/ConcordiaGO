@@ -1,6 +1,6 @@
 import 'package:concordia_go/widgets/component/directions_list.dart';
 import 'package:concordia_go/widgets/component/directions_panel.dart';
-import 'package:concordia_go/services/OutdoorPathService.dart';
+import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/widgets/component/quick_menu.dart';

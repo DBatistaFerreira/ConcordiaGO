@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/utilities/Direction.dart';
+import 'package:concordia_go/utilities/direction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';

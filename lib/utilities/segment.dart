@@ -1,4 +1,4 @@
-import 'package:concordia_go/utilities/Direction.dart';
+import 'package:concordia_go/utilities/direction.dart';
 
 class Segment {
   Direction mainDirective;

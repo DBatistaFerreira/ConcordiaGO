@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:concordia_go/services/OutdoorPathService.dart';
-import 'package:concordia_go/utilities/Direction.dart';
+import 'package:concordia_go/services/outdoor_path_service.dart';
+import 'package:concordia_go/utilities/direction.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
