@@ -2,31 +2,37 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:concordia_go/services/OutdoorPathService.dart';
 import 'package:concordia_go/utilities/Direction.dart';
+import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/widgets/screens/home_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import './bloc.dart';
-import 'package:concordia_go/widgets/component/google_maps_component.dart';
 
-class DirectionsUiBloc extends Bloc<DirectionsUiEvent, DirectionsUiState> {
+class DirectionsUiBloc extends Bloc<DirectionsEvent, DirectionsState> {
   @override
-  DirectionsUiState get initialState => InitialDirectionsUiState();
+  DirectionsState get initialState => InitialDirectionsState();
 
   @override
-  Stream<DirectionsUiState> mapEventToState(
-    DirectionsUiEvent event,
+  Stream<DirectionsState> mapEventToState(
+    DirectionsEvent event,
   ) async* {
-    if (event is FirstDirection) {
-      Direction newDirection = OutdoorPathService.returnFirstInstruction();
+    Direction newInstruction;
+    if (event is GetDirections) {
+      await OutdoorPathService.transitDirections(event.startCoordinates.latitude, event.startCoordinates.longitude,
+          event.endCoordinates.latitude, event.endCoordinates.longitude, event.destination);
+
+      newInstruction = OutdoorPathService.getFirstInstruction();
+      BlocProvider.of<MapBloc>(mc).add(CameraMove(newInstruction.coordinate, concordia_constants.navZoomLevel));
+      BlocProvider.of<MapBloc>(mc).add(DirectionLinesEvent(OutdoorPathService.getPolylines()));
       revealPanel();
-      await moveCameraPosition(newDirection.point);
-      yield DirectionsUiUpdate(newDirection, OutdoorPathService.returnRoute());
+      yield InstructionUpdate(newInstruction, OutdoorPathService.getRoute());
     } else if (event is NextDirection) {
-      Direction newDirection = OutdoorPathService.returnNextInstruction();
-      await moveCameraPosition(newDirection.point);
-      yield DirectionsUiUpdate(newDirection, OutdoorPathService.returnRoute());
+      newInstruction = OutdoorPathService.getNextInstruction();
+      BlocProvider.of<MapBloc>(mc).add(CameraMove(newInstruction.coordinate, concordia_constants.navZoomLevel));
+      yield InstructionUpdate(newInstruction, (state as InstructionUpdate).directionsList);
     } else if (event is PreviousDirection) {
-      Direction newDirection = OutdoorPathService.returnPreviousInstruction();
-      await moveCameraPosition(newDirection.point);
-      yield DirectionsUiUpdate(newDirection, OutdoorPathService.returnRoute());
+      newInstruction = OutdoorPathService.getPreviousInstruction();
+      BlocProvider.of<MapBloc>(mc).add(CameraMove(newInstruction.coordinate, concordia_constants.navZoomLevel));
+      yield InstructionUpdate(newInstruction, (state as InstructionUpdate).directionsList);
     }
   }
 }

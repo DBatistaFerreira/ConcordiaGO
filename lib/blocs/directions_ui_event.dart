@@ -1,18 +1,23 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class DirectionsUiEvent {
-  const DirectionsUiEvent();
+abstract class DirectionsEvent {
+  const DirectionsEvent();
 }
 
-class FirstDirection extends DirectionsUiEvent {
-  const FirstDirection();
+class GetDirections extends DirectionsEvent {
+  final LatLng startCoordinates;
+  final LatLng endCoordinates;
+  final String destination;
+
+  const GetDirections(this.startCoordinates, this.endCoordinates, this.destination);
 }
 
-class NextDirection extends DirectionsUiEvent {
+class NextDirection extends DirectionsEvent {
   const NextDirection();
 }
 
-class PreviousDirection extends DirectionsUiEvent {
+class PreviousDirection extends DirectionsEvent {
   const PreviousDirection();
 }

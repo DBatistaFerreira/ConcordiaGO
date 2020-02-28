@@ -17,9 +17,9 @@ class DirectionsPanelState extends State<DirectionsPanel> {
   Widget build(context) {
     final double screenWidth = MediaQuery.of(context).size.width;
 
-    return BlocBuilder<DirectionsUiBloc, DirectionsUiState>(
+    return BlocBuilder<DirectionsUiBloc, DirectionsState>(
       builder: (context, state) {
-        if (state is DirectionsUiUpdate) {
+        if (state is InstructionUpdate) {
           return Container(
             color: Color(0xff800206),
             child: Row(
@@ -38,7 +38,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                             padding: const EdgeInsets.only(top: 15.0, left: 5.0),
                             child: Align(
                               alignment: Alignment.topCenter,
-                              child: getIcon(state.newDirection.icons, screenWidth / 8),
+                              child: getIcon(state.step.icons, screenWidth / 8),
                             ),
                           ),
                         ),
@@ -72,7 +72,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15.0, left: 10.0),
                             child: Text(
-                              state.newDirection.instruction,
+                              state.step.instruction,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -89,7 +89,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                state.newDirection.destination,
+                                state.step.destination,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -122,7 +122,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      state.newDirection.distance,
+                                      state.step.distance,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,
@@ -207,7 +207,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                               ),
                             ),
                             Text(
-                              state.newDirection.arrivalTime,
+                              state.step.arrivalTime,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -242,7 +242,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
           onPressed: () {
             Navigator.pop(context, true);
             hidePanel();
-            BlocProvider.of<DirectionsBloc>(context).add(ClearPolylines());
+            BlocProvider.of<MapBloc>(context).add(DirectionLinesEvent(null));
           },
         ),
         FlatButton(

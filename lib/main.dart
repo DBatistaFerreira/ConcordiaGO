@@ -25,9 +25,6 @@ class Application extends StatelessWidget {
         BlocProvider<BuildingInfoBloc>(
           create: (context) => BuildingInfoBloc(),
         ),
-        BlocProvider<DirectionsBloc>(
-          create: (context) => DirectionsBloc(),
-        ),
         BlocProvider<DirectionsUiBloc>(
           create: (context) => DirectionsUiBloc(),
         )

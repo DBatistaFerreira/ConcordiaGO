@@ -82,7 +82,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     final mapBloc = BlocProvider.of<MapBloc>(context);
     final buildingInfoBloc = BlocProvider.of<BuildingInfoBloc>(context);
     LatLng currentCameraPosition = concordia_constants.sgwCampus['coordinates'];
-    Set<Marker> markers = Set<Marker>();
+    Set<Marker> _markers = Set<Marker>();
+    Set<Polyline> _polylines = Set<Polyline>();
 
     return Stack(
       children: [
@@ -95,18 +96,21 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   listener: (context, state) {
                     if (state is MapNoMarker) {
                       _goToLocation(state.cameraPosition, state.zoom);
-                    }
-                    if (state is MapWithMarker) {
+                    } else if (state is MapWithMarker) {
                       _goToLocation(state.cameraPosition, state.zoom);
-                      markers.clear();
-                      markers.add(Marker(
-                        markerId: MarkerId(state.buildingCode),
-                        position: state.cameraPosition,
-                        consumeTapEvents: true,
-                        onTap: () {
-                          buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
-                        },
-                      ));
+                      _markers.clear();
+                      _markers.add(
+                        Marker(
+                          markerId: MarkerId(state.buildingCode),
+                          position: state.cameraPosition,
+                          consumeTapEvents: true,
+                          onTap: () {
+                            buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
+                          },
+                        ),
+                      );
+                    } else if (state is DirectionMap) {
+                      _polylines = state.directionLines;
                     }
                   },
                 ),
@@ -118,43 +122,33 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   },
                 )
               ],
-              child: BlocBuilder<DirectionsBloc, DirectionsState>(
-                builder: (context, polylineState) {
-                  Set<Polyline> _polylines;
-                  if (polylineState is polyUpdates) {
-                    _polylines = polylineState.finalPolyline;
-                  } else {
-                    _polylines = Set<Polyline>();
-                  }
-                  return BlocBuilder<MapBloc, MapState>(
-                    builder: (context, state) {
-                      return Expanded(
-                        child: GoogleMap(
-                          mapType: MapType.normal,
-                          initialCameraPosition: CameraPosition(
-                            target: concordia_constants.sgwCampus['coordinates'],
-                            zoom: 15.5,
-                          ),
-                          onMapCreated: (GoogleMapController controller) {
-                            _controller.complete(controller);
-                          },
-                          myLocationEnabled: true,
-                          myLocationButtonEnabled: false,
-                          buildingsEnabled: false,
-                          markers: markers,
-                          polygons: _buildingShapes(),
-                          polylines: _polylines,
-                          onCameraMove: (value) {
-                            currentCameraPosition = value.target;
-                          },
-                          onTap: (value) {
-                            if (BuildingInfoSheet.bottomSheetController != null) {
-                              BuildingInfoSheet.bottomSheetController.close();
-                            }
-                          },
-                        ),
-                      );
-                    },
+              child: BlocBuilder<MapBloc, MapState>(
+                builder: (context, state) {
+                  return Expanded(
+                    child: GoogleMap(
+                      mapType: MapType.normal,
+                      initialCameraPosition: CameraPosition(
+                        target: concordia_constants.sgwCampus['coordinates'],
+                        zoom: 15.5,
+                      ),
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
+                      myLocationEnabled: true,
+                      myLocationButtonEnabled: false,
+                      buildingsEnabled: false,
+                      markers: _markers,
+                      polygons: _buildingShapes(),
+                      polylines: _polylines,
+                      onCameraMove: (value) {
+                        currentCameraPosition = value.target;
+                      },
+                      onTap: (value) {
+                        if (BuildingInfoSheet.bottomSheetController != null) {
+                          BuildingInfoSheet.bottomSheetController.close();
+                        }
+                      },
+                    ),
                   );
                 },
               ),

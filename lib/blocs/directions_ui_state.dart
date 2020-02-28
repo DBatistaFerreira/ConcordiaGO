@@ -1,18 +1,14 @@
 import 'package:concordia_go/utilities/Direction.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class DirectionsUiState {}
+abstract class DirectionsState {}
 
-class InitialDirectionsUiState extends DirectionsUiState {
-  final Direction currentDirection =
-      Direction("NULL STATE", LatLng(45.457, -73.657), ModeOfTransport.walking, "0km", "0:00PM", "Fake destination");
-}
+class InitialDirectionsState extends DirectionsState {}
 
-class DirectionsUiUpdate extends DirectionsUiState {
-  final Direction newDirection;
+class InstructionUpdate extends DirectionsState {
+  final Direction step;
   final List<Direction> directionsList;
 
-  DirectionsUiUpdate(this.newDirection, this.directionsList);
+  InstructionUpdate(this.step, this.directionsList);
 }

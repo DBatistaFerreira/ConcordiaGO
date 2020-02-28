@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_maps_util/google_maps_util.dart';
@@ -9,15 +7,15 @@ import 'package:concordia_go/utilities/Segment.dart';
 import 'package:concordia_go/utilities/Journey.dart';
 import 'package:flutter/material.dart';
 
-final Set<Polyline> polyLines = {};
-Journey listDirections = Journey();
-List<Direction> singleDirections = List<Direction>();
-int currentInstruction = 0;
-
 class OutdoorPathService {
-  static Future<Set<Polyline>> transitDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
-    singleDirections = List<Direction>();
-    listDirections = Journey();
+  static final Set<Polyline> _polyLines = {};
+  static Journey _listDirections = Journey();
+  static List<Direction> _singleDirections = List<Direction>();
+  static int _currentInstruction = 0;
+
+  static void transitDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
+    _singleDirections = List<Direction>();
+    _listDirections = Journey();
     var apiKey;
     String url =
         "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=transit&key=${apiKey}";
@@ -62,12 +60,9 @@ class OutdoorPathService {
 
         addNewPolyline(Colors.teal, pointArray, i);
       }
-      listDirections.addSegment(newSegment);
+      _listDirections.addSegment(newSegment);
     }
     setDirections();
-    //  clearAll();
-//    listDirections.printRoute();
-    return polyLines;
   }
 
   static Direction toDirection(apiJson, ModeOfTransport transportType, String arrival_time, destination) {
@@ -89,52 +84,49 @@ class OutdoorPathService {
   }
 
   static void addNewPolyline(Color colorChoice, pointValues, index) {
-    polyLines.add(Polyline(polylineId: PolylineId('${index}'), width: 4, points: pointValues, color: colorChoice));
+    _polyLines.add(Polyline(polylineId: PolylineId('${index}'), width: 4, points: pointValues, color: colorChoice));
   }
 
-  static Set<Polyline> buildPolylines(startLat, startLng, endLat, endLng, destination) {
-    transitDirections(startLat, startLng, endLat, endLng, destination);
-    return polyLines;
+  static Set<Polyline> getPolylines() {
+    return _polyLines;
   }
 
-  static List<Direction> returnRoute() {
-    return singleDirections;
+  static List<Direction> getRoute() {
+    return _singleDirections;
   }
 
-  static Direction returnFirstInstruction() {
-    return singleDirections[currentInstruction];
+  static Direction getFirstInstruction() {
+    return _singleDirections[_currentInstruction];
   }
 
-  static Direction returnNextInstruction() {
-    if (currentInstruction == singleDirections.length - 1) {
-//      clearAll();
-      return singleDirections[currentInstruction];
+  static Direction getNextInstruction() {
+    if (_currentInstruction == _singleDirections.length - 1) {
+      return _singleDirections[_currentInstruction];
       // HANDLE END OF NAVIGATION
     }
-    return singleDirections[++currentInstruction];
+    return _singleDirections[++_currentInstruction];
   }
 
-  static Direction returnPreviousInstruction() {
-    if (currentInstruction == 0) {
-      return singleDirections[currentInstruction];
+  static Direction getPreviousInstruction() {
+    if (_currentInstruction == 0) {
+      return _singleDirections[_currentInstruction];
     } else {
-      return singleDirections[--currentInstruction];
+      return _singleDirections[--_currentInstruction];
     }
   }
 
   static void clearAll() {
-    singleDirections.clear();
-    listDirections.resetList();
-    currentInstruction = 0;
-    polyLines.clear();
+    _singleDirections.clear();
+    _listDirections.resetList();
+    _currentInstruction = 0;
+    _polyLines.clear();
   }
 
   static void setDirections() {
-    singleDirections.clear();
-    var tempDirections = listDirections.toDirection();
+    _singleDirections.clear();
+    var tempDirections = _listDirections.toDirection();
     for (int i = 0; i < tempDirections.length; i++) {
-      // print(tempDirections.length);
-      singleDirections.add(tempDirections[i]);
+      _singleDirections.add(tempDirections[i]);
     }
   }
 }

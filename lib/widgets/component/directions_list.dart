@@ -47,9 +47,9 @@ class DirectionsListState extends State<DirectionsList> {
             flex: 8,
             child: Container(
               color: Colors.white,
-              child: BlocBuilder<DirectionsUiBloc, DirectionsUiState>(
+              child: BlocBuilder<DirectionsUiBloc, DirectionsState>(
                 builder: (context, state) {
-                  if (state is DirectionsUiUpdate) {
+                  if (state is InstructionUpdate) {
                     return ListView.builder(
                       itemCount: state.directionsList.length,
                       itemBuilder: (context, index) {

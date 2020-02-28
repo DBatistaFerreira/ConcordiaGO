@@ -20,6 +20,8 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
       BlocProvider.of<BuildingInfoBloc>(event.context).add(ConcordiaBuildingInfo(event.buildingCode));
       yield MapWithMarker(event.buildingCode, coordinates, concordia_constants.poiZoomLevel);
+    } else if (event is DirectionLinesEvent) {
+      yield DirectionMap(event.directionPolylines);
     }
   }
 }

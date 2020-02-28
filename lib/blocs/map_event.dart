@@ -18,3 +18,9 @@ class CameraMoveConcordia extends MapEvent {
 
   const CameraMoveConcordia(this.buildingCode, this.context);
 }
+
+class DirectionLinesEvent extends MapEvent {
+  final Set<Polyline> directionPolylines;
+
+  const DirectionLinesEvent(this.directionPolylines);
+}

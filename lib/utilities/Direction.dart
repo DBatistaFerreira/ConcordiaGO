@@ -7,12 +7,12 @@ class Direction {
   String instruction;
   String distance;
   String arrivalTime;
-  LatLng point;
+  LatLng coordinate;
   ModeOfTransport transitType;
   IconType icons;
   String destination;
 
-  Direction(this.instruction, this.point, this.transitType, this.distance, this.arrivalTime, this.destination) {
+  Direction(this.instruction, this.coordinate, this.transitType, this.distance, this.arrivalTime, this.destination) {
     RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
 
     instruction = instruction.replaceAll(exp, '');

@@ -6,9 +6,7 @@ import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:concordia_go/services/OutdoorPathService.dart';
 import 'package:concordia_go/widgets/component/google_maps_component.dart';
 
 class BuildingInfoSheet {
@@ -215,11 +213,10 @@ class BuildingInfoSheet {
                                   Navigator.pop(context);
                                   getCurrentLocation().then(
                                     (value) {
-                                      BlocProvider.of<DirectionsBloc>(mc).add(
-                                        PolylineUpdate(
+                                      BlocProvider.of<DirectionsUiBloc>(mc).add(
+                                        GetDirections(
                                           value,
                                           state.coordinates,
-                                          mc,
                                           state.buildingName,
                                         ),
                                       );
@@ -248,23 +245,6 @@ class BuildingInfoSheet {
         );
       },
     );
-  }
-
-  static Set<Polyline> setPath(startLat, startLng, endLat, endLng, destination) {
-    var polyLines = OutdoorPathService.buildPolylines(startLat, startLng, endLat, endLng, destination);
-
-    //UPDATE BLOC HERE INSTEAD OF RETURN
-
-    return polyLines;
-  }
-
-  Set<Polyline> deletePath() {
-    var polyLines = Set<Polyline>();
-    polyLines.clear();
-
-    //UPDATE BLOC HERE INSTEAD OF RETURN
-
-    return polyLines;
   }
 
   static void _launchUrl(url) async {
