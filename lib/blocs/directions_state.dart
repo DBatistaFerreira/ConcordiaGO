@@ -1,4 +1,4 @@
-import 'package:concordia_go/utilities/Direction.dart';
+import 'package:concordia_go/utilities/direction.dart';
 import 'package:meta/meta.dart';
 
 @immutable

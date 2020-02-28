@@ -21,14 +21,11 @@ Completer<GoogleMapController> _controller = Completer();
 class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   bool polygonVisibility = true;
 
-  void _infoPanel() {
-    BuildingInfoSheet.buildingInfoSheet(context);
-  }
-
   Set<Polygon> _buildingShapes() {
     Set<Polygon> buildingPolygons = Set<Polygon>();
     for (var building in concordia_constants.buildings.entries) {
-      buildingPolygons.add(Polygon(
+      buildingPolygons.add(
+        Polygon(
           visible: polygonVisibility,
           points: building.value['vertices'],
           polygonId: PolygonId(building.value['name']),
@@ -38,7 +35,10 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
           consumeTapEvents: true,
           onTap: () {
             BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfo(building.key));
-          }));
+            BuildingInfoSheet.buildInfoSheet(context);
+          },
+        ),
+      );
     }
     return buildingPolygons;
   }
@@ -90,38 +90,28 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            MultiBlocListener(
-              listeners: [
-                BlocListener<MapBloc, MapState>(
-                  listener: (context, state) {
-                    if (state is MapNoMarker) {
-                      _goToLocation(state.cameraPosition, state.zoom);
-                    } else if (state is MapWithMarker) {
-                      _goToLocation(state.cameraPosition, state.zoom);
-                      _markers.clear();
-                      _markers.add(
-                        Marker(
-                          markerId: MarkerId(state.buildingCode),
-                          position: state.cameraPosition,
-                          consumeTapEvents: true,
-                          onTap: () {
-                            buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
-                          },
-                        ),
-                      );
-                    } else if (state is DirectionMap) {
-                      _polylines = state.directionLines;
-                    }
-                  },
-                ),
-                BlocListener<BuildingInfoBloc, BuildingInfoState>(
-                  listener: (context, state) {
-                    if (!(state as BuildingInfo).fromToggle) {
-                      _infoPanel();
-                    }
-                  },
-                )
-              ],
+            BlocListener<MapBloc, MapState>(
+              listener: (context, state) {
+                if (state is MapNoMarker) {
+                  _goToLocation(state.cameraPosition, state.zoom);
+                } else if (state is MapWithMarker) {
+                  _goToLocation(state.cameraPosition, state.zoom);
+                  _markers.clear();
+                  _markers.add(
+                    Marker(
+                      markerId: MarkerId(state.buildingCode),
+                      position: state.cameraPosition,
+                      consumeTapEvents: true,
+                      onTap: () {
+                        buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
+                        BuildingInfoSheet.buildInfoSheet(context);
+                      },
+                    ),
+                  );
+                } else if (state is DirectionMap) {
+                  _polylines = state.directionLines;
+                }
+              },
               child: BlocBuilder<MapBloc, MapState>(
                 builder: (context, state) {
                   return Expanded(

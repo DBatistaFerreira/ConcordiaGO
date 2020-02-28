@@ -13,11 +13,11 @@ class BuildingInfoSheet {
   static Color mainColor = Color(0xff800206);
   static PersistentBottomSheetController bottomSheetController;
 
-  static void buildingInfoSheet(context) {
+  static void buildInfoSheet(BuildContext context) {
     bottomSheetController = showBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (context) {
+      builder: (BuildContext context) {
         double screenHeight = MediaQuery.of(context).size.height;
         double screenWidth = MediaQuery.of(context).size.width;
         double iconSize = screenWidth / 14;
@@ -28,7 +28,7 @@ class BuildingInfoSheet {
 
             if (state is BuildingInfo) {
               if (state.expandHours) {
-                sheetHeight = screenHeight / 1.48;
+                sheetHeight = screenHeight / 1.46;
               }
               return Container(
                 height: sheetHeight,
