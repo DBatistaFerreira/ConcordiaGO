@@ -213,7 +213,7 @@ class BuildingInfoSheet {
                                   Navigator.pop(context);
                                   getCurrentLocation().then(
                                     (value) {
-                                      BlocProvider.of<DirectionsUiBloc>(mc).add(
+                                      BlocProvider.of<DirectionsBloc>(mc).add(
                                         GetDirections(
                                           value,
                                           state.coordinates,

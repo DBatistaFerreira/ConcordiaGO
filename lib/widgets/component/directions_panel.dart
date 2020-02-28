@@ -17,7 +17,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
   Widget build(context) {
     final double screenWidth = MediaQuery.of(context).size.width;
 
-    return BlocBuilder<DirectionsUiBloc, DirectionsState>(
+    return BlocBuilder<DirectionsBloc, DirectionsState>(
       builder: (context, state) {
         if (state is InstructionUpdate) {
           return Container(
@@ -174,7 +174,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                     ),
                                     iconSize: screenWidth / 8,
                                     onPressed: () =>
-                                        {BlocProvider.of<DirectionsUiBloc>(context).add(PreviousDirection())},
+                                        {BlocProvider.of<DirectionsBloc>(context).add(PreviousDirection())},
                                   ),
                                 ),
                                 Flexible(
@@ -185,7 +185,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                       color: Colors.white,
                                     ),
                                     iconSize: screenWidth / 8,
-                                    onPressed: () => {BlocProvider.of<DirectionsUiBloc>(context).add(NextDirection())},
+                                    onPressed: () => {BlocProvider.of<DirectionsBloc>(context).add(NextDirection())},
                                   ),
                                 ),
                               ],

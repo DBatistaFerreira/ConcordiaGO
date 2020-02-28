@@ -7,7 +7,7 @@ import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import './bloc.dart';
 
-class DirectionsUiBloc extends Bloc<DirectionsEvent, DirectionsState> {
+class DirectionsBloc extends Bloc<DirectionsEvent, DirectionsState> {
   @override
   DirectionsState get initialState => InitialDirectionsState();
 

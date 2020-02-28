@@ -1,11 +1,12 @@
+import 'package:concordia_go/widgets/component/loyola_campus_building_menu.dart';
+import 'package:concordia_go/widgets/component/sgw_campus_building_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'blocs/bloc.dart';
-import 'utilities/application_constants.dart' as application_constants;
-import 'widgets/screens/home_screen.dart';
+import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/widgets/screens/home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,13 +26,18 @@ class Application extends StatelessWidget {
         BlocProvider<BuildingInfoBloc>(
           create: (context) => BuildingInfoBloc(),
         ),
-        BlocProvider<DirectionsUiBloc>(
-          create: (context) => DirectionsUiBloc(),
+        BlocProvider<DirectionsBloc>(
+          create: (context) => DirectionsBloc(),
         )
       ],
       child: MaterialApp(
         title: application_constants.applicationName,
-        home: HomeScreen(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => HomeScreen(),
+          '/sgwbuildings': (context) => SGWCampusBuildingList(),
+          '/loyolabuildings': (context) => LoyolaCampusBuildingList(),
+        },
       ),
     );
   }

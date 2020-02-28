@@ -17,8 +17,10 @@ class GoogleMapsComponent extends StatefulWidget {
 }
 
 Completer<GoogleMapController> _controller = Completer();
+BuildContext mapContext;
 
 class GoogleMapsComponentState extends State<GoogleMapsComponent> {
+  Set<Polyline> _polylines = Set<Polyline>();
   bool polygonVisibility = true;
 
   Set<Polygon> _buildingShapes() {
@@ -82,8 +84,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     final mapBloc = BlocProvider.of<MapBloc>(context);
     final buildingInfoBloc = BlocProvider.of<BuildingInfoBloc>(context);
     LatLng currentCameraPosition = concordia_constants.sgwCampus['coordinates'];
-    Set<Marker> _markers = Set<Marker>();
-    Set<Polyline> _polylines = Set<Polyline>();
+    mapContext = context;
 
     return Stack(
       children: [
@@ -96,18 +97,6 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   _goToLocation(state.cameraPosition, state.zoom);
                 } else if (state is MapWithMarker) {
                   _goToLocation(state.cameraPosition, state.zoom);
-                  _markers.clear();
-                  _markers.add(
-                    Marker(
-                      markerId: MarkerId(state.buildingCode),
-                      position: state.cameraPosition,
-                      consumeTapEvents: true,
-                      onTap: () {
-                        buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
-                        BuildingInfoSheet.buildInfoSheet(context);
-                      },
-                    ),
-                  );
                 } else if (state is DirectionMap) {
                   _polylines = state.directionLines;
                 }
@@ -127,9 +116,21 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                       myLocationEnabled: true,
                       myLocationButtonEnabled: false,
                       buildingsEnabled: false,
-                      markers: _markers,
-                      polygons: _buildingShapes(),
+                      markers: state is MapWithMarker
+                          ? {
+                              Marker(
+                                markerId: MarkerId(state.buildingCode),
+                                position: state.cameraPosition,
+                                consumeTapEvents: true,
+                                onTap: () {
+                                  buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
+                                  BuildingInfoSheet.buildInfoSheet(context);
+                                },
+                              ),
+                            }
+                          : null,
                       polylines: _polylines,
+                      polygons: _buildingShapes(),
                       onCameraMove: (value) {
                         currentCameraPosition = value.target;
                       },
