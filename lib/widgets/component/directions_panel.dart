@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/utilities/Direction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
@@ -37,14 +38,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                             padding: const EdgeInsets.only(top: 15.0, left: 5.0),
                             child: Align(
                               alignment: Alignment.topCenter,
-                              child: Transform.rotate(
-                                angle: pi,
-                                child: Icon(
-                                  Icons.subdirectory_arrow_right,
-                                  color: Colors.white,
-                                  size: screenWidth / 8,
-                                ),
-                              ),
+                              child: getIcon(state.newDirection.icons, screenWidth / 8),
                             ),
                           ),
                         ),
@@ -95,7 +89,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                'Communications Studies and Journalism Building',
+                                state.newDirection.destination,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -201,15 +195,25 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                       ),
                       Expanded(
                         flex: 3,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            '12 min',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Arrive at',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
+                            Text(
+                              state.newDirection.arrival_time,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -246,5 +250,51 @@ class DirectionsPanelState extends State<DirectionsPanel> {
         ),
       ],
     );
+  }
+
+  Widget getIcon(IconType type, double size) {
+    IconData icon;
+    bool flip = false;
+    switch (type) {
+      case IconType.left:
+        icon = Icons.subdirectory_arrow_right;
+        flip = true;
+        break;
+      case IconType.right:
+        icon = Icons.subdirectory_arrow_left;
+        flip = true;
+        break;
+      case IconType.compass:
+        icon = Icons.arrow_upward;
+        break;
+      case IconType.walk:
+        icon = Icons.directions_walk;
+        break;
+      case IconType.bus:
+        icon = Icons.directions_bus;
+        break;
+      case IconType.subway:
+        icon = Icons.directions_subway;
+        break;
+      case IconType.generic:
+        icon = Icons.map;
+        break;
+    }
+    if (flip) {
+      return Transform.rotate(
+        angle: pi,
+        child: Icon(
+          icon,
+          color: Colors.white,
+          size: size,
+        ),
+      );
+    } else {
+      return Icon(
+        icon,
+        color: Colors.white,
+        size: size,
+      );
+    }
   }
 }

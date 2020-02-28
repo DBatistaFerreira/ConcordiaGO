@@ -31,7 +31,7 @@ class OutdoorPathService {
       Segment newSegment;
       if (values['routes'][0]['legs'][0]['steps'][i]['travel_mode'] == 'WALKING') {
         var newDirection = toDirection(
-            values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.walking, arrival_time, buildingDestination);
+            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
           values['routes'][0]['legs'][0]['steps'][i]['steps']['html_instructions'];
@@ -40,7 +40,7 @@ class OutdoorPathService {
         }
         if (subInstruction) {
           for (int j = 0; j < values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
-            newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], modeOfTransport.walking,
+            newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], ModeOfTransport.walking,
                 arrival_time, buildingDestination);
             newSegment.addSubstep(newDirection);
           }
@@ -51,11 +51,11 @@ class OutdoorPathService {
         addNewPolyline(Colors.pink, pointArray, i);
       } else {
         var newDirection = toDirection(
-            values['routes'][0]['legs'][0]['steps'][i], modeOfTransport.transit, arrival_time, buildingDestination);
+            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.transit, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
 
         newDirection = endTransit(values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'],
-            modeOfTransport.transit, arrival_time, buildingDestination);
+            ModeOfTransport.transit, arrival_time, buildingDestination);
         newSegment.addSubstep(newDirection);
 
         addNewPolyline(Colors.teal, pointArray, i);
@@ -68,7 +68,7 @@ class OutdoorPathService {
     return polyLines;
   }
 
-  static Direction toDirection(apiJson, modeOfTransport transportType, String arrival_time, destination) {
+  static Direction toDirection(apiJson, ModeOfTransport transportType, String arrival_time, destination) {
     var instruction = apiJson['html_instructions'];
     var lat = apiJson['start_location']['lat'];
     var lng = apiJson['start_location']['lng'];
@@ -77,7 +77,7 @@ class OutdoorPathService {
     return Direction(instruction, coordinate, transportType, distance, arrival_time, destination);
   }
 
-  static Direction endTransit(apiJson, modeOfTransport transportType, String arrival_time, destination) {
+  static Direction endTransit(apiJson, ModeOfTransport transportType, String arrival_time, destination) {
     var instruction = "Get off at ${apiJson['name']}";
     var lat = apiJson['location']['lat'];
     var lng = apiJson['location']['lng'];

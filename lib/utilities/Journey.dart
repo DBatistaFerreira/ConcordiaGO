@@ -23,7 +23,7 @@ class Journey {
   List<Direction> toDirection() {
     List<Direction> routeDirections = List<Direction>();
     for (int i = 0; i < routeSegments.length; i++) {
-      if (routeSegments[i].mainDirective.transitType == modeOfTransport.transit) {
+      if (routeSegments[i].mainDirective.transitType == ModeOfTransport.transit) {
         routeDirections.add(routeSegments[i].mainDirective);
       }
       for (int j = 0; j < routeSegments[i].substeps.length; j++) {
