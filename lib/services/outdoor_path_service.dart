@@ -24,25 +24,27 @@ class OutdoorPathService {
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
-    for (int i = 0; i < values['routes'][0]['legs'][0]['steps'].length; i++) {
+    var returnedValues = values['routes'][0]['legs'][0];
+    var returnedSteps = returnedValues['steps'];
+    for (int i = 0; i < returnedSteps.length; i++) {
       bool subInstruction = true;
-      var arrival_time = values['routes'][0]['legs'][0]['arrival_time']['text'];
-      var pointArray = myPoints.decode(values['routes'][0]['legs'][0]['steps'][i]['polyline']['points']);
+      var arrival_time = returnedValues['arrival_time']['text'];
+      var pointArray = myPoints.decode(returnedSteps[i]['polyline']['points']);
       Segment newSegment;
-      if (values['routes'][0]['legs'][0]['steps'][i]['travel_mode'] == 'WALKING') {
+      if (returnedSteps[i]['travel_mode'] == 'WALKING') {
         var newDirection = toDirection(
-            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.walking, arrival_time, buildingDestination);
+            returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
-          if (values['routes'][0]['legs'][0]['steps'][i]['steps'][0]['html_instructions'] == null) {
+          if (returnedSteps[0]['html_instructions'] == null) {
             subInstruction = false;
           }
         } catch (Exception) {
           subInstruction = false;
         }
         if (subInstruction) {
-          for (int j = 0; j < values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
-            newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], ModeOfTransport.walking,
+          for (int j = 0; j < returnedSteps[i]['steps'].length; j++) {
+            newDirection = toDirection(returnedSteps[i]['steps'][j], ModeOfTransport.walking,
                 arrival_time, buildingDestination);
             newSegment.addSubstep(newDirection);
           }
@@ -53,10 +55,10 @@ class OutdoorPathService {
         addNewPolyline(Colors.pink, pointArray, i);
       } else {
         var newDirection = toDirection(
-            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.transit, arrival_time, buildingDestination);
+            returnedSteps[i], ModeOfTransport.transit, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
 
-        newDirection = endTransit(values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'],
+        newDirection = endTransit(returnedSteps[i]['transit_details']['arrival_stop'],
             ModeOfTransport.transit, arrival_time, buildingDestination);
         newSegment.addSubstep(newDirection);
 
@@ -75,25 +77,27 @@ class OutdoorPathService {
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
-    for (int i = 0; i < values['routes'][0]['legs'][0]['steps'].length; i++) {
+    var returnedValues = values['routes'][0]['legs'][0];
+    var returnedSteps = returnedValues['steps'];
+    for (int i = 0; i < returnedSteps.length; i++) {
       bool subInstruction = true;
-      var arrival_time = calculateArrivalTime(values['routes'][0]['legs'][0]['duration']['text']);
-      var pointArray = myPoints.decode(values['routes'][0]['legs'][0]['steps'][i]['polyline']['points']);
+      var arrival_time = calculateArrivalTime(returnedValues['duration']['text']);
+      var pointArray = myPoints.decode(returnedSteps[i]['polyline']['points']);
       Segment newSegment;
-      if (values['routes'][0]['legs'][0]['steps'][i]['travel_mode'] == 'DRIVING') {
+      if (returnedSteps[i]['travel_mode'] == 'DRIVING') {
         var newDirection = toDirection(
-            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.driving, arrival_time, buildingDestination);
+            returnedSteps[i], ModeOfTransport.driving, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
-          if (values['routes'][0]['legs'][0]['steps'][i]['steps'][0]['html_instructions'] == null) {
+          if (returnedSteps[i]['steps'][0]['html_instructions'] == null) {
             subInstruction = false;
           }
         } catch (Exception) {
           subInstruction = false;
         }
         if (subInstruction) {
-          for (int j = 0; j < values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
-            newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], ModeOfTransport.driving,
+          for (int j = 0; j < returnedSteps[i]['steps'].length; j++) {
+            newDirection = toDirection(returnedSteps[i]['steps'][j], ModeOfTransport.driving,
                 arrival_time, buildingDestination);
             newSegment.addSubstep(newDirection);
           }
@@ -104,10 +108,10 @@ class OutdoorPathService {
         addNewPolyline(Colors.teal, pointArray, i);
       } else {
         var newDirection = toDirection(
-            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.walking, arrival_time, buildingDestination);
+            returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
 
-        newDirection = endTransit(values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'],
+        newDirection = endTransit(returnedSteps[i]['transit_details']['arrival_stop'],
             ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment.addSubstep(newDirection);
 
@@ -126,25 +130,27 @@ class OutdoorPathService {
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
-    for (int i = 0; i < values['routes'][0]['legs'][0]['steps'].length; i++) {
+    var returnedValues = values['routes'][0]['legs'][0];
+    var returnedSteps = returnedValues['steps'];
+    for (int i = 0; i < returnedSteps.length; i++) {
       bool subInstruction = true;
-      var arrival_time = calculateArrivalTime(values['routes'][0]['legs'][0]['duration']['text']);
-      var pointArray = myPoints.decode(values['routes'][0]['legs'][0]['steps'][i]['polyline']['points']);
+      var arrival_time = calculateArrivalTime(returnedValues['duration']['text']);
+      var pointArray = myPoints.decode(returnedSteps[i]['polyline']['points']);
       Segment newSegment;
-      if (values['routes'][0]['legs'][0]['steps'][i]['travel_mode'] == 'WALKING') {
+      if (returnedSteps[i]['travel_mode'] == 'WALKING') {
         var newDirection = toDirection(
-            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.walking, arrival_time, buildingDestination);
+            returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
-          if (values['routes'][0]['legs'][0]['steps'][i]['steps'][0]['html_instructions'] == null) {
+          if (returnedSteps[i]['steps'][0]['html_instructions'] == null) {
             subInstruction = false;
           }
         } catch (Exception) {
           subInstruction = false;
         }
         if (subInstruction) {
-          for (int j = 0; j < values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
-            newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], ModeOfTransport.walking,
+          for (int j = 0; j < returnedSteps[i]['steps'].length; j++) {
+            newDirection = toDirection(returnedSteps[i]['steps'][j], ModeOfTransport.walking,
                 arrival_time, buildingDestination);
             newSegment.addSubstep(newDirection);
           }
