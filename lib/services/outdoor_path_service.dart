@@ -8,7 +8,7 @@ import 'package:concordia_go/utilities/journey.dart';
 import 'package:flutter/material.dart';
 
 
-var apiKey = '';
+var _apiKey = '';
 
 class OutdoorPathService {
   static final Set<Polyline> _polyLines = {};
