@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -161,7 +162,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                 width: screenHeight / 11,
                 padding: EdgeInsets.all(6.0),
                 child: RawMaterialButton(
-                  fillColor: Color(0xff800206),
+                  fillColor: concordiaRed,
                   shape: CircleBorder(),
                   elevation: 10.0,
                   child: Icon(
@@ -193,7 +194,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                 width: screenHeight / 11,
                 padding: EdgeInsets.all(6.0),
                 child: RawMaterialButton(
-                  fillColor: Color(0xff800206),
+                  fillColor: concordiaRed,
                   shape: CircleBorder(),
                   elevation: 10.0,
                   child: Icon(

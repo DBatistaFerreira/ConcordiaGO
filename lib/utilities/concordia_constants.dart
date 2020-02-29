@@ -199,7 +199,7 @@ var buildings = {
   'D': ConcordiaBuilding(
     code: 'D',
     name: 'D Annex',
-    coordinates: LatLng(45.495835, -73.578789), // TODO update with real value
+    coordinates: LatLng(45.495835, -73.578789),
     vertices: [
       LatLng(45.497742, -73.57941),
       LatLng(45.4977059, -73.579339),
@@ -833,9 +833,9 @@ var buildings = {
     },
   ),
   'HC': ConcordiaBuilding(
-    code: 'HC', name: 'Hingston Hall - HC Wing',
+    code: 'HC',
+    name: 'Hingston Hall - HC Wing',
     coordinates: LatLng(45.459628, -73.641984),
-    // TODO update with real value,
     vertices: [
       LatLng(45.459526, -73.642026),
       LatLng(45.459817, -73.641843),
