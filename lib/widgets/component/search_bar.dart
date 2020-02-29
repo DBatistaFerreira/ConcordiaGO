@@ -93,6 +93,14 @@ Widget SearchResultsList(List<ConcordiaBuilding> results) {
                   color: Colors.white,
                   child: ListTile(
                     title: Text(results[index].name),
+                    trailing: Text(
+                      results[index].campus == Campus.SGW ? 'SGW' : 'LOY',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
                     onTap: () {
                       BlocProvider.of<SearchBloc>(context).add(EndSearch());
                       BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(results[index]?.code, context));
@@ -105,6 +113,9 @@ Widget SearchResultsList(List<ConcordiaBuilding> results) {
               );
             },
           ),
+        ),
+        Container(
+          height: 15,
         ),
       ],
     ),
