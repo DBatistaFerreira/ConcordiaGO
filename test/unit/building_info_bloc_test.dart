@@ -10,12 +10,12 @@ import 'package:concordia_go/utilities/concordia_constants.dart';
 class MockBuildingInfoBloc extends Mock implements BuildingInfoBloc {}
 
 void main() {
-  final event = ConcordiaBuildingInfo(buildings["H"].code);
-  String name = buildings[event.buildingCode].name;
-  String campus = buildings[event.buildingCode].campusString();
-  LatLng coordinates = buildings[event.buildingCode].coordinates;
-  String address = buildings[event.buildingCode].address;
-  Map<String, String> hours = buildings[event.buildingCode].hours;
+  final event = ConcordiaBuildingInfo(buildings['H'].code);
+  var name = buildings[event.buildingCode].name;
+  var campus = buildings[event.buildingCode].campusString();
+  var address = buildings[event.buildingCode].address;
+  var coordinates = buildings[event.buildingCode].coordinates;
+  var hours = buildings[event.buildingCode].hours;
 
   final binfo = BuildingInfo(
     event.buildingCode,
@@ -28,12 +28,15 @@ void main() {
     false,
   );
 
-  blocTest(
-    'Get Concordia Building Info',
-    build: () async {
-      return BuildingInfoBloc();
-    },
-    act: (bloc) => bloc.add(event),
-    expect: [binfo],
-  );
+//  blocTest(
+//    'Get Concordia Building Info',
+//    build: () async => BuildingInfoBloc(),
+//    act: (bloc) => bloc.add(event),
+//    expect: [binfo],
+//  );
+  test('Get Concordia Building Info', () async {
+    final bloc = BuildingInfoBloc();
+    bloc.add(event);
+    await emitsExactly(bloc, [binfo]);
+  });
 }
