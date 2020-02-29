@@ -7,6 +7,9 @@ import 'package:concordia_go/utilities/segment.dart';
 import 'package:concordia_go/utilities/journey.dart';
 import 'package:flutter/material.dart';
 
+
+var apiKey = '';
+
 class OutdoorPathService {
   static final Set<Polyline> _polyLines = {};
   static Journey _listDirections = Journey();
