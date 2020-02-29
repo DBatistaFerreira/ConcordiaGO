@@ -23,8 +23,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_name: "^0.0.1"
+  flutter_launcher_name: ^0.0.1
   pedantic: ^1.8.0+1
+  bloc_test: any
 
 flutter_launcher_name:
   name: "Concordia GO"

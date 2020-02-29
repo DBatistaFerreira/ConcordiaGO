@@ -41,4 +41,9 @@ class BuildingInfo extends BuildingInfoState {
       true,
     );
   }
+
+  @override
+  String toString() {
+    return 'BuildingInfo{buildingCode: $buildingCode, buildingName: $buildingName, campus: $campus, address: $address, coordinates: $coordinates, hours: $hours, expandHours: $expandHours, fromToggle: $fromToggle}';
+  }
 }
