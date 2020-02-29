@@ -26,7 +26,7 @@ class LoyolaCampusBuildingListState extends State<LoyolaCampusBuildingList> {
 
     List<Building> buildings = List();
     concordia_constants.buildings.forEach((code, building) =>
-        building['campus'] == 'Loyola Campus' ? buildings.add(Building(code, building['name'])) : true);
+        building.campusString() == 'Loyola Campus' ? buildings.add(Building(code, building.name)) : true);
 
     return Scaffold(
       appBar: PreferredSize(

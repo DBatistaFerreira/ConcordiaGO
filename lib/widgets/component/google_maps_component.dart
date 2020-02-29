@@ -25,18 +25,18 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
 
   Set<Polygon> _buildingShapes() {
     Set<Polygon> buildingPolygons = Set<Polygon>();
-    for (var building in concordia_constants.buildings.entries) {
+    for (var building in concordia_constants.buildings.values) {
       buildingPolygons.add(
         Polygon(
           visible: polygonVisibility,
-          points: building.value['vertices'],
-          polygonId: PolygonId(building.value['name']),
+          points: building.vertices,
+          polygonId: PolygonId(building.code),
           fillColor: Colors.redAccent.withOpacity(0.15),
           strokeColor: Colors.red,
           strokeWidth: 2,
           consumeTapEvents: true,
           onTap: () {
-            BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfo(building.key));
+            BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfo(building.code));
             BuildingInfoSheet.buildInfoSheet(context);
           },
         ),
@@ -208,6 +208,11 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
         Positioned(
           child: SearchBar(),
         ),
+        Positioned(
+          top: screenHeight / 11.7,
+          left: 32,
+          child: SearchResultsList(),
+        )
       ],
     );
   }

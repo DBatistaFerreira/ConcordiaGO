@@ -26,7 +26,7 @@ class SGWCampusBuildingListState extends State<SGWCampusBuildingList> {
 
     List<Building> buildings = List();
     concordia_constants.buildings.forEach((code, building) =>
-        building['campus'] == 'SGW Campus' ? buildings.add(Building(code, building['name'])) : true);
+        building.campusString() == 'SGW Campus' ? buildings.add(Building(code, building.name)) : true);
 
     return Scaffold(
       appBar: PreferredSize(

@@ -16,7 +16,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     if (event is CameraMove) {
       yield MapNoMarker(event.coordinates, event.zoom);
     } else if (event is CameraMoveConcordia) {
-      LatLng coordinates = concordia_constants.buildings[event.buildingCode]['coordinates'];
+      LatLng coordinates = concordia_constants.buildings[event.buildingCode].coordinates;
 
       BlocProvider.of<BuildingInfoBloc>(event.context).add(ConcordiaBuildingInfo(event.buildingCode));
       yield MapWithMarker(event.buildingCode, coordinates, concordia_constants.poiZoomLevel);
