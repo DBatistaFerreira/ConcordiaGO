@@ -135,6 +135,9 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                         currentCameraPosition = value.target;
                       },
                       onTap: (value) {
+                        if (!FocusScope.of(context).hasPrimaryFocus) {
+                          FocusScope.of(context).unfocus();
+                        }
                         if (BuildingInfoSheet.bottomSheetController != null) {
                           BuildingInfoSheet.bottomSheetController.close();
                         }
@@ -206,13 +209,21 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
           ),
         ),
         Positioned(
-          child: SearchBar(),
+          child: BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              if (state is ResultsList) {
+                return SearchResultsList(state.results);
+              } else {
+                return Container(
+                  height: 0,
+                );
+              }
+            },
+          ),
         ),
         Positioned(
-          top: screenHeight / 11.7,
-          left: 32,
-          child: SearchResultsList(),
-        )
+          child: SearchBar(),
+        ),
       ],
     );
   }

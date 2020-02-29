@@ -1,13 +1,33 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/services/search_service.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
+import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-List<ConcordiaBuilding> results;
+class SearchBar extends StatefulWidget {
+  @override
+  _SearchBarState createState() => _SearchBarState();
+}
 
-class SearchBar extends StatelessWidget {
+class _SearchBarState extends State<SearchBar> {
+  FocusNode _focus = FocusNode();
+  TextEditingController _textController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _focus.addListener(() => _onFocusChange());
+  }
+
+  void _onFocusChange() {
+    if (_focus.hasFocus) {
+      BlocProvider.of<SearchBloc>(context).add((UpdateResults('')));
+    } else {
+      BlocProvider.of<SearchBloc>(context).add(EndSearch());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -15,44 +35,76 @@ class SearchBar extends StatelessWidget {
     return Container(
       height: screenHeight / 10,
       padding: EdgeInsets.all(10.0),
-      child: TextField(
-        decoration: InputDecoration(
-          filled: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30.0),
+      child: Stack(
+        children: <Widget>[
+          TextField(
+            focusNode: _focus,
+            controller: _textController,
+            textInputAction: TextInputAction.search,
+            textAlignVertical: TextAlignVertical.center,
+            style: TextStyle(fontSize: 16),
+            decoration: InputDecoration(
+              hintText: "Search",
+              filled: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              fillColor: Colors.white,
+            ),
+            onChanged: (searchText) => BlocProvider.of<SearchBloc>(context).add(UpdateResults(searchText)),
           ),
-          fillColor: Colors.white,
-        ),
-        onChanged: (searchText) {
-          results = SearchService.getSearchResults(searchText);
-        },
+          Positioned(
+            right: 30,
+            child: IconButton(
+              icon: Icon(
+                Icons.clear,
+                size: 20.0,
+                color: Colors.grey,
+              ),
+              onPressed: () {
+                WidgetsBinding.instance.addPostFrameCallback((_) => _textController.clear());
+                if (!FocusScope.of(context).hasPrimaryFocus) {
+                  FocusScope.of(context).unfocus();
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-Widget SearchResultsList() {
-  debugPrint((results == null).toString());
+Widget SearchResultsList(List<ConcordiaBuilding> results) {
   return Container(
-    height: (results == null || results.isEmpty) ? 0 : (results.length > 5 ? 400 : results.length.toDouble() * 70),
-    width: 297,
     color: Colors.white,
     child: Column(
       children: <Widget>[
+        Container(
+          height: MediaQuery.of(mc).size.height / 10,
+        ),
         Flexible(
           child: ListView.builder(
-              itemCount: results == null ? 0 : results.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 70,
+            itemCount: results == null ? 0 : results.length,
+            itemBuilder: (context, index) {
+              return Container(
+                height: 60,
+                child: Material(
+                  color: Colors.white,
                   child: ListTile(
-                    title: results == null ? Text('I\'m null') : Text(results[index].name),
+                    title: Text(results[index].name),
                     onTap: () {
+                      BlocProvider.of<SearchBloc>(context).add(EndSearch());
                       BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(results[index]?.code, context));
+                      if (!FocusScope.of(context).hasPrimaryFocus) {
+                        FocusScope.of(context).unfocus();
+                      }
                     },
                   ),
-                );
-              }),
+                ),
+              );
+            },
+          ),
         ),
       ],
     ),

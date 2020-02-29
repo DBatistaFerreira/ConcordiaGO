@@ -28,16 +28,26 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<DirectionsBloc>(
           create: (context) => DirectionsBloc(),
-        )
+        ),
+        BlocProvider<SearchBloc>(
+          create: (context) => SearchBloc(),
+        ),
       ],
-      child: MaterialApp(
-        title: application_constants.applicationName,
-        initialRoute: '/',
-        routes: {
-          '/': (context) => HomeScreen(),
-          '/sgwbuildings': (context) => SGWCampusBuildingList(),
-          '/loyolabuildings': (context) => LoyolaCampusBuildingList(),
+      child: GestureDetector(
+        onTap: () {
+          if (!FocusScope.of(context).hasPrimaryFocus) {
+            FocusScope.of(context).unfocus();
+          }
         },
+        child: MaterialApp(
+          title: application_constants.applicationName,
+          initialRoute: '/',
+          routes: {
+            '/': (context) => HomeScreen(),
+            '/sgwbuildings': (context) => SGWCampusBuildingList(),
+            '/loyolabuildings': (context) => LoyolaCampusBuildingList(),
+          },
+        ),
       ),
     );
   }
