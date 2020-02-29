@@ -54,7 +54,7 @@ class _SearchBarState extends State<SearchBar> {
             onChanged: (searchText) => BlocProvider.of<SearchBloc>(context).add(UpdateResults(searchText)),
           ),
           Positioned(
-            right: 30,
+            right: 5,
             child: IconButton(
               icon: Icon(
                 Icons.clear,
