@@ -7,7 +7,6 @@ import 'package:concordia_go/utilities/segment.dart';
 import 'package:concordia_go/utilities/journey.dart';
 import 'package:flutter/material.dart';
 
-
 var _apiKey = '';
 
 class OutdoorPathService {
