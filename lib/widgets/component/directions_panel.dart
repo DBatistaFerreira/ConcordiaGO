@@ -279,6 +279,12 @@ class DirectionsPanelState extends State<DirectionsPanel> {
       case IconType.subway:
         icon = Icons.directions_subway;
         break;
+      case IconType.fork:
+        icon = Icons.navigation;
+        break;
+      case IconType.merge:
+        icon = Icons.time_to_leave;
+        break;
       case IconType.generic:
         icon = Icons.map;
         break;

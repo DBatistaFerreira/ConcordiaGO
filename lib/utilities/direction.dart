@@ -1,7 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 enum ModeOfTransport { walking, transit, driving }
-enum IconType { left, right, compass, walk, bus, subway, generic }
+enum IconType { left, right, compass, fork, merge,walk, bus, subway, generic }
 
 class Direction {
   String instruction;
@@ -24,6 +24,10 @@ class Direction {
       icons = IconType.right;
     } else if (instruction.contains('Head')) {
       icons = IconType.compass;
+    } else if(instruction.contains("at the fork")){
+      icons = IconType.fork;
+    } else if(instruction.contains("Merge")){
+      icons = IconType.merge;
     } else if (instruction.contains('Walk')) {
       icons = IconType.walk;
     } else if (instruction.contains('Bus')) {

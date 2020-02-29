@@ -16,7 +16,6 @@ class OutdoorPathService {
   static void transitDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
     _singleDirections = List<Direction>();
     _listDirections = Journey();
-    var apiKey;
     String url =
         "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=transit&key=${apiKey}";
     http.Response response = await http.get(url);
@@ -59,6 +58,100 @@ class OutdoorPathService {
         newSegment.addSubstep(newDirection);
 
         addNewPolyline(Colors.teal, pointArray, i);
+      }
+      _listDirections.addSegment(newSegment);
+    }
+    setDirections();
+  }
+
+
+  static void drivingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
+    _singleDirections = List<Direction>();
+    _listDirections = Journey();
+    String url =
+        "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=driving&key=${apiKey}";
+    http.Response response = await http.get(url);
+    Map values = jsonDecode(response.body);
+    PolyUtil myPoints = PolyUtil();
+    for (int i = 0; i < values['routes'][0]['legs'][0]['steps'].length; i++) {
+      bool subInstruction = true;
+      var arrival_time = calculateArrivalTime(values['routes'][0]['legs'][0]['duration']['text']);
+      var pointArray = myPoints.decode(values['routes'][0]['legs'][0]['steps'][i]['polyline']['points']);
+      Segment newSegment;
+      if (values['routes'][0]['legs'][0]['steps'][i]['travel_mode'] == 'DRIVING') {
+        var newDirection = toDirection(
+            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.driving, arrival_time, buildingDestination);
+        newSegment = Segment(newDirection);
+        try {
+          if (values['routes'][0]['legs'][0]['steps'][i]['steps'][0]['html_instructions'] == null) {
+            subInstruction = false;
+          }
+        } catch (Exception) {
+          subInstruction = false;
+        }
+        if (subInstruction) {
+          for (int j = 0; j < values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
+            newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], ModeOfTransport.driving,
+                arrival_time, buildingDestination);
+            newSegment.addSubstep(newDirection);
+          }
+        } else {
+          newSegment.addSubstep(newDirection);
+        }
+
+        addNewPolyline(Colors.teal, pointArray, i);
+      } else {
+        var newDirection = toDirection(
+            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.walking, arrival_time, buildingDestination);
+        newSegment = Segment(newDirection);
+
+        newDirection = endTransit(values['routes'][0]['legs'][0]['steps'][i]['transit_details']['arrival_stop'],
+            ModeOfTransport.walking, arrival_time, buildingDestination);
+        newSegment.addSubstep(newDirection);
+
+        addNewPolyline(Colors.pink, pointArray, i);
+      }
+      _listDirections.addSegment(newSegment);
+    }
+    setDirections();
+  }
+
+
+  static void walkingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
+    _singleDirections = List<Direction>();
+    _listDirections = Journey();
+    String url =
+        "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=walking&key=${apiKey}";
+    http.Response response = await http.get(url);
+    Map values = jsonDecode(response.body);
+    PolyUtil myPoints = PolyUtil();
+    for (int i = 0; i < values['routes'][0]['legs'][0]['steps'].length; i++) {
+      bool subInstruction = true;
+      var arrival_time = calculateArrivalTime(values['routes'][0]['legs'][0]['duration']['text']);
+      var pointArray = myPoints.decode(values['routes'][0]['legs'][0]['steps'][i]['polyline']['points']);
+      Segment newSegment;
+      if (values['routes'][0]['legs'][0]['steps'][i]['travel_mode'] == 'WALKING') {
+        var newDirection = toDirection(
+            values['routes'][0]['legs'][0]['steps'][i], ModeOfTransport.walking, arrival_time, buildingDestination);
+        newSegment = Segment(newDirection);
+        try {
+          if (values['routes'][0]['legs'][0]['steps'][i]['steps'][0]['html_instructions'] == null) {
+            subInstruction = false;
+          }
+        } catch (Exception) {
+          subInstruction = false;
+        }
+        if (subInstruction) {
+          for (int j = 0; j < values['routes'][0]['legs'][0]['steps'][i]['steps'].length; j++) {
+            newDirection = toDirection(values['routes'][0]['legs'][0]['steps'][i]['steps'][j], ModeOfTransport.walking,
+                arrival_time, buildingDestination);
+            newSegment.addSubstep(newDirection);
+          }
+        } else {
+          newSegment.addSubstep(newDirection);
+        }
+
+        addNewPolyline(Colors.pink, pointArray, i);
       }
       _listDirections.addSegment(newSegment);
     }
@@ -120,6 +213,29 @@ class OutdoorPathService {
     _listDirections.resetList();
     _currentInstruction = 0;
     _polyLines.clear();
+  }
+
+  static String calculateArrivalTime(durationJSON){
+    durationJSON;
+    List<String> durationToSplit = durationJSON.split(" ");
+    var duration;
+    if(durationToSplit.length == 2) {
+      duration = int.parse(durationToSplit[0]);
+    }else{
+      duration = int.parse(durationToSplit[0])*60 + int.parse(durationToSplit[2]);
+    }
+    var currentTime = DateTime.now();
+    Duration newDuration = Duration(days : 0, hours: 0, minutes: duration);
+    var calculated_time = currentTime.add(newDuration);
+    var arrival_time;
+    if (calculated_time.minute > 9) {
+      arrival_time = '${calculated_time.hour.toString()}:${calculated_time
+          .minute.toString()}';
+    }else {
+      arrival_time = '${calculated_time.hour.toString()}:0${calculated_time
+          .minute.toString()}';
+    }
+    return arrival_time;
   }
 
   static void setDirections() {
