@@ -1,3 +1,4 @@
+import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
 
 class SearchService {

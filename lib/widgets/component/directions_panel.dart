@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/direction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
       builder: (context, state) {
         if (state is InstructionUpdate) {
           return Container(
-            color: Color(0xff800206),
+            color: concordiaRed,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -33,7 +34,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                       Expanded(
                         flex: 2,
                         child: Container(
-                          color: Color(0xff800206),
+                          color: concordiaRed,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15.0, left: 5.0),
                             child: Align(
@@ -68,7 +69,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                       Expanded(
                         flex: 2,
                         child: Container(
-                          color: Color(0xff800206),
+                          color: concordiaRed,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15.0, left: 10.0),
                             child: Text(
@@ -112,7 +113,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                       Expanded(
                         flex: 3,
                         child: Container(
-                          color: Color(0xff800206),
+                          color: concordiaRed,
                           child: Row(
                             children: [
                               Expanded(

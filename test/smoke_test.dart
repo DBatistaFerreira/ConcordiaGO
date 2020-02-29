@@ -9,7 +9,6 @@ void main() {
     final application = Application();
     await tester.pumpWidget(application);
     expect(find.byType(GoogleMap), findsOneWidget);
-    expect(find.byType(FloatingActionButton), findsNWidgets(2));
 
     var switch_views = find.byIcon(Icons.sync);
     await tester.tap(switch_views);

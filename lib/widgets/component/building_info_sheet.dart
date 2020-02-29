@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +11,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:concordia_go/widgets/component/google_maps_component.dart';
 
 class BuildingInfoSheet {
-  static Color mainColor = Color(0xff800206);
   static PersistentBottomSheetController bottomSheetController;
 
   static void buildInfoSheet(BuildContext context) {
@@ -36,7 +36,7 @@ class BuildingInfoSheet {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: mainColor,
+                        color: concordiaRed,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(18.0),
                           topRight: Radius.circular(18.0),
@@ -185,7 +185,7 @@ class BuildingInfoSheet {
                     ),
                     Container(
                       height: screenHeight / 12,
-                      color: mainColor,
+                      color: concordiaRed,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
