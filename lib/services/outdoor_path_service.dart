@@ -31,8 +31,7 @@ class OutdoorPathService {
       var pointArray = myPoints.decode(returnedSteps[i]['polyline']['points']);
       Segment newSegment;
       if (returnedSteps[i]['travel_mode'] == 'WALKING') {
-        var newDirection = toDirection(
-            returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
+        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
           if (returnedSteps[0]['html_instructions'] == null) {
@@ -43,8 +42,8 @@ class OutdoorPathService {
         }
         if (subInstruction) {
           for (int j = 0; j < returnedSteps[i]['steps'].length; j++) {
-            newDirection = toDirection(returnedSteps[i]['steps'][j], ModeOfTransport.walking,
-                arrival_time, buildingDestination);
+            newDirection =
+                toDirection(returnedSteps[i]['steps'][j], ModeOfTransport.walking, arrival_time, buildingDestination);
             newSegment.addSubstep(newDirection);
           }
         } else {
@@ -53,12 +52,11 @@ class OutdoorPathService {
 
         addNewPolyline(Colors.pink, pointArray, i);
       } else {
-        var newDirection = toDirection(
-            returnedSteps[i], ModeOfTransport.transit, arrival_time, buildingDestination);
+        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.transit, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
 
-        newDirection = endTransit(returnedSteps[i]['transit_details']['arrival_stop'],
-            ModeOfTransport.transit, arrival_time, buildingDestination);
+        newDirection = endTransit(returnedSteps[i]['transit_details']['arrival_stop'], ModeOfTransport.transit,
+            arrival_time, buildingDestination);
         newSegment.addSubstep(newDirection);
 
         addNewPolyline(Colors.teal, pointArray, i);
@@ -84,8 +82,7 @@ class OutdoorPathService {
       var pointArray = myPoints.decode(returnedSteps[i]['polyline']['points']);
       Segment newSegment;
       if (returnedSteps[i]['travel_mode'] == 'DRIVING') {
-        var newDirection = toDirection(
-            returnedSteps[i], ModeOfTransport.driving, arrival_time, buildingDestination);
+        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.driving, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
           if (returnedSteps[i]['steps'][0]['html_instructions'] == null) {
@@ -96,8 +93,8 @@ class OutdoorPathService {
         }
         if (subInstruction) {
           for (int j = 0; j < returnedSteps[i]['steps'].length; j++) {
-            newDirection = toDirection(returnedSteps[i]['steps'][j], ModeOfTransport.driving,
-                arrival_time, buildingDestination);
+            newDirection =
+                toDirection(returnedSteps[i]['steps'][j], ModeOfTransport.driving, arrival_time, buildingDestination);
             newSegment.addSubstep(newDirection);
           }
         } else {
@@ -106,12 +103,11 @@ class OutdoorPathService {
 
         addNewPolyline(Colors.teal, pointArray, i);
       } else {
-        var newDirection = toDirection(
-            returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
+        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
 
-        newDirection = endTransit(returnedSteps[i]['transit_details']['arrival_stop'],
-            ModeOfTransport.walking, arrival_time, buildingDestination);
+        newDirection = endTransit(returnedSteps[i]['transit_details']['arrival_stop'], ModeOfTransport.walking,
+            arrival_time, buildingDestination);
         newSegment.addSubstep(newDirection);
 
         addNewPolyline(Colors.pink, pointArray, i);
@@ -137,8 +133,7 @@ class OutdoorPathService {
       var pointArray = myPoints.decode(returnedSteps[i]['polyline']['points']);
       Segment newSegment;
       if (returnedSteps[i]['travel_mode'] == 'WALKING') {
-        var newDirection = toDirection(
-            returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
+        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
           if (returnedSteps[i]['steps'][0]['html_instructions'] == null) {
@@ -149,8 +144,8 @@ class OutdoorPathService {
         }
         if (subInstruction) {
           for (int j = 0; j < returnedSteps[i]['steps'].length; j++) {
-            newDirection = toDirection(returnedSteps[i]['steps'][j], ModeOfTransport.walking,
-                arrival_time, buildingDestination);
+            newDirection =
+                toDirection(returnedSteps[i]['steps'][j], ModeOfTransport.walking, arrival_time, buildingDestination);
             newSegment.addSubstep(newDirection);
           }
         } else {
