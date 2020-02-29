@@ -1,5 +1,5 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart';
+import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

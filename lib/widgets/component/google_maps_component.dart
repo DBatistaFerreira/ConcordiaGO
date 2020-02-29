@@ -96,7 +96,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                 if (state is MapNoMarker) {
                   _goToLocation(state.cameraPosition, state.zoom);
                 } else if (state is MapWithMarker) {
-                  _goToLocation(state.cameraPosition, state.zoom);
+                  _goToLocation(
+                      LatLng(state.cameraPosition.latitude - 0.0008, state.cameraPosition.longitude), state.zoom);
                 } else if (state is DirectionMap) {
                   _polylines = state.directionLines;
                 }
