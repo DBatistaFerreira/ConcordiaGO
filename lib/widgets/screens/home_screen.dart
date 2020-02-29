@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:concordia_go/widgets/component/quick_menu.dart';
+import 'package:concordia_go/widgets/screens/quick_menu.dart';
 import '../component/google_maps_component.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 
