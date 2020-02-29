@@ -2113,27 +2113,18 @@ class ConcordiaBuilding {
   final List<LatLng> vertices;
   final Map<String, String> hours;
 
-//  static Map<String, ConcordiaBuilding> concordiaBuildings;
-
-  const ConcordiaBuilding(
-      {this.code, this.name, this.address, this.campus, this.coordinates, this.vertices, this.hours});
+  const ConcordiaBuilding({
+    this.code,
+    this.name,
+    this.address,
+    this.campus,
+    this.coordinates,
+    this.vertices,
+    this.hours,
+  });
 
   String campusString() {
     String campusName = describeEnum(campus);
     return '${campusName} Campus';
   }
-
-//  static void createBuildingMap() {
-//    for (var entry in buildings.entries) {
-//      concordiaBuildings[entry.key] = ConcordiaBuilding(
-//        code: entry.key,
-//        name: entry.value['name'],
-//        address: entry.value['address'],
-//        campus: entry.value['campus'] == 'SGW Campus' ? Campus.sgw : Campus.loyola,
-//        coordinates: entry.value['coordinates'],
-//        vertices: entry.value['vertices'],
-//        hours: entry.value['hours'],
-//      );
-//    }
-//  }
 }

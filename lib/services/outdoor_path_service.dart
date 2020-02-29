@@ -1,3 +1,4 @@
+import 'package:concordia_go/key/API_KEY_DO_NOT_PUSH.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_maps_util/google_maps_util.dart';
@@ -20,7 +21,7 @@ class OutdoorPathService {
     _singleDirections = List<Direction>();
     _listDirections = Journey();
     String url =
-        "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=transit&key=${apiKey}";
+        "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=transit&key=${_apiKey}";
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
@@ -67,12 +68,11 @@ class OutdoorPathService {
     setDirections();
   }
 
-
   static void drivingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
     _singleDirections = List<Direction>();
     _listDirections = Journey();
     String url =
-        "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=driving&key=${apiKey}";
+        "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=driving&key=${_apiKey}";
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
@@ -119,12 +119,11 @@ class OutdoorPathService {
     setDirections();
   }
 
-
   static void walkingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
     _singleDirections = List<Direction>();
     _listDirections = Journey();
     String url =
-        "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=walking&key=${apiKey}";
+        "https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=walking&key=${_apiKey}";
     http.Response response = await http.get(url);
     Map values = jsonDecode(response.body);
     PolyUtil myPoints = PolyUtil();
@@ -218,25 +217,23 @@ class OutdoorPathService {
     _polyLines.clear();
   }
 
-  static String calculateArrivalTime(durationJSON){
+  static String calculateArrivalTime(durationJSON) {
     durationJSON;
     List<String> durationToSplit = durationJSON.split(" ");
     var duration;
-    if(durationToSplit.length == 2) {
+    if (durationToSplit.length == 2) {
       duration = int.parse(durationToSplit[0]);
-    }else{
-      duration = int.parse(durationToSplit[0])*60 + int.parse(durationToSplit[2]);
+    } else {
+      duration = int.parse(durationToSplit[0]) * 60 + int.parse(durationToSplit[2]);
     }
     var currentTime = DateTime.now();
-    Duration newDuration = Duration(days : 0, hours: 0, minutes: duration);
+    Duration newDuration = Duration(days: 0, hours: 0, minutes: duration);
     var calculated_time = currentTime.add(newDuration);
     var arrival_time;
     if (calculated_time.minute > 9) {
-      arrival_time = '${calculated_time.hour.toString()}:${calculated_time
-          .minute.toString()}';
-    }else {
-      arrival_time = '${calculated_time.hour.toString()}:0${calculated_time
-          .minute.toString()}';
+      arrival_time = '${calculated_time.hour.toString()}:${calculated_time.minute.toString()}';
+    } else {
+      arrival_time = '${calculated_time.hour.toString()}:0${calculated_time.minute.toString()}';
     }
     return arrival_time;
   }

@@ -5,7 +5,7 @@ import 'package:concordia_go/utilities/direction.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import './bloc.dart';
+import '../bloc.dart';
 
 class DirectionsBloc extends Bloc<DirectionsEvent, DirectionsState> {
   @override

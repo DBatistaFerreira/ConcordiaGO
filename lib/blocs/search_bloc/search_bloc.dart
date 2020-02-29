@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:concordia_go/services/search_service.dart';
-import './bloc.dart';
+import '../bloc.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   @override
