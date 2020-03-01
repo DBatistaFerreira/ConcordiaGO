@@ -5,7 +5,7 @@ import 'package:concordia_go/blocs/search_bloc/search_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final event = UpdateResults("Hall Building");
+  final event = UpdateResults('Hall Building');
 
   blocTest(
     'Get Search Result',
