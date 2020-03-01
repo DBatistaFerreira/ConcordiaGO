@@ -7,7 +7,7 @@ class Journey {
 
   Journey() {
     instructionCount = 0;
-    this.routeSegments = List<Segment>();
+    routeSegments = <Segment>[];
     instructionCount++;
   }
 
@@ -21,12 +21,12 @@ class Journey {
   }
 
   List<Direction> toDirection() {
-    List<Direction> routeDirections = List<Direction>();
-    for (int i = 0; i < routeSegments.length; i++) {
+    var routeDirections = <Direction>[];
+    for (var i = 0; i < routeSegments.length; i++) {
       if (routeSegments[i].mainDirective.transitType == ModeOfTransport.transit) {
         routeDirections.add(routeSegments[i].mainDirective);
       }
-      for (int j = 0; j < routeSegments[i].substeps.length; j++) {
+      for (var j = 0; j < routeSegments[i].substeps.length; j++) {
         routeDirections.add(routeSegments[i].substeps[j]);
       }
     }
@@ -34,12 +34,12 @@ class Journey {
   }
 
   void printRoute() {
-    for (int i = 0; i < routeSegments.length; i++) {
+    for (var i = 0; i < routeSegments.length; i++) {
       routeSegments[i].mainDirective.instruction;
       routeSegments[i].mainDirective.icons;
-      for (int j = 0; j < routeSegments[i].substeps.length; j++) {
-        print("   -" + routeSegments[i].substeps[j].instruction);
-        print("   -" + routeSegments[i].substeps[j].icons.toString());
+      for (var j = 0; j < routeSegments[i].substeps.length; j++) {
+        print('   -' + routeSegments[i].substeps[j].instruction);
+        print('   -' + routeSegments[i].substeps[j].icons.toString());
       }
     }
   }

@@ -31,12 +31,12 @@ class BuildingInfo extends BuildingInfoState {
 
   BuildingInfo toggleHours(bool expandHours) {
     return BuildingInfo(
-      this.buildingCode,
-      this.buildingName,
-      this.campus,
-      this.address,
-      this.coordinates,
-      this.hours,
+      buildingCode,
+      buildingName,
+      campus,
+      address,
+      coordinates,
+      hours,
       expandHours,
       true,
     );

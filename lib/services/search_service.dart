@@ -3,7 +3,7 @@ import 'package:concordia_go/utilities/concordia_constants.dart';
 
 class SearchService {
   static List<ConcordiaBuilding> getSearchResults(String query) {
-    List<ConcordiaBuilding> searchResults = List<ConcordiaBuilding>();
+    var searchResults = <ConcordiaBuilding>[];
 
     for (var value in buildings.values) {
       if (value.name.toLowerCase().contains(query.toLowerCase()) ||
