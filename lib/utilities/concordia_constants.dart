@@ -5,6 +5,27 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const concordiaUrl = 'https://www.concordia.ca';
 const concordiaPhone = '(514) 848-2424';
+const steps = 'steps';
+const instruction = 'html_instructions';
+const duration = 'duration';
+const distance = 'distance';
+const arrival_time = 'arrival_time';
+const text = 'text';
+const transit_details = 'transit_details';
+const arrival_stop = 'arrival_stop';
+const latitude = 'lat';
+const longitude = 'lng';
+const start_location = 'start_location';
+const location = 'location';
+const route = 'routes';
+const legs = 'legs';
+const polyline = 'polyline';
+const points = 'points';
+const travel_mode = 'travel_mode';
+const name = 'name';
+const driving = 'DRIVING';
+const walking = 'WALKING';
+const transit = 'TRANSIT';
 
 const sgwCampus = {
   'name': 'Sir George Williams Campus',
