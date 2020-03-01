@@ -82,17 +82,18 @@ class LoadLoyolaCampusBuildingListMenu extends StatelessWidget {
 void main() {
   testWidgets('SGW Campus Building Menu', (WidgetTester tester) async {
     await tester.pumpWidget(LoadSGWCampusBuildingListMenu());
-    buildings.forEach((code, building) {
+    buildings.forEach((code, building) async {
       if (building.campusString() == "SGW Campus") {
-        find.text(building.name);
+        assert(find.text(building.name) != null);
       }
     });
   });
+
   testWidgets('Loyola Campus Building Menu', (WidgetTester tester) async {
     await tester.pumpWidget(LoadLoyolaCampusBuildingListMenu());
     buildings.forEach((code, building) {
       if (building.campusString() == "Loyola Campus") {
-        find.text(building.name);
+        assert(find.text(building.name) != null);
       }
     });
   });
