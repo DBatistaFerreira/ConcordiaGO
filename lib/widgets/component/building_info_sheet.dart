@@ -18,13 +18,13 @@ class BuildingInfoSheet {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
-        double screenHeight = MediaQuery.of(context).size.height;
-        double screenWidth = MediaQuery.of(context).size.width;
-        double iconSize = screenWidth / 14;
+        var screenHeight = MediaQuery.of(context).size.height;
+        var screenWidth = MediaQuery.of(context).size.width;
+        var iconSize = screenWidth / 14;
 
         return BlocBuilder<BuildingInfoBloc, BuildingInfoState>(
           builder: (context, state) {
-            double sheetHeight = screenHeight / 2.14;
+            var sheetHeight = screenHeight / 2.14;
 
             if (state is BuildingInfo) {
               if (state.expandHours) {

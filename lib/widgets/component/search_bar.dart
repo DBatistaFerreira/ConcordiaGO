@@ -11,8 +11,8 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
-  FocusNode _focus = FocusNode();
-  TextEditingController _textController = TextEditingController();
+  final FocusNode _focus = FocusNode();
+  final TextEditingController _textController = TextEditingController();
 
   @override
   void initState() {
@@ -30,6 +30,7 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: omit_local_variable_types
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
@@ -44,7 +45,7 @@ class _SearchBarState extends State<SearchBar> {
             textAlignVertical: TextAlignVertical.center,
             style: TextStyle(fontSize: 16),
             decoration: InputDecoration(
-              hintText: "Search",
+              hintText: 'Search',
               filled: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30.0),

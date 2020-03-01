@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class DirectionsSearch extends StatelessWidget {
   @override
   Widget build(context) {
+    // ignore: omit_local_variable_types
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return Container(

@@ -23,12 +23,12 @@ class ConcordiaBuilding {
   });
 
   String campusString() {
-    String campusName = describeEnum(campus);
+    var campusName = describeEnum(campus);
     return '${campusName} Campus';
   }
 }
 
 String campusString(Campus campus) {
-  String campusName = describeEnum(campus);
+  var campusName = describeEnum(campus);
   return '${campusName} Campus';
 }
