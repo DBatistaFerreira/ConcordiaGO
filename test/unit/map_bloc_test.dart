@@ -12,11 +12,11 @@ void main() {
     'Get Map No Marker',
     build: () async => MapBloc(),
     act: (bloc) {
-      bloc.add(eventMapNoMarker);
-      return bloc.add(eventDirectionMap);
+      return bloc.add(eventMapNoMarker);
     },
-    expect: [isA<MapNoMarker>(), isA<DirectionMap>()],
+    expect: [isA<MapNoMarker>()],
   );
+
   blocTest(
     'Get Map With Marker',
     build: () async => MapBloc(),
@@ -25,6 +25,7 @@ void main() {
     },
     expect: [],
   );
+
   blocTest(
     'Get Direction Map',
     build: () async => MapBloc(),

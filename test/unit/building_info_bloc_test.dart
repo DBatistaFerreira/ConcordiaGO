@@ -8,6 +8,7 @@ import 'package:concordia_go/utilities/concordia_constants.dart';
 void main() {
   final event = ConcordiaBuildingInfo(buildings['H'].code);
   final toggleEvent = ToggleHoursEvent(true);
+
   blocTest(
     'Get Concordia Building Info',
     build: () async => BuildingInfoBloc(),
@@ -16,5 +17,14 @@ void main() {
       return bloc.add(toggleEvent);
     },
     expect: [isA<BuildingInfo>(), isA<BuildingInfo>()],
+  );
+
+  blocTest(
+    'Get Concordia Building Info Toggle',
+    build: () async => BuildingInfoBloc(),
+    act: (bloc) {
+      return bloc.add(toggleEvent);
+    },
+    expect: [],
   );
 }
