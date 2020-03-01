@@ -4,12 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() {
-  testWidgets('Smoke test', (WidgetTester tester) async {
+  testWidgets('Google Maps', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     final application = Application();
     await tester.pumpWidget(application);
     expect(find.byType(GoogleMap), findsOneWidget);
-    expect(find.byType(FloatingActionButton), findsNWidgets(2));
 
     var switch_views = find.byIcon(Icons.sync);
     await tester.tap(switch_views);

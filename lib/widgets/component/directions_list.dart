@@ -1,4 +1,5 @@
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,7 @@ class DirectionsListState extends State<DirectionsList> {
             flex: 1,
             child: Container(
               decoration: BoxDecoration(
-                color: Color(0xff800206),
+                color: concordiaRed,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(18.0),
                   topRight: Radius.circular(18.0),

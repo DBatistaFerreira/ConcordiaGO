@@ -10,11 +10,14 @@ class MockBuildingInfoBloc extends Mock implements BuildingInfoBloc {}
 
 void main() {
   final event = ConcordiaBuildingInfo(buildings['H'].code);
-
+  final toggleEvent = ToggleHoursEvent(true);
   blocTest(
     'Get Concordia Building Info',
     build: () async => BuildingInfoBloc(),
-    act: (bloc) => bloc.add(event),
-    expect: [isA<BuildingInfo>()],
+    act: (bloc) {
+      bloc.add(event);
+      return bloc.add(toggleEvent);
+    },
+    expect: [isA<BuildingInfo>(), isA<BuildingInfo>()],
   );
 }
