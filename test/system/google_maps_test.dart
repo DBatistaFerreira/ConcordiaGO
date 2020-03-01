@@ -1,4 +1,5 @@
 import 'package:concordia_go/main.dart';
+import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -10,32 +11,42 @@ void main() {
     await tester.pumpWidget(application);
     expect(find.byType(GoogleMap), findsOneWidget);
 
-    var switch_views = find.byIcon(Icons.sync);
-    await tester.tap(switch_views);
+    var switchViews = find.byIcon(Icons.sync);
+    await tester.tap(switchViews);
     await tester.pump();
 
-    var my_location = find.byIcon(Icons.gps_fixed);
-    await tester.tap(my_location);
+    var myLocation = find.byIcon(Icons.gps_fixed);
+    await tester.tap(myLocation);
     await tester.pump();
 
     var menu = find.byIcon(Icons.menu);
     await tester.tap(menu);
     await tester.pump();
 
-    var sgw_campus = find.text("SGW Campus");
-    await tester.tap(sgw_campus);
+    var sgwCampus = find.text("SGW Campus");
+    await tester.tap(sgwCampus);
     await tester.pump();
-    var sgw_campus_buildings = find.byType(ListTile);
-    await tester.tap(sgw_campus_buildings.at(1));
+    var sgwCampusBuildings = find.byType(ListTile);
+    await tester.tap(sgwCampusBuildings.at(1));
     await tester.pump();
 
     await tester.tap(menu);
     await tester.pump();
-    var loyola_campus = find.text("Loyola Campus");
-    await tester.tap(loyola_campus);
+    var loyolaCampus = find.text("Loyola Campus");
+    await tester.tap(loyolaCampus);
     await tester.pump();
-    var loyola_campus_buildings = find.byType(ListTile);
-    await tester.tap(loyola_campus_buildings.at(1));
+    var loyolaCampusBuildings = find.byType(ListTile);
+    await tester.tap(loyolaCampusBuildings.at(1));
+    await tester.pump();
+
+    var searchBar = find.byType(SearchBar);
+    expect(searchBar, findsOneWidget);
+    await tester.tap(searchBar);
+    await tester.pump();
+
+    var searchResult = find.byType(ListTile);
+    expect(searchResult, findsWidgets);
+    await tester.tap(searchResult.at(1));
     await tester.pump();
   });
 }
