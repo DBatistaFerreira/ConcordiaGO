@@ -1,32 +1,34 @@
 import 'dart:async';
 
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:concordia_go/widgets/component/google_maps_component.dart';
 
 class BuildingInfoSheet {
-  static Color mainColor = Color(0xff800206);
   static PersistentBottomSheetController bottomSheetController;
 
-  static void buildingInfoSheet(context) {
+  static void buildInfoSheet(BuildContext context) {
     bottomSheetController = showBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (BuildContext bc) {
+      builder: (BuildContext context) {
         double screenHeight = MediaQuery.of(context).size.height;
         double screenWidth = MediaQuery.of(context).size.width;
         double iconSize = screenWidth / 14;
 
         return BlocBuilder<BuildingInfoBloc, BuildingInfoState>(
           builder: (context, state) {
-            double sheetHeight = screenHeight / 2.15;
+            double sheetHeight = screenHeight / 2.14;
 
             if (state is BuildingInfo) {
               if (state.expandHours) {
-                sheetHeight = screenHeight / 1.48;
+                sheetHeight = screenHeight / 1.46;
               }
               return Container(
                 height: sheetHeight,
@@ -34,13 +36,13 @@ class BuildingInfoSheet {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: mainColor,
+                        color: concordiaRed,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(18.0),
                           topRight: Radius.circular(18.0),
                         ),
                       ),
-                      height: screenHeight / 12,
+                      height: screenHeight / 11,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -51,23 +53,23 @@ class BuildingInfoSheet {
                               style: TextStyle(color: Colors.white, fontSize: 24),
                             ),
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Flexible(
-                                child: Text(
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
                                   state.buildingName,
                                   style: TextStyle(color: Colors.white, fontSize: 18),
                                   overflow: TextOverflow.fade,
                                 ),
-                              ),
-                              Text(
-                                state.campus,
-                                style: TextStyle(color: Colors.white, fontSize: 12),
-                                textAlign: TextAlign.left,
-                              ),
-                            ],
+                                Text(
+                                  state.campus,
+                                  style: TextStyle(color: Colors.white, fontSize: 12),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -183,7 +185,7 @@ class BuildingInfoSheet {
                     ),
                     Container(
                       height: screenHeight / 12,
-                      color: mainColor,
+                      color: concordiaRed,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -198,7 +200,6 @@ class BuildingInfoSheet {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
-                                onPressed: () => {},
                                 icon: Icon(
                                   Icons.directions,
                                   size: screenWidth / 12,
@@ -208,6 +209,20 @@ class BuildingInfoSheet {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(color: Colors.black, fontSize: 16.0),
                                 ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  getCurrentLocation().then(
+                                    (value) {
+                                      BlocProvider.of<DirectionsBloc>(mc).add(
+                                        GetDirections(
+                                          value,
+                                          state.coordinates,
+                                          state.buildingName,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
                               ),
                             ),
                           ),

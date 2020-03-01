@@ -1,38 +1,39 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/models/building_model.dart';
+import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/widgets/component/building_info_sheet.dart';
+import 'package:concordia_go/widgets/component/google_maps_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CampusBuildingListMenu extends StatefulWidget {
-  final String campusName;
+  final Campus campus;
 
-  CampusBuildingListMenu(this.campusName);
+  CampusBuildingListMenu(this.campus);
 
   @override
-  State<CampusBuildingListMenu> createState() => CampusBuildingListMenuState(campusName);
+  State<CampusBuildingListMenu> createState() => CampusBuildingListMenuState(campus);
 }
 
 class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
-  final String campusName;
+  final Campus campus;
 
-  CampusBuildingListMenuState(this.campusName);
+  CampusBuildingListMenuState(this.campus);
 
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
+    List<ConcordiaBuilding> buildingList = List();
 
-    List<Building> buildings = List();
-    concordia_constants.buildings.forEach((code, building) {
-      if (building['campus'] == campusName) {
-        Building b = Building();
-        b.code = code;
-        b.name = building['name'];
-        buildings.add(b);
-      }
-    });
+    concordia_constants.buildings.forEach(
+      (code, building) {
+        if (building.campus == campus) {
+          buildingList.add(building);
+        }
+      },
+    );
 
     return Scaffold(
       appBar: PreferredSize(
@@ -48,7 +49,7 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                campusName + " Buildings",
+                '${campusString(campus)} Buildings',
                 style: TextStyle(
                   fontFamily: 'Raleway',
                   color: Colors.white,
@@ -63,7 +64,7 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: buildings.length,
+              itemCount: buildingList.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: Container(
@@ -78,7 +79,9 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
                         ),
                         child: Center(
                           child: Text(
-                            buildings[index].code.length == 2 ? buildings[index].code : buildings[index].code + ' ',
+                            buildingList[index].code.length == 2
+                                ? buildingList[index].code
+                                : buildingList[index].code + ' ',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -91,11 +94,12 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
                     ),
                   ),
                   title: Text(
-                    buildings[index].name,
+                    buildingList[index].name,
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(buildings[index].code, context));
+                    BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(buildingList[index].code, context));
+                    BuildingInfoSheet.buildInfoSheet(mapContext);
                   },
                   trailing: Icon(Icons.keyboard_arrow_right),
                 );

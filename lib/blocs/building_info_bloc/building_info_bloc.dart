@@ -15,11 +15,11 @@ class BuildingInfoBloc extends Bloc<BuildingInfoEvent, BuildingInfoState> {
     BuildingInfoEvent event,
   ) async* {
     if (event is ConcordiaBuildingInfo) {
-      String name = concordia_constants.buildings[event.buildingCode]['name'];
-      String campus = concordia_constants.buildings[event.buildingCode]['campus'];
-      LatLng coordinates = concordia_constants.buildings[event.buildingCode]['coordinates'];
-      String address = concordia_constants.buildings[event.buildingCode]['address'];
-      Map<String, String> hours = concordia_constants.buildings[event.buildingCode]['hours'];
+      String name = concordia_constants.buildings[event.buildingCode].name;
+      String campus = concordia_constants.buildings[event.buildingCode].campusString();
+      LatLng coordinates = concordia_constants.buildings[event.buildingCode].coordinates;
+      String address = concordia_constants.buildings[event.buildingCode].address;
+      Map<String, String> hours = concordia_constants.buildings[event.buildingCode].hours;
 
       yield BuildingInfo(
         event.buildingCode,
