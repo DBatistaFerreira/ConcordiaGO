@@ -31,14 +31,19 @@ class BuildingInfo extends BuildingInfoState {
 
   BuildingInfo toggleHours(bool expandHours) {
     return BuildingInfo(
-      this.buildingCode,
-      this.buildingName,
-      this.campus,
-      this.address,
-      this.coordinates,
-      this.hours,
+      buildingCode,
+      buildingName,
+      campus,
+      address,
+      coordinates,
+      hours,
       expandHours,
       true,
     );
+  }
+
+  @override
+  String toString() {
+    return 'BuildingInfo{buildingCode: $buildingCode, buildingName: $buildingName, campus: $campus, address: $address, coordinates: $coordinates, hours: $hours, expandHours: $expandHours, fromToggle: $fromToggle}';
   }
 }

@@ -21,11 +21,11 @@ Completer<GoogleMapController> _controller = Completer();
 BuildContext mapContext;
 
 class GoogleMapsComponentState extends State<GoogleMapsComponent> {
-  Set<Polyline> _polylines = Set<Polyline>();
+  Set<Polyline> _polylines = <Polyline>{};
   bool polygonVisibility = true;
 
   Set<Polygon> _buildingShapes() {
-    Set<Polygon> buildingPolygons = Set<Polygon>();
+    var buildingPolygons = <Polygon>{};
     for (var building in concordia_constants.buildings.values) {
       buildingPolygons.add(
         Polygon(
@@ -50,9 +50,9 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     LatLng sgwCoordinates = concordia_constants.sgwCampus['coordinates'];
     LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'];
 
-    double distanceToSGW = await Geolocator().distanceBetween(
+    var distanceToSGW = await Geolocator().distanceBetween(
         currentPosition.latitude, currentPosition.longitude, sgwCoordinates.latitude, sgwCoordinates.longitude);
-    double distanceToLoyola = await Geolocator().distanceBetween(
+    var distanceToLoyola = await Geolocator().distanceBetween(
         currentPosition.latitude, currentPosition.longitude, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
 
     if (distanceToSGW < distanceToLoyola) {
@@ -63,6 +63,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   }
 
   Future<void> _goToLocation(LatLng coordinates, double zoom) async {
+    // ignore: omit_local_variable_types
     final GoogleMapController controller = await _controller.future;
     await controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: zoom)));
   }
@@ -80,8 +81,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     final mapBloc = BlocProvider.of<MapBloc>(context);
     final buildingInfoBloc = BlocProvider.of<BuildingInfoBloc>(context);
     LatLng currentCameraPosition = concordia_constants.sgwCampus['coordinates'];
@@ -232,6 +233,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
 }
 
 Future<void> moveCameraPosition(LatLng coordinates) async {
+  // ignore: omit_local_variable_types
   final GoogleMapController controller = await _controller.future;
   await controller.animateCamera(
       CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: concordia_constants.navZoomLevel)));

@@ -16,6 +16,7 @@ class DirectionsPanel extends StatefulWidget {
 class DirectionsPanelState extends State<DirectionsPanel> {
   @override
   Widget build(context) {
+    // ignore: omit_local_variable_types
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return BlocBuilder<DirectionsBloc, DirectionsState>(

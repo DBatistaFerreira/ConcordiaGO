@@ -13,10 +13,10 @@ class Direction {
   String destination;
 
   Direction(this.instruction, this.coordinate, this.transitType, this.distance, this.arrivalTime, this.destination) {
-    RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+    var exp = RegExp(r'<[^>]*>', multiLine: true, caseSensitive: true);
 
     instruction = instruction.replaceAll(exp, '');
-    instruction = instruction.replaceAll('Destination', ". Destination");
+    instruction = instruction.replaceAll('Destination', '. Destination');
 
     if (instruction.contains('Turn left')) {
       icons = IconType.left;
@@ -24,9 +24,9 @@ class Direction {
       icons = IconType.right;
     } else if (instruction.contains('Head')) {
       icons = IconType.compass;
-    } else if (instruction.contains("at the fork")) {
+    } else if (instruction.contains('at the fork')) {
       icons = IconType.fork;
-    } else if (instruction.contains("Merge")) {
+    } else if (instruction.contains('Merge')) {
       icons = IconType.merge;
     } else if (instruction.contains('Walk')) {
       icons = IconType.walk;

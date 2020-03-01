@@ -6,7 +6,7 @@ class Segment {
   bool hasSubstep;
 
   Segment(this.mainDirective) {
-    substeps = List<Direction>();
+    substeps = <Direction>[];
   }
 
   void addSubstep(Direction substep) {
