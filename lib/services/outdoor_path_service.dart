@@ -23,6 +23,7 @@ class OutdoorPathService {
   * Third the JSON is broken down into Direction, Segment and Journey objects.
   * Next the polyLines are set on the google maps
   * Finally, segments are updated so that the UI values can be set.
+  * Update in Sprint 3 will change its layout to provide a more testable class
    */
 
   static void transitDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
@@ -37,9 +38,15 @@ class OutdoorPathService {
     var returnedSteps = returnedValues[concordia_constants.steps];
     for (var i = 0; i < returnedSteps.length; i++) {
       var subInstruction = true;
-      var arrival_time =
-          returnedValues[concordia_constants.arrival_time][concordia_constants.text]; //Arrival time extraction from API
-      debugPrint(arrival_time);
+      var arrival_time;
+
+      try {
+        //Dependent on volatile Directions API field. If statement was previous attempted to check null to no success
+        arrival_time = returnedValues[concordia_constants.arrival_time]
+            [concordia_constants.text]; //Arrival time extraction from API
+      } catch (Exception) {
+        arrival_time = calculateArrivalTime(returnedValues[concordia_constants.duration][concordia_constants.text]);
+      }
       var pointArray = myPoints
           .decode(returnedSteps[i][concordia_constants.polyline][concordia_constants.points]); //polyLine extraction
       Segment newSegment;
