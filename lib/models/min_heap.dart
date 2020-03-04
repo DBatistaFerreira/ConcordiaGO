@@ -23,6 +23,14 @@ class MinHeap {
     return (index * 2) + 2;
   }
 
+  bool _hasLeftChild(int index){
+    return (_leftChild(index) < _heap.length);
+  }
+
+  bool _hasRightChild(int index){
+    return (_rightChild(index) < _heap.length);
+  }
+
   bool _isLeaf(int index) {
     return ((index >= (_heap.length ~/ 2)) && (index < _heap.length));
   }
@@ -35,13 +43,20 @@ class MinHeap {
 
   void _sink(int index) {
     if (!_isLeaf(index)) {
-      if (_heap[index].getWeight() > _heap[_leftChild(index)].getWeight() || _heap[index].getWeight() > _heap[_rightChild(index)].getWeight()) {
-        if (_heap[_leftChild(index)].getWeight() < _heap[_rightChild(index)].getWeight()) {
+      if (_hasLeftChild(index) && _hasRightChild(index)){
+        if (_heap[index].getWeight() > _heap[_leftChild(index)].getWeight() || _heap[index].getWeight() > _heap[_rightChild(index)].getWeight()) {
+          if (_heap[_leftChild(index)].getWeight() < _heap[_rightChild(index)].getWeight()) {
+            _swap(index, _leftChild(index));
+            _sink(_leftChild(index));
+          } else {
+            _swap(index, _rightChild(index));
+            _sink(_rightChild(index));
+          }
+        }
+      } else {
+        if (_heap[index].getWeight() > _heap[_leftChild(index)].getWeight()){
           _swap(index, _leftChild(index));
           _sink(_leftChild(index));
-        } else {
-          _swap(index, _rightChild(index));
-          _sink(_rightChild(index));
         }
       }
     }
@@ -56,8 +71,7 @@ class MinHeap {
 
   void insert(Edge edge) {
     _heap.add(edge);
-    var current = _heap.length - 1;
-    _swim(current);
+    _swim(_heap.length - 1);
   }
 
   void heapify() {
@@ -66,15 +80,25 @@ class MinHeap {
     }
   }
 
+  Edge replace(Edge edge){
+    if (_heap.isNotEmpty){
+      var root = _heap.first;
+      _heap.first = edge;
+      _sink(0);
+      return root;
+    }
+    return null;
+  }
+
   Edge delete() {
-    if(_heap.isNotEmpty){
+    if (_heap.isNotEmpty){
       return _heap.removeAt(0);
     }
     return null;
   }
 
   Edge peek(){
-    if(_heap.isNotEmpty) {
+    if (_heap.isNotEmpty) {
       return _heap.first;
     }
     return null;
