@@ -15,7 +15,7 @@ void main(){
 
   // region test functions
   group('Functions', (){
-    test('isEmpty should return true if the heap is empty and false otherwise', (){
+    test('isEmpty should return true if the queue is empty and false otherwise', (){
       final pq = PriorityQueue();
 
       expect(pq.isEmpty(), true);
@@ -25,7 +25,7 @@ void main(){
       expect(pq.isEmpty(), false);
     });
 
-    test('size should return the size of the heap', (){
+    test('size should return the size of the queue', (){
       final pq = PriorityQueue();
 
       expect(pq.size(), 0);
@@ -37,7 +37,7 @@ void main(){
       expect(pq.size(), 3);
     });
 
-    test('insert should add an Edge to the heap and reorder it', (){
+    test('insert should add an Edge to the queue and reorder it', (){
       final pq = PriorityQueue();
 
       pq.insert(edge2);
@@ -49,7 +49,7 @@ void main(){
       expect(pq.peek(), edge4);
     });
 
-    test('peek should return the first Edge, with the lowest weight, in the heap', (){
+    test('peek should return the first Edge, with the lowest weight, in the queue', (){
       final pq = PriorityQueue();
 
       expect(pq.peek(), null);
@@ -65,7 +65,7 @@ void main(){
       expect(pq.peek(), edge4);
     });
 
-    test('heapify should reorder the heap to min heap', (){
+    test('prioritize should reorder the queue to min queue', (){
       final list = [edge1, edge2, edge3, edge4, edge5];
       final pq = PriorityQueue.fromList(list);
 
@@ -74,7 +74,7 @@ void main(){
       expect(pq.peek(), edge4);
     });
 
-    test('delete should remove and return the min value of the heap', (){
+    test('delete should remove and return the min value of the queue', (){
       final pq = PriorityQueue();
 
       expect(pq.delete(), null);
@@ -89,7 +89,7 @@ void main(){
       expect(pq.size(), 4);
     });
 
-    test('replace should insert the edge passed as the root then reorder as min heap and return the previous root', (){
+    test('replace should insert the edge passed as the root then reorder as min queue and return the previous root', (){
       final pq = PriorityQueue();
 
       expect(pq.replace(edge1), null);
