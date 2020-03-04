@@ -25,5 +25,7 @@ class MapWithMarker extends MapState {
 }
 
 class DirectionMap extends MapState {
-  const DirectionMap();
+  final Set<Polyline> directionLines;
+
+  const DirectionMap(this.directionLines);
 }
