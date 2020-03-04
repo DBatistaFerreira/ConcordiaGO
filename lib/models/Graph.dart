@@ -34,9 +34,9 @@ class Graph {
   // region constructors
   Graph(String name) {
     _name = name;
-    _nodes = Map<int, Node>();
-    _edges = List<List<int>>();
-    _edge_indices = Map<int, int>();
+    _nodes = <int, Node>{};
+    _edges = <List<int>>[];
+    _edge_indices = <int, int>{};
   }
 
   Graph.fromGraph(Graph graph) {
