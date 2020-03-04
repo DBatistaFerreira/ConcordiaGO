@@ -3,12 +3,14 @@ import 'package:concordia_go/models/node.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main(){
+  // region test variables
   final from = Node(1);
   final to = Node(2);
   final weight = 3;
   final edge = Edge(from, to, weight);
+  // endregion test variables
 
-  // region group getters
+  // region test getters
   group('Getters', (){
     test('getFrom should return from node object', (){
       expect(edge.getFrom(), from);
@@ -22,9 +24,9 @@ void main(){
       expect(edge.getWeight(), 3);
     });
   });
-  // endregion group getters
+  // endregion test getters
 
-  // region group setters
+  // region test setters
   group('Setters', (){
     test('setFrom should set the from variable to the node object passed', (){
       final setFrom = Node(4);
@@ -48,15 +50,23 @@ void main(){
       expect(edge.getWeight(), 7);
     });
   });
-  // endregion group setters
+  // endregion test setters
 
+  // region test functions
   group('Functions', (){
-    test('isEqual should return true if both edges are the same', (){
+    test('isEqual should return true if both edges are the same and false otherwise', (){
       final notEqual = Edge(to, from, weight);
       expect(edge.isEqual(notEqual), false);
       expect(edge.isEqual(edge), true);
     });
 
-    // TODO: implement rest of tests
+    test('toString should return the format specified', (){
+      final format = 'From:\t${edge.getFrom()}\n'
+          'To:\t${edge.getTo()}\n'
+          'Weight:\t${edge.getWeight()}';
+
+      expect(edge.toString(), format);
+    });
   });
+  // endregion test functions
 }

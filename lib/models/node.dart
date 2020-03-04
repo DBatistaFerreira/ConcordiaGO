@@ -5,15 +5,11 @@ class Node {
     _id = id;
   }
 
-  Node.withoutId() {
-    _id = null;
-  }
-
   int getId() {
     return _id;
   }
 
-  void setName(int id) {
+  void setId(int id) {
     _id = id;
   }
 

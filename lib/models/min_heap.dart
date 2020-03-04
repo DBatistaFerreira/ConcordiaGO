@@ -7,6 +7,10 @@ class MinHeap {
     _heap = <Edge>[];
   }
 
+  MinHeap.fromList(List<Edge> list){
+    _heap = list;
+  }
+
   int _parent(int index) {
     return (index - 1) ~/ 2;
   }
@@ -44,7 +48,7 @@ class MinHeap {
   }
 
   void _swim(int index) {
-    while (_heap[index].getWeight() > _heap[_parent(index)].getWeight()) {
+    while (_heap[index].getWeight() < _heap[_parent(index)].getWeight()) {
       _swap(index, _parent(index));
       index = _parent(index);
     }
@@ -56,19 +60,31 @@ class MinHeap {
     _swim(current);
   }
 
-  void minHeap() {
+  void heapify() {
     for (var i = (_heap.length ~/ 2); i >= 0; i--) {
       _sink(i);
     }
   }
 
   Edge delete() {
-//    var deleted = _heap.removeAt(0);
-//    _sink(0);
-    return _heap.removeAt(0);
+    if(_heap.isNotEmpty){
+      return _heap.removeAt(0);
+    }
+    return null;
   }
 
   Edge peek(){
-    return _heap.first;
+    if(_heap.isNotEmpty) {
+      return _heap.first;
+    }
+    return null;
+  }
+
+  bool isEmpty(){
+    return _heap.isEmpty;
+  }
+
+  int size(){
+    return _heap.length;
   }
 }
