@@ -1,5 +1,5 @@
-import 'Graph.dart';
-import 'Node.dart';
+import 'graph.dart';
+import 'node.dart';
 
 class DShortestPath {
   Graph _graph;

@@ -1,4 +1,4 @@
-import 'Edge.dart';
+import 'edge.dart';
 
 class MinHeap {
   List<Edge> _heap;

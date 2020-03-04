@@ -1,4 +1,4 @@
-import 'Node.dart';
+import 'node.dart';
 
 class Edge {
   Node _from;
