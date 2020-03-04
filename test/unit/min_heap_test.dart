@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:concordia_go/models/edge.dart';
 import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/models/min_heap.dart';
@@ -11,6 +13,7 @@ void main(){
   final edge3 = Edge(Node(2), Node(7), 7);
   final edge4 = Edge(Node(5), Node(7), 3);
   final edge5 = Edge(Node(6), Node(4), 9);
+  final edge6 = Edge(Node(7), Node(2), 2);
   // endregion test variables
 
   // region test functions
@@ -87,6 +90,24 @@ void main(){
 
       expect(minHeap.delete(), edge4);
       expect(minHeap.size(), 4);
+    });
+
+    test('replace should insert the edge passed as the root then reorder as min heap and return the previous root', (){
+      final minHeap = MinHeap();
+
+      expect(minHeap.replace(edge1), null);
+      expect(minHeap.size(), 0);
+      expect(minHeap.isEmpty(), true);
+
+      minHeap.insert(edge1); // weight = 5
+      minHeap.insert(edge2); // weight = 5
+      minHeap.insert(edge3); // weight = 7
+      minHeap.insert(edge4); // weight = 3
+      minHeap.insert(edge6); // weight = 2
+
+      expect(minHeap.size(), 5);
+      expect(minHeap.replace(edge5), edge6);
+      expect(minHeap.peek(), edge4);
     });
   });
   // endregion test functions
