@@ -1,15 +1,15 @@
 import 'node.dart';
 
+/// A non-negatively weighted graph containing nodes and edges.
 class Graph {
-  /*
-  name of the building (H, MB, EV, etc.)
-   */
-  String _name;
+  /// The letters of the building code for this graph.
+  String _building_code;
   /*
   key:value pair list of nodes on the graph.
   key = the id number of the node.
   value = the node object.
    */
+  /// The map of all the nodes on this graph.
   Map<int, Node> _nodes;
   /*
   2D matrix of edges that connect 2 nodes together and the weight of that edge.
@@ -21,24 +21,28 @@ class Graph {
     int indicating distance between nodes in meters (or difficulty of travel).
     +inf if is not connected to
    */
+  /// The 2D matrix containing the edges and weights of this graph.
   List<List<int>> _edges;
   /*
   Mapping of the edge ids to their appropriate index in the 2D matrix.
   key = id of the node
   value = index in the 2D matrix.
    */
+  /// The map of the indices in the 2D matrix of the edges on this graph.
   Map<int, int> _edge_indices;
 
   // region constructors
-  Graph(String name) {
-    _name = name;
+  /// Default constructor to initialize this graph with the values passed.
+  Graph(String building_code) {
+    _building_code = building_code;
     _nodes = <int, Node>{};
     _edges = <List<int>>[];
     _edge_indices = <int, int>{};
   }
 
+  /// Constructor to initialize this graph from another graph passed.
   Graph.fromGraph(Graph graph) {
-    _name = graph.getName();
+    _building_code = graph.getName();
     _nodes = graph.getNodes();
     _edges = graph.getEdges();
     _edge_indices = graph.getEdgeIndices();
@@ -46,36 +50,44 @@ class Graph {
   // endregion constructors
 
   // region getters
+  /// Returns the building code letters of this graph.
   String getName() {
-    return _name;
+    return _building_code;
   }
 
+  /// Returns the [node] map of this graph.
   Map<int, Node> getNodes() {
     return _nodes;
   }
 
+  /// Returns the 2D edge matrix of this graph.
   List<List<int>> getEdges() {
     return _edges;
   }
 
+  /// Returns the map of indices for the 2D edge matrix of this graph.
   Map<int, int> getEdgeIndices() {
     return _edge_indices;
   }
   // endregion getters
 
   // region setters
-  void setName(String name) {
-    _name = name;
+  /// Sets the building code of this graph to the building code passed.
+  void setName(String building_code) {
+    _building_code = building_code;
   }
 
+  /// Sets the [node] map of this graph to the [node] map passed.
   void setNodes(Map<int, Node> nodes) {
     _nodes = nodes;
   }
 
+  /// Sets the 2D edge matrix of this graph to the 2D edge matrix passed.
   void setEdges(List<List<int>> edges) {
     _edges = edges;
   }
 
+  /// Sets the map of indices for the 2D edge matrix of this graph to the map of indices for the 2D edge matrix passed.
   void setEdgeIndices(Map<int, int> edge_indices) {
     _edge_indices = edge_indices;
   }
@@ -87,6 +99,7 @@ class Graph {
   when adding a node to the graph, the node id is added to the list along with
   the node object itself. The nodes can be referenced by id (aka node name).
    */
+  /// Add a [node] to this graph.
   void addNode(Node node) {
     // TODO: verify completion
     _nodes[node.getId()] = node;
@@ -97,6 +110,7 @@ class Graph {
   so before adding an edge, check to see if the nodes passed are already
   added to the graph (exist in the _nodes list).
   */
+  /// Add an edge and its [weight] to this graph.
   void addEdge() {
     // TODO: implement
   }
@@ -107,6 +121,7 @@ class Graph {
   edges cannot exist without nodes. edge cannot be connected to a node that
   was deleted and no longer exists.
   */
+  /// Deletes a [node] from this graph.
   Node delNode(Node node) {
     // TODO: not finished
     return _nodes.remove(node.getId());
