@@ -46,870 +46,715 @@ const double navZoomLevel = 16.0;
 var buildings = {
   // SGW Buildings
   'H': ConcordiaBuilding(
-    code: 'H',
-    name: 'Hall Building',
-    coordinates: LatLng(45.497282, -73.578931),
-    vertices: [
-      LatLng(45.4973844, -73.578354),
-      LatLng(45.4968314, -73.5788502),
-      LatLng(45.497175, -73.5795483),
-      LatLng(45.4977167, -73.579045)
-    ],
-    address: '1455 Maisonneuve Blvd W, Montreal, QC H3G 1M8',
-    campus: Campus.SGW,
-    hours: {
-      'mon': '6:00 - 23:00',
-      'tue': '6:00 - 23:00',
-      'wed': '6:00 - 23:00',
-      'thu': '6:00 - 23:00',
-      'fri': '6:00 - 23:00',
-      'sat': '6:00 - 23:00',
-      'sun': '6:00 - 23:00',
-    },
-    services: [
-      "Welcome Crew Office",
-      "DB Clarke Theatre",
-      "Dean of Students",
-      "Aboriginal Student Resource Centre",
-      "Concordia Student Union",
-      "IT Service Desk",
-      "Security Office",
-      "Student Success Centre",
-      "Mail Services",
-      "Archives",
-      "Career and Planning Services",
-      "Sexual Assault Resource Centre (SARC)"
-    ],
-    departments:[
-      "Geography, Planning and Environment",
-      "Poltiical Science, Sociology, Anthropology, and Economics",
-      "School of Irish Studies"
-    ]
-  ),
+      code: 'H',
+      name: 'Hall Building',
+      coordinates: LatLng(45.497282, -73.578931),
+      vertices: [
+        LatLng(45.4973844, -73.578354),
+        LatLng(45.4968314, -73.5788502),
+        LatLng(45.497175, -73.5795483),
+        LatLng(45.4977167, -73.579045)
+      ],
+      address: '1455 Maisonneuve Blvd W, Montreal, QC H3G 1M8',
+      campus: Campus.SGW,
+      hours: {
+        'mon': '6:00 - 23:00',
+        'tue': '6:00 - 23:00',
+        'wed': '6:00 - 23:00',
+        'thu': '6:00 - 23:00',
+        'fri': '6:00 - 23:00',
+        'sat': '6:00 - 23:00',
+        'sun': '6:00 - 23:00',
+      },
+      services: [
+        "Welcome Crew Office",
+        "DB Clarke Theatre",
+        "Dean of Students",
+        "Aboriginal Student Resource Centre",
+        "Concordia Student Union",
+        "IT Service Desk",
+        "Security Office",
+        "Student Success Centre",
+        "Mail Services",
+        "Archives",
+        "Career and Planning Services",
+        "Sexual Assault Resource Centre (SARC)"
+      ],
+      departments: [
+        "Geography, Planning and Environment",
+        "Poltiical Science, Sociology, Anthropology, and Economics",
+        "School of Irish Studies"
+      ]),
   'LB': ConcordiaBuilding(
-    code: 'LB',
-    name: 'Webster Library',
-    coordinates: LatLng(45.496806, -73.577878),
-    vertices: [
-      LatLng(45.496694, -73.578627),
-      LatLng(45.497285, -73.578069),
-      LatLng(45.496898, -73.577263),
-      LatLng(45.4965677, -73.5776063),
-      LatLng(45.4965014, -73.5774675),
-      LatLng(45.4962589, -73.5776955)
-    ],
-    address: '1400 Maisonneuve Blvd W, Montreal, QC H3G 1M8',
-    campus: Campus.SGW,
-    hours: {
-      'mon': 'Open 24 h',
-      'tue': 'Open 24 h',
-      'wed': 'Open 24 h',
-      'thu': 'Open 24 h',
-      'fri': 'Open 24 h',
-      'sat': 'Open 24 h',
-      'sun': 'Open 24 h',
-    },
-    services: [
-      "R. Howard Webster Library",
-      "Welcome Centre",
-      "Leonard and Bina Ellen Art Gallery",
-      "J.A. De Seve Cinema",
-      "Birks Students Service Centre",
-      "Campus Stores",
-      "Instructional and Information Technology Services (IITS)",
-      "4th Space"
-    ],
-    departments:[
-      "English",
-      "History",
-      "French Studies",
-      "Mathematics and Statistics",
-      "Education",
-      "Centre for Interdisciplinary Studies in Society and Culture (CISSC)",
-      "Centre for the Study of Learning and Performance"
-    ]
-  ),
+      code: 'LB',
+      name: 'Webster Library',
+      coordinates: LatLng(45.496806, -73.577878),
+      vertices: [
+        LatLng(45.496694, -73.578627),
+        LatLng(45.497285, -73.578069),
+        LatLng(45.496898, -73.577263),
+        LatLng(45.4965677, -73.5776063),
+        LatLng(45.4965014, -73.5774675),
+        LatLng(45.4962589, -73.5776955)
+      ],
+      address: '1400 Maisonneuve Blvd W, Montreal, QC H3G 1M8',
+      campus: Campus.SGW,
+      hours: {
+        'mon': 'Open 24 h',
+        'tue': 'Open 24 h',
+        'wed': 'Open 24 h',
+        'thu': 'Open 24 h',
+        'fri': 'Open 24 h',
+        'sat': 'Open 24 h',
+        'sun': 'Open 24 h',
+      },
+      services: [
+        "R. Howard Webster Library",
+        "Welcome Centre",
+        "Leonard and Bina Ellen Art Gallery",
+        "J.A. De Seve Cinema",
+        "Birks Students Service Centre",
+        "Campus Stores",
+        "Instructional and Information Technology Services (IITS)",
+        "4th Space"
+      ],
+      departments: [
+        "English",
+        "History",
+        "French Studies",
+        "Mathematics and Statistics",
+        "Education",
+        "Centre for Interdisciplinary Studies in Society and Culture (CISSC)",
+        "Centre for the Study of Learning and Performance"
+      ]),
   'MB': ConcordiaBuilding(
-    code: 'MB',
-    name: 'John Molson Building',
-    coordinates: LatLng(45.495282, -73.579047),
-    vertices: [
-      LatLng(45.495367, -73.579374),
-      LatLng(45.495532, -73.579189),
-      LatLng(45.495191, -73.578513),
-      LatLng(45.495014, -73.578711)
-    ],
-    address: '1450 Guy St, Montreal, QC H3H 1J5',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Career Management Services",
-      "John Molson Executive Centre",
-      "Performing Arts Facilities",
-    ],
-    departments:[
-      "Accountancy",
-      "Supply Chain and Business Technology Management",
-      "Finance",
-      "Management",
-      "Marketing",
-      "Goodman Institute of Investment Management",
-      "Executive MBA Program",
-      "Music",
-      "Theatre",
-      "Contemporary Dance"
-    ]
-  ),
+      code: 'MB',
+      name: 'John Molson Building',
+      coordinates: LatLng(45.495282, -73.579047),
+      vertices: [
+        LatLng(45.495367, -73.579374),
+        LatLng(45.495532, -73.579189),
+        LatLng(45.495191, -73.578513),
+        LatLng(45.495014, -73.578711)
+      ],
+      address: '1450 Guy St, Montreal, QC H3H 1J5',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: [
+        "Career Management Services",
+        "John Molson Executive Centre",
+        "Performing Arts Facilities",
+      ],
+      departments: [
+        "Accountancy",
+        "Supply Chain and Business Technology Management",
+        "Finance",
+        "Management",
+        "Marketing",
+        "Goodman Institute of Investment Management",
+        "Executive MBA Program",
+        "Music",
+        "Theatre",
+        "Contemporary Dance"
+      ]),
   'EV': ConcordiaBuilding(
-    code: 'EV',
-    name: 'EV Building',
-    coordinates: LatLng(45.495541, -73.577939),
-    vertices: [
-      LatLng(45.495579, -73.578757),
-      LatLng(45.4958504, -73.578472),
-      LatLng(45.4956582, -73.5780395),
-      LatLng(45.4960314, -73.5777019),
-      LatLng(45.4958349, -73.5772469),
-      LatLng(45.4952187, -73.577887)
-    ],
-    address: '1515 Saint-Catherine St W, Montreal, QC H3G 2W1',
-    campus: Campus.SGW,
-    hours: {
-      'mon': '6:30 - 23:00',
-      'tue': '6:30 - 23:00',
-      'wed': '6:30 - 23:00',
-      'thu': '6:30 - 23:00',
-      'fri': '6:30 - 23:00',
-      'sat': '6:30 - 23:00',
-      'sun': '6:30 - 23:00',
-    },
-    services: [
-      "LeGym",
-      "FOFA Gallery",
-    ],
-    departments:[
-      "Gina Cody School of Engineering and Computer Science",
-      "Electrical and Computer Engineering",
-      "Building, Civil and Environmental Engineering",
-      "Computer Science and Software Engineering",
-      "Mechanical, Industrial and Aerospace Engineering",
-      "Design and Computation Arts",
-      "Faculty of Fine Arts",
-      "Studio Arts",
-      "Art Education",
-      "Art History",
-      "Contemporary Dance",
-      "Recreation and Athletics",
-      "Zero Energy Building Studies",
-      "Centre for Pattern Recognition and Machine Intelligence",
-      "Centre for Composites"
-    ]
-  ),
+      code: 'EV',
+      name: 'EV Building',
+      coordinates: LatLng(45.495541, -73.577939),
+      vertices: [
+        LatLng(45.495579, -73.578757),
+        LatLng(45.4958504, -73.578472),
+        LatLng(45.4956582, -73.5780395),
+        LatLng(45.4960314, -73.5777019),
+        LatLng(45.4958349, -73.5772469),
+        LatLng(45.4952187, -73.577887)
+      ],
+      address: '1515 Saint-Catherine St W, Montreal, QC H3G 2W1',
+      campus: Campus.SGW,
+      hours: {
+        'mon': '6:30 - 23:00',
+        'tue': '6:30 - 23:00',
+        'wed': '6:30 - 23:00',
+        'thu': '6:30 - 23:00',
+        'fri': '6:30 - 23:00',
+        'sat': '6:30 - 23:00',
+        'sun': '6:30 - 23:00',
+      },
+      services: [
+        "LeGym",
+        "FOFA Gallery",
+      ],
+      departments: [
+        "Gina Cody School of Engineering and Computer Science",
+        "Electrical and Computer Engineering",
+        "Building, Civil and Environmental Engineering",
+        "Computer Science and Software Engineering",
+        "Mechanical, Industrial and Aerospace Engineering",
+        "Design and Computation Arts",
+        "Faculty of Fine Arts",
+        "Studio Arts",
+        "Art Education",
+        "Art History",
+        "Contemporary Dance",
+        "Recreation and Athletics",
+        "Zero Energy Building Studies",
+        "Centre for Pattern Recognition and Machine Intelligence",
+        "Centre for Composites"
+      ]),
   'FG': ConcordiaBuilding(
-    code: 'FG',
-    name: 'Faubourg St-Catherines Building',
-    coordinates: LatLng(45.494264, -73.578309),
-    vertices: [
-      LatLng(45.494296, -73.5785193),
-      LatLng(45.4943677, -73.5784375),
-      LatLng(45.494238, -73.5782266),
-      LatLng(45.4941722, -73.5783051)
-    ],
-    address: '1610 Saint-Catherine St W, Montreal, QC H3H 1L9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Classrooms"
-    ],
-    departments:[
-      "Education"
-    ]
-  ),
+      code: 'FG',
+      name: 'Faubourg St-Catherines Building',
+      coordinates: LatLng(45.494264, -73.578309),
+      vertices: [
+        LatLng(45.494296, -73.5785193),
+        LatLng(45.4943677, -73.5784375),
+        LatLng(45.494238, -73.5782266),
+        LatLng(45.4941722, -73.5783051)
+      ],
+      address: '1610 Saint-Catherine St W, Montreal, QC H3H 1L9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Classrooms"],
+      departments: ["Education"]),
   'B': ConcordiaBuilding(
-    code: 'B',
-    name: 'ECA B-Annex',
-    coordinates: LatLng(45.497833, -73.579541),
-    vertices: [
-      LatLng(45.497932, -73.579502),
-      LatLng(45.497761, -73.579663),
-      LatLng(45.497726, -73.579595),
-      LatLng(45.497894, -73.579428)
-    ],
-    address: '2160 Bishop St, Montreal, QC H3G 2E9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Engineering and Computer Science Association"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'B',
+      name: 'ECA B-Annex',
+      coordinates: LatLng(45.497833, -73.579541),
+      vertices: [
+        LatLng(45.497932, -73.579502),
+        LatLng(45.497761, -73.579663),
+        LatLng(45.497726, -73.579595),
+        LatLng(45.497894, -73.579428)
+      ],
+      address: '2160 Bishop St, Montreal, QC H3G 2E9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Engineering and Computer Science Association"],
+      departments: ["No departments in this building"]),
   'CB': ConcordiaBuilding(
-    code: 'CB',
-    name: 'CB Building',
-    coordinates: LatLng(45.495106, -73.574341),
-    vertices: [
-      LatLng(45.4952441, -73.5738566),
-      LatLng(45.495403, -73.5741855),
-      LatLng(45.4950591, -73.5745154),
-      LatLng(45.4949339, -73.5742506),
-      LatLng(45.4950613, -73.5741292),
-      LatLng(45.4950291, -73.5740662),
-      LatLng(45.4951059, -73.5739901),
-      LatLng(45.4951346, -73.5740531),
-      LatLng(45.495194, -73.5739947),
-      LatLng(45.495163, -73.5739347)
-    ],
-    address: '1425 René-Lévesque Blvd W, Montreal, QC H3G 1T7',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'CB',
+      name: 'CB Building',
+      coordinates: LatLng(45.495106, -73.574341),
+      vertices: [
+        LatLng(45.4952441, -73.5738566),
+        LatLng(45.495403, -73.5741855),
+        LatLng(45.4950591, -73.5745154),
+        LatLng(45.4949339, -73.5742506),
+        LatLng(45.4950613, -73.5741292),
+        LatLng(45.4950291, -73.5740662),
+        LatLng(45.4951059, -73.5739901),
+        LatLng(45.4951346, -73.5740531),
+        LatLng(45.495194, -73.5739947),
+        LatLng(45.495163, -73.5739347)
+      ],
+      address: '1425 René-Lévesque Blvd W, Montreal, QC H3G 1T7',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'CI': ConcordiaBuilding(
-    code: 'CI',
-    name: 'CI Annex',
-    coordinates: LatLng(45.497461, -73.579937),
-    vertices: [
-      LatLng(45.49737, -73.579938),
-      LatLng(45.497402, -73.580014),
-      LatLng(45.49758, -73.579835),
-      LatLng(45.4975439, -73.5797592)
-    ],
-    address: '2149 Mackay St, Montreal, QC H3G 2J2',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "School of Community and Public Affairs"
-    ]
-  ),
+      code: 'CI',
+      name: 'CI Annex',
+      coordinates: LatLng(45.497461, -73.579937),
+      vertices: [
+        LatLng(45.49737, -73.579938),
+        LatLng(45.497402, -73.580014),
+        LatLng(45.49758, -73.579835),
+        LatLng(45.4975439, -73.5797592)
+      ],
+      address: '2149 Mackay St, Montreal, QC H3G 2J2',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["School of Community and Public Affairs"]),
   'CL': ConcordiaBuilding(
-    code: 'CL',
-    name: 'CL Annex',
-    coordinates: LatLng(45.494320, -73.579283),
-    vertices: [
-      LatLng(45.494251, -73.578928),
-      LatLng(45.4941404, -73.5790782),
-      LatLng(45.494339, -73.579427),
-      LatLng(45.494465, -73.579285)
-    ],
-    address: '1665 Saint-Catherine St W, Montreal, QC H3H 1L9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Concordia Continueing Education"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'CL',
+      name: 'CL Annex',
+      coordinates: LatLng(45.494320, -73.579283),
+      vertices: [
+        LatLng(45.494251, -73.578928),
+        LatLng(45.4941404, -73.5790782),
+        LatLng(45.494339, -73.579427),
+        LatLng(45.494465, -73.579285)
+      ],
+      address: '1665 Saint-Catherine St W, Montreal, QC H3H 1L9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Concordia Continueing Education"],
+      departments: ["No departments in this building"]),
   'D': ConcordiaBuilding(
-    code: 'D',
-    name: 'D Annex',
-    coordinates: LatLng(45.497793, -73.579355),
-    vertices: [
-      LatLng(45.497857, -73.579345),
-      LatLng(45.497752, -73.579444),
-      LatLng(45.497726, -73.579400),
-      LatLng(45.497738, -73.579389),
-      LatLng(45.497726, -73.579366),
-      LatLng(45.497822, -73.579273)
-    ],
-    address: '2140 Bishop St, Montreal, QC H3G 2E9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "Theological Studies"
-    ]
-  ),
+      code: 'D',
+      name: 'D Annex',
+      coordinates: LatLng(45.497793, -73.579355),
+      vertices: [
+        LatLng(45.497857, -73.579345),
+        LatLng(45.497752, -73.579444),
+        LatLng(45.497726, -73.579400),
+        LatLng(45.497738, -73.579389),
+        LatLng(45.497726, -73.579366),
+        LatLng(45.497822, -73.579273)
+      ],
+      address: '2140 Bishop St, Montreal, QC H3G 2E9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["Theological Studies"]),
   'EN': ConcordiaBuilding(
-    code: 'EN',
-    name: 'EN Annex',
-    coordinates: LatLng(45.496880, -73.579552),
-    vertices: [
-      LatLng(45.49693, -73.57955),
-      LatLng(45.49689, -73.57947),
-      LatLng(45.49679, -73.57958),
-      LatLng(45.4968, -73.5796),
-      LatLng(45.49667, -73.57973),
-      LatLng(45.4967, -73.57978)
-    ],
-    address: '2070 Mackay St, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'EN',
+      name: 'EN Annex',
+      coordinates: LatLng(45.496880, -73.579552),
+      vertices: [
+        LatLng(45.49693, -73.57955),
+        LatLng(45.49689, -73.57947),
+        LatLng(45.49679, -73.57958),
+        LatLng(45.4968, -73.5796),
+        LatLng(45.49667, -73.57973),
+        LatLng(45.4967, -73.57978)
+      ],
+      address: '2070 Mackay St, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'ER': ConcordiaBuilding(
-    code: 'ER',
-    name: 'ER Building',
-    coordinates: LatLng(45.496483, -73.579756),
-    vertices: [
-      LatLng(45.496588, -73.579785),
-      LatLng(45.496454, -73.579893),
-      LatLng(45.496392, -73.579752),
-      LatLng(45.496524, -73.579629)
-    ],
-    address: '2155 Guy St, Montreal, QC H3H 2L9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'ER',
+      name: 'ER Building',
+      coordinates: LatLng(45.496483, -73.579756),
+      vertices: [
+        LatLng(45.496588, -73.579785),
+        LatLng(45.496454, -73.579893),
+        LatLng(45.496392, -73.579752),
+        LatLng(45.496524, -73.579629)
+      ],
+      address: '2155 Guy St, Montreal, QC H3H 2L9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'FA': ConcordiaBuilding(
-    code: 'FA',
-    name: 'FA Annex',
-    coordinates: LatLng(45.496808, -73.579482),
-    vertices: [
-      LatLng(45.496872, -73.579488),
-      LatLng(45.496774, -73.579586),
-      LatLng(45.496741, -73.579496),
-      LatLng(45.496831, -73.579395)
-    ],
-    address: '2060 MacKay, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "Religions and Cultures"
-    ]
-  ),
+      code: 'FA',
+      name: 'FA Annex',
+      coordinates: LatLng(45.496808, -73.579482),
+      vertices: [
+        LatLng(45.496872, -73.579488),
+        LatLng(45.496774, -73.579586),
+        LatLng(45.496741, -73.579496),
+        LatLng(45.496831, -73.579395)
+      ],
+      address: '2060 MacKay, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["Religions and Cultures"]),
   'FB': ConcordiaBuilding(
-    code: 'FB',
-    name: 'Faubourg Building',
-    coordinates: LatLng(45.494736, -73.577733),
-    vertices: [
-      LatLng(45.494694, -73.578029),
-      LatLng(45.494395, -73.577519),
-      LatLng(45.494646, -73.577214),
-      LatLng(45.494912, -73.577766)
-    ],
-    address: '1250 Guy St, Montreal, QC H3H 2T4',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Human Resources",
-      "Enrolment Services",
-      "Office of the Registrar",
-      "Student Recruitment",
-      "Examinations Office",
-      "Senior non-credit program"
-    ],
-    departments:[
-      "Classics, Modern Languages and Lingustics",
-      "Concordia Continueing Education",
-      "Mel Hoppenheim School of Cinema",
-      "Montreal Institute for Genocide and Human Rights Studies",
-      "District 3 Innovation Center"
-    ]
-  ),
+      code: 'FB',
+      name: 'Faubourg Building',
+      coordinates: LatLng(45.494736, -73.577733),
+      vertices: [
+        LatLng(45.494694, -73.578029),
+        LatLng(45.494395, -73.577519),
+        LatLng(45.494646, -73.577214),
+        LatLng(45.494912, -73.577766)
+      ],
+      address: '1250 Guy St, Montreal, QC H3H 2T4',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: [
+        "Human Resources",
+        "Enrolment Services",
+        "Office of the Registrar",
+        "Student Recruitment",
+        "Examinations Office",
+        "Senior non-credit program"
+      ],
+      departments: [
+        "Classics, Modern Languages and Lingustics",
+        "Concordia Continueing Education",
+        "Mel Hoppenheim School of Cinema",
+        "Montreal Institute for Genocide and Human Rights Studies",
+        "District 3 Innovation Center"
+      ]),
   'GM': ConcordiaBuilding(
-    code: 'GM',
-    name: 'Guy-De Maisonneuve Building',
-    coordinates: LatLng(45.495879, -73.578704),
-    vertices: [
-      LatLng(45.495943, -73.578975),
-      LatLng(45.49573, -73.578626),
-      LatLng(45.495807, -73.578558),
-      LatLng(45.496026, -73.578903)
-    ],
-    address: '1550 De Maisonneuve West, Montreal, QC',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Access Centre for Students with Disabilities",
-      "Environmental Health and Safety",
-      "Facilities Management",
-      "Financial Aid and Awards Office",
-      "Financial Services",
-      "Graduate Studies",
-      "Health Services",
-      "Institute for Co-operative Education",
-      "International Students Office",
-      "Offices of Rights and Responsibilities",
-      "Office of Sustainability",
-      "Office of the Chief Communications Office",
-      "Office of the President",
-      "Office of the Provost and VP, Academic",
-      "Office of the VP, Institutional Relations and Secretary General",
-      "Office of the VP Rsearch and Graduate Studies",
-      "Ombuds Office",
-      "University Communication Services"
-    ],
-    departments:[
-      "Contemporary Dance",
-      "Music",
-      "Theatre"
-    ]
-  ),
+      code: 'GM',
+      name: 'Guy-De Maisonneuve Building',
+      coordinates: LatLng(45.495879, -73.578704),
+      vertices: [
+        LatLng(45.495943, -73.578975),
+        LatLng(45.49573, -73.578626),
+        LatLng(45.495807, -73.578558),
+        LatLng(45.496026, -73.578903)
+      ],
+      address: '1550 De Maisonneuve West, Montreal, QC',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: [
+        "Access Centre for Students with Disabilities",
+        "Environmental Health and Safety",
+        "Facilities Management",
+        "Financial Aid and Awards Office",
+        "Financial Services",
+        "Graduate Studies",
+        "Health Services",
+        "Institute for Co-operative Education",
+        "International Students Office",
+        "Offices of Rights and Responsibilities",
+        "Office of Sustainability",
+        "Office of the Chief Communications Office",
+        "Office of the President",
+        "Office of the Provost and VP, Academic",
+        "Office of the VP, Institutional Relations and Secretary General",
+        "Office of the VP Rsearch and Graduate Studies",
+        "Ombuds Office",
+        "University Communication Services"
+      ],
+      departments: ["Contemporary Dance", "Music", "Theatre"]),
   'GN': ConcordiaBuilding(
-    code: 'GN',
-    name: 'Grey Nuns Building',
-    coordinates: LatLng(45.493978, -73.576233),
-    vertices: [
-      LatLng(45.49411, -73.576226),
-      LatLng(45.494024, -73.576009),
-      LatLng(45.49335, -73.576693),
-      LatLng(45.493436, -73.576848)
-    ],
-    address: '1175 St Mathieu St, Montreal, QC H3H 2P7',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Residences",
-      "Grey Nuns Library",
-      "Daycare Centre",
-      "Summer Accommodation"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'GN',
+      name: 'Grey Nuns Building',
+      coordinates: LatLng(45.493978, -73.576233),
+      vertices: [
+        LatLng(45.49411, -73.576226),
+        LatLng(45.494024, -73.576009),
+        LatLng(45.49335, -73.576693),
+        LatLng(45.493436, -73.576848)
+      ],
+      address: '1175 St Mathieu St, Montreal, QC H3H 2P7',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Residences", "Grey Nuns Library", "Daycare Centre", "Summer Accommodation"],
+      departments: ["No departments in this building"]),
   'GS': ConcordiaBuilding(
-    code: 'GS',
-    name: 'GS Building',
-    coordinates: LatLng(45.496566, -73.581150),
-    vertices: [
-      LatLng(45.496785, -73.581300),
-      LatLng(45.496624, -73.581451),
-      LatLng(45.496579, -73.581435),
-      LatLng(45.496415, -73.580942),
-      LatLng(45.496485, -73.580879),
-      LatLng(45.496477, -73.580845),
-      LatLng(45.496518, -73.580806),
-      LatLng(45.496654, -73.581172),
-      LatLng(45.496712, -73.581130)
-    ],
-    address: '1538 Sherbrooke St W, Montreal, QC H3H 2L9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'GS',
+      name: 'GS Building',
+      coordinates: LatLng(45.496566, -73.581150),
+      vertices: [
+        LatLng(45.496785, -73.581300),
+        LatLng(45.496624, -73.581451),
+        LatLng(45.496579, -73.581435),
+        LatLng(45.496415, -73.580942),
+        LatLng(45.496485, -73.580879),
+        LatLng(45.496477, -73.580845),
+        LatLng(45.496518, -73.580806),
+        LatLng(45.496654, -73.581172),
+        LatLng(45.496712, -73.581130)
+      ],
+      address: '1538 Sherbrooke St W, Montreal, QC H3H 2L9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'K': ConcordiaBuilding(
-    code: 'K',
-    name: 'K Annex',
-    coordinates: LatLng(45.497831, -73.579436),
-    vertices: [
-      LatLng(45.497890, -73.579424),
-      LatLng(45.497643, -73.579669),
-      LatLng(45.497604, -73.579589),
-      LatLng(45.497687, -73.579509),
-      LatLng(45.497713, -73.579559),
-      LatLng(45.497760, -73.579514),
-      LatLng(45.497753, -73.579497),
-      LatLng(45.497782, -73.579471),
-      LatLng(45.497770, -73.579439),
-      LatLng(45.497861, -73.579355)
-    ],
-    address: '2150 Bishop St, Montreal, QC H3G 2E9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Theological Studies"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'K',
+      name: 'K Annex',
+      coordinates: LatLng(45.497831, -73.579436),
+      vertices: [
+        LatLng(45.497890, -73.579424),
+        LatLng(45.497643, -73.579669),
+        LatLng(45.497604, -73.579589),
+        LatLng(45.497687, -73.579509),
+        LatLng(45.497713, -73.579559),
+        LatLng(45.497760, -73.579514),
+        LatLng(45.497753, -73.579497),
+        LatLng(45.497782, -73.579471),
+        LatLng(45.497770, -73.579439),
+        LatLng(45.497861, -73.579355)
+      ],
+      address: '2150 Bishop St, Montreal, QC H3G 2E9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Theological Studies"],
+      departments: ["No departments in this building"]),
   'LD': ConcordiaBuilding(
-    code: 'LD',
-    name: 'LD Building',
-    coordinates: LatLng(45.496712, -73.577256),
-    vertices: [
-      LatLng(45.496860, -73.577169),
-      LatLng(45.496558, -73.577477),
-      LatLng(45.496532, -73.577405),
-      LatLng(45.496822, -73.577093)
-    ],
-    address: '1424 Bishop St, Montreal, QC H3G 2E6',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "CSU Daycare and Nursery"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'LD',
+      name: 'LD Building',
+      coordinates: LatLng(45.496712, -73.577256),
+      vertices: [
+        LatLng(45.496860, -73.577169),
+        LatLng(45.496558, -73.577477),
+        LatLng(45.496532, -73.577405),
+        LatLng(45.496822, -73.577093)
+      ],
+      address: '1424 Bishop St, Montreal, QC H3G 2E6',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["CSU Daycare and Nursery"],
+      departments: ["No departments in this building"]),
   'LS': ConcordiaBuilding(
-    code: 'LS',
-    name: 'Learning Square Building',
-    coordinates: LatLng(45.496344, -73.579494),
-    vertices: [
-      LatLng(45.496376, -73.579252),
-      LatLng(45.496178, -73.579449),
-      LatLng(45.496258, -73.579675),
-      LatLng(45.496370, -73.579563),
-      LatLng(45.496414, -73.579693),
-      LatLng(45.496535, -73.579569)
-    ],
-    address: '1535 Boul. de Maisonneuve O, Montréal, QC H3G 1M9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "IT Services"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'LS',
+      name: 'Learning Square Building',
+      coordinates: LatLng(45.496344, -73.579494),
+      vertices: [
+        LatLng(45.496376, -73.579252),
+        LatLng(45.496178, -73.579449),
+        LatLng(45.496258, -73.579675),
+        LatLng(45.496370, -73.579563),
+        LatLng(45.496414, -73.579693),
+        LatLng(45.496535, -73.579569)
+      ],
+      address: '1535 Boul. de Maisonneuve O, Montréal, QC H3G 1M9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["IT Services"],
+      departments: ["No departments in this building"]),
   'M': ConcordiaBuilding(
-    code: 'M',
-    name: 'M Annex',
-    coordinates: LatLng(45.497344, -73.579783),
-    vertices: [
-      LatLng(45.497291, -73.579778),
-      LatLng(45.497323, -73.579845),
-      LatLng(45.49742, -73.579751),
-      LatLng(45.49739, -73.579681)
-    ],
-    address: '2135 Mackay St, Montreal, QC H3G 2J2',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'M',
+      name: 'M Annex',
+      coordinates: LatLng(45.497344, -73.579783),
+      vertices: [
+        LatLng(45.497291, -73.579778),
+        LatLng(45.497323, -73.579845),
+        LatLng(45.49742, -73.579751),
+        LatLng(45.49739, -73.579681)
+      ],
+      address: '2135 Mackay St, Montreal, QC H3G 2J2',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'MI': ConcordiaBuilding(
-    code: 'MI',
-    name: 'MI Annex',
-    coordinates: LatLng(45.497758, -73.579288),
-    vertices: [
-      LatLng(45.497820, -73.579272),
-      LatLng(45.497710, -73.579379),
-      LatLng(45.497689, -73.579329),
-      LatLng(45.497702, -73.579319),
-      LatLng(45.497695, -73.579302),
-      LatLng(45.497791, -73.579206)
-    ],
-    address: '2130 Bishop St, Montreal, QC H3G 2E9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "ACUMAE",
-      "SCOMM",
-      "CUSSU",
-      "CUUSS-TS",
-      "CULEU",
-      "CUPEU",
-      "CUCEPTFU"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'MI',
+      name: 'MI Annex',
+      coordinates: LatLng(45.497758, -73.579288),
+      vertices: [
+        LatLng(45.497820, -73.579272),
+        LatLng(45.497710, -73.579379),
+        LatLng(45.497689, -73.579329),
+        LatLng(45.497702, -73.579319),
+        LatLng(45.497695, -73.579302),
+        LatLng(45.497791, -73.579206)
+      ],
+      address: '2130 Bishop St, Montreal, QC H3G 2E9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["ACUMAE", "SCOMM", "CUSSU", "CUUSS-TS", "CULEU", "CUPEU", "CUCEPTFU"],
+      departments: ["No departments in this building"]),
   'MU': ConcordiaBuilding(
-    code: 'MU',
-    name: 'MU Annex',
-    coordinates: LatLng(45.497873, -73.579610),
-    vertices: [
-      LatLng(45.497972, -73.579572),
-      LatLng(45.497800, -73.579738),
-      LatLng(45.497763, -73.579665),
-      LatLng(45.497936, -73.579502)
-    ],
-    address: '2170 Bishop St, Montreal, QC H3G 2E9',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Simone de Beauvoir Institute"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'MU',
+      name: 'MU Annex',
+      coordinates: LatLng(45.497873, -73.579610),
+      vertices: [
+        LatLng(45.497972, -73.579572),
+        LatLng(45.497800, -73.579738),
+        LatLng(45.497763, -73.579665),
+        LatLng(45.497936, -73.579502)
+      ],
+      address: '2170 Bishop St, Montreal, QC H3G 2E9',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Simone de Beauvoir Institute"],
+      departments: ["No departments in this building"]),
   'P': ConcordiaBuilding(
-    code: 'P',
-    name: 'P Annex',
-    coordinates: LatLng(45.496662, -73.579162),
-    vertices: [
-      LatLng(45.496584, -73.579181),
-      LatLng(45.496675, -73.579082),
-      LatLng(45.49672, -73.579167),
-      LatLng(45.496626, -73.579266)
-    ],
-    address: '2020 Mackay St, Montreal, QC H3G 2M2',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'P',
+      name: 'P Annex',
+      coordinates: LatLng(45.496662, -73.579162),
+      vertices: [
+        LatLng(45.496584, -73.579181),
+        LatLng(45.496675, -73.579082),
+        LatLng(45.49672, -73.579167),
+        LatLng(45.496626, -73.579266)
+      ],
+      address: '2020 Mackay St, Montreal, QC H3G 2M2',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'PR': ConcordiaBuilding(
-    code: 'PR',
-    name: 'PR Annex',
-    coordinates: LatLng(45.496981, -73.579809),
-    vertices: [
-      LatLng(45.496961, -73.579973),
-      LatLng(45.49706, -73.579867),
-      LatLng(45.497045, -73.579839),
-      LatLng(45.496947, -73.579941)
-    ],
-    address: '2100 Mackay St, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'PR',
+      name: 'PR Annex',
+      coordinates: LatLng(45.496981, -73.579809),
+      vertices: [
+        LatLng(45.496961, -73.579973),
+        LatLng(45.49706, -73.579867),
+        LatLng(45.497045, -73.579839),
+        LatLng(45.496947, -73.579941)
+      ],
+      address: '2100 Mackay St, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'Q': ConcordiaBuilding(
-    code: 'Q',
-    name: 'Q Annex',
-    coordinates: LatLng(45.496620, -73.579091),
-    vertices: [
-      LatLng(45.496554, -73.579121),
-      LatLng(45.496582, -73.579173),
-      LatLng(45.49667, -73.579082),
-      LatLng(45.496643, -73.57903)
-    ],
-    address: '2010 Mackay St, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Ethnic Students' Association"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'Q',
+      name: 'Q Annex',
+      coordinates: LatLng(45.496620, -73.579091),
+      vertices: [
+        LatLng(45.496554, -73.579121),
+        LatLng(45.496582, -73.579173),
+        LatLng(45.49667, -73.579082),
+        LatLng(45.496643, -73.57903)
+      ],
+      address: '2010 Mackay St, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Ethnic Students' Association"],
+      departments: ["No departments in this building"]),
   'R': ConcordiaBuilding(
-    code: 'R',
-    name: 'R Annex',
-    coordinates: LatLng(45.496772, -73.579415),
-    vertices: [
-      LatLng(45.496713, -73.579424),
-      LatLng(45.496802, -73.57933),
-      LatLng(45.496834, -73.5794),
-      LatLng(45.496747, -73.579483)
-    ],
-    address: '2050 Mackay St, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "Religions and Cultures"
-    ]
-  ),
+      code: 'R',
+      name: 'R Annex',
+      coordinates: LatLng(45.496772, -73.579415),
+      vertices: [
+        LatLng(45.496713, -73.579424),
+        LatLng(45.496802, -73.57933),
+        LatLng(45.496834, -73.5794),
+        LatLng(45.496747, -73.579483)
+      ],
+      address: '2050 Mackay St, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["Religions and Cultures"]),
   'RR': ConcordiaBuilding(
-    code: 'RR',
-    name: 'RR Annex',
-    coordinates: LatLng(45.496736, -73.579340),
-    vertices: [
-      LatLng(45.496649, -73.579476),
-      LatLng(45.496791, -73.579333),
-      LatLng(45.496756, -73.579259),
-      LatLng(45.496613, -73.579402)
-    ],
-    address: '2040 Mackay St, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "Liberal Arts College"
-    ]
-  ),
+      code: 'RR',
+      name: 'RR Annex',
+      coordinates: LatLng(45.496736, -73.579340),
+      vertices: [
+        LatLng(45.496649, -73.579476),
+        LatLng(45.496791, -73.579333),
+        LatLng(45.496756, -73.579259),
+        LatLng(45.496613, -73.579402)
+      ],
+      address: '2040 Mackay St, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["Liberal Arts College"]),
   'S': ConcordiaBuilding(
-    code: 'S',
-    name: 'S Annex',
-    coordinates: LatLng(45.497387, -73.579850),
-    vertices: [
-      LatLng(45.497366, -73.579931),
-      LatLng(45.497487, -73.579815),
-      LatLng(45.497459, -73.579756),
-      LatLng(45.497436, -73.579776),
-      LatLng(45.497424, -73.579762),
-      LatLng(45.497329, -73.57986)
-    ],
-    address: '2145 Mackay St, Montreal, QC H3G 2J2',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "Department of Philosophy"
-    ]
-  ),
+      code: 'S',
+      name: 'S Annex',
+      coordinates: LatLng(45.497387, -73.579850),
+      vertices: [
+        LatLng(45.497366, -73.579931),
+        LatLng(45.497487, -73.579815),
+        LatLng(45.497459, -73.579756),
+        LatLng(45.497436, -73.579776),
+        LatLng(45.497424, -73.579762),
+        LatLng(45.497329, -73.57986)
+      ],
+      address: '2145 Mackay St, Montreal, QC H3G 2J2',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["Department of Philosophy"]),
   'SB': ConcordiaBuilding(
-    code: 'SB',
-    name: 'Samuel Bronfman Building',
-    coordinates: LatLng(45.496585, -73.586140),
-    vertices: [
-      LatLng(45.496533, -73.586209),
-      LatLng(45.496541, -73.586041),
-      LatLng(45.496621, -73.585972),
-      LatLng(45.496672, -73.586086)
-    ],
-    address: '1590 Docteur Penfield, Montreal, QC',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Arts and Science Research Groups"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'SB',
+      name: 'Samuel Bronfman Building',
+      coordinates: LatLng(45.496585, -73.586140),
+      vertices: [
+        LatLng(45.496533, -73.586209),
+        LatLng(45.496541, -73.586041),
+        LatLng(45.496621, -73.585972),
+        LatLng(45.496672, -73.586086)
+      ],
+      address: '1590 Docteur Penfield, Montreal, QC',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Arts and Science Research Groups"],
+      departments: ["No departments in this building"]),
   'T': ConcordiaBuilding(
-    code: 'T',
-    name: 'T Annex',
-    coordinates: LatLng(45.496702, -73.579254),
-    vertices: [
-      LatLng(45.496665, -73.579336),
-      LatLng(45.496742, -73.579256),
-      LatLng(45.496711, -73.579189),
-      LatLng(45.496631, -73.579269)
-    ],
-    address: '2030 MacKay, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Graduate Students Association"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'T',
+      name: 'T Annex',
+      coordinates: LatLng(45.496702, -73.579254),
+      vertices: [
+        LatLng(45.496665, -73.579336),
+        LatLng(45.496742, -73.579256),
+        LatLng(45.496711, -73.579189),
+        LatLng(45.496631, -73.579269)
+      ],
+      address: '2030 MacKay, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Graduate Students Association"],
+      departments: ["No departments in this building"]),
   'TD': ConcordiaBuilding(
-    code: 'TD',
-    name: 'Toronto Dominion Building',
-    coordinates: LatLng(45.494677, -73.578728),
-    vertices: [
-      LatLng(45.494949, -73.578178),
-      LatLng(45.495031, -73.578083),
-      LatLng(45.495089, -73.57823),
-      LatLng(45.495019, -73.578318)
-    ],
-    address: '1410 Guy St, Montreal, QC H3H 2L7',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "CUSP"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'TD',
+      name: 'Toronto Dominion Building',
+      coordinates: LatLng(45.494677, -73.578728),
+      vertices: [
+        LatLng(45.494949, -73.578178),
+        LatLng(45.495031, -73.578083),
+        LatLng(45.495089, -73.57823),
+        LatLng(45.495019, -73.578318)
+      ],
+      address: '1410 Guy St, Montreal, QC H3H 2L7',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["CUSP"],
+      departments: ["No departments in this building"]),
   'V': ConcordiaBuilding(
-    code: 'V',
-    name: 'V Annex',
-    coordinates: LatLng(45.497031, -73.579940),
-    vertices: [
-      LatLng(45.496968, -73.579983),
-      LatLng(45.497069, -73.57989),
-      LatLng(45.497085, -73.579915),
-      LatLng(45.496981, -73.580015)
-    ],
-    address: '2110 Mackay St, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "CUTV",
-      "Centre 2110"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'V',
+      name: 'V Annex',
+      coordinates: LatLng(45.497031, -73.579940),
+      vertices: [
+        LatLng(45.496968, -73.579983),
+        LatLng(45.497069, -73.57989),
+        LatLng(45.497085, -73.579915),
+        LatLng(45.496981, -73.580015)
+      ],
+      address: '2110 Mackay St, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["CUTV", "Centre 2110"],
+      departments: ["No departments in this building"]),
   'VA': ConcordiaBuilding(
     code: 'VA',
     name: 'Visual Arts Building',
@@ -929,686 +774,539 @@ var buildings = {
     },
   ),
   'X': ConcordiaBuilding(
-    code: 'X',
-    name: 'X Annex',
-    coordinates: LatLng(45.496905, -73.579682),
-    vertices: [
-      LatLng(45.4969, -73.57981),
-      LatLng(45.49698, -73.57974),
-      LatLng(45.49695, -73.57967),
-      LatLng(45.49685, -73.57976),
-      LatLng(45.49687, -73.57981),
-      LatLng(45.49689, -73.57979),
-    ],
-    address: '2080 Mackay, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Concordia International"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'X',
+      name: 'X Annex',
+      coordinates: LatLng(45.496905, -73.579682),
+      vertices: [
+        LatLng(45.4969, -73.57981),
+        LatLng(45.49698, -73.57974),
+        LatLng(45.49695, -73.57967),
+        LatLng(45.49685, -73.57976),
+        LatLng(45.49687, -73.57981),
+        LatLng(45.49689, -73.57979),
+      ],
+      address: '2080 Mackay, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Concordia International"],
+      departments: ["No departments in this building"]),
   'Z': ConcordiaBuilding(
-    code: 'Z',
-    name: 'Z Annex',
-    coordinates: LatLng(45.496930, -73.579737),
-    vertices: [
-      LatLng(45.49702, -73.57982),
-      LatLng(45.49698, -73.57975),
-      LatLng(45.49689, -73.57983),
-      LatLng(45.49693, -73.57991)
-    ],
-    address: '2090 Mackay, Montreal, QC H3G 2J1',
-    campus: Campus.SGW,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Multi-Faith and Spirituality Centre",
-      "Sustainable Concordia"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'Z',
+      name: 'Z Annex',
+      coordinates: LatLng(45.496930, -73.579737),
+      vertices: [
+        LatLng(45.49702, -73.57982),
+        LatLng(45.49698, -73.57975),
+        LatLng(45.49689, -73.57983),
+        LatLng(45.49693, -73.57991)
+      ],
+      address: '2090 Mackay, Montreal, QC H3G 2J1',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Multi-Faith and Spirituality Centre", "Sustainable Concordia"],
+      departments: ["No departments in this building"]),
   //******************************************************************************************************************
   // Loyola Buildings
   'AD': ConcordiaBuilding(
-    code: 'AD',
-    name: 'Administration Building',
-    coordinates: LatLng(45.457896, -73.639878),
-    vertices: [
-      LatLng(45.457794, -73.639837),
-      LatLng(45.457911, -73.640125),
-      LatLng(45.457982, -73.640068),
-      LatLng(45.457963, -73.64001),
-      LatLng(45.45827, -73.639766),
-      LatLng(45.458294, -73.63982),
-      LatLng(45.458369, -73.639762),
-      LatLng(45.45825, -73.639449),
-      LatLng(45.45817, -73.639509),
-      LatLng(45.458202, -73.639613),
-      LatLng(45.458087, -73.63969),
-      LatLng(45.458059, -73.639635),
-      LatLng(45.457999, -73.639673),
-      LatLng(45.458019, -73.639757),
-      LatLng(45.457915, -73.639833),
-      LatLng(45.457874, -73.639778)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Welcome Crew Office",
-      "Centre for Teaching and Learning",
-      "Loyola International College",
-      "Provost and VP, Academic",
-      "Dean of Students",
-      "Concordia Multi-Faith and Spirituality Centre",
-      "Advocacy and Support Services",
-      "Access Centre for Students with Disabilities",
-      "Counseling and Development",
-      "Health Services"
-    ],
-    departments:[
-      "Faculty of Arts and Science"
-    ]
-  ),
+      code: 'AD',
+      name: 'Administration Building',
+      coordinates: LatLng(45.457896, -73.639878),
+      vertices: [
+        LatLng(45.457794, -73.639837),
+        LatLng(45.457911, -73.640125),
+        LatLng(45.457982, -73.640068),
+        LatLng(45.457963, -73.64001),
+        LatLng(45.45827, -73.639766),
+        LatLng(45.458294, -73.63982),
+        LatLng(45.458369, -73.639762),
+        LatLng(45.45825, -73.639449),
+        LatLng(45.45817, -73.639509),
+        LatLng(45.458202, -73.639613),
+        LatLng(45.458087, -73.63969),
+        LatLng(45.458059, -73.639635),
+        LatLng(45.457999, -73.639673),
+        LatLng(45.458019, -73.639757),
+        LatLng(45.457915, -73.639833),
+        LatLng(45.457874, -73.639778)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: [
+        "Welcome Crew Office",
+        "Centre for Teaching and Learning",
+        "Loyola International College",
+        "Provost and VP, Academic",
+        "Dean of Students",
+        "Concordia Multi-Faith and Spirituality Centre",
+        "Advocacy and Support Services",
+        "Access Centre for Students with Disabilities",
+        "Counseling and Development",
+        "Health Services"
+      ],
+      departments: ["Faculty of Arts and Science"]),
   'BB': ConcordiaBuilding(
-    code: 'BB',
-    name: 'BB Annex',
-    coordinates: LatLng(45.459766, -73.639174),
-    vertices: [
-      LatLng(45.459695, -73.639171),
-      LatLng(45.459782, -73.639099),
-      LatLng(45.459809, -73.639169),
-      LatLng(45.459723, -73.639237)
-    ],
-    address: '3502 Avenue Belmore, Montréal, QC H4B 2B9',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "CPE Les P'tits Profs Paycare"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'BB',
+      name: 'BB Annex',
+      coordinates: LatLng(45.459766, -73.639174),
+      vertices: [
+        LatLng(45.459695, -73.639171),
+        LatLng(45.459782, -73.639099),
+        LatLng(45.459809, -73.639169),
+        LatLng(45.459723, -73.639237)
+      ],
+      address: '3502 Avenue Belmore, Montréal, QC H4B 2B9',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["CPE Les P'tits Profs Paycare"],
+      departments: ["No departments in this building"]),
   'BH': ConcordiaBuilding(
-    code: 'BH',
-    name: 'BH Annex',
-    coordinates: LatLng(45.459698, -73.639083),
-    vertices: [
-      LatLng(45.459693, -73.63916),
-      LatLng(45.459777, -73.639089),
-      LatLng(45.45975, -73.639026),
-      LatLng(45.459665, -73.639092)
-    ],
-    address: '3500 Avenue Belmore, Montréal, QC H4B 2B9',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "CPE Les P'tits Profs Daycare"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'BH',
+      name: 'BH Annex',
+      coordinates: LatLng(45.459698, -73.639083),
+      vertices: [
+        LatLng(45.459693, -73.63916),
+        LatLng(45.459777, -73.639089),
+        LatLng(45.45975, -73.639026),
+        LatLng(45.459665, -73.639092)
+      ],
+      address: '3500 Avenue Belmore, Montréal, QC H4B 2B9',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["CPE Les P'tits Profs Daycare"],
+      departments: ["No departments in this building"]),
   'CC': ConcordiaBuilding(
-    code: 'CC',
-    name: 'Central Building',
-    coordinates: LatLng(45.458354, -73.640408),
-    vertices: [
-      LatLng(45.458075, -73.640015),
-      LatLng(45.458215, -73.639907),
-      LatLng(45.458509, -73.640686),
-      LatLng(45.458379, -73.640794)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Concordia Student Union"
-    ],
-    departments:[
-      "Loyola College for Diversity and Sustainability and Loyola"
-    ]
-  ),
+      code: 'CC',
+      name: 'Central Building',
+      coordinates: LatLng(45.458354, -73.640408),
+      vertices: [
+        LatLng(45.458075, -73.640015),
+        LatLng(45.458215, -73.639907),
+        LatLng(45.458509, -73.640686),
+        LatLng(45.458379, -73.640794)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Concordia Student Union"],
+      departments: ["Loyola College for Diversity and Sustainability and Loyola"]),
   'CJ': ConcordiaBuilding(
-    code: 'CJ',
-    name: 'Communications Studies and Journalism Building',
-    coordinates: LatLng(45.457297, -73.640383),
-    vertices: [
-      LatLng(45.457407, -73.640214),
-      LatLng(45.457358, -73.640078),
-      LatLng(45.457213, -73.64001),
-      LatLng(45.457227, -73.639883),
-      LatLng(45.457277, -73.639799),
-      LatLng(45.457421, -73.639777),
-      LatLng(45.45747, -73.639823),
-      LatLng(45.457429, -73.640028),
-      LatLng(45.457485, -73.640154),
-      LatLng(45.457619, -73.640045),
-      LatLng(45.457727, -73.640321),
-      LatLng(45.457757, -73.6403),
-      LatLng(45.457825, -73.640487),
-      LatLng(45.457646, -73.640625),
-      LatLng(45.4576, -73.640502),
-      LatLng(45.457335, -73.640717),
-      LatLng(45.457298, -73.64064),
-      LatLng(45.457273, -73.640651),
-      LatLng(45.457178, -73.640394)
-    ],
-    address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Campus Retail Stores"
-    ],
-    departments:[
-      "Communication Studies",
-      "Journalism"
-    ]
-  ),
+      code: 'CJ',
+      name: 'Communications Studies and Journalism Building',
+      coordinates: LatLng(45.457297, -73.640383),
+      vertices: [
+        LatLng(45.457407, -73.640214),
+        LatLng(45.457358, -73.640078),
+        LatLng(45.457213, -73.64001),
+        LatLng(45.457227, -73.639883),
+        LatLng(45.457277, -73.639799),
+        LatLng(45.457421, -73.639777),
+        LatLng(45.45747, -73.639823),
+        LatLng(45.457429, -73.640028),
+        LatLng(45.457485, -73.640154),
+        LatLng(45.457619, -73.640045),
+        LatLng(45.457727, -73.640321),
+        LatLng(45.457757, -73.6403),
+        LatLng(45.457825, -73.640487),
+        LatLng(45.457646, -73.640625),
+        LatLng(45.4576, -73.640502),
+        LatLng(45.457335, -73.640717),
+        LatLng(45.457298, -73.64064),
+        LatLng(45.457273, -73.640651),
+        LatLng(45.457178, -73.640394)
+      ],
+      address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Campus Retail Stores"],
+      departments: ["Communication Studies", "Journalism"]),
   'DO': ConcordiaBuilding(
-    code: 'DO',
-    name: 'Stinger Dome',
-    coordinates: LatLng(45.457675, -73.636149),
-    vertices: [
-      LatLng(45.457361, -73.637086),
-      LatLng(45.456951, -73.636361),
-      LatLng(45.457901, -73.635263),
-      LatLng(45.458319, -73.63597)
-    ],
-    address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "Stingers.ca"
-    ]
-  ),
+      code: 'DO',
+      name: 'Stinger Dome',
+      coordinates: LatLng(45.457675, -73.636149),
+      vertices: [
+        LatLng(45.457361, -73.637086),
+        LatLng(45.456951, -73.636361),
+        LatLng(45.457901, -73.635263),
+        LatLng(45.458319, -73.63597)
+      ],
+      address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["Stingers.ca"]),
   'FC': ConcordiaBuilding(
-    code: 'FC',
-    name: 'F.C. Smith Building',
-    coordinates: LatLng(45.458503, -73.639233),
-    vertices: [
-      LatLng(45.458652, -73.639694),
-      LatLng(45.458581, -73.639578),
-      LatLng(45.45854, -73.639596),
-      LatLng(45.458482, -73.639436),
-      LatLng(45.458516, -73.63942),
-      LatLng(45.458381, -73.639038),
-      LatLng(45.458516, -73.638938),
-      LatLng(45.458715, -73.639422),
-      LatLng(45.458739, -73.63962)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "F.C. Smith Auditorium",
-      "Cazalet Theater",
-      "Concordia Multi-Faith and Spirituality Centre"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'FC',
+      name: 'F.C. Smith Building',
+      coordinates: LatLng(45.458503, -73.639233),
+      vertices: [
+        LatLng(45.458652, -73.639694),
+        LatLng(45.458581, -73.639578),
+        LatLng(45.45854, -73.639596),
+        LatLng(45.458482, -73.639436),
+        LatLng(45.458516, -73.63942),
+        LatLng(45.458381, -73.639038),
+        LatLng(45.458516, -73.638938),
+        LatLng(45.458715, -73.639422),
+        LatLng(45.458739, -73.63962)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["F.C. Smith Auditorium", "Cazalet Theater", "Concordia Multi-Faith and Spirituality Centre"],
+      departments: ["No departments in this building"]),
   'GE': ConcordiaBuilding(
-    code: 'GE',
-    name: 'Centre for Structural and Functional Genomics',
-    coordinates: LatLng(45.456916, -73.640400),
-    vertices: [
-      LatLng(45.456942, -73.640739),
-      LatLng(45.456797, -73.640355),
-      LatLng(45.457033, -73.64018),
-      LatLng(45.457169, -73.640566)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Centre for Structural and Functionality Genomics"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'GE',
+      name: 'Centre for Structural and Functional Genomics',
+      coordinates: LatLng(45.456916, -73.640400),
+      vertices: [
+        LatLng(45.456942, -73.640739),
+        LatLng(45.456797, -73.640355),
+        LatLng(45.457033, -73.64018),
+        LatLng(45.457169, -73.640566)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Centre for Structural and Functionality Genomics"],
+      departments: ["No departments in this building"]),
   'HA': ConcordiaBuilding(
-    code: 'HA',
-    name: 'Hingston Hall - HA Wing',
-    coordinates: LatLng(45.459424, -73.641190),
-    vertices: [
-      LatLng(45.459431, -73.641546),
-      LatLng(45.459668, -73.64135),
-      LatLng(45.459479, -73.640895),
-      LatLng(45.459248, -73.641066)
-    ],
-    address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Student Residence"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'HA',
+      name: 'Hingston Hall - HA Wing',
+      coordinates: LatLng(45.459424, -73.641190),
+      vertices: [
+        LatLng(45.459431, -73.641546),
+        LatLng(45.459668, -73.64135),
+        LatLng(45.459479, -73.640895),
+        LatLng(45.459248, -73.641066)
+      ],
+      address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Student Residence"],
+      departments: ["No departments in this building"]),
   'HB': ConcordiaBuilding(
-    code: 'HB',
-    name: 'Hingston Hall - HB Wing',
-    coordinates: LatLng(45.459122, -73.641905),
-    vertices: [
-      LatLng(45.459367, -73.641503),
-      LatLng(45.45953, -73.641935),
-      LatLng(45.459104, -73.642258),
-      LatLng(45.458962, -73.641905),
-      LatLng(45.459001, -73.641885),
-      LatLng(45.458968, -73.641809)
-    ],
-    address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Student Residence",
-      "CUFA"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'HB',
+      name: 'Hingston Hall - HB Wing',
+      coordinates: LatLng(45.459122, -73.641905),
+      vertices: [
+        LatLng(45.459367, -73.641503),
+        LatLng(45.45953, -73.641935),
+        LatLng(45.459104, -73.642258),
+        LatLng(45.458962, -73.641905),
+        LatLng(45.459001, -73.641885),
+        LatLng(45.458968, -73.641809)
+      ],
+      address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Student Residence", "CUFA"],
+      departments: ["No departments in this building"]),
   'HC': ConcordiaBuilding(
-    code: 'HC',
-    name: 'Hingston Hall - HC Wing',
-    coordinates: LatLng(45.459628, -73.641984),
-    vertices: [
-      LatLng(45.459526, -73.642026),
-      LatLng(45.459817, -73.641843),
-      LatLng(45.459886, -73.642011),
-      LatLng(45.45962, -73.642268)
-    ],
-    address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Student Residence"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'HC',
+      name: 'Hingston Hall - HC Wing',
+      coordinates: LatLng(45.459628, -73.641984),
+      vertices: [
+        LatLng(45.459526, -73.642026),
+        LatLng(45.459817, -73.641843),
+        LatLng(45.459886, -73.642011),
+        LatLng(45.45962, -73.642268)
+      ],
+      address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Student Residence"],
+      departments: ["No departments in this building"]),
   'HU': ConcordiaBuilding(
-    code: 'HU',
-    name: 'Applied Science Hub',
-    coordinates: LatLng(45.458610, -73.641825),
-    vertices: [
-      LatLng(45.458201, -73.641672),
-      LatLng(45.458635, -73.641371),
-      LatLng(45.459225, -73.642782),
-      LatLng(45.458789, -73.643153)
-    ],
-    address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'HU',
+      name: 'Applied Science Hub',
+      coordinates: LatLng(45.458610, -73.641825),
+      vertices: [
+        LatLng(45.458201, -73.641672),
+        LatLng(45.458635, -73.641371),
+        LatLng(45.459225, -73.642782),
+        LatLng(45.458789, -73.643153)
+      ],
+      address: '7141 Sherbrooke St, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'JR': ConcordiaBuilding(
-    code: 'JR',
-    name: 'Jesuit Residence',
-    coordinates: LatLng(45.458521, -73.643241),
-    vertices: [
-      LatLng(45.458401, -73.643157),
-      LatLng(45.458539, -73.643065),
-      LatLng(45.458627, -73.643307),
-      LatLng(45.458491, -73.643392)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Student Residence"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'JR',
+      name: 'Jesuit Residence',
+      coordinates: LatLng(45.458521, -73.643241),
+      vertices: [
+        LatLng(45.458401, -73.643157),
+        LatLng(45.458539, -73.643065),
+        LatLng(45.458627, -73.643307),
+        LatLng(45.458491, -73.643392)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Student Residence"],
+      departments: ["No departments in this building"]),
   'PC': ConcordiaBuilding(
-    code: 'PC',
-    name: 'Perform Centre',
-    coordinates: LatLng(45.457083, -73.637636),
-    vertices: [
-      LatLng(45.457018, -73.637827),
-      LatLng(45.456692, -73.636991),
-      LatLng(45.456939, -73.636797),
-      LatLng(45.457266, -73.63762)
-    ],
-    address: '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "PERFORM Centre"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'PC',
+      name: 'Perform Centre',
+      coordinates: LatLng(45.457083, -73.637636),
+      vertices: [
+        LatLng(45.457018, -73.637827),
+        LatLng(45.456692, -73.636991),
+        LatLng(45.456939, -73.636797),
+        LatLng(45.457266, -73.63762)
+      ],
+      address: '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["PERFORM Centre"],
+      departments: ["No departments in this building"]),
   'PS': ConcordiaBuilding(
-    code: 'PS',
-    name: 'Physical Services Building',
-    coordinates: LatLng(45.459713, -73.639762),
-    vertices: [
-      LatLng(45.4597016, -73.640309),
-      LatLng(45.459403, -73.639525),
-      LatLng(45.459332, -73.639574),
-      LatLng(45.459286, -73.639461),
-      LatLng(45.459597, -73.639221),
-      LatLng(45.459964, -73.640121)
-    ],
-    address: '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Environmental Health and Safety",
-      "Facilities Management"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'PS',
+      name: 'Physical Services Building',
+      coordinates: LatLng(45.459713, -73.639762),
+      vertices: [
+        LatLng(45.4597016, -73.640309),
+        LatLng(45.459403, -73.639525),
+        LatLng(45.459332, -73.639574),
+        LatLng(45.459286, -73.639461),
+        LatLng(45.459597, -73.639221),
+        LatLng(45.459964, -73.640121)
+      ],
+      address: '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Environmental Health and Safety", "Facilities Management"],
+      departments: ["No departments in this building"]),
   'PT': ConcordiaBuilding(
-    code: 'PT',
-    name: 'Oscar Peterson Concert Hall',
-    coordinates: LatLng(45.459068, -73.638630),
-    vertices: [
-      LatLng(45.459216, -73.638938),
-      LatLng(45.459344, -73.639228),
-      LatLng(45.459477, -73.639135),
-      LatLng(45.459351, -73.638829)
-    ],
-    address: '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Concert Hall"
-    ],
-    departments:[
-      "Oscar Peterson Concert Hall"
-    ]
-  ),
+      code: 'PT',
+      name: 'Oscar Peterson Concert Hall',
+      coordinates: LatLng(45.459068, -73.638630),
+      vertices: [
+        LatLng(45.459216, -73.638938),
+        LatLng(45.459344, -73.639228),
+        LatLng(45.459477, -73.639135),
+        LatLng(45.459351, -73.638829)
+      ],
+      address: '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Concert Hall"],
+      departments: ["Oscar Peterson Concert Hall"]),
   'PY': ConcordiaBuilding(
-    code: 'PY',
-    name: 'Psychology Building',
-    coordinates: LatLng(45.458899, -73.640494),
-    vertices: [
-      LatLng(45.45927, -73.64052),
-      LatLng(45.458875, -73.640812),
-      LatLng(45.458759, -73.6404),
-      LatLng(45.459107, -73.640121)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "Psychology",
-      "Centre for Clinical Research in Health"
-    ]
-  ),
+      code: 'PY',
+      name: 'Psychology Building',
+      coordinates: LatLng(45.458899, -73.640494),
+      vertices: [
+        LatLng(45.45927, -73.64052),
+        LatLng(45.458875, -73.640812),
+        LatLng(45.458759, -73.6404),
+        LatLng(45.459107, -73.640121)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["Psychology", "Centre for Clinical Research in Health"]),
   'RA': ConcordiaBuilding(
-    code: 'RA',
-    name: 'Recreation and Athletics Complex',
-    coordinates: LatLng(45.456624, -73.637358),
-    vertices: [
-      LatLng(45.457002, -73.637889),
-      LatLng(45.456704, -73.637133),
-      LatLng(45.456397, -73.637384),
-      LatLng(45.456691, -73.63813)
-    ],
-    address: '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Ed Meagher Arena",
-      "Gymnasium"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'RA',
+      name: 'Recreation and Athletics Complex',
+      coordinates: LatLng(45.456624, -73.637358),
+      vertices: [
+        LatLng(45.457002, -73.637889),
+        LatLng(45.456704, -73.637133),
+        LatLng(45.456397, -73.637384),
+        LatLng(45.456691, -73.63813)
+      ],
+      address: '7200 Sherbrooke St W, Montreal, QC H4B 1R2',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Ed Meagher Arena", "Gymnasium"],
+      departments: ["No departments in this building"]),
   'RF': ConcordiaBuilding(
-    code: 'RF',
-    name: 'Jesuit Hall and Conference Centre',
-    coordinates: LatLng(45.458442, -73.640920),
-    vertices: [
-      LatLng(45.458806, -73.641156),
-      LatLng(45.458505, -73.641373),
-      LatLng(45.458484, -73.641318),
-      LatLng(45.458548, -73.641264),
-      LatLng(45.458509, -73.641138),
-      LatLng(45.458427, -73.641199),
-      LatLng(45.45838, -73.641079),
-      LatLng(45.458473, -73.641009),
-      LatLng(45.458418, -73.640854),
-      LatLng(45.458538, -73.640762),
-      LatLng(45.458591, -73.640876),
-      LatLng(45.458681, -73.640802)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Loyola Jesuit Hall and Conference Centre",
-      "Conference Services"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'RF',
+      name: 'Jesuit Hall and Conference Centre',
+      coordinates: LatLng(45.458442, -73.640920),
+      vertices: [
+        LatLng(45.458806, -73.641156),
+        LatLng(45.458505, -73.641373),
+        LatLng(45.458484, -73.641318),
+        LatLng(45.458548, -73.641264),
+        LatLng(45.458509, -73.641138),
+        LatLng(45.458427, -73.641199),
+        LatLng(45.45838, -73.641079),
+        LatLng(45.458473, -73.641009),
+        LatLng(45.458418, -73.640854),
+        LatLng(45.458538, -73.640762),
+        LatLng(45.458591, -73.640876),
+        LatLng(45.458681, -73.640802)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Loyola Jesuit Hall and Conference Centre", "Conference Services"],
+      departments: ["No departments in this building"]),
   'SC': ConcordiaBuilding(
-    code: 'SC',
-    name: 'Student Centre',
-    coordinates: LatLng(45.459122, -73.639237),
-    vertices: [
-      LatLng(45.459279, -73.639276),
-      LatLng(45.459158, -73.638991),
-      LatLng(45.458995, -73.639122),
-      LatLng(45.459106, -73.639414)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Campus Centre",
-      "Food Services",
-      "Cafeteria",
-      "Cafe"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'SC',
+      name: 'Student Centre',
+      coordinates: LatLng(45.459122, -73.639237),
+      vertices: [
+        LatLng(45.459279, -73.639276),
+        LatLng(45.459158, -73.638991),
+        LatLng(45.458995, -73.639122),
+        LatLng(45.459106, -73.639414)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Campus Centre", "Food Services", "Cafeteria", "Cafe"],
+      departments: ["No departments in this building"]),
   'SI': ConcordiaBuilding(
-    code: 'SI',
-    name: 'Saint Ignatius of Loyola',
-    coordinates: LatLng(45.457796, -73.642391),
-    vertices: [
-      LatLng(45.457642, -73.642569),
-      LatLng(45.458045, -73.642281),
-      LatLng(45.457964, -73.64206),
-      LatLng(45.457576, -73.642402)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'SI',
+      name: 'Saint Ignatius of Loyola',
+      coordinates: LatLng(45.457796, -73.642391),
+      vertices: [
+        LatLng(45.457642, -73.642569),
+        LatLng(45.458045, -73.642281),
+        LatLng(45.457964, -73.64206),
+        LatLng(45.457576, -73.642402)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'SP': ConcordiaBuilding(
-    code: 'SP',
-    name: 'Richard J. Renaud Science Complex',
-    coordinates: LatLng(45.457599, -73.641775),
-    vertices: [
-      LatLng(45.456991, -73.64083),
-      LatLng(45.457199, -73.640683),
-      LatLng(45.457529, -73.641478),
-      LatLng(45.458163, -73.641006),
-      LatLng(45.458321, -73.641422),
-      LatLng(45.457676, -73.641946),
-      LatLng(45.457638, -73.641845),
-      LatLng(45.457433, -73.641996)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Science College",
-      "Science Technical Centre",
-      "Animal Care Facilities",
-      "Security Office",
-      "Cafe"
-    ],
-    departments:[
-      "Biology",
-      "Chemistry and Biochemistry",
-      "Health, Kinesiology and Applied Physiology",
-      "Physics",
-      "Psychology",
-      "Centre for Biological Applications of Mass Spectrometry",
-      "Centre for NanoScience Research",
-      "Center for Studies in Behavioral Neurobiology",
-      "Centre for Research in Molecular Modeling",
-    ]
-  ),
+      code: 'SP',
+      name: 'Richard J. Renaud Science Complex',
+      coordinates: LatLng(45.457599, -73.641775),
+      vertices: [
+        LatLng(45.456991, -73.64083),
+        LatLng(45.457199, -73.640683),
+        LatLng(45.457529, -73.641478),
+        LatLng(45.458163, -73.641006),
+        LatLng(45.458321, -73.641422),
+        LatLng(45.457676, -73.641946),
+        LatLng(45.457638, -73.641845),
+        LatLng(45.457433, -73.641996)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Science College", "Science Technical Centre", "Animal Care Facilities", "Security Office", "Cafe"],
+      departments: [
+        "Biology",
+        "Chemistry and Biochemistry",
+        "Health, Kinesiology and Applied Physiology",
+        "Physics",
+        "Psychology",
+        "Centre for Biological Applications of Mass Spectrometry",
+        "Centre for NanoScience Research",
+        "Center for Studies in Behavioral Neurobiology",
+        "Centre for Research in Molecular Modeling",
+      ]),
   'TA': ConcordiaBuilding(
-    code: 'TA',
-    name: 'Terrebonne Building',
-    coordinates: LatLng(45.459997, -73.640904),
-    vertices: [
-      LatLng(45.459934, -73.640868),
-      LatLng(45.45998, -73.640966),
-      LatLng(45.460074, -73.640891),
-      LatLng(45.460036, -73.6408)
-    ],
-    address: '7079 Rue de Terrebonne, Montreal, QC H4B 1E1',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "No services in this building"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'TA',
+      name: 'Terrebonne Building',
+      coordinates: LatLng(45.459997, -73.640904),
+      vertices: [
+        LatLng(45.459934, -73.640868),
+        LatLng(45.45998, -73.640966),
+        LatLng(45.460074, -73.640891),
+        LatLng(45.460036, -73.6408)
+      ],
+      address: '7079 Rue de Terrebonne, Montreal, QC H4B 1E1',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["No departments in this building"]),
   'VE': ConcordiaBuilding(
-    code: 'VE',
-    name: 'Vanier Extension',
-    coordinates: LatLng(45.458714, -73.638604),
-    vertices: [
-      LatLng(45.458823, -73.638272),
-      LatLng(45.45904, -73.638853),
-      LatLng(45.458853, -73.639007),
-      LatLng(45.458619, -73.638457)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Library"
-    ],
-    departments:[
-      "Applied Human Sciences"
-    ]
-  ),
+      code: 'VE',
+      name: 'Vanier Extension',
+      coordinates: LatLng(45.458714, -73.638604),
+      vertices: [
+        LatLng(45.458823, -73.638272),
+        LatLng(45.45904, -73.638853),
+        LatLng(45.458853, -73.639007),
+        LatLng(45.458619, -73.638457)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Library"],
+      departments: ["Applied Human Sciences"]),
   'VL': ConcordiaBuilding(
-    code: 'VL',
-    name: 'Vanier Library',
-    coordinates: LatLng(45.459102, -73.638568),
-    vertices: [
-      LatLng(45.458886, -73.638176),
-      LatLng(45.459108, -73.638796),
-      LatLng(45.459295, -73.638651),
-      LatLng(45.459127, -73.638209),
-      LatLng(45.459208, -73.638133),
-      LatLng(45.459083, -73.637873),
-      LatLng(45.458909, -73.638),
-      LatLng(45.458939, -73.638191)
-    ],
-    address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
-    campus: Campus.Loyola,
-    hours: {
-      'none': 'Unavailable',
-    },
-    services: [
-      "Library"
-    ],
-    departments:[
-      "No departments in this building"
-    ]
-  ),
+      code: 'VL',
+      name: 'Vanier Library',
+      coordinates: LatLng(45.459102, -73.638568),
+      vertices: [
+        LatLng(45.458886, -73.638176),
+        LatLng(45.459108, -73.638796),
+        LatLng(45.459295, -73.638651),
+        LatLng(45.459127, -73.638209),
+        LatLng(45.459208, -73.638133),
+        LatLng(45.459083, -73.637873),
+        LatLng(45.458909, -73.638),
+        LatLng(45.458939, -73.638191)
+      ],
+      address: '7141 Sherbrooke W, Montreal, QC H4B 1R6',
+      campus: Campus.Loyola,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["Library"],
+      departments: ["No departments in this building"]),
 };
