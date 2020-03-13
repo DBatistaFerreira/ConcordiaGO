@@ -14,17 +14,16 @@ class ConcordiaBuilding {
   final List<String> departments;
   final List<String> services;
 
-  const ConcordiaBuilding({
-    this.code,
-    this.name,
-    this.address,
-    this.campus,
-    this.coordinates,
-    this.vertices,
-    this.hours,
-    this.departments,
-    this.services
-  });
+  const ConcordiaBuilding(
+      {this.code,
+      this.name,
+      this.address,
+      this.campus,
+      this.coordinates,
+      this.vertices,
+      this.hours,
+      this.departments,
+      this.services});
 
   String campusString() {
     var campusName = describeEnum(campus);
