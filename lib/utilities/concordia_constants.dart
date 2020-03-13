@@ -384,10 +384,12 @@ var buildings = {
     name: 'Learning Square Building',
     coordinates: LatLng(45.496344, -73.579494),
     vertices: [
-      LatLng(45.496509, -73.579551),
-      LatLng(45.496365, -73.579256),
-      LatLng(45.496175, -73.579454),
-      LatLng(45.496301, -73.579738)
+      LatLng(45.496376, -73.579252),
+      LatLng(45.496178, -73.579449),
+      LatLng(45.496258, -73.579675),
+      LatLng(45.496370, -73.579563),
+      LatLng(45.496414, -73.579693),
+      LatLng(45.496535, -73.579569)
     ],
     address: '1535 Boul. de Maisonneuve O, Montréal, QC H3G 1M9',
     campus: Campus.SGW,
