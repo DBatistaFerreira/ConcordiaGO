@@ -238,10 +238,12 @@ var buildings = {
     name: 'EN Annex',
     coordinates: LatLng(45.496880, -73.579552),
     vertices: [
-      LatLng(45.496874, -73.579808),
-      LatLng(45.4968502, -73.5797612),
-      LatLng(45.4969461, -73.5796669),
-      LatLng(45.496964, -73.579705)
+      LatLng(45.49693, -73.57955),
+      LatLng(45.49689, -73.57947),
+      LatLng(45.49679, -73.57958),
+      LatLng(45.4968, -73.5796),
+      LatLng(45.49667, -73.57973),
+      LatLng(45.4967, -73.57978)
     ],
     address: '2070 Mackay St, Montreal, QC H3G 2J1',
     campus: Campus.SGW,
@@ -366,10 +368,10 @@ var buildings = {
     name: 'LD Building',
     coordinates: LatLng(45.496790, -73.577180),
     vertices: [
-      LatLng(45.496525, -73.577388),
-      LatLng(45.496561, -73.577459),
-      LatLng(45.496856, -73.577164),
-      LatLng(45.496856, -73.577164)
+      LatLng(45.49583, -73.57552),
+      LatLng(45.49597, -73.57538),
+      LatLng(45.49593, -73.5753),
+      LatLng(45.49579, -73.57543)
     ],
     address: '1424 Bishop St, Montreal, QC H3G 2E6',
     campus: Campus.SGW,
@@ -630,10 +632,12 @@ var buildings = {
     name: 'X Annex',
     coordinates: LatLng(45.496919, -73.579638),
     vertices: [
-      LatLng(45.496949, -73.579663),
-      LatLng(45.496906, -73.579580),
-      LatLng(45.496814, -73.579674),
-      LatLng(45.496855, -73.579758),
+      LatLng(45.4969, -73.57981),
+      LatLng(45.49698, -73.57974),
+      LatLng(45.49695, -73.57967),
+      LatLng(45.49685, -73.57976),
+      LatLng(45.49687, -73.57981),
+      LatLng(45.49689, -73.57979),
     ],
     address: '2080 Mackay, Montreal, QC H3G 2J1',
     campus: Campus.SGW,
@@ -646,10 +650,10 @@ var buildings = {
     name: 'Z Annex',
     coordinates: LatLng(45.496930, -73.579737),
     vertices: [
-      LatLng(45.496986, -73.579741),
-      LatLng(45.496949, -73.579665),
-      LatLng(45.496911, -73.579815),
-      LatLng(45.496877, -73.579738)
+      LatLng(45.49702, -73.57982),
+      LatLng(45.49698, -73.57975),
+      LatLng(45.49689, -73.57983),
+      LatLng(45.49693, -73.57991)
     ],
     address: '2090 Mackay, Montreal, QC H3G 2J1',
     campus: Campus.SGW,
