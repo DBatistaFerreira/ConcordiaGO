@@ -382,14 +382,12 @@ var buildings = {
   'LS': ConcordiaBuilding(
     code: 'LS',
     name: 'Learning Square Building',
-    coordinates: LatLng(45.496274, -73.579469),
+    coordinates: LatLng(45.496344, -73.579494),
     vertices: [
-      LatLng(45.495952, -73.579633),
-      LatLng(45.496111, -73.579479),
-      LatLng(45.496177, -73.579643),
-      LatLng(45.496156, -73.579669),
-      LatLng(45.496188, -73.579741),
-      LatLng(45.496052, -73.579866)
+      LatLng(45.496509, -73.579551),
+      LatLng(45.496365, -73.579256),
+      LatLng(45.496175, -73.579454),
+      LatLng(45.496301, -73.579738)
     ],
     address: '1535 Boul. de Maisonneuve O, Montréal, QC H3G 1M9',
     campus: Campus.SGW,
