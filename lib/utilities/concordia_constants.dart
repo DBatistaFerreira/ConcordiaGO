@@ -350,12 +350,18 @@ var buildings = {
   'K': ConcordiaBuilding(
     code: 'K',
     name: 'K Annex',
-    coordinates: LatLng(45.497826, -73.579382),
+    coordinates: LatLng(45.497831, -73.579436),
     vertices: [
-      LatLng(45.497834, -73.579535),
-      LatLng(45.497794, -73.57947),
-      LatLng(45.497705, -73.579558),
-      LatLng(45.497737, -73.57963)
+      LatLng(45.497890, -73.579424),
+      LatLng(45.497643, -73.579669),
+      LatLng(45.497604, -73.579589),
+      LatLng(45.497687, -73.579509),
+      LatLng(45.497713, -73.579559),
+      LatLng(45.497760, -73.579514),
+      LatLng(45.497753, -73.579497),
+      LatLng(45.497782, -73.579471),
+      LatLng(45.497770, -73.579439),
+      LatLng(45.497861, -73.579355)
     ],
     address: '2150 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
