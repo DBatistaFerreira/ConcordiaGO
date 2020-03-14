@@ -48,7 +48,7 @@ var buildings = {
   'H': ConcordiaBuilding(
     code: 'H',
     name: 'Hall Building',
-    coordinates: LatLng(45.497249, -73.578954),
+    coordinates: LatLng(45.497282, -73.578931),
     vertices: [
       LatLng(45.4973844, -73.578354),
       LatLng(45.4968314, -73.5788502),
@@ -70,7 +70,7 @@ var buildings = {
   'LB': ConcordiaBuilding(
     code: 'LB',
     name: 'Webster Library',
-    coordinates: LatLng(45.496849, -73.578053),
+    coordinates: LatLng(45.496806, -73.577878),
     vertices: [
       LatLng(45.496694, -73.578627),
       LatLng(45.497285, -73.578069),
@@ -94,7 +94,7 @@ var buildings = {
   'MB': ConcordiaBuilding(
     code: 'MB',
     name: 'John Molson Building',
-    coordinates: LatLng(45.495495, -73.579169),
+    coordinates: LatLng(45.495282, -73.579047),
     vertices: [
       LatLng(45.495367, -73.579374),
       LatLng(45.495532, -73.579189),
@@ -110,7 +110,7 @@ var buildings = {
   'EV': ConcordiaBuilding(
     code: 'EV',
     name: 'EV Building',
-    coordinates: LatLng(45.495406, -73.577996),
+    coordinates: LatLng(45.495541, -73.577939),
     vertices: [
       LatLng(45.495579, -73.578757),
       LatLng(45.4958504, -73.578472),
@@ -134,7 +134,7 @@ var buildings = {
   'FG': ConcordiaBuilding(
     code: 'FG',
     name: 'Faubourg St-Catherines Building',
-    coordinates: LatLng(45.494354, -73.578428),
+    coordinates: LatLng(45.494264, -73.578309),
     vertices: [
       LatLng(45.494296, -73.5785193),
       LatLng(45.4943677, -73.5784375),
@@ -150,7 +150,7 @@ var buildings = {
   'B': ConcordiaBuilding(
     code: 'B',
     name: 'ECA B-Annex',
-    coordinates: LatLng(45.497801, -73.579493),
+    coordinates: LatLng(45.497868, -73.579452),
     vertices: [
       LatLng(45.497805, -73.57946),
       LatLng(45.497846, -73.579522),
@@ -188,7 +188,7 @@ var buildings = {
   'CI': ConcordiaBuilding(
     code: 'CI',
     name: 'CI Annex',
-    coordinates: LatLng(45.497402, -73.579996),
+    coordinates: LatLng(45.497461, -73.579937),
     vertices: [
       LatLng(45.49737, -73.579938),
       LatLng(45.497402, -73.580014),
@@ -254,7 +254,7 @@ var buildings = {
   'ER': ConcordiaBuilding(
     code: 'ER',
     name: 'ER Building',
-    coordinates: LatLng(45.496238, -73.580104),
+    coordinates: LatLng(45.496483, -73.579756),
     vertices: [
       LatLng(45.496588, -73.579785),
       LatLng(45.496454, -73.579893),
@@ -272,6 +272,7 @@ var buildings = {
     name: 'FA Annex',
     coordinates: LatLng(45.496825, -73.579474),
     vertices: [
+      // TODO missing buildings section belongs in ticket #45,
       LatLng(45.496852, -73.5797514),
       LatLng(45.496945, -73.579659),
       LatLng(45.4969075, -73.579581),
@@ -336,6 +337,7 @@ var buildings = {
     name: 'GS Building',
     coordinates: LatLng(45.496628, -73.581400),
     vertices: [
+      // TODO missing buildings section belongs in ticket #45,
       LatLng(45.496639, -73.581134),
       LatLng(45.496507, -73.581239),
       LatLng(45.496473, -73.581118),
@@ -372,8 +374,9 @@ var buildings = {
   'LD': ConcordiaBuilding(
     code: 'LD',
     name: 'LD Building',
-    coordinates: LatLng(45.496790, -73.577180),
+    coordinates: LatLng(45.496686, -73.577312),
     vertices: [
+      // TODO missing buildings section belongs in ticket #45,
       LatLng(45.49583, -73.57552),
       LatLng(45.49597, -73.57538),
       LatLng(45.49593, -73.5753),
@@ -422,7 +425,7 @@ var buildings = {
   'MI': ConcordiaBuilding(
     code: 'MI',
     name: 'MI Annex',
-    coordinates: LatLng(45.497791, -73.579204),
+    coordinates: LatLng(45.497774, -73.579270),
     vertices: [
       LatLng(45.497777, -73.579171),
       LatLng(45.497809, -73.57923),
@@ -440,7 +443,7 @@ var buildings = {
   'MU': ConcordiaBuilding(
     code: 'MU',
     name: 'MU Annex',
-    coordinates: LatLng(45.497946, -73.579510),
+    coordinates: LatLng(45.497910, -73.579576),
     vertices: [
       LatLng(45.49775, -73.579628),
       LatLng(45.497919, -73.579464),
@@ -554,7 +557,7 @@ var buildings = {
   'SB': ConcordiaBuilding(
     code: 'SB',
     name: 'Samuel Bronfman Building',
-    coordinates: LatLng(45.496530, -73.586131),
+    coordinates: LatLng(45.496585, -73.586140),
     vertices: [
       LatLng(45.496533, -73.586209),
       LatLng(45.496541, -73.586041),
@@ -586,7 +589,7 @@ var buildings = {
   'TD': ConcordiaBuilding(
     code: 'TD',
     name: 'Toronto Dominion Building',
-    coordinates: LatLng(45.495138, -73.578373),
+    coordinates: LatLng(45.494677, -73.578728),
     vertices: [
       LatLng(45.494949, -73.578178),
       LatLng(45.495031, -73.578083),
@@ -602,7 +605,7 @@ var buildings = {
   'V': ConcordiaBuilding(
     code: 'V',
     name: 'V Annex',
-    coordinates: LatLng(45.497041, -73.579902),
+    coordinates: LatLng(45.497031, -73.579940),
     vertices: [
       LatLng(45.496968, -73.579983),
       LatLng(45.497069, -73.57989),
@@ -636,7 +639,7 @@ var buildings = {
   'X': ConcordiaBuilding(
     code: 'X',
     name: 'X Annex',
-    coordinates: LatLng(45.496919, -73.579638),
+    coordinates: LatLng(45.496905, -73.579682),
     vertices: [
       LatLng(45.4969, -73.57981),
       LatLng(45.49698, -73.57974),
@@ -700,7 +703,7 @@ var buildings = {
   'BB': ConcordiaBuilding(
     code: 'BB',
     name: 'BB Annex',
-    coordinates: LatLng(45.459816, -73.639344),
+    coordinates: LatLng(45.459766, -73.639174),
     vertices: [
       LatLng(45.459695, -73.639171),
       LatLng(45.459782, -73.639099),
@@ -779,7 +782,7 @@ var buildings = {
   'DO': ConcordiaBuilding(
     code: 'DO',
     name: 'Stinger Dome',
-    coordinates: LatLng(45.457940, -73.634983),
+    coordinates: LatLng(45.457675, -73.636149),
     vertices: [
       LatLng(45.457361, -73.637086),
       LatLng(45.456951, -73.636361),
@@ -795,7 +798,7 @@ var buildings = {
   'FC': ConcordiaBuilding(
     code: 'FC',
     name: 'F.C. Smith Building',
-    coordinates: LatLng(45.458386, -73.639210),
+    coordinates: LatLng(45.458503, -73.639233),
     vertices: [
       LatLng(45.458652, -73.639694),
       LatLng(45.458581, -73.639578),
@@ -898,7 +901,7 @@ var buildings = {
   'JR': ConcordiaBuilding(
     code: 'JR',
     name: 'Jesuit Residence',
-    coordinates: LatLng(45.458416, -73.643296),
+    coordinates: LatLng(45.458521, -73.643241),
     vertices: [
       LatLng(45.458401, -73.643157),
       LatLng(45.458539, -73.643065),
@@ -914,7 +917,7 @@ var buildings = {
   'PC': ConcordiaBuilding(
     code: 'PC',
     name: 'Perform Centre',
-    coordinates: LatLng(45.457009, -73.636991),
+    coordinates: LatLng(45.457083, -73.637636),
     vertices: [
       LatLng(45.457018, -73.637827),
       LatLng(45.456692, -73.636991),
@@ -948,7 +951,7 @@ var buildings = {
   'PT': ConcordiaBuilding(
     code: 'PT',
     name: 'Oscar Peterson Concert Hall',
-    coordinates: LatLng(45.459296, -73.638868),
+    coordinates: LatLng(45.459068, -73.638630),
     vertices: [
       LatLng(45.459216, -73.638938),
       LatLng(45.459344, -73.639228),
@@ -996,7 +999,7 @@ var buildings = {
   'RF': ConcordiaBuilding(
     code: 'RF',
     name: 'Jesuit Hall and Conference Centre',
-    coordinates: LatLng(45.458485, -73.641110),
+    coordinates: LatLng(45.458442, -73.640920),
     vertices: [
       LatLng(45.458806, -73.641156),
       LatLng(45.458505, -73.641373),
