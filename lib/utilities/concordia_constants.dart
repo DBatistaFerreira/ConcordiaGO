@@ -336,13 +336,17 @@ var buildings = {
   'GS': ConcordiaBuilding(
     code: 'GS',
     name: 'GS Building',
-    coordinates: LatLng(45.496628, -73.581400),
+    coordinates: LatLng(45.496566, -73.581150),
     vertices: [
-      // TODO missing buildings section belongs in ticket #45,
-      LatLng(45.496639, -73.581134),
-      LatLng(45.496507, -73.581239),
-      LatLng(45.496473, -73.581118),
-      LatLng(45.496592, -73.581031)
+      LatLng(45.496785, -73.581300),
+      LatLng(45.496624, -73.581451),
+      LatLng(45.496579, -73.581435),
+      LatLng(45.496415, -73.580942),
+      LatLng(45.496485, -73.580879),
+      LatLng(45.496477, -73.580845),
+      LatLng(45.496518, -73.580806),
+      LatLng(45.496654, -73.581172),
+      LatLng(45.496712, -73.581130)
     ],
     address: '1538 Sherbrooke St W, Montreal, QC H3H 2L9',
     campus: Campus.SGW,
