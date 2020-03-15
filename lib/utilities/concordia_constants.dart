@@ -379,13 +379,12 @@ var buildings = {
   'LD': ConcordiaBuilding(
     code: 'LD',
     name: 'LD Building',
-    coordinates: LatLng(45.496686, -73.577312),
+    coordinates: LatLng(45.496712, -73.577256),
     vertices: [
-      // TODO missing buildings section belongs in ticket #45,
-      LatLng(45.49583, -73.57552),
-      LatLng(45.49597, -73.57538),
-      LatLng(45.49593, -73.5753),
-      LatLng(45.49579, -73.57543)
+      LatLng(45.496860, -73.577169),
+      LatLng(45.496558, -73.577477),
+      LatLng(45.496532, -73.577405),
+      LatLng(45.496822, -73.577093)
     ],
     address: '1424 Bishop St, Montreal, QC H3G 2E6',
     campus: Campus.SGW,
