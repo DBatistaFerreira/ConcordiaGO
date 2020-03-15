@@ -150,12 +150,12 @@ var buildings = {
   'B': ConcordiaBuilding(
     code: 'B',
     name: 'ECA B-Annex',
-    coordinates: LatLng(45.497868, -73.579452),
+    coordinates: LatLng(45.497833, -73.579541),
     vertices: [
-      LatLng(45.497805, -73.57946),
-      LatLng(45.497846, -73.579522),
-      LatLng(45.497915, -73.579456),
-      LatLng(45.497882, -73.579391)
+      LatLng(45.497932, -73.579502),
+      LatLng(45.497761, -73.579663),
+      LatLng(45.497726, -73.579595),
+      LatLng(45.497894, -73.579428)
     ],
     address: '2160 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
@@ -220,12 +220,14 @@ var buildings = {
   'D': ConcordiaBuilding(
     code: 'D',
     name: 'D Annex',
-    coordinates: LatLng(45.495835, -73.578789),
+    coordinates: LatLng(45.497793, -73.579355),
     vertices: [
-      LatLng(45.497742, -73.57941),
-      LatLng(45.4977059, -73.579339),
-      LatLng(45.49781, -73.579235),
-      LatLng(45.497848, -73.579311)
+      LatLng(45.497857, -73.579345),
+      LatLng(45.497752, -73.579444),
+      LatLng(45.497726, -73.579400),
+      LatLng(45.497738, -73.579389),
+      LatLng(45.497726, -73.579366),
+      LatLng(45.497822, -73.579273)
     ],
     address: '2140 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
@@ -425,14 +427,14 @@ var buildings = {
   'MI': ConcordiaBuilding(
     code: 'MI',
     name: 'MI Annex',
-    coordinates: LatLng(45.497774, -73.579270),
+    coordinates: LatLng(45.497758, -73.579288),
     vertices: [
-      LatLng(45.497777, -73.579171),
-      LatLng(45.497809, -73.57923),
-      LatLng(45.497645, -73.579398),
-      LatLng(45.497621, -73.579352),
-      LatLng(45.497694, -73.579282),
-      LatLng(45.497682, -73.579259)
+      LatLng(45.497820, -73.579272),
+      LatLng(45.497710, -73.579379),
+      LatLng(45.497689, -73.579329),
+      LatLng(45.497702, -73.579319),
+      LatLng(45.497695, -73.579302),
+      LatLng(45.497791, -73.579206)
     ],
     address: '2130 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
@@ -443,12 +445,12 @@ var buildings = {
   'MU': ConcordiaBuilding(
     code: 'MU',
     name: 'MU Annex',
-    coordinates: LatLng(45.497910, -73.579576),
+    coordinates: LatLng(45.497873, -73.579610),
     vertices: [
-      LatLng(45.49775, -73.579628),
-      LatLng(45.497919, -73.579464),
-      LatLng(45.497957, -73.579541),
-      LatLng(45.497783, -73.579698)
+      LatLng(45.497972, -73.579572),
+      LatLng(45.497800, -73.579738),
+      LatLng(45.497763, -73.579665),
+      LatLng(45.497936, -73.579502)
     ],
     address: '2170 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
