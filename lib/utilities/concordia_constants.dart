@@ -272,13 +272,12 @@ var buildings = {
   'FA': ConcordiaBuilding(
     code: 'FA',
     name: 'FA Annex',
-    coordinates: LatLng(45.496825, -73.579474),
+    coordinates: LatLng(45.496808, -73.579482),
     vertices: [
-      // TODO missing buildings section belongs in ticket #45,
-      LatLng(45.496852, -73.5797514),
-      LatLng(45.496945, -73.579659),
-      LatLng(45.4969075, -73.579581),
-      LatLng(45.496817, -73.579675)
+      LatLng(45.496872, -73.579488),
+      LatLng(45.496774, -73.579586),
+      LatLng(45.496741, -73.579496),
+      LatLng(45.496831, -73.579395)
     ],
     address: '2060 MacKay, Montreal, QC H3G 2J1',
     campus: Campus.SGW,
