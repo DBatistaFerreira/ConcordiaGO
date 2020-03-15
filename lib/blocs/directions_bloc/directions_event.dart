@@ -11,7 +11,8 @@ class GetDirections extends DirectionsEvent {
   final LatLng endCoordinates;
   final String destination;
 
-  const GetDirections(this.startCoordinates, this.endCoordinates, this.destination);
+  const GetDirections(
+      this.startCoordinates, this.endCoordinates, this.destination);
 }
 
 class NextDirection extends DirectionsEvent {

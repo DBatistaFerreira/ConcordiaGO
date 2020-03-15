@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:concordia_go/widgets/screens/quick_menu.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../component/google_maps_component.dart';
-import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart'
+    as application_constants;
 
 class HomeScreen extends StatefulWidget {
   @override

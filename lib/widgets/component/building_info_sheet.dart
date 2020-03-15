@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/utilities/concordia_constants.dart'
+    as concordia_constants;
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,10 +48,15 @@ class BuildingInfoSheet {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: state.buildingCode.length == 2 ? 13.0 : 21.0, right: 20.0),
+                            padding: EdgeInsets.only(
+                                left: state.buildingCode.length == 2
+                                    ? 13.0
+                                    : 21.0,
+                                right: 20.0),
                             child: Text(
                               state.buildingCode,
-                              style: TextStyle(color: Colors.white, fontSize: 24),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 24),
                             ),
                           ),
                           Expanded(
@@ -60,12 +66,14 @@ class BuildingInfoSheet {
                               children: [
                                 Text(
                                   state.buildingName,
-                                  style: TextStyle(color: Colors.white, fontSize: 18),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
                                   overflow: TextOverflow.fade,
                                 ),
                                 Text(
                                   state.campus,
-                                  style: TextStyle(color: Colors.white, fontSize: 12),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12),
                                   textAlign: TextAlign.left,
                                 ),
                               ],
@@ -114,7 +122,8 @@ class BuildingInfoSheet {
                                 title: Text(concordia_constants.concordiaPhone),
                                 dense: true,
                                 onTap: () {
-                                  _launchUrl('tel://${concordia_constants.concordiaPhone}');
+                                  _launchUrl(
+                                      'tel://${concordia_constants.concordiaPhone}');
                                 },
                               ),
                             ),
@@ -132,25 +141,37 @@ class BuildingInfoSheet {
                                   height: 150,
                                   padding: EdgeInsets.only(bottom: 5.0),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: state.hours.length > 1
                                         ? <Widget>[
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                Text('Mon', textAlign: TextAlign.left),
-                                                Text('Tue', textAlign: TextAlign.left),
-                                                Text('Wed', textAlign: TextAlign.left),
-                                                Text('Thu', textAlign: TextAlign.left),
-                                                Text('Fri', textAlign: TextAlign.left),
-                                                Text('Sat', textAlign: TextAlign.left),
-                                                Text('Sun', textAlign: TextAlign.left),
+                                                Text('Mon',
+                                                    textAlign: TextAlign.left),
+                                                Text('Tue',
+                                                    textAlign: TextAlign.left),
+                                                Text('Wed',
+                                                    textAlign: TextAlign.left),
+                                                Text('Thu',
+                                                    textAlign: TextAlign.left),
+                                                Text('Fri',
+                                                    textAlign: TextAlign.left),
+                                                Text('Sat',
+                                                    textAlign: TextAlign.left),
+                                                Text('Sun',
+                                                    textAlign: TextAlign.left),
                                               ],
                                             ),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Text(state.hours['mon']),
                                                 Text(state.hours['tue']),
@@ -170,10 +191,12 @@ class BuildingInfoSheet {
                               ],
                               onExpansionChanged: (isExpanding) {
                                 if (isExpanding) {
-                                  BlocProvider.of<BuildingInfoBloc>(context).add(ToggleHoursEvent(true));
+                                  BlocProvider.of<BuildingInfoBloc>(context)
+                                      .add(ToggleHoursEvent(true));
                                 } else {
                                   Timer(Duration(milliseconds: 100), () {
-                                    BlocProvider.of<BuildingInfoBloc>(context).add(ToggleHoursEvent(false));
+                                    BlocProvider.of<BuildingInfoBloc>(context)
+                                        .add(ToggleHoursEvent(false));
                                   });
                                 }
                               },
@@ -207,7 +230,8 @@ class BuildingInfoSheet {
                                 label: Text(
                                   'Go',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16.0),
                                 ),
                                 onPressed: () {
                                   Navigator.pop(context);

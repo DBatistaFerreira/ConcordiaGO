@@ -1,36 +1,30 @@
-language: dart
+language: bash
 os: linux
+services:
+  - docker
 install:
   - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
   - cd ..
-  - git clone https://github.com/flutter/flutter.git -b beta
+  - git clone https://github.com/flutter/flutter.git -b stable
   - export PATH="$PATH":"$HOME/.pub-cache/bin"
-  - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
+  - export PATH=`pwd`/flutter/bin:$(pwd)/flutter/bin/cache/dart-sdk/bin:$PATH
   - cd ConcordiaGO
   - flutter precache
-  - flutter doctor -v
-after_success:
-  - tool/send.sh success $WEBHOOK_URL
-after_failure:
-  - tool/send.sh failure $WEBHOOK_URL
 
 jobs:
   include:
     - stage: tests
       name: "Static Tests"
-      dart: stable
-      os: linux
       script:
-        - dartfmt . -l 120 --fix -n --set-exit-if-changed
+        - dartfmt . --fix -n --set-exit-if-changed
         - flutter analyze
 
     - stage: tests
       name: "Unit Tests"
-      dart: stable
-      os: linux
       script:
-        - pub global activate coverage
-        - flutter test --coverage && bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
+        - flutter test --machine > tests.output
+        - flutter test --coverage
+        - docker run -t -u=root -v "$(pwd):/usr/src" -w "/usr/src" clearedkinkajou/concordia-go:latest -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN
 
 stages:
   - tests

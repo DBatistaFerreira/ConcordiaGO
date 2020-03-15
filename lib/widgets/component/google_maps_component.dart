@@ -9,7 +9,8 @@ import 'package:concordia_go/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/utilities/concordia_constants.dart'
+    as concordia_constants;
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
 
 class GoogleMapsComponent extends StatefulWidget {
@@ -37,7 +38,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
           strokeWidth: 2,
           consumeTapEvents: true,
           onTap: () {
-            BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfo(building.code));
+            BlocProvider.of<BuildingInfoBloc>(context)
+                .add(ConcordiaBuildingInfo(building.code));
             BuildingInfoSheet.buildInfoSheet(context);
           },
         ),
@@ -51,21 +53,30 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
     LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'];
 
     var distanceToSGW = await Geolocator().distanceBetween(
-        currentPosition.latitude, currentPosition.longitude, sgwCoordinates.latitude, sgwCoordinates.longitude);
+        currentPosition.latitude,
+        currentPosition.longitude,
+        sgwCoordinates.latitude,
+        sgwCoordinates.longitude);
     var distanceToLoyola = await Geolocator().distanceBetween(
-        currentPosition.latitude, currentPosition.longitude, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
+        currentPosition.latitude,
+        currentPosition.longitude,
+        loyolaCoordinates.latitude,
+        loyolaCoordinates.longitude);
 
     if (distanceToSGW < distanceToLoyola) {
-      BlocProvider.of<MapBloc>(context).add(CameraMove(loyolaCoordinates, concordia_constants.campusZoomLevel));
+      BlocProvider.of<MapBloc>(context).add(
+          CameraMove(loyolaCoordinates, concordia_constants.campusZoomLevel));
     } else {
-      BlocProvider.of<MapBloc>(context).add(CameraMove(sgwCoordinates, concordia_constants.campusZoomLevel));
+      BlocProvider.of<MapBloc>(context)
+          .add(CameraMove(sgwCoordinates, concordia_constants.campusZoomLevel));
     }
   }
 
   Future<void> _goToLocation(LatLng coordinates, double zoom) async {
     // ignore: omit_local_variable_types
     final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: zoom)));
+    await controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: coordinates, zoom: zoom)));
   }
 
   Future<LatLng> getMyLocation() async {
@@ -99,7 +110,9 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   _goToLocation(state.cameraPosition, state.zoom);
                 } else if (state is MapWithMarker) {
                   _goToLocation(
-                      LatLng(state.cameraPosition.latitude - 0.0008, state.cameraPosition.longitude), state.zoom);
+                      LatLng(state.cameraPosition.latitude - 0.0008,
+                          state.cameraPosition.longitude),
+                      state.zoom);
                 } else if (state is DirectionMap) {
                   _polylines = state.directionLines;
                 }
@@ -126,7 +139,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                                 position: state.cameraPosition,
                                 consumeTapEvents: true,
                                 onTap: () {
-                                  buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
+                                  buildingInfoBloc.add(ConcordiaBuildingInfo(
+                                      state.buildingCode));
                                   BuildingInfoSheet.buildInfoSheet(context);
                                 },
                               ),
@@ -173,13 +187,16 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   ),
                   onPressed: () {
                     GeolocationStatus status;
-                    Geolocator().checkGeolocationPermissionStatus().then((result) => status = result);
+                    Geolocator()
+                        .checkGeolocationPermissionStatus()
+                        .then((result) => status = result);
                     getMyLocation().then((myLocation) {
                       if (myLocation != null) {
                         mapBloc.add(CameraMove(myLocation, 17.5));
                       } else if (status == GeolocationStatus.denied) {
                         Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text('Allow location permissions to access My Location'),
+                          content: Text(
+                              'Allow location permissions to access My Location'),
                         ));
                       } else {
                         Scaffold.of(context).showSnackBar(SnackBar(
@@ -235,8 +252,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
 Future<void> moveCameraPosition(LatLng coordinates) async {
   // ignore: omit_local_variable_types
   final GoogleMapController controller = await _controller.future;
-  await controller.animateCamera(
-      CameraUpdate.newCameraPosition(CameraPosition(target: coordinates, zoom: concordia_constants.navZoomLevel)));
+  await controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+      target: coordinates, zoom: concordia_constants.navZoomLevel)));
 }
 
 Future<LatLng> getCurrentLocation() async {
