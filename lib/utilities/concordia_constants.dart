@@ -603,7 +603,7 @@ var buildings = {
   'PR': ConcordiaBuilding(
       code: 'PR',
       name: 'PR Annex',
-      coordinates: LatLng(45.496981, -73.579809),
+      coordinates: LatLng(45.497010, -73.579908),
       vertices: [
         LatLng(45.496961, -73.579973),
         LatLng(45.49706, -73.579867),
@@ -637,7 +637,7 @@ var buildings = {
   'R': ConcordiaBuilding(
       code: 'R',
       name: 'R Annex',
-      coordinates: LatLng(45.496772, -73.579415),
+      coordinates: LatLng(45.496796, -73.579466),
       vertices: [
         LatLng(45.496713, -73.579424),
         LatLng(45.496802, -73.57933),
@@ -654,7 +654,7 @@ var buildings = {
   'RR': ConcordiaBuilding(
       code: 'RR',
       name: 'RR Annex',
-      coordinates: LatLng(45.496736, -73.579340),
+      coordinates: LatLng(45.496773, -73.579411),
       vertices: [
         LatLng(45.496649, -73.579476),
         LatLng(45.496791, -73.579333),
@@ -776,7 +776,7 @@ var buildings = {
   'X': ConcordiaBuilding(
       code: 'X',
       name: 'X Annex',
-      coordinates: LatLng(45.496905, -73.579682),
+      coordinates: LatLng(45.496921, -73.579760),
       vertices: [
         LatLng(45.4969, -73.57981),
         LatLng(45.49698, -73.57974),
@@ -795,7 +795,7 @@ var buildings = {
   'Z': ConcordiaBuilding(
       code: 'Z',
       name: 'Z Annex',
-      coordinates: LatLng(45.496930, -73.579737),
+      coordinates: LatLng(45.496964, -73.579823),
       vertices: [
         LatLng(45.49702, -73.57982),
         LatLng(45.49698, -73.57975),
