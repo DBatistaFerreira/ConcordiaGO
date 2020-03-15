@@ -396,6 +396,27 @@ var buildings = {
         "Montreal Institute for Genocide and Human Rights Studies",
         "District 3 Innovation Center"
       ]),
+  'GA': ConcordiaBuilding(
+      code: 'GA',
+      name: 'Grey Nuns Annex',
+      coordinates: LatLng(45.494154, -73.577851),
+      vertices: [
+        LatLng(45.494345, -73.577732),
+        LatLng(45.494120, -73.577977),
+        LatLng(45.494130, -73.578009),
+        LatLng(45.493847, -73.578357),
+        LatLng(45.493788, -73.578252),
+        LatLng(45.494073, -73.577904),
+        LatLng(45.494057, -73.577862),
+        LatLng(45.494285, -73.577606)
+      ],
+      address: '1211 - 1215 St-Mathieu St., Montreal, QC H3H 2S2',
+      campus: Campus.SGW,
+      hours: {
+        'none': 'Unavailable',
+      },
+      services: ["No services in this building"],
+      departments: ["Department of Education"]),
   'GM': ConcordiaBuilding(
       code: 'GM',
       name: 'Guy-De Maisonneuve Building',
