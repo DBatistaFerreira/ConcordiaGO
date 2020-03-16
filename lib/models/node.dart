@@ -2,26 +2,26 @@
 class Node {
   // region private variables
   /// The unique ID of this node.
-  int _id;
+  String _id;
   // endregion private variables
 
   // region constructors
   /// Default constructor that initializes this node with a unique [ID].
-  Node(int id) {
+  Node(String id) {
     _id = id;
   }
   // endregion constructors
 
   // region getters
   /// Returns this node's unique [ID].
-  int getId() {
+  String getId() {
     return _id;
   }
   // endregion getters
 
   // region setters
   /// Sets this node's unique [ID].
-  void setId(int id) {
+  void setId(String id) {
     _id = id;
   }
   // endregion setters
