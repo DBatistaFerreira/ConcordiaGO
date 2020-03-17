@@ -1,6 +1,9 @@
 library floor_maps_lib;
 
-const H9 = '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+const hallFloors = ['H8', 'H9'];
+
+const floorPlan = {
+  'H9': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
  <g>
@@ -160,9 +163,9 @@ const H9 = '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg"
   <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_41" y="337.997009" x="466.000295"   stroke-width="0" stroke="#000000" fill="#000000">914</text>
   <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_42" y="814.992849" x="769.997645"   stroke-width="0" stroke="#000000" fill="#000000">928</text>
  </g>
-</svg>''';
+</svg>''',
 
-const H8 = '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  'H8': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
  <g>
@@ -307,4 +310,5 @@ const H8 = '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg"
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_134" y="326.996605" x="466.99736" stroke-width="0" stroke="#000000" fill="#000000">806</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_135" y="604.998207" x="250.99612" stroke-width="0" stroke="#000000" fill="#000000">854</text>
  </g>
-</svg>''';
+</svg>'''
+};
