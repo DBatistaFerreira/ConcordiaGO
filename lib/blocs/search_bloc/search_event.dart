@@ -10,13 +10,13 @@ abstract class SearchEvent {
 }
 
 class UpdateResults extends SearchEvent {
-  final String query;
+  final String _query;
 
-  const UpdateResults(this.query);
+  const UpdateResults(this._query);
 
   @override
   SearchState createState() {
-    var results = SearchService.getSearchResults(query);
+    var results = SearchService.getSearchResults(_query);
     return ResultsList(results);
   }
 }

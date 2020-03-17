@@ -163,7 +163,7 @@ class OutdoorPathService {
    */
 
   static void walkingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
-    _singleDirections = List<Direction>();
+    _singleDirections = <Direction>[];
     _listDirections = Journey();
     var url =
         'https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=walking&key=${_apiKey}';

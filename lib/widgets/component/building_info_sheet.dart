@@ -7,7 +7,6 @@ import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:concordia_go/widgets/component/google_maps_component.dart';
 
@@ -27,7 +26,8 @@ class BuildingInfoSheet {
           builder: (context, state) {
             var sheetHeight = screenHeight / 2.14;
 
-            if (state is BuildingInfo) {
+            if (state is ConcordiaBuildingInfoState) {
+              var building = state.building;
               if (state.expandHours) {
                 sheetHeight = screenHeight / 1.46;
               }
@@ -48,9 +48,9 @@ class BuildingInfoSheet {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: state.buildingCode.length == 2 ? 13.0 : 21.0, right: 20.0),
+                            padding: EdgeInsets.only(left: building.code.length == 2 ? 13.0 : 21.0, right: 20.0),
                             child: Text(
-                              state.buildingCode,
+                              building.code,
                               style: TextStyle(color: Colors.white, fontSize: 24),
                             ),
                           ),
@@ -60,12 +60,12 @@ class BuildingInfoSheet {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  state.buildingName,
+                                  building.name,
                                   style: TextStyle(color: Colors.white, fontSize: 18),
                                   overflow: TextOverflow.fade,
                                 ),
                                 Text(
-                                  state.campus,
+                                  building.campusString(),
                                   style: TextStyle(color: Colors.white, fontSize: 12),
                                   textAlign: TextAlign.left,
                                 ),
@@ -86,7 +86,7 @@ class BuildingInfoSheet {
                                 size: iconSize,
                               ),
                               title: Text(
-                                state.address,
+                                building.address,
                                 overflow: TextOverflow.fade,
                               ),
                               dense: true,
@@ -134,7 +134,7 @@ class BuildingInfoSheet {
                                   padding: EdgeInsets.only(bottom: 5.0),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: state.hours.length > 1
+                                    children: building.hours.length > 1
                                         ? <Widget>[
                                             Column(
                                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -153,18 +153,18 @@ class BuildingInfoSheet {
                                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                Text(state.hours['mon']),
-                                                Text(state.hours['tue']),
-                                                Text(state.hours['wed']),
-                                                Text(state.hours['thu']),
-                                                Text(state.hours['fri']),
-                                                Text(state.hours['sat']),
-                                                Text(state.hours['sun']),
+                                                Text(building.hours['mon']),
+                                                Text(building.hours['tue']),
+                                                Text(building.hours['wed']),
+                                                Text(building.hours['thu']),
+                                                Text(building.hours['fri']),
+                                                Text(building.hours['sat']),
+                                                Text(building.hours['sun']),
                                               ],
                                             )
                                           ]
                                         : <Widget>[
-                                            Text(state.hours['none']),
+                                            Text(building.hours['none']),
                                           ],
                                   ),
                                 ),
@@ -172,11 +172,11 @@ class BuildingInfoSheet {
                               onExpansionChanged: (isExpanding) {
                                 if (isExpanding) {
                                   BlocProvider.of<BuildingInfoBloc>(context)
-                                      .add(ConcordiaBuildingInfo(state.buildingCode, true));
+                                      .add(ConcordiaBuildingInfoEvent(building.code, true));
                                 } else {
                                   Timer(Duration(milliseconds: 100), () {
                                     BlocProvider.of<BuildingInfoBloc>(context)
-                                        .add(ConcordiaBuildingInfo(state.buildingCode, false));
+                                        .add(ConcordiaBuildingInfoEvent(building.code, false));
                                   });
                                 }
                               },
@@ -219,8 +219,8 @@ class BuildingInfoSheet {
                                       BlocProvider.of<DirectionsBloc>(mc).add(
                                         GetDirections(
                                           value,
-                                          state.coordinates,
-                                          state.buildingName,
+                                          building.coordinates,
+                                          building.name,
                                         ),
                                       );
                                     },

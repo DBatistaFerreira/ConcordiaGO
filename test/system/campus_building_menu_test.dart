@@ -83,7 +83,7 @@ void main() {
   testWidgets('SGW Campus Building Menu', (WidgetTester tester) async {
     await tester.pumpWidget(LoadSGWCampusBuildingListMenu());
     buildings.forEach((code, building) async {
-      if (building.campusString() == "SGW Campus") {
+      if (building.campusString() == 'SGW Campus') {
         assert(find.text(building.name) != null);
       }
     });
@@ -92,7 +92,7 @@ void main() {
   testWidgets('Loyola Campus Building Menu', (WidgetTester tester) async {
     await tester.pumpWidget(LoadLoyolaCampusBuildingListMenu());
     buildings.forEach((code, building) {
-      if (building.campusString() == "Loyola Campus") {
+      if (building.campusString() == 'Loyola Campus') {
         assert(find.text(building.name) != null);
       }
     });

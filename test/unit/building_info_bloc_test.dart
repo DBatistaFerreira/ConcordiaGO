@@ -6,7 +6,7 @@ import 'package:concordia_go/blocs/building_info_bloc/building_info_state.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
 
 void main() {
-  final event = ConcordiaBuildingInfo(buildings['H'].code, false);
+  final event = ConcordiaBuildingInfoEvent(buildings['H'].code, false);
 
   blocTest(
     'Get Concordia Building Info',
@@ -14,6 +14,6 @@ void main() {
     act: (bloc) {
       return bloc.add(event);
     },
-    expect: [isA<BuildingInfo>()],
+    expect: [isA<ConcordiaBuildingInfoState>()],
   );
 }

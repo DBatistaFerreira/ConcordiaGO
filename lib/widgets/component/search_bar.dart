@@ -112,8 +112,9 @@ Widget SearchResultsList(List<ConcordiaBuilding> results) {
                     ),
                     onTap: () {
                       BlocProvider.of<SearchBloc>(context).add(EndSearch());
-                      BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(results[index]?.code, context));
-                      BlocProvider.of<BuildingInfoBloc>(mc).add(ConcordiaBuildingInfo(results[index]?.code, false));
+                      BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(results[index]?.code));
+                      BlocProvider.of<BuildingInfoBloc>(mc)
+                          .add(ConcordiaBuildingInfoEvent(results[index]?.code, false));
                       BuildingInfoSheet.buildInfoSheet(context);
                       if (!FocusScope.of(context).hasPrimaryFocus) {
                         FocusScope.of(context).unfocus();

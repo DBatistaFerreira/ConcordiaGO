@@ -281,8 +281,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
   }
 
   Widget getIcon(IconType type, double size) {
-    IconData icon;
-    bool flip = false;
+    var icon;
+    var flip = false;
     switch (type) {
       case IconType.left:
         icon = Icons.subdirectory_arrow_right;

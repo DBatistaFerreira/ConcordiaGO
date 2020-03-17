@@ -43,7 +43,7 @@ const double poiZoomLevel = 17.5;
 const double campusZoomLevel = 16.5;
 const double navZoomLevel = 16.0;
 
-var buildings = {
+const buildings = {
   // SGW Buildings
   'H': ConcordiaBuilding(
     code: 'H',
