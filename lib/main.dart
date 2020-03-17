@@ -42,9 +42,9 @@ class Application extends StatelessWidget {
         },
         child: MaterialApp(
           title: application_constants.applicationName,
-          initialRoute: '/',
+          initialRoute: '/homescreen',
           routes: {
-            '/': (context) => HomeScreen(),
+            '/homescreen': (context) => HomeScreen(),
             '/sgwbuildings': (context) => CampusBuildingListMenu(Campus.SGW),
             '/loyolabuildings': (context) => CampusBuildingListMenu(Campus.Loyola),
             '/indoormap': (context) => IndoorMap(),

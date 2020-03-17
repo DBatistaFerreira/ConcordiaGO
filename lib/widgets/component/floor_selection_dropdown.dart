@@ -28,6 +28,7 @@ class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
         child: Container(
             padding: EdgeInsets.all(3.0),
             decoration: BoxDecoration(
+              color: Colors.white,
               borderRadius: BorderRadius.circular(15.0),
               border: Border.all(
                   color: application_constants.concordiaRed,
