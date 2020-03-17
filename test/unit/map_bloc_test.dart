@@ -23,7 +23,7 @@ void main() {
     act: (bloc) {
       return bloc.add(eventMapWithMarker);
     },
-    expect: [],
+    expect: [isA<MapWithMarker>()],
   );
 
   blocTest(

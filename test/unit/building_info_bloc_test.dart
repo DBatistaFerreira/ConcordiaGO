@@ -14,6 +14,6 @@ void main() {
     act: (bloc) {
       return bloc.add(event);
     },
-    expect: [isA<BuildingInfo>(), isA<BuildingInfo>()],
+    expect: [isA<BuildingInfo>()],
   );
 }
