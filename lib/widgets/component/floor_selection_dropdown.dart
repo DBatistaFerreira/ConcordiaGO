@@ -47,6 +47,7 @@ class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
               style: TextStyle(
                   color: application_constants.concordiaRed, fontSize: 28),
               onChanged: (String newValue) {
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/indoormap', arguments: {'floor': newValue});
               },
               items: hallFloors
