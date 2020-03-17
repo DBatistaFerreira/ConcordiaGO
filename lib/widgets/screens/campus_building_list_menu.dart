@@ -99,6 +99,8 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
                   onTap: () {
                     Navigator.pop(context);
                     BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(buildingList[index].code, context));
+                    BlocProvider.of<BuildingInfoBloc>(context)
+                        .add(ConcordiaBuildingInfo(buildingList[index].code, false));
                     BuildingInfoSheet.buildInfoSheet(mapContext);
                   },
                   trailing: Icon(Icons.keyboard_arrow_right),

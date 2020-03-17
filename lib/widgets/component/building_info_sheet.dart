@@ -170,10 +170,12 @@ class BuildingInfoSheet {
                               ],
                               onExpansionChanged: (isExpanding) {
                                 if (isExpanding) {
-                                  BlocProvider.of<BuildingInfoBloc>(context).add(ToggleHoursEvent(true));
+                                  BlocProvider.of<BuildingInfoBloc>(context)
+                                      .add(ConcordiaBuildingInfo(state.buildingCode, true));
                                 } else {
                                   Timer(Duration(milliseconds: 100), () {
-                                    BlocProvider.of<BuildingInfoBloc>(context).add(ToggleHoursEvent(false));
+                                    BlocProvider.of<BuildingInfoBloc>(context)
+                                        .add(ConcordiaBuildingInfo(state.buildingCode, false));
                                   });
                                 }
                               },

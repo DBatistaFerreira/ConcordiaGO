@@ -16,7 +16,6 @@ class BuildingInfo extends BuildingInfoState {
   final LatLng coordinates;
   final Map<String, String> hours;
   final bool expandHours;
-  final bool fromToggle;
 
   const BuildingInfo(
     this.buildingCode,
@@ -26,7 +25,6 @@ class BuildingInfo extends BuildingInfoState {
     this.coordinates,
     this.hours,
     this.expandHours,
-    this.fromToggle,
   );
 
   BuildingInfo toggleHours(bool expandHours) {
@@ -38,12 +36,11 @@ class BuildingInfo extends BuildingInfoState {
       coordinates,
       hours,
       expandHours,
-      true,
     );
   }
 
   @override
   String toString() {
-    return 'BuildingInfo{buildingCode: $buildingCode, buildingName: $buildingName, campus: $campus, address: $address, coordinates: $coordinates, hours: $hours, expandHours: $expandHours, fromToggle: $fromToggle}';
+    return 'BuildingInfo{buildingCode: $buildingCode, buildingName: $buildingName, campus: $campus, address: $address, coordinates: $coordinates, hours: $hours, expandHours: $expandHours}';
   }
 }

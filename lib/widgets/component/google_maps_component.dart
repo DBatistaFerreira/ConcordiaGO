@@ -37,7 +37,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
           strokeWidth: 2,
           consumeTapEvents: true,
           onTap: () {
-            BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfo(building.code));
+            BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfo(building.code, false));
             BuildingInfoSheet.buildInfoSheet(context);
           },
         ),
@@ -126,7 +126,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                                 position: state.cameraPosition,
                                 consumeTapEvents: true,
                                 onTap: () {
-                                  buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode));
+                                  buildingInfoBloc.add(ConcordiaBuildingInfo(state.buildingCode, false));
                                   BuildingInfoSheet.buildInfoSheet(context);
                                 },
                               ),
