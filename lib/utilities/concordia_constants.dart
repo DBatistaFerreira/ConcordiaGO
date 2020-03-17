@@ -67,23 +67,23 @@ var buildings = {
       'sun': '6:00 - 23:00',
     },
     services: [
-      "Welcome Crew Office",
-      "DB Clarke Theatre",
-      "Dean of Students",
-      "Aboriginal Student Resource Centre",
-      "Concordia Student Union",
-      "IT Service Desk",
-      "Security Office",
-      "Student Success Centre",
-      "Mail Services",
-      "Archives",
-      "Career and Planning Services",
-      "Sexual Assault Resource Centre (SARC)"
+      'Welcome Crew Office',
+      'DB Clarke Theatre',
+      'Dean of Students',
+      'Aboriginal Student Resource Centre',
+      'Concordia Student Union',
+      'IT Service Desk',
+      'Security Office',
+      'Student Success Centre',
+      'Mail Services',
+      'Archives',
+      'Career and Planning Services',
+      'Sexual Assault Resource Centre (SARC)'
     ],
     departments: [
-      "Geography, Planning and Environment",
-      "Poltiical Science, Sociology, Anthropology, and Economics",
-      "School of Irish Studies"
+      'Geography, Planning and Environment',
+      'Poltiical Science, Sociology, Anthropology, and Economics',
+      'School of Irish Studies'
     ],
   ),
   'LB': ConcordiaBuilding(
@@ -110,23 +110,23 @@ var buildings = {
       'sun': 'Open 24 h',
     },
     services: [
-      "R. Howard Webster Library",
-      "Welcome Centre",
-      "Leonard and Bina Ellen Art Gallery",
-      "J.A. De Seve Cinema",
-      "Birks Students Service Centre",
-      "Campus Stores",
-      "Instructional and Information Technology Services (IITS)",
-      "4th Space"
+      'R. Howard Webster Library',
+      'Welcome Centre',
+      'Leonard and Bina Ellen Art Gallery',
+      'J.A. De Seve Cinema',
+      'Birks Students Service Centre',
+      'Campus Stores',
+      'Instructional and Information Technology Services (IITS)',
+      '4th Space'
     ],
     departments: [
-      "English",
-      "History",
-      "French Studies",
-      "Mathematics and Statistics",
-      "Education",
-      "Centre for Interdisciplinary Studies in Society and Culture (CISSC)",
-      "Centre for the Study of Learning and Performance"
+      'English',
+      'History',
+      'French Studies',
+      'Mathematics and Statistics',
+      'Education',
+      'Centre for Interdisciplinary Studies in Society and Culture (CISSC)',
+      'Centre for the Study of Learning and Performance'
     ],
   ),
   'MB': ConcordiaBuilding(
@@ -145,21 +145,21 @@ var buildings = {
       'none': 'Unavailable',
     },
     services: [
-      "Career Management Services",
-      "John Molson Executive Centre",
-      "Performing Arts Facilities",
+      'Career Management Services',
+      'John Molson Executive Centre',
+      'Performing Arts Facilities',
     ],
     departments: [
-      "Accountancy",
-      "Supply Chain and Business Technology Management",
-      "Finance",
-      "Management",
-      "Marketing",
-      "Goodman Institute of Investment Management",
-      "Executive MBA Program",
-      "Music",
-      "Theatre",
-      "Contemporary Dance"
+      'Accountancy',
+      'Supply Chain and Business Technology Management',
+      'Finance',
+      'Management',
+      'Marketing',
+      'Goodman Institute of Investment Management',
+      'Executive MBA Program',
+      'Music',
+      'Theatre',
+      'Contemporary Dance'
     ],
   ),
   'EV': ConcordiaBuilding(
@@ -186,25 +186,25 @@ var buildings = {
       'sun': '6:30 - 23:00',
     },
     services: [
-      "LeGym",
-      "FOFA Gallery",
+      'LeGym',
+      'FOFA Gallery',
     ],
     departments: [
-      "Gina Cody School of Engineering and Computer Science",
-      "Electrical and Computer Engineering",
-      "Building, Civil and Environmental Engineering",
-      "Computer Science and Software Engineering",
-      "Mechanical, Industrial and Aerospace Engineering",
-      "Design and Computation Arts",
-      "Faculty of Fine Arts",
-      "Studio Arts",
-      "Art Education",
-      "Art History",
-      "Contemporary Dance",
-      "Recreation and Athletics",
-      "Zero Energy Building Studies",
-      "Centre for Pattern Recognition and Machine Intelligence",
-      "Centre for Composites"
+      'Gina Cody School of Engineering and Computer Science',
+      'Electrical and Computer Engineering',
+      'Building, Civil and Environmental Engineering',
+      'Computer Science and Software Engineering',
+      'Mechanical, Industrial and Aerospace Engineering',
+      'Design and Computation Arts',
+      'Faculty of Fine Arts',
+      'Studio Arts',
+      'Art Education',
+      'Art History',
+      'Contemporary Dance',
+      'Recreation and Athletics',
+      'Zero Energy Building Studies',
+      'Centre for Pattern Recognition and Machine Intelligence',
+      'Centre for Composites'
     ],
   ),
   'FG': ConcordiaBuilding(
@@ -222,8 +222,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Classrooms"],
-    departments: ["Education"],
+    services: ['Classrooms'],
+    departments: ['Education'],
   ),
   'B': ConcordiaBuilding(
     code: 'B',
@@ -240,8 +240,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Engineering and Computer Science Association"],
-    departments: ["No departments in this building"],
+    services: ['Engineering and Computer Science Association'],
+    departments: ['No departments in this building'],
   ),
   'CB': ConcordiaBuilding(
     code: 'CB',
@@ -264,8 +264,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'CI': ConcordiaBuilding(
     code: 'CI',
@@ -282,8 +282,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["School of Community and Public Affairs"],
+    services: ['No services in this building'],
+    departments: ['School of Community and Public Affairs'],
   ),
   'CL': ConcordiaBuilding(
     code: 'CL',
@@ -300,8 +300,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Concordia Continueing Education"],
-    departments: ["No departments in this building"],
+    services: ['Concordia Continueing Education'],
+    departments: ['No departments in this building'],
   ),
   'D': ConcordiaBuilding(
     code: 'D',
@@ -320,8 +320,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["Theological Studies"],
+    services: ['No services in this building'],
+    departments: ['Theological Studies'],
   ),
   'EN': ConcordiaBuilding(
     code: 'EN',
@@ -340,8 +340,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'ER': ConcordiaBuilding(
     code: 'ER',
@@ -358,8 +358,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'FA': ConcordiaBuilding(
     code: 'FA',
@@ -376,8 +376,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["Religions and Cultures"],
+    services: ['No services in this building'],
+    departments: ['Religions and Cultures'],
   ),
   'FB': ConcordiaBuilding(
     code: 'FB',
@@ -395,19 +395,19 @@ var buildings = {
       'none': 'Unavailable',
     },
     services: [
-      "Human Resources",
-      "Enrolment Services",
-      "Office of the Registrar",
-      "Student Recruitment",
-      "Examinations Office",
-      "Senior non-credit program"
+      'Human Resources',
+      'Enrolment Services',
+      'Office of the Registrar',
+      'Student Recruitment',
+      'Examinations Office',
+      'Senior non-credit program'
     ],
     departments: [
-      "Classics, Modern Languages and Lingustics",
-      "Concordia Continueing Education",
-      "Mel Hoppenheim School of Cinema",
-      "Montreal Institute for Genocide and Human Rights Studies",
-      "District 3 Innovation Center"
+      'Classics, Modern Languages and Lingustics',
+      'Concordia Continueing Education',
+      'Mel Hoppenheim School of Cinema',
+      'Montreal Institute for Genocide and Human Rights Studies',
+      'District 3 Innovation Center'
     ],
   ),
   'GA': ConcordiaBuilding(
@@ -429,8 +429,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["Department of Education"],
+    services: ['No services in this building'],
+    departments: ['Department of Education'],
   ),
   'GM': ConcordiaBuilding(
     code: 'GM',
@@ -448,26 +448,26 @@ var buildings = {
       'none': 'Unavailable',
     },
     services: [
-      "Access Centre for Students with Disabilities",
-      "Environmental Health and Safety",
-      "Facilities Management",
-      "Financial Aid and Awards Office",
-      "Financial Services",
-      "Graduate Studies",
-      "Health Services",
-      "Institute for Co-operative Education",
-      "International Students Office",
-      "Offices of Rights and Responsibilities",
-      "Office of Sustainability",
-      "Office of the Chief Communications Office",
-      "Office of the President",
-      "Office of the Provost and VP, Academic",
-      "Office of the VP, Institutional Relations and Secretary General",
-      "Office of the VP Rsearch and Graduate Studies",
-      "Ombuds Office",
-      "University Communication Services"
+      'Access Centre for Students with Disabilities',
+      'Environmental Health and Safety',
+      'Facilities Management',
+      'Financial Aid and Awards Office',
+      'Financial Services',
+      'Graduate Studies',
+      'Health Services',
+      'Institute for Co-operative Education',
+      'International Students Office',
+      'Offices of Rights and Responsibilities',
+      'Office of Sustainability',
+      'Office of the Chief Communications Office',
+      'Office of the President',
+      'Office of the Provost and VP, Academic',
+      'Office of the VP, Institutional Relations and Secretary General',
+      'Office of the VP Rsearch and Graduate Studies',
+      'Ombuds Office',
+      'University Communication Services'
     ],
-    departments: ["Contemporary Dance", "Music", "Theatre"],
+    departments: ['Contemporary Dance', 'Music', 'Theatre'],
   ),
   'GN': ConcordiaBuilding(
     code: 'GN',
@@ -484,8 +484,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Residences", "Grey Nuns Library", "Daycare Centre", "Summer Accommodation"],
-    departments: ["No departments in this building"],
+    services: ['Residences', 'Grey Nuns Library', 'Daycare Centre', 'Summer Accommodation'],
+    departments: ['No departments in this building'],
   ),
   'GS': ConcordiaBuilding(
     code: 'GS',
@@ -507,8 +507,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'K': ConcordiaBuilding(
     code: 'K',
@@ -531,8 +531,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Theological Studies"],
-    departments: ["No departments in this building"],
+    services: ['Theological Studies'],
+    departments: ['No departments in this building'],
   ),
   'LD': ConcordiaBuilding(
     code: 'LD',
@@ -549,8 +549,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["CSU Daycare and Nursery"],
-    departments: ["No departments in this building"],
+    services: ['CSU Daycare and Nursery'],
+    departments: ['No departments in this building'],
   ),
   'LS': ConcordiaBuilding(
     code: 'LS',
@@ -569,8 +569,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["IT Services"],
-    departments: ["No departments in this building"],
+    services: ['IT Services'],
+    departments: ['No departments in this building'],
   ),
   'M': ConcordiaBuilding(
     code: 'M',
@@ -587,8 +587,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'MI': ConcordiaBuilding(
     code: 'MI',
@@ -607,8 +607,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["ACUMAE", "SCOMM", "CUSSU", "CUUSS-TS", "CULEU", "CUPEU", "CUCEPTFU"],
-    departments: ["No departments in this building"],
+    services: ['ACUMAE', 'SCOMM', 'CUSSU', 'CUUSS-TS', 'CULEU', 'CUPEU', 'CUCEPTFU'],
+    departments: ['No departments in this building'],
   ),
   'MU': ConcordiaBuilding(
     code: 'MU',
@@ -625,8 +625,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Simone de Beauvoir Institute"],
-    departments: ["No departments in this building"],
+    services: ['Simone de Beauvoir Institute'],
+    departments: ['No departments in this building'],
   ),
   'P': ConcordiaBuilding(
     code: 'P',
@@ -643,8 +643,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'PR': ConcordiaBuilding(
     code: 'PR',
@@ -661,8 +661,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'Q': ConcordiaBuilding(
     code: 'Q',
@@ -680,7 +680,7 @@ var buildings = {
       'none': 'Unavailable',
     },
     services: ["Ethnic Students' Association"],
-    departments: ["No departments in this building"],
+    departments: ['No departments in this building'],
   ),
   'R': ConcordiaBuilding(
     code: 'R',
@@ -697,8 +697,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["Religions and Cultures"],
+    services: ['No services in this building'],
+    departments: ['Religions and Cultures'],
   ),
   'RR': ConcordiaBuilding(
     code: 'RR',
@@ -715,8 +715,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["Liberal Arts College"],
+    services: ['No services in this building'],
+    departments: ['Liberal Arts College'],
   ),
   'S': ConcordiaBuilding(
     code: 'S',
@@ -735,8 +735,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["Department of Philosophy"],
+    services: ['No services in this building'],
+    departments: ['Department of Philosophy'],
   ),
   'SB': ConcordiaBuilding(
     code: 'SB',
@@ -753,8 +753,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Arts and Science Research Groups"],
-    departments: ["No departments in this building"],
+    services: ['Arts and Science Research Groups'],
+    departments: ['No departments in this building'],
   ),
   'T': ConcordiaBuilding(
     code: 'T',
@@ -771,8 +771,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Graduate Students Association"],
-    departments: ["No departments in this building"],
+    services: ['Graduate Students Association'],
+    departments: ['No departments in this building'],
   ),
   'TD': ConcordiaBuilding(
     code: 'TD',
@@ -789,8 +789,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["CUSP"],
-    departments: ["No departments in this building"],
+    services: ['CUSP'],
+    departments: ['No departments in this building'],
   ),
   'V': ConcordiaBuilding(
     code: 'V',
@@ -807,8 +807,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["CUTV", "Centre 2110"],
-    departments: ["No departments in this building"],
+    services: ['CUTV', 'Centre 2110'],
+    departments: ['No departments in this building'],
   ),
   'VA': ConcordiaBuilding(
     code: 'VA',
@@ -845,8 +845,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Concordia International"],
-    departments: ["No departments in this building"],
+    services: ['Concordia International'],
+    departments: ['No departments in this building'],
   ),
   'Z': ConcordiaBuilding(
     code: 'Z',
@@ -863,8 +863,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Multi-Faith and Spirituality Centre", "Sustainable Concordia"],
-    departments: ["No departments in this building"],
+    services: ['Multi-Faith and Spirituality Centre', 'Sustainable Concordia'],
+    departments: ['No departments in this building'],
   ),
   //******************************************************************************************************************
   // Loyola Buildings
@@ -896,18 +896,18 @@ var buildings = {
       'none': 'Unavailable',
     },
     services: [
-      "Welcome Crew Office",
-      "Centre for Teaching and Learning",
-      "Loyola International College",
-      "Provost and VP, Academic",
-      "Dean of Students",
-      "Concordia Multi-Faith and Spirituality Centre",
-      "Advocacy and Support Services",
-      "Access Centre for Students with Disabilities",
-      "Counseling and Development",
-      "Health Services"
+      'Welcome Crew Office',
+      'Centre for Teaching and Learning',
+      'Loyola International College',
+      'Provost and VP, Academic',
+      'Dean of Students',
+      'Concordia Multi-Faith and Spirituality Centre',
+      'Advocacy and Support Services',
+      'Access Centre for Students with Disabilities',
+      'Counseling and Development',
+      'Health Services'
     ],
-    departments: ["Faculty of Arts and Science"],
+    departments: ['Faculty of Arts and Science'],
   ),
   'BB': ConcordiaBuilding(
     code: 'BB',
@@ -925,7 +925,7 @@ var buildings = {
       'none': 'Unavailable',
     },
     services: ["CPE Les P'tits Profs Paycare"],
-    departments: ["No departments in this building"],
+    departments: ['No departments in this building'],
   ),
   'BH': ConcordiaBuilding(
     code: 'BH',
@@ -943,7 +943,7 @@ var buildings = {
       'none': 'Unavailable',
     },
     services: ["CPE Les P'tits Profs Daycare"],
-    departments: ["No departments in this building"],
+    departments: ['No departments in this building'],
   ),
   'CC': ConcordiaBuilding(
     code: 'CC',
@@ -960,8 +960,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Concordia Student Union"],
-    departments: ["Loyola College for Diversity and Sustainability and Loyola"],
+    services: ['Concordia Student Union'],
+    departments: ['Loyola College for Diversity and Sustainability and Loyola'],
   ),
   'CJ': ConcordiaBuilding(
     code: 'CJ',
@@ -993,8 +993,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Campus Retail Stores"],
-    departments: ["Communication Studies", "Journalism"],
+    services: ['Campus Retail Stores'],
+    departments: ['Communication Studies', 'Journalism'],
   ),
   'DO': ConcordiaBuilding(
     code: 'DO',
@@ -1011,8 +1011,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["Stingers.ca"],
+    services: ['No services in this building'],
+    departments: ['Stingers.ca'],
   ),
   'FC': ConcordiaBuilding(
     code: 'FC',
@@ -1034,8 +1034,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["F.C. Smith Auditorium", "Cazalet Theater", "Concordia Multi-Faith and Spirituality Centre"],
-    departments: ["No departments in this building"],
+    services: ['F.C. Smith Auditorium', 'Cazalet Theater', 'Concordia Multi-Faith and Spirituality Centre'],
+    departments: ['No departments in this building'],
   ),
   'GE': ConcordiaBuilding(
     code: 'GE',
@@ -1052,8 +1052,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Centre for Structural and Functionality Genomics"],
-    departments: ["No departments in this building"],
+    services: ['Centre for Structural and Functionality Genomics'],
+    departments: ['No departments in this building'],
   ),
   'HA': ConcordiaBuilding(
     code: 'HA',
@@ -1070,8 +1070,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Student Residence"],
-    departments: ["No departments in this building"],
+    services: ['Student Residence'],
+    departments: ['No departments in this building'],
   ),
   'HB': ConcordiaBuilding(
     code: 'HB',
@@ -1090,8 +1090,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Student Residence", "CUFA"],
-    departments: ["No departments in this building"],
+    services: ['Student Residence', 'CUFA'],
+    departments: ['No departments in this building'],
   ),
   'HC': ConcordiaBuilding(
     code: 'HC',
@@ -1108,8 +1108,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Student Residence"],
-    departments: ["No departments in this building"],
+    services: ['Student Residence'],
+    departments: ['No departments in this building'],
   ),
   'HU': ConcordiaBuilding(
     code: 'HU',
@@ -1126,8 +1126,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'JR': ConcordiaBuilding(
     code: 'JR',
@@ -1144,8 +1144,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Student Residence"],
-    departments: ["No departments in this building"],
+    services: ['Student Residence'],
+    departments: ['No departments in this building'],
   ),
   'PC': ConcordiaBuilding(
     code: 'PC',
@@ -1162,8 +1162,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["PERFORM Centre"],
-    departments: ["No departments in this building"],
+    services: ['PERFORM Centre'],
+    departments: ['No departments in this building'],
   ),
   'PS': ConcordiaBuilding(
     code: 'PS',
@@ -1182,8 +1182,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Environmental Health and Safety", "Facilities Management"],
-    departments: ["No departments in this building"],
+    services: ['Environmental Health and Safety', 'Facilities Management'],
+    departments: ['No departments in this building'],
   ),
   'PT': ConcordiaBuilding(
     code: 'PT',
@@ -1200,8 +1200,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Concert Hall"],
-    departments: ["Oscar Peterson Concert Hall"],
+    services: ['Concert Hall'],
+    departments: ['Oscar Peterson Concert Hall'],
   ),
   'PY': ConcordiaBuilding(
     code: 'PY',
@@ -1218,8 +1218,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["Psychology", "Centre for Clinical Research in Health"],
+    services: ['No services in this building'],
+    departments: ['Psychology', 'Centre for Clinical Research in Health'],
   ),
   'RA': ConcordiaBuilding(
     code: 'RA',
@@ -1236,8 +1236,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Ed Meagher Arena", "Gymnasium"],
-    departments: ["No departments in this building"],
+    services: ['Ed Meagher Arena', 'Gymnasium'],
+    departments: ['No departments in this building'],
   ),
   'RF': ConcordiaBuilding(
     code: 'RF',
@@ -1262,8 +1262,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Loyola Jesuit Hall and Conference Centre", "Conference Services"],
-    departments: ["No departments in this building"],
+    services: ['Loyola Jesuit Hall and Conference Centre', 'Conference Services'],
+    departments: ['No departments in this building'],
   ),
   'SC': ConcordiaBuilding(
     code: 'SC',
@@ -1280,8 +1280,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Campus Centre", "Food Services", "Cafeteria", "Cafe"],
-    departments: ["No departments in this building"],
+    services: ['Campus Centre', 'Food Services', 'Cafeteria', 'Cafe'],
+    departments: ['No departments in this building'],
   ),
   'SI': ConcordiaBuilding(
     code: 'SI',
@@ -1298,8 +1298,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'SP': ConcordiaBuilding(
     code: 'SP',
@@ -1320,17 +1320,17 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Science College", "Science Technical Centre", "Animal Care Facilities", "Security Office", "Cafe"],
+    services: ['Science College', 'Science Technical Centre', 'Animal Care Facilities', 'Security Office', 'Cafe'],
     departments: [
-      "Biology",
-      "Chemistry and Biochemistry",
-      "Health, Kinesiology and Applied Physiology",
-      "Physics",
-      "Psychology",
-      "Centre for Biological Applications of Mass Spectrometry",
-      "Centre for NanoScience Research",
-      "Center for Studies in Behavioral Neurobiology",
-      "Centre for Research in Molecular Modeling",
+      'Biology',
+      'Chemistry and Biochemistry',
+      'Health, Kinesiology and Applied Physiology',
+      'Physics',
+      'Psychology',
+      'Centre for Biological Applications of Mass Spectrometry',
+      'Centre for NanoScience Research',
+      'Center for Studies in Behavioral Neurobiology',
+      'Centre for Research in Molecular Modeling',
     ],
   ),
   'TA': ConcordiaBuilding(
@@ -1348,8 +1348,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["No services in this building"],
-    departments: ["No departments in this building"],
+    services: ['No services in this building'],
+    departments: ['No departments in this building'],
   ),
   'VE': ConcordiaBuilding(
     code: 'VE',
@@ -1366,8 +1366,8 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Library"],
-    departments: ["Applied Human Sciences"],
+    services: ['Library'],
+    departments: ['Applied Human Sciences'],
   ),
   'VL': ConcordiaBuilding(
     code: 'VL',
@@ -1388,7 +1388,7 @@ var buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ["Library"],
-    departments: ["No departments in this building"],
+    services: ['Library'],
+    departments: ['No departments in this building'],
   ),
 };
