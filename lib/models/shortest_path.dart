@@ -6,6 +6,8 @@ class DShortestPath {
   Node _source;
   Node _destination;
   int _distance;
+  Map<String, Node> _visited;
+  Map<String, Node> _unvisited;
   // List<Node> shortest_path
 
   // region constructors
@@ -14,6 +16,8 @@ class DShortestPath {
     _source = source;
     _destination = destination;
     _distance = 0;
+    _visited = <String, Node>{};
+    _unvisited = graph.getNodes();
   }
   // endregion constructors
 

@@ -1,6 +1,6 @@
 import 'node.dart';
 
-/// A non-negatively weighted graph containing nodes and edges.
+/// A weighted graph containing nodes and edges.
 class Graph {
   /// The letters of the building code for this graph.
   String _building_code;
@@ -29,15 +29,32 @@ class Graph {
   value = index in the 2D matrix.
    */
   /// The map of the indices in the 2D matrix of the edges on this graph.
-  Map<String, int> _edge_indices;
+  List<String> _edge_indices;
 
   // region constructors
   /// Default constructor to initialize this graph with the values passed.
-  Graph(String building_code) {
+  Graph(
+      String building_code, List<List<int>> edges, List<String> edge_indices) {
     _building_code = building_code;
     _nodes = <String, Node>{};
+    _edges = edges;
+    _edge_indices = edge_indices;
+  }
+
+  /// Constructor to initialize this graph with empty values for all variables.
+  Graph.withNothing() {
+    _building_code = '';
+    _nodes = <String, Node>{};
     _edges = <List<int>>[];
-    _edge_indices = <String, int>{};
+    _edge_indices = <String>[];
+  }
+
+  Graph.withNodes(String building_code, Map<String, Node> nodes,
+      List<List<int>> edges, List<String> edge_indices) {
+    _building_code = building_code;
+    _nodes = nodes;
+    _edges = edges;
+    _edge_indices = edge_indices;
   }
 
   /// Constructor to initialize this graph from another graph passed.
@@ -66,7 +83,7 @@ class Graph {
   }
 
   /// Returns the map of indices for the 2D edge matrix of this graph.
-  Map<String, int> getEdgeIndices() {
+  List<String> getEdgeIndices() {
     return _edge_indices;
   }
   // endregion getters
@@ -82,17 +99,24 @@ class Graph {
     _nodes = nodes;
   }
 
+  /// Sets the [node] map of this graph from the edge indices passed.
+  void setNodesFromEdgeIndices(List<String> edge_indices) {
+    for (var node in edge_indices) {
+      _nodes[node] = Node(node);
+    }
+  }
+
   /// Sets the 2D edge matrix of this graph to the 2D edge matrix passed.
   void setEdges(List<List<int>> edges) {
     _edges = edges;
   }
 
   /// Sets the map of indices for the 2D edge matrix of this graph to the map of indices for the 2D edge matrix passed.
-  void setEdgeIndices(Map<String, int> edge_indices) {
+  void setEdgeIndices(List<String> edge_indices) {
     _edge_indices = edge_indices;
   }
   // endregion setters
-
+/*
   // region functions
   // region add...
   /*
@@ -128,4 +152,5 @@ class Graph {
   }
 
   // endregion functions
+ */
 }

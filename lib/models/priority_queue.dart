@@ -14,7 +14,7 @@ class PriorityQueue {
   }
 
   /// Constructor to initialize this queue from a list of edges.
-  PriorityQueue.fromList(List<Edge> list){
+  PriorityQueue.fromList(List<Edge> list) {
     _pq = list;
   }
   // endregion constructors
@@ -36,12 +36,12 @@ class PriorityQueue {
   }
 
   /// Returns `true` if the element at [index] has a left child in this queue.
-  bool _hasLeftChild(int index){
+  bool _hasLeftChild(int index) {
     return (_leftChild(index) < _pq.length);
   }
 
   /// Returns `true` if the index passed has a right child in this queue.
-  bool _hasRightChild(int index){
+  bool _hasRightChild(int index) {
     return (_rightChild(index) < _pq.length);
   }
 
@@ -67,9 +67,11 @@ class PriorityQueue {
   /// then it will swap positions with the child of smaller weight.
   void _sink(int index) {
     if (!_isLeaf(index)) {
-      if (_hasLeftChild(index) && _hasRightChild(index)){
-        if (_pq[index].getWeight() > _pq[_leftChild(index)].getWeight() || _pq[index].getWeight() > _pq[_rightChild(index)].getWeight()) {
-          if (_pq[_leftChild(index)].getWeight() < _pq[_rightChild(index)].getWeight()) {
+      if (_hasLeftChild(index) && _hasRightChild(index)) {
+        if (_pq[index].getWeight() > _pq[_leftChild(index)].getWeight() ||
+            _pq[index].getWeight() > _pq[_rightChild(index)].getWeight()) {
+          if (_pq[_leftChild(index)].getWeight() <
+              _pq[_rightChild(index)].getWeight()) {
             _swap(index, _leftChild(index));
             _sink(_leftChild(index));
           } else {
@@ -78,7 +80,7 @@ class PriorityQueue {
           }
         }
       } else {
-        if (_pq[index].getWeight() > _pq[_leftChild(index)].getWeight()){
+        if (_pq[index].getWeight() > _pq[_leftChild(index)].getWeight()) {
           _swap(index, _leftChild(index));
           _sink(_leftChild(index));
         }
@@ -117,8 +119,8 @@ class PriorityQueue {
   /// Replace an [edge] with another [edge] passed in this queue.
   ///
   /// Returns the [edge] that has been replaced.
-  Edge replace(Edge edge){
-    if (_pq.isNotEmpty){
+  Edge replace(Edge edge) {
+    if (_pq.isNotEmpty) {
       var root = _pq.first;
       _pq.first = edge;
       _sink(0);
@@ -132,7 +134,7 @@ class PriorityQueue {
   /// Returns the [edge] that was at the front of this queue.
   /// The [edge] that was at the front had the highest priority (smallest weight).
   Edge delete() {
-    if (_pq.isNotEmpty){
+    if (_pq.isNotEmpty) {
       return _pq.removeAt(0);
     }
     return null;
@@ -142,7 +144,7 @@ class PriorityQueue {
   ///
   /// The [edge] at the front has the highest priority (smallest weight).
   /// Does not affect the contents of this queue.
-  Edge peek(){
+  Edge peek() {
     if (_pq.isNotEmpty) {
       return _pq.first;
     }
@@ -150,12 +152,12 @@ class PriorityQueue {
   }
 
   /// Returns `true` if this queue is empty.
-  bool isEmpty(){
+  bool isEmpty() {
     return _pq.isEmpty;
   }
 
   /// Returns the size of this queue.
-  int size(){
+  int size() {
     return _pq.length;
   }
   // endregion functions

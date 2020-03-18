@@ -3,19 +3,20 @@ import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/models/priority_queue.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void main(){
+void main() {
   // region test variables
-  final edge1 = Edge(Node(2), Node(5), 5);
-  final edge2 = Edge(Node(2), Node(4), 5);
-  final edge3 = Edge(Node(2), Node(7), 7);
-  final edge4 = Edge(Node(5), Node(7), 3);
-  final edge5 = Edge(Node(6), Node(4), 9);
-  final edge6 = Edge(Node(7), Node(2), 2);
+  final edge1 = Edge(Node('2'), Node('5'), 5);
+  final edge2 = Edge(Node('2'), Node('4'), 5);
+  final edge3 = Edge(Node('2'), Node('7'), 7);
+  final edge4 = Edge(Node('5'), Node('7'), 3);
+  final edge5 = Edge(Node('6'), Node('4'), 9);
+  final edge6 = Edge(Node('7'), Node('2'), 2);
   // endregion test variables
 
   // region test functions
-  group('Functions', (){
-    test('isEmpty should return true if the queue is empty and false otherwise', (){
+  group('Functions', () {
+    test('isEmpty should return true if the queue is empty and false otherwise',
+        () {
       final pq = PriorityQueue();
 
       expect(pq.isEmpty(), true);
@@ -25,7 +26,7 @@ void main(){
       expect(pq.isEmpty(), false);
     });
 
-    test('size should return the size of the queue', (){
+    test('size should return the size of the queue', () {
       final pq = PriorityQueue();
 
       expect(pq.size(), 0);
@@ -37,7 +38,7 @@ void main(){
       expect(pq.size(), 3);
     });
 
-    test('insert should add an Edge to the queue and reorder it', (){
+    test('insert should add an Edge to the queue and reorder it', () {
       final pq = PriorityQueue();
 
       pq.insert(edge2);
@@ -49,7 +50,9 @@ void main(){
       expect(pq.peek(), edge4);
     });
 
-    test('peek should return the first Edge, with the lowest weight, in the queue', (){
+    test(
+        'peek should return the first Edge, with the lowest weight, in the queue',
+        () {
       final pq = PriorityQueue();
 
       expect(pq.peek(), null);
@@ -65,7 +68,7 @@ void main(){
       expect(pq.peek(), edge4);
     });
 
-    test('prioritize should reorder the queue to min queue', (){
+    test('prioritize should reorder the queue to min queue', () {
       final list = [edge1, edge2, edge3, edge4, edge5];
       final pq = PriorityQueue.fromList(list);
 
@@ -74,7 +77,7 @@ void main(){
       expect(pq.peek(), edge4);
     });
 
-    test('delete should remove and return the min value of the queue', (){
+    test('delete should remove and return the min value of the queue', () {
       final pq = PriorityQueue();
 
       expect(pq.delete(), null);
@@ -89,7 +92,9 @@ void main(){
       expect(pq.size(), 4);
     });
 
-    test('replace should insert the edge passed as the root then reorder as min queue and return the previous root', (){
+    test(
+        'replace should insert the edge passed as the root then reorder as min queue and return the previous root',
+        () {
       final pq = PriorityQueue();
 
       expect(pq.replace(edge1), null);
