@@ -276,24 +276,20 @@ class BuildingInfoSheet {
         children: [
           moreInfo ? lessButton(context, building.code) : moreButton(context, building.code),
           Padding(
-            padding: EdgeInsets.only(right: 10.0),
+            padding: EdgeInsets.only(right: 20.0),
             child: Container(
-              height: screenHeight / 16,
-              width: screenWidth / 4,
-              child: RaisedButton.icon(
+              height: screenHeight / 18,
+              width: 70,
+              child: FlatButton(
+                padding: EdgeInsets.zero,
                 color: Colors.white,
-                elevation: 0.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24.0),
                 ),
-                icon: Icon(
+                child: Icon(
                   Icons.directions,
-                  size: screenWidth / 12,
-                ),
-                label: Text(
-                  'Go',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  color: Colors.black,
+                  size: 32,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
@@ -314,42 +310,33 @@ class BuildingInfoSheet {
 
   static Widget moreButton(BuildContext context, String buildingCode) {
     return Padding(
-      padding: EdgeInsets.only(left: 10.0),
-      child: Container(
-        height: screenHeight / 16,
-        width: screenWidth / 5,
-        child: FlatButton(
-          child: Text(
-            'MORE',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-            ),
-          ),
-          onPressed: () {
-            BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfoEvent(buildingCode, true));
-          },
+      padding: EdgeInsets.only(left: 12.0),
+      child: IconButton(
+        color: Colors.white,
+        icon: Icon(
+          Icons.info_outline,
+          color: Colors.white,
+          size: 32,
         ),
+        onPressed: () {
+          BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfoEvent(buildingCode, true));
+        },
       ),
     );
   }
 
   static Widget lessButton(BuildContext context, String buildingCode) {
     return Padding(
-      padding: EdgeInsets.only(left: 10.0),
-      child: Container(
-        height: screenHeight / 16,
-        width: screenWidth / 6,
-        child: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-            size: 32,
-          ),
-          onPressed: () {
-            BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfoEvent(buildingCode, false));
-          },
+      padding: EdgeInsets.only(left: 12.0),
+      child: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: Colors.white,
+          size: 32,
         ),
+        onPressed: () {
+          BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfoEvent(buildingCode, false));
+        },
       ),
     );
   }
