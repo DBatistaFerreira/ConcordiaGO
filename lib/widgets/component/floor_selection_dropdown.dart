@@ -2,6 +2,8 @@ import 'package:concordia_go/utilities/floor_maps_lib.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/utilities/application_constants.dart'
     as application_constants;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:concordia_go/blocs/bloc.dart';
 
 /// This Widget is the main application widget.
 
@@ -17,12 +19,6 @@ class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    final Map arguments = ModalRoute.of(context).settings.arguments as Map;
-    if (arguments != null) {
-      dropdownValue = arguments['floor'];
-    } else {
-      dropdownValue = hallFloors[0];
-    }
     return Container(
         padding: EdgeInsets.all(16.0),
         child: Container(
@@ -35,29 +31,32 @@ class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
                   style: BorderStyle.solid,
                   width: 1.80),
             ),
-            child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-              value: dropdownValue,
-              icon: Icon(
-                Icons.import_export,
-                color: application_constants.concordiaRed,
-              ),
-              iconSize: 40,
-              elevation: 16,
-              focusColor: Colors.black,
-              style: TextStyle(
-                  color: application_constants.concordiaRed, fontSize: 28),
-              onChanged: (String newValue) {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/indoormap', arguments: {'floor': newValue});
-              },
-              items: hallFloors
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ))));
+            child: BlocBuilder<MapBloc, MapState>(builder: (context, state) {
+              if (state is IndoorMap) {
+                dropdownValue = state.floorLevel;
+              }
+              return DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                value: dropdownValue,
+                icon: Icon(
+                  Icons.import_export,
+                  color: application_constants.concordiaRed,
+                ),
+                iconSize: 40,
+                elevation: 16,
+                focusColor: Colors.black,
+                style: TextStyle(
+                    color: application_constants.concordiaRed, fontSize: 28),
+                onChanged: (String newValue) {
+                  BlocProvider.of<MapBloc>(context).add(FloorChange(newValue));
+                },
+                items: hallFloors.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ));
+            })));
   }
 }

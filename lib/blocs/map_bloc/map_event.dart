@@ -24,3 +24,9 @@ class DirectionLinesEvent extends MapEvent {
 
   const DirectionLinesEvent(this.directionPolylines);
 }
+
+class FloorChange extends MapEvent {
+  final String floorLevel;
+
+  const FloorChange(this.floorLevel);
+}

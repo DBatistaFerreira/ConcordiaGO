@@ -29,3 +29,10 @@ class DirectionMap extends MapState {
 
   const DirectionMap(this.directionLines);
 }
+
+class IndoorMap extends MapState {
+  final String svgFile;
+  final String floorLevel;
+
+  const IndoorMap(this.floorLevel, this.svgFile);
+}
