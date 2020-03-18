@@ -9,9 +9,11 @@ abstract class SearchState {
 class InitialSearchState extends SearchState {}
 
 class ResultsList extends SearchState {
-  final List<ConcordiaBuilding> results;
+  final List<ConcordiaBuilding> _results;
 
-  const ResultsList(this.results);
+  const ResultsList(this._results);
+
+  List<ConcordiaBuilding> get results => _results;
 }
 
 class NotSearching extends SearchState {

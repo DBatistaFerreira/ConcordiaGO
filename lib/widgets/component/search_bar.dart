@@ -1,5 +1,6 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/widgets/component/building_info_sheet.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,13 @@ class _SearchBarState extends State<SearchBar> {
 
   void _onFocusChange() {
     if (_focus.hasFocus) {
+      if (BuildingInfoSheet.bottomSheetController != null) {
+        try {
+          BuildingInfoSheet.bottomSheetController.close();
+        } catch (Exception) {
+          print('Cannot call close() on PersistentBottomSheetController');
+        }
+      }
       BlocProvider.of<SearchBloc>(context).add((UpdateResults('')));
     } else {
       BlocProvider.of<SearchBloc>(context).add(EndSearch());
@@ -104,7 +112,10 @@ Widget SearchResultsList(List<ConcordiaBuilding> results) {
                     ),
                     onTap: () {
                       BlocProvider.of<SearchBloc>(context).add(EndSearch());
-                      BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(results[index]?.code, context));
+                      BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(results[index]?.code));
+                      BlocProvider.of<BuildingInfoBloc>(mc)
+                          .add(ConcordiaBuildingInfoEvent(results[index]?.code, false));
+                      BuildingInfoSheet.buildInfoSheet(context);
                       if (!FocusScope.of(context).hasPrimaryFocus) {
                         FocusScope.of(context).unfocus();
                       }

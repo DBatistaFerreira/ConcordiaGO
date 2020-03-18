@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:concordia_go/widgets/screens/quick_menu.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../component/google_maps_component.dart';
-import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -19,7 +19,8 @@ BuildContext mc;
 class HomePageState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
+    screenHeight = MediaQuery.of(context).size.height;
+    screenWidth = MediaQuery.of(context).size.width;
     mc = context;
 
     return Scaffold(
@@ -27,7 +28,7 @@ class HomePageState extends State<HomeScreen> {
           preferredSize: Size.fromHeight(screenHeight / 12),
           child: AppBar(
             title: Image.asset('assets/logo.png', height: screenHeight / 12),
-            backgroundColor: application_constants.concordiaRed,
+            backgroundColor: concordiaRed,
           )),
       body: SlidingUpPanel(
         controller: _pc,

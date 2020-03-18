@@ -5,27 +5,38 @@ abstract class MapState {
 }
 
 class InitialMap extends MapState {
-  final markers = null;
   const InitialMap();
 }
 
 class MapNoMarker extends MapState {
-  final LatLng cameraPosition;
-  final double zoom;
+  final LatLng _cameraPosition;
+  final double _zoom;
 
-  const MapNoMarker(this.cameraPosition, this.zoom);
+  const MapNoMarker(this._cameraPosition, this._zoom);
+
+  LatLng get cameraPosition => _cameraPosition;
+
+  double get zoom => _zoom;
 }
 
 class MapWithMarker extends MapState {
-  final String buildingCode;
-  final LatLng cameraPosition;
-  final double zoom;
+  final String _buildingCode;
+  final LatLng _cameraPosition;
+  final double _zoom;
 
-  const MapWithMarker(this.buildingCode, this.cameraPosition, this.zoom);
+  const MapWithMarker(this._buildingCode, this._cameraPosition, this._zoom);
+
+  String get buildingCode => _buildingCode;
+
+  LatLng get cameraPosition => _cameraPosition;
+
+  double get zoom => _zoom;
 }
 
 class DirectionMap extends MapState {
-  final Set<Polyline> directionLines;
+  final Set<Polyline> _directionLines;
 
-  const DirectionMap(this.directionLines);
+  const DirectionMap(this._directionLines);
+
+  Set<Polyline> get directionLines => _directionLines;
 }
