@@ -10,11 +10,11 @@ class InitialBuildingInfoState extends BuildingInfoState {}
 
 class ConcordiaBuildingInfoState extends BuildingInfoState {
   final ConcordiaBuilding _building;
-  final bool _expandHours;
+  final bool _moreInfo;
 
-  const ConcordiaBuildingInfoState(this._building, this._expandHours);
+  const ConcordiaBuildingInfoState(this._building, this._moreInfo);
 
   ConcordiaBuilding get building => _building;
 
-  bool get expandHours => _expandHours;
+  bool get moreInfo => _moreInfo;
 }

@@ -11,12 +11,12 @@ abstract class BuildingInfoEvent {
 
 class ConcordiaBuildingInfoEvent extends BuildingInfoEvent {
   final String _buildingCode;
-  final bool _expandHours;
+  final bool _moreInfo;
 
-  const ConcordiaBuildingInfoEvent(this._buildingCode, this._expandHours);
+  const ConcordiaBuildingInfoEvent(this._buildingCode, this._moreInfo);
 
   @override
   BuildingInfoState createState() {
-    return ConcordiaBuildingInfoState(concordia_constants.buildings[_buildingCode], _expandHours);
+    return ConcordiaBuildingInfoState(concordia_constants.buildings[_buildingCode], _moreInfo);
   }
 }
