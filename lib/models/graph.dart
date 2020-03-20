@@ -108,6 +108,10 @@ class Graph {
     return connected;
   }
 
+  int getWeight(Node from, Node to){
+    return _edges[_edge_indices.indexOf(from.getId())][_edge_indices.indexOf(to.getId())];
+  }
+
 /*  /// Returns a list of [node] IDs that are connected to the [node] ID passed.
   List<String> getConnectedNodeIDs(String id){
     var connected = <String>[];
