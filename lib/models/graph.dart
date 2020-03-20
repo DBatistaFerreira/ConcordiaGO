@@ -77,6 +77,44 @@ class Graph {
     return _nodes;
   }
 
+  /// Returns the [node] of this graph as a list.
+  List<Node> getNodesAsList(){
+    var list = <Node>[];
+    _nodes.forEach((k, v) => list.add(Node(v.getId())));
+
+    return list;
+  }
+
+  /// Returns the [node] IDs of this graph as a list of strings.
+  List<String> getNodeIDsAsList(){
+    var idList = <String>[];
+    for (var id in _nodes.keys){
+      idList.add(id);
+    }
+
+    return idList;
+  }
+
+  /// Returns a list of [node]s that are connected to the [node] passed.
+  List<Node> getConnectedNodes(Node node){
+    var connected = <Node>[];
+
+    for (var weight in _edges[_edge_indices.indexOf(node.getId())]){
+      if (weight > 0){
+        connected.add(_nodes[node.getId()]);
+      }
+    }
+
+    return connected;
+  }
+
+/*  /// Returns a list of [node] IDs that are connected to the [node] ID passed.
+  List<String> getConnectedNodeIDs(String id){
+    var connected = <String>[];
+
+    for (var node in _edges)
+  }*/
+
   /// Returns the 2D edge matrix of this graph.
   List<List<int>> getEdges() {
     return _edges;
@@ -101,8 +139,8 @@ class Graph {
 
   /// Sets the [node] map of this graph from the edge indices passed.
   void setNodesFromEdgeIndices(List<String> edge_indices) {
-    for (var node in edge_indices) {
-      _nodes[node] = Node(node);
+    for (var id in edge_indices) {
+      _nodes[id] = Node(id);
     }
   }
 
