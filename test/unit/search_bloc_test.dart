@@ -5,16 +5,14 @@ import 'package:concordia_go/blocs/search_bloc/search_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final event = UpdateResults('Hall Building');
-
   blocTest(
     'Get Search Result',
     build: () async {
       return SearchBloc();
     },
-    act: (bloc) => bloc.add(event),
+    act: (bloc) => bloc.add(QueryChangeEvent('H')),
     expect: [
-      isA<ResultsList>(),
+      isA<SearchResultsState>(),
     ],
   );
 
@@ -23,9 +21,9 @@ void main() {
     build: () async {
       return SearchBloc();
     },
-    act: (bloc) => bloc.add(EndSearch()),
+    act: (bloc) => bloc.add(EndSearchEvent()),
     expect: [
-      isA<NotSearching>(),
+      isA<NotSearchingState>(),
     ],
   );
 }

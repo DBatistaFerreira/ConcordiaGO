@@ -19,7 +19,7 @@ void main() {
   blocTest(
     'GetDirections event yields InstructionUpdate',
     build: () async => DirectionsBloc(),
-    act: (bloc) => bloc.add(GetDirections(LatLng(0, 0), LatLng(0, 0), 'Atlantic Ocean under West Africa')),
+    act: (bloc) => bloc.add(GetDirectionsEvent(LatLng(0, 0), LatLng(0, 0), 'Atlantic Ocean under West Africa')),
     expect: [
 //      isA<InstructionUpdate>(),
     ],
@@ -28,7 +28,7 @@ void main() {
   blocTest(
     'NextDirection event yields InstructionUpdate',
     build: () async => DirectionsBloc(),
-    act: (bloc) => bloc.add(NextDirection()),
+    act: (bloc) => bloc.add(NextInstructionEvent()),
     expect: [
 //      isA<InstructionUpdate>(),
     ],
@@ -37,7 +37,7 @@ void main() {
   blocTest(
     'PreviousDirection event yields InstructionUpdate',
     build: () async => DirectionsBloc(),
-    act: (bloc) => bloc.add(PreviousDirection()),
+    act: (bloc) => bloc.add(PreviousInstructionEvent()),
     expect: [
 //      isA<InstructionUpdate>(),
     ],

@@ -9,23 +9,23 @@ abstract class SearchEvent {
   SearchState createState();
 }
 
-class UpdateResults extends SearchEvent {
+class QueryChangeEvent extends SearchEvent {
   final String _query;
 
-  const UpdateResults(this._query);
+  const QueryChangeEvent(this._query);
 
   @override
   SearchState createState() {
     var results = SearchService.getSearchResults(_query);
-    return ResultsList(results);
+    return SearchResultsState(results);
   }
 }
 
-class EndSearch extends SearchEvent {
-  const EndSearch();
+class EndSearchEvent extends SearchEvent {
+  const EndSearchEvent();
 
   @override
   SearchState createState() {
-    return NotSearching();
+    return NotSearchingState();
   }
 }
