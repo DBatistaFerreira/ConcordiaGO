@@ -162,6 +162,81 @@ void main(){
       expect(g.getNodes().containsKey('100859'), true);
     });
 
+    test('getNodesAsList should return the nodes of the graph as a List<Node>', (){
+      final g = Graph.withNothing();
+      final nodeMap = {
+        '100857' : Node('100857'),
+        '100859' : Node('100859'),
+        '100861' : Node('100861'),
+        '100862' : Node('100862'),
+        '100863' : Node('100863'),
+        '120002' : Node('120002'),
+      };
+      final nodeList = [
+        Node('100857'),
+        Node('100859'),
+        Node('100861'),
+        Node('100862'),
+        Node('100863'),
+        Node('120002'),
+      ];
+
+      g.setNodes(nodeMap);
+
+      expect(g.getNodesAsList().length, nodeList.length);
+      expect(g.getNodesAsList()[3].getId(), '100862');
+    });
+
+    test('getNodesIDsAsList should return the node IDs of the graph as a List<String>', (){
+      final g = Graph.withNothing();
+      final nodeMap = {
+        '100857' : Node('100857'),
+        '100859' : Node('100859'),
+        '100861' : Node('100861'),
+        '100862' : Node('100862'),
+        '100863' : Node('100863'),
+        '120002' : Node('120002'),
+      };
+      final nodeList = [
+        '100857',
+        '100859',
+        '100861',
+        '100862',
+        '100863',
+        '120002',
+      ];
+
+      g.setNodes(nodeMap);
+
+      expect(g.getNodeIDsAsList().length, nodeList.length);
+      expect(g.getNodeIDsAsList()[2], '100861');
+    });
+
+    test('getConnectedNodes should return a list of nodes that are connected to the node passed.', (){
+      final g = Graph('H8', cc.edges['H8'], cc.edge_indices['H8']);
+
+      g.setNodesFromEdgeIndices(cc.edge_indices['H8']);
+
+      expect(g.getConnectedNodes(g.getNodes()['000001']).length, 4);
+    });
+
+    test('getEdges should return the edges of the graph as a 2D Matrix List<List<int>>', (){
+      final g = Graph.withNothing();
+      g.setEdges(cc.edges['H8']);
+
+      expect(g.getEdges(), cc.edges['H8']);
+      expect(g.getEdges().length, cc.edges['H8'].length);
+      expect(g.getEdges()[44][9], cc.edges['H8'][44][9]);
+    });
+
+    test('getEdgeIndices should return the edge indices of the graph as a List<String>', (){
+      final g = Graph.withNothing();
+      g.setEdgeIndices(cc.edge_indices['H8']);
+
+      expect(g.getEdgeIndices(), cc.edge_indices['H8']);
+      expect(g.getEdgeIndices().length, cc.edge_indices['H8'].length);
+      expect(g.getEdgeIndices()[33], cc.edge_indices['H8'][33]);
+    });
     // endregion getters and setters tests
 
   });
