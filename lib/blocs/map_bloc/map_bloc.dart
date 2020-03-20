@@ -5,12 +5,12 @@ import '../bloc.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
   @override
-  MapState get initialState => InitialMap();
+  MapState get initialState => InitialMapState();
 
   @override
   Stream<MapState> mapEventToState(
     MapEvent event,
   ) async* {
-    yield event.createState();
+    yield await event.createState();
   }
 }

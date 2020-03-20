@@ -16,23 +16,23 @@ class DirectionsBloc extends Bloc<DirectionsEvent, DirectionsState> {
     DirectionsEvent event,
   ) async* {
     Direction newInstruction;
-    if (event is GetDirections) {
+    if (event is GetDirectionsEvent) {
       await OutdoorPathService.transitDirections(event.startCoordinates.latitude, event.startCoordinates.longitude,
           event.endCoordinates.latitude, event.endCoordinates.longitude, event.destination);
 
       newInstruction = OutdoorPathService.getFirstInstruction();
-      BlocProvider.of<MapBloc>(mc).add(CameraMove(newInstruction.coordinate, concordia_constants.navZoomLevel));
+      BlocProvider.of<MapBloc>(mc).add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel));
       BlocProvider.of<MapBloc>(mc).add(DirectionLinesEvent(OutdoorPathService.getPolylines()));
       revealPanel();
-      yield InstructionUpdate(newInstruction, OutdoorPathService.getRoute());
-    } else if (event is NextDirection) {
+      yield InstructionState(newInstruction, OutdoorPathService.getRoute());
+    } else if (event is NextInstructionEvent) {
       newInstruction = OutdoorPathService.getNextInstruction();
-      BlocProvider.of<MapBloc>(mc).add(CameraMove(newInstruction.coordinate, concordia_constants.navZoomLevel));
-      yield InstructionUpdate(newInstruction, (state as InstructionUpdate).directionsList);
-    } else if (event is PreviousDirection) {
+      BlocProvider.of<MapBloc>(mc).add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel));
+      yield InstructionState(newInstruction, (state as InstructionState).directionsList);
+    } else if (event is PreviousInstructionEvent) {
       newInstruction = OutdoorPathService.getPreviousInstruction();
-      BlocProvider.of<MapBloc>(mc).add(CameraMove(newInstruction.coordinate, concordia_constants.navZoomLevel));
-      yield InstructionUpdate(newInstruction, (state as InstructionUpdate).directionsList);
+      BlocProvider.of<MapBloc>(mc).add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel));
+      yield InstructionState(newInstruction, (state as InstructionState).directionsList);
     }
   }
 }

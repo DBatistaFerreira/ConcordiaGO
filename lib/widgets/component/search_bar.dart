@@ -1,5 +1,6 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,9 +31,9 @@ class _SearchBarState extends State<SearchBar> {
           print('Cannot call close() on PersistentBottomSheetController');
         }
       }
-      BlocProvider.of<SearchBloc>(context).add((UpdateResults('')));
+      BlocProvider.of<SearchBloc>(context).add((QueryChangeEvent('')));
     } else {
-      BlocProvider.of<SearchBloc>(context).add(EndSearch());
+      BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
     }
   }
 
@@ -60,7 +61,7 @@ class _SearchBarState extends State<SearchBar> {
               ),
               fillColor: Colors.white,
             ),
-            onChanged: (searchText) => BlocProvider.of<SearchBloc>(context).add(UpdateResults(searchText)),
+            onChanged: (searchText) => BlocProvider.of<SearchBloc>(context).add(QueryChangeEvent(searchText)),
           ),
           Positioned(
             right: 5,
@@ -90,7 +91,7 @@ Widget SearchResultsList(List<ConcordiaBuilding> results) {
     child: Column(
       children: <Widget>[
         Container(
-          height: MediaQuery.of(mc).size.height / 10,
+          height: screenHeight / 10,
         ),
         Flexible(
           child: ListView.builder(
@@ -111,8 +112,8 @@ Widget SearchResultsList(List<ConcordiaBuilding> results) {
                       ),
                     ),
                     onTap: () {
-                      BlocProvider.of<SearchBloc>(context).add(EndSearch());
-                      BlocProvider.of<MapBloc>(context).add(CameraMoveConcordia(results[index]?.code));
+                      BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
+                      BlocProvider.of<MapBloc>(context).add(SelectConcordiaBuildingEvent(results[index]?.code));
                       BlocProvider.of<BuildingInfoBloc>(mc)
                           .add(ConcordiaBuildingInfoEvent(results[index]?.code, false));
                       BuildingInfoSheet.buildInfoSheet(context);

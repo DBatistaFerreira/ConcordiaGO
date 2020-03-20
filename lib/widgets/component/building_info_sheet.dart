@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:concordia_go/widgets/component/google_maps_component.dart';
 
 class BuildingInfoSheet {
   static PersistentBottomSheetController bottomSheetController;
@@ -293,12 +292,8 @@ class BuildingInfoSheet {
                 ),
                 onPressed: () {
                   Navigator.pop(context);
-                  getCurrentLocation().then(
-                    (value) {
-                      BlocProvider.of<DirectionsBloc>(mc)
-                          .add(GetDirections(value, building.coordinates, building.name));
-                    },
-                  );
+                  BlocProvider.of<DirectionsBloc>(context)
+                      .add(GetDirectionsEvent(currentLocation, building.coordinates, building.name));
                 },
               ),
             ),

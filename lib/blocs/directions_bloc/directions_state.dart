@@ -6,9 +6,9 @@ abstract class DirectionsState {}
 
 class InitialDirectionsState extends DirectionsState {}
 
-class InstructionUpdate extends DirectionsState {
+class InstructionState extends DirectionsState {
   final Direction step;
   final List<Direction> directionsList;
 
-  InstructionUpdate(this.step, this.directionsList);
+  InstructionState(this.step, this.directionsList);
 }

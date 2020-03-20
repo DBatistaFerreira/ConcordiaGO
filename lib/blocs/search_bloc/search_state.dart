@@ -8,14 +8,14 @@ abstract class SearchState {
 
 class InitialSearchState extends SearchState {}
 
-class ResultsList extends SearchState {
+class SearchResultsState extends SearchState {
   final List<ConcordiaBuilding> _results;
 
-  const ResultsList(this._results);
+  const SearchResultsState(this._results);
 
   List<ConcordiaBuilding> get results => _results;
 }
 
-class NotSearching extends SearchState {
-  const NotSearching();
+class NotSearchingState extends SearchState {
+  const NotSearchingState();
 }

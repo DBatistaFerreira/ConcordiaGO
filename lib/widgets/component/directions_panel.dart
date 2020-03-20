@@ -21,7 +21,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
 
     return BlocBuilder<DirectionsBloc, DirectionsState>(
       builder: (context, state) {
-        if (state is InstructionUpdate) {
+        if (state is InstructionState) {
           return Container(
             color: concordiaRed,
             child: Row(
@@ -176,7 +176,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                     ),
                                     iconSize: screenWidth / 8,
                                     onPressed: () {
-                                      BlocProvider.of<DirectionsBloc>(context).add(PreviousDirection());
+                                      BlocProvider.of<DirectionsBloc>(context).add(PreviousInstructionEvent());
                                     },
                                   ),
                                 ),
@@ -189,7 +189,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                     ),
                                     iconSize: screenWidth / 8,
                                     onPressed: () {
-                                      BlocProvider.of<DirectionsBloc>(context).add(NextDirection());
+                                      BlocProvider.of<DirectionsBloc>(context).add(NextInstructionEvent());
                                     },
                                   ),
                                 ),
