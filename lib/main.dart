@@ -1,3 +1,5 @@
+import 'package:concordia_go/widgets/component/calendar/calendars.dart';
+import 'package:flutter/material.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,6 +34,9 @@ class Application extends StatelessWidget {
         BlocProvider<SearchBloc>(
           create: (context) => SearchBloc(),
         ),
+        BlocProvider<CalendarBloc>(
+          create: (context) => CalendarBloc(),
+        ),
       ],
       child: MaterialApp(
         title: application_constants.applicationName,
@@ -40,6 +45,7 @@ class Application extends StatelessWidget {
           '/': (context) => HomeScreen(),
           '/sgwbuildings': (context) => CampusBuildingListMenu(Campus.SGW),
           '/loyolabuildings': (context) => CampusBuildingListMenu(Campus.Loyola),
+          '/calendars': (context) => CalendarsPage(key: Key('calendarsPage'))
         },
       ),
     );
