@@ -2,6 +2,101 @@ library floor_maps_lib;
 
 const hallFloors = ['H8', 'H9'];
 
+const nodeGraph = {
+  'H': {
+    'H8': {
+      '1': [176,214],
+      '2': [307,214],
+      '3': [342,214],
+      '4': [342,120],
+      '5': [463,214],
+      '6': [550,214],
+      '7': [638,214],
+      '8': [731,214],
+      '9': [837,214],
+      '10': [854,169],
+      '11': [837,323],
+      '12': [837,398],
+      '13': [837,513],
+      '14': [837,598],
+      '15': [837,689],
+      '16': [837,795],
+      '17': [878,811],
+      '18': [730,795],
+      '19': [635,795],
+      '20': [635,684],
+      '21': [550,795],
+      '22': [462,795],
+      '23': [400,795],
+      '24': [400,690],
+      '25': [368,795],
+      '26': [282,795],
+      '27': [176,795],
+      '28': [90,805],
+      '29': [176,655],
+      '30': [176,593],
+      '31': [176,501],
+      '32': [176,397],
+      '33': [176,319],
+      '34': [132,195],
+      '35': [132,167],
+      '36': [264,397],
+      '37': [264,440],
+      '38': [264,485],
+      '39': [264,514],
+      '40': [368,397],      
+      '41': [479,397],
+      '42': [550,397],
+      '43': [550,636],
+      '44': [550,900],
+      '45': [550,106],
+      '46': [176,143],
+      '47': [307,262],
+      '48': [307,143],
+      '49': [342,87],
+      '50': [463,143],
+      '51': [638,262],
+      '52': [638,143],
+      '53': [731,143],
+      '54': [854,143],
+      '55': [898,143],
+      '56': [898,214],
+      '57': [638,459],
+      '58': [898,323],
+      '59': [773,598],
+      '60': [898,398],
+      '61': [898,513],
+      '62': [898,598],
+      '63': [898,689],
+      '64': [878,860],
+      '65': [604,621],
+      '66': [837,860],
+      '67': [730,860],
+      '68': [635,860],
+      '69': [462,860],
+      '70': [400,627],
+      '71': [368,860],
+      '72': [282,860],
+      '73': [176,860],
+      '74': [90,860],
+      '75': [90,752],
+      '76': [219,655],
+      '77': [110,655],
+      '78': [233,593],
+      '79': [110,593],
+      '80': [110,501],
+      '81': [110,397],
+      '82': [110,319],
+      '83': [368,452],
+      '84': [110,195],
+      '85': [106,167],
+      '86': [132,109],
+      '87': [480,636],
+      '88': [479,445],
+    }
+  }
+};
+
 const floorPlan = {
   'H9': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
@@ -275,7 +370,7 @@ const floorPlan = {
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_9" y="910.999989" x="717.002071" stroke-width="0" stroke="#000000" fill="#000000">835</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_10" y="910.999989" x="809.002598" stroke-width="0" stroke="#000000" fill="#000000">833</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_11" y="913" x="925.003265" stroke-width="0" stroke="#000000" fill="#000000">831</text>
-  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_12" y="786.999271" x="925.003265" stroke-width="0" stroke="#000000" fill="#000000">829</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_12" y="702" x="923" stroke-width="0" stroke="#000000" fill="#000000">829</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_13" y="610.998264" x="925.003265" stroke-width="0" stroke="#000000" fill="#000000">827</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_14" y="522.997761" x="923.999989" stroke-width="0" stroke="#000000" fill="#000000">825</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_15" y="432.997246" x="923.999989" stroke-width="0" stroke="#000000" fill="#000000">823</text>
@@ -301,13 +396,11 @@ const floorPlan = {
   <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_35" y="666.998562" x="230.996006" stroke-width="0" stroke="#000000" fill="#000000">852</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_36" y="478.997475" x="284.996315" stroke-width="0" stroke="#000000" fill="#000000">860</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_37" y="620.998299" x="356.996731" stroke-width="0" stroke="#000000" fill="#000000">842</text>
-  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_38" y="742.999001" x="446.997246" stroke-width="0" stroke="#000000" fill="#000000">838</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_128" y="302.996468" x="316.996506" stroke-width="0" stroke="#000000" fill="#000000">802</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_129" y="322.996582" x="620.998245" stroke-width="0" stroke="#000000" fill="#000000">810</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_130" y="472.997444" x="656.998451" stroke-width="0" stroke="#000000" fill="#000000">820</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_132" y="616.998268" x="626.99828" stroke-width="0" stroke="#000000" fill="#000000">832</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_133" y="616.998268" x="730.998875" stroke-width="0" stroke="#000000" fill="#000000">822</text>
-  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_134" y="326.996605" x="466.99736" stroke-width="0" stroke="#000000" fill="#000000">806</text>
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_135" y="604.998207" x="250.99612" stroke-width="0" stroke="#000000" fill="#000000">854</text>
  </g>
 </svg>'''
