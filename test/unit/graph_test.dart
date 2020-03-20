@@ -237,6 +237,16 @@ void main(){
       expect(g.getEdgeIndices().length, cc.edge_indices['H8'].length);
       expect(g.getEdgeIndices()[33], cc.edge_indices['H8'][33]);
     });
+
+    test('getWeight should return an int for the weighted edge between the from and to nodes passed.', (){
+      final g = Graph('H8', cc.edges['H8'], cc.edge_indices['H8']);
+
+      g.setNodesFromEdgeIndices(g.getEdgeIndices());
+
+      expect(g.getWeight(Node('100801'), Node('000000')), 1);
+      expect(g.getWeight(Node('100801'), Node('100847')), -1);
+      expect(g.getWeight(Node('000000'), Node('000001')), 6);
+    });
     // endregion getters and setters tests
 
   });
