@@ -99,10 +99,12 @@ class Graph {
   List<Node> getConnectedNodes(Node node){
     var connected = <Node>[];
 
+    var index = 0;
     for (var weight in _edges[_edge_indices.indexOf(node.getId())]){
       if (weight > 0){
-        connected.add(_nodes[node.getId()]);
+        connected.add(_nodes[_edge_indices[index]]);
       }
+      index++;
     }
 
     return connected;

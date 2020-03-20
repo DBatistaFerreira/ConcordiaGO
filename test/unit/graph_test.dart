@@ -218,6 +218,8 @@ void main(){
       g.setNodesFromEdgeIndices(cc.edge_indices['H8']);
 
       expect(g.getConnectedNodes(g.getNodes()['000001']).length, 4);
+      expect(g.getConnectedNodes(g.getNodes()['100805']).length, 1);
+      expect(g.getConnectedNodes(g.getNodes()['100805'])[0].getId(), '000003');
     });
 
     test('getEdges should return the edges of the graph as a 2D Matrix List<List<int>>', (){
