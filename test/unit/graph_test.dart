@@ -162,6 +162,14 @@ void main(){
       expect(g.getNodes().containsKey('100859'), true);
     });
 
+    test('getIndex should return the index of the node passed', (){
+      final g = Graph('H8', cc.edges['H8'], cc.edge_indices['H8']);
+      g.setNodesFromEdgeIndices(cc.edge_indices['H8']);
+
+      expect(g.getIndex(Node('000000')), 0);
+      expect(g.getIndex(Node('100815')), 53);
+    });
+
     test('getNodesAsList should return the nodes of the graph as a List<Node>', (){
       final g = Graph.withNothing();
       final nodeMap = {

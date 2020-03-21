@@ -77,6 +77,11 @@ class Graph {
     return _nodes;
   }
 
+  /// Returns the index of the [node] on this graph.
+  int getIndex(Node node){
+    return _edge_indices.indexOf(node.getId());
+  }
+
   /// Returns the [node] of this graph as a list.
   List<Node> getNodesAsList(){
     var list = <Node>[];
