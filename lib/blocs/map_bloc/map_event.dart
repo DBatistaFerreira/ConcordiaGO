@@ -27,6 +27,9 @@ class DirectionLinesEvent extends MapEvent {
 
 class FloorChange extends MapEvent {
   final String floorLevel;
+  final List<String> paths;
 
-  const FloorChange(this.floorLevel);
+  const FloorChange(this.floorLevel, [this.paths]);
+
 }
+

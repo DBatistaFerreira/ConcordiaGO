@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:concordia_go/services/indoor_path_service.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart'
     as concordia_constants;
 import 'package:concordia_go/utilities/floor_maps_lib.dart' as floor_maps;
@@ -28,6 +29,13 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       yield DirectionMap(event.directionPolylines);
     } else if (event is FloorChange) {
       var svgFile = floor_maps.floorPlan[event.floorLevel];
+      if(event.paths!=null){
+        List<List<int>> pathMap = new List();
+        for(var path in event.paths){
+          pathMap.add(floor_maps.nodeGraph['H'][event.floorLevel][path]);
+        }
+        svgFile = IndoorPathService.parse(svgFile, pathMap);
+      }
       yield IndoorMap(event.floorLevel, svgFile);
     }
   }
