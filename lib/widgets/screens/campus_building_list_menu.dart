@@ -1,6 +1,7 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
 import 'package:concordia_go/widgets/component/google_maps_component.dart';
@@ -24,7 +25,6 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
 
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
     var buildingList = <ConcordiaBuilding>[];
 
     concordia_constants.buildings.forEach(

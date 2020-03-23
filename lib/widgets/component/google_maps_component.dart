@@ -65,7 +65,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
             if (state is BasicMapState) {
               _animateCamera(state.cameraPosition, state.zoom);
             } else if (state is ConcordiaMapState) {
-              _animateCamera(LatLng(state.cameraPosition.latitude - 0.0004, state.cameraPosition.longitude), state.zoom);
+              _animateCamera(
+                  LatLng(state.cameraPosition.latitude - 0.0004, state.cameraPosition.longitude), state.zoom);
             } else if (state is DirectionMapState) {
               _polylines = state.directionLines;
             }

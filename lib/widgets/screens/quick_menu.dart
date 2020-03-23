@@ -1,4 +1,5 @@
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,6 @@ class QuickMenu extends StatefulWidget {
 class QuickMenuState extends State<QuickMenu> {
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
-
     return Drawer(
       child: ListView(
         // Important: Remove any padding from the ListView.

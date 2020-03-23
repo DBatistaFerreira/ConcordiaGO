@@ -62,7 +62,6 @@ class DirectionsListState extends State<DirectionsList> {
                   } else {
                     return Container(
                       height: 350,
-                      child: Text('ELSE'),
                     );
                   }
                 },

@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:concordia_go/blocs/search_bloc/search_bloc.dart';
 import 'package:concordia_go/blocs/search_bloc/search_event.dart';
 import 'package:concordia_go/blocs/search_bloc/search_state.dart';
+import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -10,7 +11,7 @@ void main() {
     build: () async {
       return SearchBloc();
     },
-    act: (bloc) => bloc.add(QueryChangeEvent('H')),
+    act: (bloc) => bloc.add(QueryChangeEvent('H', SearchType.general)),
     expect: [
       isA<SearchResultsState>(),
     ],
