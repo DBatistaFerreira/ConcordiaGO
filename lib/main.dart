@@ -33,21 +33,14 @@ class Application extends StatelessWidget {
           create: (context) => SearchBloc(),
         ),
       ],
-      child: GestureDetector(
-        onTap: () {
-          if (!FocusScope.of(context).hasPrimaryFocus) {
-            FocusScope.of(context).unfocus();
-          }
+      child: MaterialApp(
+        title: application_constants.applicationName,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => HomeScreen(),
+          '/sgwbuildings': (context) => CampusBuildingListMenu(Campus.SGW),
+          '/loyolabuildings': (context) => CampusBuildingListMenu(Campus.Loyola),
         },
-        child: MaterialApp(
-          title: application_constants.applicationName,
-          initialRoute: '/',
-          routes: {
-            '/': (context) => HomeScreen(),
-            '/sgwbuildings': (context) => CampusBuildingListMenu(Campus.SGW),
-            '/loyolabuildings': (context) => CampusBuildingListMenu(Campus.Loyola),
-          },
-        ),
       ),
     );
   }

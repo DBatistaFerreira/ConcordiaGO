@@ -1,5 +1,6 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/search_result_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/widgets/screens/home_screen.dart';
@@ -292,8 +293,9 @@ class BuildingInfoSheet {
                 ),
                 onPressed: () {
                   Navigator.pop(context);
-                  BlocProvider.of<DirectionsBloc>(context)
-                      .add(GetDirectionsEvent(currentLocation, building.coordinates, building.name));
+                  BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
+                      startingPoint: SearchResult('Your Location', currentLocation),
+                      destination: OutdoorConcordiaResult(building)));
                 },
               ),
             ),

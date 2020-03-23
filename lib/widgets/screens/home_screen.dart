@@ -2,7 +2,9 @@ import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/widgets/component/directions_list.dart';
 import 'package:concordia_go/widgets/component/directions_panel.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
+import 'package:concordia_go/widgets/component/directions_search.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
+import 'package:concordia_go/widgets/component/search_results.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/widgets/screens/quick_menu.dart';
@@ -66,43 +68,10 @@ class HomePageState extends State<HomeScreen> {
         body: Stack(
           children: <Widget>[
             GoogleMapsComponent(),
-            Positioned(
-              right: 20,
-              bottom: 100,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Container(
-                    height: screenHeight / 11,
-                    width: screenHeight / 11,
-                    padding: EdgeInsets.all(6.0),
-                    child: myLocationButton(context),
-                  ),
-                  Container(
-                    height: screenHeight / 11,
-                    width: screenHeight / 11,
-                    padding: EdgeInsets.all(6.0),
-                    child: switchCampusButton(),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              child: BlocBuilder<SearchBloc, SearchState>(
-                builder: (context, state) {
-                  if (state is SearchResultsState) {
-                    return SearchResultsList(state.results);
-                  } else {
-                    return Container(
-                      height: 0,
-                    );
-                  }
-                },
-              ),
-            ),
-            Positioned(
-              child: SearchBar(),
-            ),
+            floatingMapButtons(),
+            DirectionsSearch(),
+            SearchResults(),
+            SearchBar(),
           ],
         ),
         collapsed: DirectionsPanel(),
@@ -110,6 +79,30 @@ class HomePageState extends State<HomeScreen> {
         maxHeight: screenHeight / 1.4,
       ),
       drawer: QuickMenu(),
+    );
+  }
+
+  Widget floatingMapButtons() {
+    return Positioned(
+      right: 20,
+      bottom: 100,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Container(
+            height: screenHeight / 11,
+            width: screenHeight / 11,
+            padding: EdgeInsets.all(6.0),
+            child: myLocationButton(),
+          ),
+          Container(
+            height: screenHeight / 11,
+            width: screenHeight / 11,
+            padding: EdgeInsets.all(6.0),
+            child: switchCampusButton(),
+          ),
+        ],
+      ),
     );
   }
 
@@ -129,7 +122,7 @@ class HomePageState extends State<HomeScreen> {
     );
   }
 
-  Widget myLocationButton(BuildContext context) {
+  Widget myLocationButton() {
     return RawMaterialButton(
       fillColor: concordiaRed,
       shape: CircleBorder(),
