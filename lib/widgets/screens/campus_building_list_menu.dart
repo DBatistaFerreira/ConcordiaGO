@@ -21,11 +21,13 @@ class CampusBuildingListMenu extends StatefulWidget {
 class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
   final Campus campus;
 
+
   CampusBuildingListMenuState(this.campus);
 
   @override
   Widget build(BuildContext context) {
     var buildingList = <ConcordiaBuilding>[];
+    screenHeight = MediaQuery.of(context).size.height;
 
     concordia_constants.buildings.forEach(
       (code, building) {

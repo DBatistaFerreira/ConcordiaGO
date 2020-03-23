@@ -11,6 +11,8 @@ class QuickMenu extends StatefulWidget {
 class QuickMenuState extends State<QuickMenu> {
   @override
   Widget build(BuildContext context) {
+    screenHeight = MediaQuery.of(context).size.height;
+
     return Drawer(
       child: ListView(
         // Important: Remove any padding from the ListView.

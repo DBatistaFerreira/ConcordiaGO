@@ -3,6 +3,7 @@ import 'package:concordia_go/blocs/directions_bloc/directions_bloc.dart';
 import 'package:concordia_go/blocs/map_bloc/map_bloc.dart';
 import 'package:concordia_go/blocs/search_bloc/search_bloc.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
 import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
 import 'package:flutter/material.dart';
@@ -27,24 +28,19 @@ class LoadSGWCampusBuildingListMenu extends StatelessWidget {
           create: (context) => SearchBloc(),
         ),
       ],
-      child: GestureDetector(
-        onTap: () {
-          if (!FocusScope.of(context).hasPrimaryFocus) {
-            FocusScope.of(context).unfocus();
-          }
-        },
         child: MaterialApp(
+          title: applicationName,
           initialRoute: '/',
           routes: {
             '/': (context) => CampusBuildingListMenu(Campus.SGW),
           },
         ),
-      ),
     );
   }
 }
 
 class LoadLoyolaCampusBuildingListMenu extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -92,7 +88,7 @@ void main() {
   testWidgets('Loyola Campus Building Menu', (WidgetTester tester) async {
     await tester.pumpWidget(LoadLoyolaCampusBuildingListMenu());
     buildings.forEach((code, building) {
-      if (building.campusString() == 'Loyola Campus') {
+      if (building.campusString() == 'Loyola Campus Building Menu') {
         assert(find.text(building.name) != null);
       }
     });
