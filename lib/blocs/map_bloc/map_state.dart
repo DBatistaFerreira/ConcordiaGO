@@ -42,8 +42,12 @@ class DirectionMap extends MapState {
 }
 
 class IndoorMap extends MapState {
-  final String svgFile;
-  final String floorLevel;
+  final String _svgFile;
+  final String _floorLevel;
 
-  const IndoorMap(this.floorLevel, this.svgFile);
+  const IndoorMap(this._floorLevel, this._svgFile);
+
+  String get svgFile => _svgFile;
+  String get floorLevel => _floorLevel;
+
 }
