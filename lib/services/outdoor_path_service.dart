@@ -15,6 +15,7 @@ class OutdoorPathService {
   static Journey _listDirections = Journey();
   static List<Direction> _singleDirections = <Direction>[];
   static int _currentInstruction = 0;
+  static bool isShuttlePossible = false;
 
   /*
   * The transitDirections method is the core method used for outdoor path directions. It operates in steps
@@ -29,10 +30,7 @@ class OutdoorPathService {
   static void transitDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
     _singleDirections = <Direction>[];
     _listDirections = Journey();
-    var url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=transit&key=${_apiKey}';
-    var response = await http.get(url); //Google Directions API call
-    Map values = jsonDecode(response.body);
+    Map values = await googleMapsRequest(startLat, startLng, endLat, endLng, "transit");
     var myPoints = PolyUtil();
     var returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
     var returnedSteps = returnedValues[concordia_constants.steps];
@@ -104,10 +102,7 @@ class OutdoorPathService {
   static void drivingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
     _singleDirections = <Direction>[];
     _listDirections = Journey();
-    var url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=driving&key=${_apiKey}';
-    var response = await http.get(url);
-    Map values = jsonDecode(response.body);
+    Map values = await googleMapsRequest(startLat, startLng, endLat, endLng, "driving");
     var myPoints = PolyUtil();
     var returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
     var returnedSteps = returnedValues[concordia_constants.steps];
@@ -165,10 +160,7 @@ class OutdoorPathService {
   static void walkingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
     _singleDirections = <Direction>[];
     _listDirections = Journey();
-    var url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=walking&key=${_apiKey}';
-    var response = await http.get(url);
-    Map values = jsonDecode(response.body);
+    Map values = await googleMapsRequest(startLat, startLng, endLat, endLng, "walking");
     var myPoints = PolyUtil();
     var returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
     var returnedSteps = returnedValues[concordia_constants.steps];
@@ -337,6 +329,30 @@ class OutdoorPathService {
       arrival_time = '${calculated_time.hour.toString()}:0${calculated_time.minute.toString()}';
     }
     return arrival_time;
+  }
+
+  /*
+  *
+  *
+  * Shuttle Code
+  *
+  *
+   */
+
+
+
+  /*
+  *
+  *
+  *
+  *
+   */
+
+  static Future<Map> googleMapsRequest(startLat, startLng, endLat, endLng, modeOfTransport) async {
+    var url =
+        'https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=${modeOfTransport}&key=${_apiKey}';
+    var response = await http.get(url);
+    return jsonDecode(response.body);
   }
 
   static void setDirections() {
