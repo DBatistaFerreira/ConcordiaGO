@@ -48,7 +48,7 @@ var buildings = {
   'H': ConcordiaBuilding(
     code: 'H',
     name: 'Hall Building',
-    coordinates: LatLng(45.497249, -73.578954),
+    coordinates: LatLng(45.497282, -73.578931),
     vertices: [
       LatLng(45.4973844, -73.578354),
       LatLng(45.4968314, -73.5788502),
@@ -70,7 +70,7 @@ var buildings = {
   'LB': ConcordiaBuilding(
     code: 'LB',
     name: 'Webster Library',
-    coordinates: LatLng(45.496849, -73.578053),
+    coordinates: LatLng(45.496806, -73.577878),
     vertices: [
       LatLng(45.496694, -73.578627),
       LatLng(45.497285, -73.578069),
@@ -94,7 +94,7 @@ var buildings = {
   'MB': ConcordiaBuilding(
     code: 'MB',
     name: 'John Molson Building',
-    coordinates: LatLng(45.495495, -73.579169),
+    coordinates: LatLng(45.495282, -73.579047),
     vertices: [
       LatLng(45.495367, -73.579374),
       LatLng(45.495532, -73.579189),
@@ -110,7 +110,7 @@ var buildings = {
   'EV': ConcordiaBuilding(
     code: 'EV',
     name: 'EV Building',
-    coordinates: LatLng(45.495406, -73.577996),
+    coordinates: LatLng(45.495541, -73.577939),
     vertices: [
       LatLng(45.495579, -73.578757),
       LatLng(45.4958504, -73.578472),
@@ -134,7 +134,7 @@ var buildings = {
   'FG': ConcordiaBuilding(
     code: 'FG',
     name: 'Faubourg St-Catherines Building',
-    coordinates: LatLng(45.494354, -73.578428),
+    coordinates: LatLng(45.494264, -73.578309),
     vertices: [
       LatLng(45.494296, -73.5785193),
       LatLng(45.4943677, -73.5784375),
@@ -150,12 +150,12 @@ var buildings = {
   'B': ConcordiaBuilding(
     code: 'B',
     name: 'ECA B-Annex',
-    coordinates: LatLng(45.497801, -73.579493),
+    coordinates: LatLng(45.497833, -73.579541),
     vertices: [
-      LatLng(45.497805, -73.57946),
-      LatLng(45.497846, -73.579522),
-      LatLng(45.497915, -73.579456),
-      LatLng(45.497882, -73.579391)
+      LatLng(45.497932, -73.579502),
+      LatLng(45.497761, -73.579663),
+      LatLng(45.497726, -73.579595),
+      LatLng(45.497894, -73.579428)
     ],
     address: '2160 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
@@ -188,7 +188,7 @@ var buildings = {
   'CI': ConcordiaBuilding(
     code: 'CI',
     name: 'CI Annex',
-    coordinates: LatLng(45.497402, -73.579996),
+    coordinates: LatLng(45.497461, -73.579937),
     vertices: [
       LatLng(45.49737, -73.579938),
       LatLng(45.497402, -73.580014),
@@ -220,12 +220,14 @@ var buildings = {
   'D': ConcordiaBuilding(
     code: 'D',
     name: 'D Annex',
-    coordinates: LatLng(45.495835, -73.578789),
+    coordinates: LatLng(45.497793, -73.579355),
     vertices: [
-      LatLng(45.497742, -73.57941),
-      LatLng(45.4977059, -73.579339),
-      LatLng(45.49781, -73.579235),
-      LatLng(45.497848, -73.579311)
+      LatLng(45.497857, -73.579345),
+      LatLng(45.497752, -73.579444),
+      LatLng(45.497726, -73.579400),
+      LatLng(45.497738, -73.579389),
+      LatLng(45.497726, -73.579366),
+      LatLng(45.497822, -73.579273)
     ],
     address: '2140 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
@@ -238,10 +240,12 @@ var buildings = {
     name: 'EN Annex',
     coordinates: LatLng(45.496880, -73.579552),
     vertices: [
-      LatLng(45.496874, -73.579808),
-      LatLng(45.4968502, -73.5797612),
-      LatLng(45.4969461, -73.5796669),
-      LatLng(45.496964, -73.579705)
+      LatLng(45.49693, -73.57955),
+      LatLng(45.49689, -73.57947),
+      LatLng(45.49679, -73.57958),
+      LatLng(45.4968, -73.5796),
+      LatLng(45.49667, -73.57973),
+      LatLng(45.4967, -73.57978)
     ],
     address: '2070 Mackay St, Montreal, QC H3G 2J1',
     campus: Campus.SGW,
@@ -252,7 +256,7 @@ var buildings = {
   'ER': ConcordiaBuilding(
     code: 'ER',
     name: 'ER Building',
-    coordinates: LatLng(45.496238, -73.580104),
+    coordinates: LatLng(45.496483, -73.579756),
     vertices: [
       LatLng(45.496588, -73.579785),
       LatLng(45.496454, -73.579893),
@@ -268,12 +272,12 @@ var buildings = {
   'FA': ConcordiaBuilding(
     code: 'FA',
     name: 'FA Annex',
-    coordinates: LatLng(45.496825, -73.579474),
+    coordinates: LatLng(45.496808, -73.579482),
     vertices: [
-      LatLng(45.496852, -73.5797514),
-      LatLng(45.496945, -73.579659),
-      LatLng(45.4969075, -73.579581),
-      LatLng(45.496817, -73.579675)
+      LatLng(45.496872, -73.579488),
+      LatLng(45.496774, -73.579586),
+      LatLng(45.496741, -73.579496),
+      LatLng(45.496831, -73.579395)
     ],
     address: '2060 MacKay, Montreal, QC H3G 2J1',
     campus: Campus.SGW,
@@ -332,12 +336,17 @@ var buildings = {
   'GS': ConcordiaBuilding(
     code: 'GS',
     name: 'GS Building',
-    coordinates: LatLng(45.496628, -73.581400),
+    coordinates: LatLng(45.496566, -73.581150),
     vertices: [
-      LatLng(45.496639, -73.581134),
-      LatLng(45.496507, -73.581239),
-      LatLng(45.496473, -73.581118),
-      LatLng(45.496592, -73.581031)
+      LatLng(45.496785, -73.581300),
+      LatLng(45.496624, -73.581451),
+      LatLng(45.496579, -73.581435),
+      LatLng(45.496415, -73.580942),
+      LatLng(45.496485, -73.580879),
+      LatLng(45.496477, -73.580845),
+      LatLng(45.496518, -73.580806),
+      LatLng(45.496654, -73.581172),
+      LatLng(45.496712, -73.581130)
     ],
     address: '1538 Sherbrooke St W, Montreal, QC H3H 2L9',
     campus: Campus.SGW,
@@ -348,12 +357,18 @@ var buildings = {
   'K': ConcordiaBuilding(
     code: 'K',
     name: 'K Annex',
-    coordinates: LatLng(45.497826, -73.579382),
+    coordinates: LatLng(45.497831, -73.579436),
     vertices: [
-      LatLng(45.497834, -73.579535),
-      LatLng(45.497794, -73.57947),
-      LatLng(45.497705, -73.579558),
-      LatLng(45.497737, -73.57963)
+      LatLng(45.497890, -73.579424),
+      LatLng(45.497643, -73.579669),
+      LatLng(45.497604, -73.579589),
+      LatLng(45.497687, -73.579509),
+      LatLng(45.497713, -73.579559),
+      LatLng(45.497760, -73.579514),
+      LatLng(45.497753, -73.579497),
+      LatLng(45.497782, -73.579471),
+      LatLng(45.497770, -73.579439),
+      LatLng(45.497861, -73.579355)
     ],
     address: '2150 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
@@ -364,12 +379,12 @@ var buildings = {
   'LD': ConcordiaBuilding(
     code: 'LD',
     name: 'LD Building',
-    coordinates: LatLng(45.496790, -73.577180),
+    coordinates: LatLng(45.496712, -73.577256),
     vertices: [
-      LatLng(45.496525, -73.577388),
-      LatLng(45.496561, -73.577459),
-      LatLng(45.496856, -73.577164),
-      LatLng(45.496856, -73.577164)
+      LatLng(45.496860, -73.577169),
+      LatLng(45.496558, -73.577477),
+      LatLng(45.496532, -73.577405),
+      LatLng(45.496822, -73.577093)
     ],
     address: '1424 Bishop St, Montreal, QC H3G 2E6',
     campus: Campus.SGW,
@@ -380,14 +395,14 @@ var buildings = {
   'LS': ConcordiaBuilding(
     code: 'LS',
     name: 'Learning Square Building',
-    coordinates: LatLng(45.496274, -73.579469),
+    coordinates: LatLng(45.496344, -73.579494),
     vertices: [
-      LatLng(45.495952, -73.579633),
-      LatLng(45.496111, -73.579479),
-      LatLng(45.496177, -73.579643),
-      LatLng(45.496156, -73.579669),
-      LatLng(45.496188, -73.579741),
-      LatLng(45.496052, -73.579866)
+      LatLng(45.496376, -73.579252),
+      LatLng(45.496178, -73.579449),
+      LatLng(45.496258, -73.579675),
+      LatLng(45.496370, -73.579563),
+      LatLng(45.496414, -73.579693),
+      LatLng(45.496535, -73.579569)
     ],
     address: '1535 Boul. de Maisonneuve O, Montréal, QC H3G 1M9',
     campus: Campus.SGW,
@@ -414,14 +429,14 @@ var buildings = {
   'MI': ConcordiaBuilding(
     code: 'MI',
     name: 'MI Annex',
-    coordinates: LatLng(45.497791, -73.579204),
+    coordinates: LatLng(45.497758, -73.579288),
     vertices: [
-      LatLng(45.497777, -73.579171),
-      LatLng(45.497809, -73.57923),
-      LatLng(45.497645, -73.579398),
-      LatLng(45.497621, -73.579352),
-      LatLng(45.497694, -73.579282),
-      LatLng(45.497682, -73.579259)
+      LatLng(45.497820, -73.579272),
+      LatLng(45.497710, -73.579379),
+      LatLng(45.497689, -73.579329),
+      LatLng(45.497702, -73.579319),
+      LatLng(45.497695, -73.579302),
+      LatLng(45.497791, -73.579206)
     ],
     address: '2130 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
@@ -432,12 +447,12 @@ var buildings = {
   'MU': ConcordiaBuilding(
     code: 'MU',
     name: 'MU Annex',
-    coordinates: LatLng(45.497946, -73.579510),
+    coordinates: LatLng(45.497873, -73.579610),
     vertices: [
-      LatLng(45.49775, -73.579628),
-      LatLng(45.497919, -73.579464),
-      LatLng(45.497957, -73.579541),
-      LatLng(45.497783, -73.579698)
+      LatLng(45.497972, -73.579572),
+      LatLng(45.497800, -73.579738),
+      LatLng(45.497763, -73.579665),
+      LatLng(45.497936, -73.579502)
     ],
     address: '2170 Bishop St, Montreal, QC H3G 2E9',
     campus: Campus.SGW,
@@ -546,7 +561,7 @@ var buildings = {
   'SB': ConcordiaBuilding(
     code: 'SB',
     name: 'Samuel Bronfman Building',
-    coordinates: LatLng(45.496530, -73.586131),
+    coordinates: LatLng(45.496585, -73.586140),
     vertices: [
       LatLng(45.496533, -73.586209),
       LatLng(45.496541, -73.586041),
@@ -578,7 +593,7 @@ var buildings = {
   'TD': ConcordiaBuilding(
     code: 'TD',
     name: 'Toronto Dominion Building',
-    coordinates: LatLng(45.495138, -73.578373),
+    coordinates: LatLng(45.494677, -73.578728),
     vertices: [
       LatLng(45.494949, -73.578178),
       LatLng(45.495031, -73.578083),
@@ -594,7 +609,7 @@ var buildings = {
   'V': ConcordiaBuilding(
     code: 'V',
     name: 'V Annex',
-    coordinates: LatLng(45.497041, -73.579902),
+    coordinates: LatLng(45.497031, -73.579940),
     vertices: [
       LatLng(45.496968, -73.579983),
       LatLng(45.497069, -73.57989),
@@ -628,12 +643,14 @@ var buildings = {
   'X': ConcordiaBuilding(
     code: 'X',
     name: 'X Annex',
-    coordinates: LatLng(45.496919, -73.579638),
+    coordinates: LatLng(45.496905, -73.579682),
     vertices: [
-      LatLng(45.496949, -73.579663),
-      LatLng(45.496906, -73.579580),
-      LatLng(45.496814, -73.579674),
-      LatLng(45.496855, -73.579758),
+      LatLng(45.4969, -73.57981),
+      LatLng(45.49698, -73.57974),
+      LatLng(45.49695, -73.57967),
+      LatLng(45.49685, -73.57976),
+      LatLng(45.49687, -73.57981),
+      LatLng(45.49689, -73.57979),
     ],
     address: '2080 Mackay, Montreal, QC H3G 2J1',
     campus: Campus.SGW,
@@ -646,10 +663,10 @@ var buildings = {
     name: 'Z Annex',
     coordinates: LatLng(45.496930, -73.579737),
     vertices: [
-      LatLng(45.496986, -73.579741),
-      LatLng(45.496949, -73.579665),
-      LatLng(45.496911, -73.579815),
-      LatLng(45.496877, -73.579738)
+      LatLng(45.49702, -73.57982),
+      LatLng(45.49698, -73.57975),
+      LatLng(45.49689, -73.57983),
+      LatLng(45.49693, -73.57991)
     ],
     address: '2090 Mackay, Montreal, QC H3G 2J1',
     campus: Campus.SGW,
@@ -690,7 +707,7 @@ var buildings = {
   'BB': ConcordiaBuilding(
     code: 'BB',
     name: 'BB Annex',
-    coordinates: LatLng(45.459816, -73.639344),
+    coordinates: LatLng(45.459766, -73.639174),
     vertices: [
       LatLng(45.459695, -73.639171),
       LatLng(45.459782, -73.639099),
@@ -769,7 +786,7 @@ var buildings = {
   'DO': ConcordiaBuilding(
     code: 'DO',
     name: 'Stinger Dome',
-    coordinates: LatLng(45.457940, -73.634983),
+    coordinates: LatLng(45.457675, -73.636149),
     vertices: [
       LatLng(45.457361, -73.637086),
       LatLng(45.456951, -73.636361),
@@ -785,7 +802,7 @@ var buildings = {
   'FC': ConcordiaBuilding(
     code: 'FC',
     name: 'F.C. Smith Building',
-    coordinates: LatLng(45.458386, -73.639210),
+    coordinates: LatLng(45.458503, -73.639233),
     vertices: [
       LatLng(45.458652, -73.639694),
       LatLng(45.458581, -73.639578),
@@ -888,7 +905,7 @@ var buildings = {
   'JR': ConcordiaBuilding(
     code: 'JR',
     name: 'Jesuit Residence',
-    coordinates: LatLng(45.458416, -73.643296),
+    coordinates: LatLng(45.458521, -73.643241),
     vertices: [
       LatLng(45.458401, -73.643157),
       LatLng(45.458539, -73.643065),
@@ -904,7 +921,7 @@ var buildings = {
   'PC': ConcordiaBuilding(
     code: 'PC',
     name: 'Perform Centre',
-    coordinates: LatLng(45.457009, -73.636991),
+    coordinates: LatLng(45.457083, -73.637636),
     vertices: [
       LatLng(45.457018, -73.637827),
       LatLng(45.456692, -73.636991),
@@ -938,7 +955,7 @@ var buildings = {
   'PT': ConcordiaBuilding(
     code: 'PT',
     name: 'Oscar Peterson Concert Hall',
-    coordinates: LatLng(45.459296, -73.638868),
+    coordinates: LatLng(45.459068, -73.638630),
     vertices: [
       LatLng(45.459216, -73.638938),
       LatLng(45.459344, -73.639228),
@@ -986,7 +1003,7 @@ var buildings = {
   'RF': ConcordiaBuilding(
     code: 'RF',
     name: 'Jesuit Hall and Conference Centre',
-    coordinates: LatLng(45.458485, -73.641110),
+    coordinates: LatLng(45.458442, -73.640920),
     vertices: [
       LatLng(45.458806, -73.641156),
       LatLng(45.458505, -73.641373),
