@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final eventMapNoMarker = CameraMove(buildings['H'].coordinates, 1.0);
-  final eventMapWithMarker = CameraMoveConcordia(buildings['H'].code, null);
+  final eventMapWithMarker = CameraMoveConcordia(buildings['H'].code);
   final eventDirectionMap = DirectionLinesEvent(null);
 
   blocTest(
@@ -23,7 +23,7 @@ void main() {
     act: (bloc) {
       return bloc.add(eventMapWithMarker);
     },
-    expect: [],
+    expect: [isA<MapWithMarker>()],
   );
 
   blocTest(

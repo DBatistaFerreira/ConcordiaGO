@@ -11,6 +11,8 @@ class ConcordiaBuilding {
   final LatLng coordinates;
   final List<LatLng> vertices;
   final Map<String, String> hours;
+  final List<String> departments;
+  final List<String> services;
 
   const ConcordiaBuilding({
     this.code,
@@ -20,6 +22,8 @@ class ConcordiaBuilding {
     this.coordinates,
     this.vertices,
     this.hours,
+    this.departments,
+    this.services,
   });
 
   String campusString() {

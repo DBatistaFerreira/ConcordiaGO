@@ -38,5 +38,6 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       }
       yield IndoorMap(event.floorLevel, svgFile);
     }
+    yield event.createState();
   }
 }

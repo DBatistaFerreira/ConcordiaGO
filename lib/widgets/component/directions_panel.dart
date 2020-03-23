@@ -175,8 +175,9 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                       color: Colors.white,
                                     ),
                                     iconSize: screenWidth / 8,
-                                    onPressed: () =>
-                                        {BlocProvider.of<DirectionsBloc>(context).add(PreviousDirection())},
+                                    onPressed: () {
+                                      BlocProvider.of<DirectionsBloc>(context).add(PreviousDirection());
+                                    },
                                   ),
                                 ),
                                 Flexible(
@@ -187,7 +188,9 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                       color: Colors.white,
                                     ),
                                     iconSize: screenWidth / 8,
-                                    onPressed: () => {BlocProvider.of<DirectionsBloc>(context).add(NextDirection())},
+                                    onPressed: () {
+                                      BlocProvider.of<DirectionsBloc>(context).add(NextDirection());
+                                    },
                                   ),
                                 ),
                               ],
@@ -227,8 +230,28 @@ class DirectionsPanelState extends State<DirectionsPanel> {
         } else {
           hidePanel();
           return Container(
-            height: 350,
-            child: Text('ELSE PANEL'),
+            height: 100,
+            child: Column(
+              children: <Widget>[
+                Text('Error in getting directions'),
+                IconButton(
+                  alignment: Alignment.topRight,
+                  padding: EdgeInsets.only(top: 5.0, right: 5.0),
+                  iconSize: screenWidth / 14,
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => exitNavAlert(context),
+                      barrierDismissible: false,
+                    );
+                  },
+                ),
+              ],
+            ),
           );
         }
       },
@@ -258,8 +281,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
   }
 
   Widget getIcon(IconType type, double size) {
-    IconData icon;
-    bool flip = false;
+    var icon;
+    var flip = false;
     switch (type) {
       case IconType.left:
         icon = Icons.subdirectory_arrow_right;

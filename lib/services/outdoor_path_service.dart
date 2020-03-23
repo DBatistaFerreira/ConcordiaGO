@@ -39,7 +39,6 @@ class OutdoorPathService {
     for (var i = 0; i < returnedSteps.length; i++) {
       var subInstruction = true;
       var arrival_time;
-
       try {
         //Dependent on volatile Directions API field. If statement was previous attempted to check null to no success
         arrival_time = returnedValues[concordia_constants.arrival_time]
@@ -55,7 +54,7 @@ class OutdoorPathService {
         var newDirection = toDirection(returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection); //Adding it to a segment
         try {
-          if (returnedSteps[0][concordia_constants.instruction] == null) {
+          if (returnedSteps[0][concordia_constants.steps][i][concordia_constants.instruction] == null) {
             //Dealing with null cases from the directions API
             subInstruction = false;
           }
@@ -164,7 +163,7 @@ class OutdoorPathService {
    */
 
   static void walkingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
-    _singleDirections = List<Direction>();
+    _singleDirections = <Direction>[];
     _listDirections = Journey();
     var url =
         'https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=walking&key=${_apiKey}';
