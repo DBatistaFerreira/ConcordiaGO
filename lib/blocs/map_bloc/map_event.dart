@@ -1,4 +1,5 @@
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/services/indoor_path_service.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -47,7 +48,7 @@ class DirectionLinesEvent extends MapEvent {
 
 class FloorChange extends MapEvent {
   final String floorLevel;
-  final List<String> paths;
+  final List<Node> paths;
 
   const FloorChange(this.floorLevel, [this.paths]);
 
@@ -57,7 +58,7 @@ class FloorChange extends MapEvent {
     if(paths!=null){
       List<List<int>> pathMap = List();
       for(var path in paths){
-        pathMap.add(floor_maps.nodeGraph['H'][floorLevel][path]);
+        pathMap.add(floor_maps.nodeGraph['H'][floorLevel][path.getId()]);
       }
       svgFile = IndoorPathService.parse(svgFile, pathMap);
     }
