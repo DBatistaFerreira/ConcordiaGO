@@ -17,10 +17,7 @@ class DirectionsBloc extends Bloc<DirectionsEvent, DirectionsState> {
   ) async* {
     Direction newInstruction;
     if (event is GetDirectionsEvent) {
-      //await OutdoorPathService.transitDirections(event.startCoordinates.latitude, event.startCoordinates.longitude,
-       //   event.endCoordinates.latitude, event.endCoordinates.longitude, event.destination);
-
-      await OutdoorPathService.setShuttlePath(event.startCoordinates.latitude, event.startCoordinates.longitude,
+      await OutdoorPathService.transitDirections(event.startCoordinates.latitude, event.startCoordinates.longitude,
           event.endCoordinates.latitude, event.endCoordinates.longitude, event.destination);
 
       newInstruction = OutdoorPathService.getFirstInstruction();
