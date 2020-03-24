@@ -162,7 +162,7 @@ class HomePageState extends State<HomeScreen> {
 }
 
 void hidePanel() {
-  OutdoorPathService.clearAll();
+  OutdoorPathService.instance.clearAll();
   _pc.hide();
 }
 

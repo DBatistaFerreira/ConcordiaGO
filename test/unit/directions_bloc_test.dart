@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/blocs/directions_bloc/directions_bloc.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
+import 'package:concordia_go/utilities/direction.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mockito/mockito.dart';
 
@@ -19,7 +20,8 @@ void main() {
   blocTest(
     'GetDirections event yields InstructionUpdate',
     build: () async => DirectionsBloc(),
-    act: (bloc) => bloc.add(GetDirectionsEvent(LatLng(0, 0), LatLng(0, 0), 'Atlantic Ocean under West Africa')),
+    act: (bloc) => bloc.add(
+        GetDirectionsEvent(LatLng(0, 0), LatLng(0, 0), 'Atlantic Ocean under West Africa', ModeOfTransport.transit)),
     expect: [
 //      isA<InstructionUpdate>(),
     ],

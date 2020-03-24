@@ -1,10 +1,14 @@
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 
-class schedulerService {
-  static bool isShuttlePossible = true;
-  static int nextShuttleTime = 0;
+class SchedulerService {
+  SchedulerService._privateConstructor();
 
-  static int scheduleNextShuttleTime(String currentTimeInStringFormat, String departureCampus) {
+  static final SchedulerService instance = SchedulerService._privateConstructor();
+
+  bool isShuttlePossible = true;
+  int nextShuttleTime = 0;
+
+  int scheduleNextShuttleTime(String currentTimeInStringFormat, String departureCampus) {
     isShuttlePossible = false;
     var currentTime = stringTimeToInt(currentTimeInStringFormat);
     var currentDay = DateTime.now().weekday;
@@ -22,7 +26,7 @@ class schedulerService {
     return todaysShuttleTimes[i];
   }
 
-  static String intTimeToString(int timeInIntFormat) {
+  String intTimeToString(int timeInIntFormat) {
     var minutes = timeInIntFormat.remainder(60);
     var hours = (timeInIntFormat / 60).floor();
     var newTime;
@@ -34,11 +38,10 @@ class schedulerService {
     return newTime;
   }
 
-  static String calculateTotalArrivalTime(walkToShuttleStop, walkToDestination, String departureCampus) {
+  String calculateTotalArrivalTime(walkToShuttleStop, walkToDestination, String departureCampus) {
     var currentTime = DateTime.now();
     var currentTimeInIntFormat = currentTime.hour * 60 + currentTime.minute;
-    var busDepartureTime =
-        schedulerService.scheduleNextShuttleTime(intTimeToString(walkToShuttleStop), departureCampus);
+    var busDepartureTime = scheduleNextShuttleTime(intTimeToString(walkToShuttleStop), departureCampus);
     if (busDepartureTime == -1) {
       return 'No Buses';
     }
@@ -49,7 +52,7 @@ class schedulerService {
     return intTimeToString(totalTime);
   }
 
-  static String calculateNewTime(String timeInStringFormat, timeToAdd) {
+  String calculateNewTime(String timeInStringFormat, timeToAdd) {
     var brokenTimeValues = timeInStringFormat.split(':');
     var hours = int.parse(brokenTimeValues[0]);
     var minutes = int.parse(brokenTimeValues[1]) + timeToAdd;
@@ -66,14 +69,14 @@ class schedulerService {
     return newTime;
   }
 
-  static int stringTimeToInt(String timeInStringFormat) {
+  int stringTimeToInt(String timeInStringFormat) {
     var timeInMinutes;
     var brokenTimeValues = timeInStringFormat.split(':');
     timeInMinutes = int.parse(brokenTimeValues[0]) * 60 + int.parse(brokenTimeValues[1]);
     return timeInMinutes;
   }
 
-  static String calculateArrivalTimeinStringFormat(durationJSON) {
+  String calculateArrivalTimeinStringFormat(durationJSON) {
     durationJSON;
     List<String> durationToSplit = durationJSON.split(' ');
     var duration;
@@ -94,7 +97,7 @@ class schedulerService {
     return arrival_time;
   }
 
-  static int calculateArrivalTimeInIntFormat(durationJSON) {
+  int calculateArrivalTimeInIntFormat(durationJSON) {
     durationJSON;
     List<String> durationToSplit = durationJSON.split(' ');
     var duration;

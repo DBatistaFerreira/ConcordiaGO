@@ -2,6 +2,7 @@ import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/search_result_model.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
+import 'package:concordia_go/utilities/direction.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,18 @@ class DirectionsSearchState extends State<DirectionsSearch> {
   SearchResult destination;
   TextEditingController _startTextController = TextEditingController();
   TextEditingController _destTextController = TextEditingController();
+
+  ModeOfTransport getModeOfTransportFromButton(List<bool> selection) {
+    if (selection[0]) {
+      return ModeOfTransport.walking;
+    } else if (selection[1]) {
+      return ModeOfTransport.driving;
+    } else if (selection[2]) {
+      return ModeOfTransport.transit;
+    } else {
+      return ModeOfTransport.shuttle;
+    }
+  }
 
   @override
   Widget build(context) {
@@ -170,11 +183,15 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                               borderRadius: BorderRadius.circular(24.0),
                             ),
                             onPressed: () {
-                              BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
-                              OutdoorPathService.clearAll();
                               if (startingPoint != null && destination != null) {
+                                BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
+                                OutdoorPathService.instance.clearAll();
+                                var modeOfTransport = getModeOfTransportFromButton(isSelected);
                                 BlocProvider.of<DirectionsBloc>(context).add(GetDirectionsEvent(
-                                    startingPoint.coordinates, destination.coordinates, destination.name));
+                                    startingPoint.coordinates,
+                                    destination.coordinates,
+                                    destination.name,
+                                    modeOfTransport));
                               }
                             },
                             icon: Icon(
