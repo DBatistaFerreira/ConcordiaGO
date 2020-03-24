@@ -7,15 +7,16 @@ import 'package:concordia_go/utilities/segment.dart';
 import 'package:concordia_go/utilities/journey.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/services/scheduler_service.dart';
 
-var _apiKey = '';
+var _apiKey = 'AIzaSyD-J9kKgwE6yJ81SRih7bFhRY6NV7uyV2s';
 
 class OutdoorPathService {
   static final Set<Polyline> _polyLines = {};
   static Journey _listDirections = Journey();
   static List<Direction> _singleDirections = <Direction>[];
   static int _currentInstruction = 0;
-  static bool isShuttlePossible = false;
+  static bool isShuttlePossible = true;
 
   /*
   * The transitDirections method is the core method used for outdoor path directions. It operates in steps
@@ -115,7 +116,7 @@ class OutdoorPathService {
         var newDirection = toDirection(returnedSteps[i], ModeOfTransport.driving, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
-          if (returnedSteps[i][concordia_constants.steps][0][concordia_constants.instruction] == null) {
+          if (returnedSteps[0][concordia_constants.steps][i][concordia_constants.instruction] == null) {
             subInstruction = false;
           }
         } catch (Exception) {
@@ -173,7 +174,7 @@ class OutdoorPathService {
         var newDirection = toDirection(returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
-          if (returnedSteps[i][concordia_constants.steps][0][concordia_constants.instruction] == null) {
+          if (returnedSteps[0][concordia_constants.steps][i][concordia_constants.instruction] == null) {
             subInstruction = false;
           }
         } catch (Exception) {
@@ -298,6 +299,7 @@ class OutdoorPathService {
     _listDirections.resetList();
     _currentInstruction = 0;
     _polyLines.clear();
+    isShuttlePossible = true;
   }
 
   /*
@@ -339,7 +341,141 @@ class OutdoorPathService {
   *
    */
 
+  static void setShuttlePath(startLat, startLng, endLat, endLng, buildingDestination) async {
+    _singleDirections = <Direction>[];
+    _listDirections = Journey();
+    LatLng sgwCoordinates =
+        concordia_constants.shuttleStops[concordia_constants.campusSGW][concordia_constants.stopCoordinates];
+    LatLng loyolaCoordinates =
+        concordia_constants.shuttleStops[concordia_constants.campusLoyola][concordia_constants.stopCoordinates];
+    var sgwWalkTime = 0;
+    var loyolaWalkTime = 0;
+    bool sgwToLoyola = true;
 
+    Map values = await googleMapsRequest(startLat, startLng, endLat, endLng, "walking");
+    var returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
+    var walkable = schedulerService
+            .calculateArrivalTimeInIntFormat(returnedValues[concordia_constants.duration][concordia_constants.text]) <
+        35;
+
+    if (walkable) {
+      await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
+    } else {
+      var sgwValues = values =
+          await googleMapsRequest(startLat, startLng, sgwCoordinates.latitude, sgwCoordinates.longitude, "walking");
+      returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
+      sgwWalkTime = schedulerService
+          .calculateArrivalTimeInIntFormat(returnedValues[concordia_constants.duration][concordia_constants.text]);
+
+      var loyolaValues = values = await googleMapsRequest(
+          startLat, startLng, loyolaCoordinates.latitude, loyolaCoordinates.longitude, "walking");
+      returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
+      loyolaWalkTime = schedulerService
+          .calculateArrivalTimeInIntFormat(returnedValues[concordia_constants.duration][concordia_constants.text]);
+      sgwWalkTime < loyolaWalkTime ? sgwToLoyola = true : sgwToLoyola = false;
+
+      if (sgwToLoyola) {
+        loyolaValues =
+            await googleMapsRequest(loyolaCoordinates.latitude, loyolaCoordinates.longitude, endLat, endLng, "walking");
+        var arrival_time = addWalkingPath(sgwValues, buildingDestination, 0);
+        createShuttlePath(
+            arrival_time,
+            buildingDestination,
+            concordia_constants.campusLoyola,
+            LatLng(45.497275, -73.5783332),
+            LatLng(45.4583, -73.6384),
+            schedulerService.scheduleNextShuttleTime(arrival_time, concordia_constants.campusLoyola));
+        var arrival_time2 = addWalkingPath(loyolaValues, buildingDestination, 250);
+        var finalArrivalTime = schedulerService.calculateTotalArrivalTime(
+            schedulerService.stringTimeToInt(arrival_time),
+            schedulerService.stringTimeToInt(arrival_time2),
+            concordia_constants.campusSGW);
+        setDirections(finalArrivalTime);
+      } else {
+        sgwValues =
+            await googleMapsRequest(sgwCoordinates.latitude, sgwCoordinates.longitude, endLat, endLng, "walking");
+        var arrival_time = schedulerService.calculateNewTime(addWalkingPath(loyolaValues, buildingDestination, 0), 30);
+        createShuttlePath(
+            arrival_time,
+            buildingDestination,
+            concordia_constants.campusSGW,
+            LatLng(45.4583, -73.6384),
+            LatLng(45.497275, -73.5783332),
+            schedulerService.scheduleNextShuttleTime(arrival_time, concordia_constants.campusSGW));
+        var arrival_time2 = addWalkingPath(sgwValues, buildingDestination, 250);
+        var finalArrivalTime = schedulerService.calculateTotalArrivalTime(
+            schedulerService.stringTimeToInt(arrival_time),
+            schedulerService.stringTimeToInt(arrival_time2),
+            concordia_constants.campusLoyola);
+        if (finalArrivalTime == 'No Buses') {
+          isShuttlePossible = false;
+          return;
+        }
+        isShuttlePossible = true;
+        setDirections(finalArrivalTime);
+      }
+    }
+  }
+
+  static String addWalkingPath(pathJSON, buildingDestination, startIndex) {
+    var myPoints = PolyUtil();
+    var returnedValues = pathJSON[concordia_constants.route][0][concordia_constants.legs][0];
+    var returnedSteps = returnedValues[concordia_constants.steps];
+    var arrival_time = schedulerService
+        .calculateArrivalTimeinStringFormat(returnedValues[concordia_constants.duration][concordia_constants.text]);
+    for (var i = 0; i < returnedSteps.length; i++) {
+      var subInstruction = true;
+      var pointArray = myPoints.decode(returnedSteps[i][concordia_constants.polyline][concordia_constants.points]);
+      Segment newSegment;
+      if (returnedSteps[i][concordia_constants.travel_mode] == concordia_constants.walking) {
+        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
+        newSegment = Segment(newDirection);
+        try {
+          if (returnedSteps[0][concordia_constants.steps][i][concordia_constants.instruction] == null) {
+            subInstruction = false;
+          }
+        } catch (Exception) {
+          subInstruction = false;
+        }
+        if (subInstruction) {
+          for (var j = 0; j < returnedSteps[i][concordia_constants.steps].length; j++) {
+            newDirection = toDirection(returnedSteps[i][concordia_constants.steps][j], ModeOfTransport.walking,
+                arrival_time, buildingDestination);
+            newSegment.addSubstep(newDirection);
+          }
+        } else {
+          newSegment.addSubstep(newDirection);
+        }
+
+        addNewPolyline(Colors.pink, pointArray, i + startIndex);
+      }
+      _listDirections.addSegment(newSegment);
+    }
+    return arrival_time;
+  }
+
+  static void createShuttlePath(
+      arrival_time, buildingDestination, campus, pickUpCoordinate, getOffCoordinate, nextShuttleTime) {
+    var myPoints = PolyUtil();
+    var polylineList = (concordia_constants.shuttleStops[campus][concordia_constants.shuttlePath] as List);
+    var newDirection = Direction(
+        "Get on the Concordia Shuttle Bus at ${schedulerService.intTimeToString(nextShuttleTime)}",
+        pickUpCoordinate,
+        ModeOfTransport.transit,
+        "9.3km",
+        arrival_time,
+        buildingDestination);
+    var newSegment = Segment(newDirection);
+    newDirection = Direction("Get off the Concordia Shuttle Bus", getOffCoordinate, ModeOfTransport.transit, "9.3km",
+        arrival_time, buildingDestination);
+    newSegment.addSubstep(newDirection);
+    _listDirections.addSegment(newSegment);
+
+    for (int i = 0; i < polylineList.length; i++) {
+      var pointArray = myPoints.decode(polylineList[i]);
+      addNewPolyline(Colors.teal, pointArray, i + 100);
+    }
+  }
 
   /*
   *
@@ -355,11 +491,17 @@ class OutdoorPathService {
     return jsonDecode(response.body);
   }
 
-  static void setDirections() {
-    _singleDirections.clear();
+  static void setDirections([String arrival_time]) {
     var tempDirections = _listDirections.toDirection();
-    for (var i = 0; i < tempDirections.length; i++) {
-      _singleDirections.add(tempDirections[i]);
+    if (arrival_time != null) {
+      for (var i = 0; i < tempDirections.length; i++) {
+        tempDirections[i].arrivalTime = arrival_time;
+        _singleDirections.add(tempDirections[i]);
+      }
+    } else {
+      for (var i = 0; i < tempDirections.length; i++) {
+        _singleDirections.add(tempDirections[i]);
+      }
     }
   }
 }
