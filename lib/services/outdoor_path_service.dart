@@ -1,3 +1,5 @@
+import 'package:concordia_go/widgets/screens/home_screen.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_maps_util/google_maps_util.dart';
@@ -373,8 +375,6 @@ class OutdoorPathService {
         concordia_constants.shuttleStops[concordia_constants.campusSGW][concordia_constants.stopCoordinates];
     LatLng loyolaCoordinates =
         concordia_constants.shuttleStops[concordia_constants.campusLoyola][concordia_constants.stopCoordinates];
-    var sgwWalkTime = 0;
-    var loyolaWalkTime = 0;
     bool sgwToLoyola = true;
 
     Map values = await googleMapsRequest(startLat, startLng, endLat, endLng, "walking");
@@ -386,21 +386,13 @@ class OutdoorPathService {
     if (walkable) {
       await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
     } else {
-      var sgwValues = values =
-          await googleMapsRequest(startLat, startLng, sgwCoordinates.latitude, sgwCoordinates.longitude, "walking");
-      returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
-      sgwWalkTime = schedulerService
-          .calculateArrivalTimeInIntFormat(returnedValues[concordia_constants.duration][concordia_constants.text]);
 
-      var loyolaValues = values = await googleMapsRequest(
-          startLat, startLng, loyolaCoordinates.latitude, loyolaCoordinates.longitude, "walking");
-      returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
-      loyolaWalkTime = schedulerService
-          .calculateArrivalTimeInIntFormat(returnedValues[concordia_constants.duration][concordia_constants.text]);
-      sgwWalkTime < loyolaWalkTime ? sgwToLoyola = true : sgwToLoyola = false;
+      sgwToLoyola = await getFurthestCampus();
 
       if (sgwToLoyola) {
-        loyolaValues =
+        var sgwValues = values =
+        await googleMapsRequest(startLat, startLng, sgwCoordinates.latitude, sgwCoordinates.longitude, "walking");
+        var loyolaValues =
             await googleMapsRequest(loyolaCoordinates.latitude, loyolaCoordinates.longitude, endLat, endLng, "walking");
         var arrival_time = addWalkingPath(sgwValues, buildingDestination, 0);
         createShuttlePath(
@@ -417,7 +409,9 @@ class OutdoorPathService {
             concordia_constants.campusSGW);
         setDirections(finalArrivalTime);
       } else {
-        sgwValues =
+        var loyolaValues = values = await googleMapsRequest(
+            startLat, startLng, loyolaCoordinates.latitude, loyolaCoordinates.longitude, "walking");
+        var sgwValues =
             await googleMapsRequest(sgwCoordinates.latitude, sgwCoordinates.longitude, endLat, endLng, "walking");
         var arrival_time = schedulerService.calculateNewTime(addWalkingPath(loyolaValues, buildingDestination, 0), 30);
         createShuttlePath(
@@ -515,6 +509,19 @@ class OutdoorPathService {
     var response = await http.get(url);
     return jsonDecode(response.body);
   }
+
+  Future<bool> getFurthestCampus() async {
+    LatLng sgwCoordinates = concordia_constants.sgwCampus['coordinates'];
+    LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'];
+
+    var distanceToSGW = await Geolocator().distanceBetween(currentLocation.latitude,
+        currentLocation.longitude, sgwCoordinates.latitude, sgwCoordinates.longitude);
+    var distanceToLoyola = await Geolocator().distanceBetween(currentLocation.latitude,
+        currentLocation.longitude, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
+
+    return distanceToLoyola > distanceToSGW ? true : false;
+  }
+
 
   void setDirections([String arrival_time]) {
     var tempDirections = _listDirections.toDirection();
