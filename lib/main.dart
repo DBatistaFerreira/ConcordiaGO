@@ -36,17 +36,16 @@ class Application extends StatelessWidget {
           create: (context) => SearchBloc(),
         ),
       ],
-        child: MaterialApp(
-          title: application_constants.applicationName,
-          initialRoute: '/',
-          routes: {
-            '/': (context) => HomeScreen(),
-            '/sgwbuildings': (context) => CampusBuildingListMenu(Campus.SGW),
-            '/loyolabuildings': (context) =>
-                CampusBuildingListMenu(Campus.Loyola),
-            '/indoormap': (context) => IndoorMapScreen(),
-          },
-        ),
+      child: MaterialApp(
+        title: application_constants.applicationName,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => HomeScreen(),
+          '/sgwbuildings': (context) => CampusBuildingListMenu(Campus.SGW),
+          '/loyolabuildings': (context) =>
+              CampusBuildingListMenu(Campus.Loyola),
+          '/indoormap': (context) => IndoorMapScreen(),
+        },
       ),
     );
   }
