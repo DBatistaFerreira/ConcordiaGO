@@ -36,12 +36,6 @@ class Application extends StatelessWidget {
           create: (context) => SearchBloc(),
         ),
       ],
-      child: GestureDetector(
-        onTap: () {
-          if (!FocusScope.of(context).hasPrimaryFocus) {
-            FocusScope.of(context).unfocus();
-          }
-        },
         child: MaterialApp(
           title: application_constants.applicationName,
           initialRoute: '/',

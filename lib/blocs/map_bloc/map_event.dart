@@ -1,37 +1,66 @@
+import 'dart:async';
+
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/services/indoor_path_service.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:concordia_go/utilities/floor_maps_lib.dart' as floor_maps;
 
 abstract class MapEvent {
   const MapEvent();
 
-  MapState createState();
+  Future<MapState> createState();
 }
 
-class CameraMove extends MapEvent {
+class MoveCameraEvent extends MapEvent {
   final LatLng _coordinates;
   final double _zoom;
 
-  const CameraMove(this._coordinates, this._zoom);
+  const MoveCameraEvent(this._coordinates, this._zoom);
 
   @override
-  MapState createState() {
-    return MapNoMarker(_coordinates, _zoom);
+  Future<MapState> createState() async {
+    return BasicMapState(_coordinates, _zoom);
   }
 }
 
-class CameraMoveConcordia extends MapEvent {
+class SelectConcordiaBuildingEvent extends MapEvent {
   final String _buildingCode;
 
-  const CameraMoveConcordia(this._buildingCode);
+  const SelectConcordiaBuildingEvent(this._buildingCode);
 
   @override
-  MapState createState() {
-    return MapWithMarker(
+  Future<MapState> createState() async {
+    return ConcordiaMapState(
         _buildingCode, concordia_constants.buildings[_buildingCode].coordinates, concordia_constants.poiZoomLevel);
+  }
+}
+
+class SwitchCampusEvent extends MapEvent {
+  final LatLng _currentCameraPosition;
+
+  const SwitchCampusEvent(this._currentCameraPosition);
+
+  @override
+  Future<MapState> createState() async {
+    var coordinates;
+    await getFurthestCampus().then((value) => coordinates = value);
+
+    return BasicMapState(coordinates, concordia_constants.campusZoomLevel);
+  }
+
+  Future<LatLng> getFurthestCampus() async {
+    LatLng sgwCoordinates = concordia_constants.sgwCampus['coordinates'];
+    LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'];
+
+    var distanceToSGW = await Geolocator().distanceBetween(_currentCameraPosition.latitude,
+        _currentCameraPosition.longitude, sgwCoordinates.latitude, sgwCoordinates.longitude);
+    var distanceToLoyola = await Geolocator().distanceBetween(_currentCameraPosition.latitude,
+        _currentCameraPosition.longitude, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
+
+    return distanceToLoyola > distanceToSGW ? loyolaCoordinates : sgwCoordinates;
   }
 }
 
@@ -41,8 +70,8 @@ class DirectionLinesEvent extends MapEvent {
   const DirectionLinesEvent(this._directionPolylines);
 
   @override
-  MapState createState() {
-    return DirectionMap(_directionPolylines);
+  Future<MapState> createState() async {
+    return DirectionMapState(_directionPolylines);
   }
 }
 
@@ -53,7 +82,7 @@ class FloorChange extends MapEvent {
   const FloorChange(this.floorLevel, [this.paths]);
 
   @override
-  MapState createState() {
+  Future<MapState> createState() async {
     var svgFile = floor_maps.floorPlan[floorLevel];
     if(paths!=null){
       List<List<int>> pathMap = List();

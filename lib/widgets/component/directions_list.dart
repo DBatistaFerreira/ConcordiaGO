@@ -50,7 +50,7 @@ class DirectionsListState extends State<DirectionsList> {
               color: Colors.white,
               child: BlocBuilder<DirectionsBloc, DirectionsState>(
                 builder: (context, state) {
-                  if (state is InstructionUpdate) {
+                  if (state is InstructionState) {
                     return ListView.builder(
                       itemCount: state.directionsList.length,
                       itemBuilder: (context, index) {
@@ -62,7 +62,6 @@ class DirectionsListState extends State<DirectionsList> {
                   } else {
                     return Container(
                       height: 350,
-                      child: Text('ELSE'),
                     );
                   }
                 },

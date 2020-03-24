@@ -1,3 +1,4 @@
+import 'package:concordia_go/utilities/direction.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 import 'package:concordia_go/blocs/bloc.dart';
@@ -9,22 +10,13 @@ abstract class DirectionsEvent {
   DirectionsState createState();
 }
 
-class GetDirections extends DirectionsEvent {
+class GetDirectionsEvent extends DirectionsEvent {
   final LatLng startCoordinates;
   final LatLng endCoordinates;
   final String destination;
+  final ModeOfTransport modeOfTransport;
 
-  const GetDirections(this.startCoordinates, this.endCoordinates, this.destination);
-
-  @override
-  DirectionsState createState() {
-    // TODO: implement createState
-    return null;
-  }
-}
-
-class NextDirection extends DirectionsEvent {
-  const NextDirection();
+  const GetDirectionsEvent(this.startCoordinates, this.endCoordinates, this.destination, this.modeOfTransport);
 
   @override
   DirectionsState createState() {
@@ -33,8 +25,18 @@ class NextDirection extends DirectionsEvent {
   }
 }
 
-class PreviousDirection extends DirectionsEvent {
-  const PreviousDirection();
+class NextInstructionEvent extends DirectionsEvent {
+  const NextInstructionEvent();
+
+  @override
+  DirectionsState createState() {
+    // TODO: implement createState
+    return null;
+  }
+}
+
+class PreviousInstructionEvent extends DirectionsEvent {
+  const PreviousInstructionEvent();
 
   @override
   DirectionsState createState() {

@@ -1,4 +1,5 @@
-import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/search_result_model.dart';
+import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -8,14 +9,24 @@ abstract class SearchState {
 
 class InitialSearchState extends SearchState {}
 
-class ResultsList extends SearchState {
-  final List<ConcordiaBuilding> _results;
+class SearchResultsState extends SearchState {
+  final List<SearchResult> _results;
+  final SearchType _searchType;
 
-  const ResultsList(this._results);
+  const SearchResultsState(this._results, this._searchType);
 
-  List<ConcordiaBuilding> get results => _results;
+  List<SearchResult> get results => _results;
+
+  SearchType get searchType => _searchType;
 }
 
-class NotSearching extends SearchState {
-  const NotSearching();
+class NotSearchingState extends SearchState {
+  const NotSearchingState();
+}
+
+class SearchDirectionsState extends SearchState {
+  final SearchResult startingPoint;
+  final SearchResult destination;
+
+  const SearchDirectionsState(this.startingPoint, this.destination);
 }

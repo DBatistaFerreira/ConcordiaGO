@@ -1,6 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-enum ModeOfTransport { walking, transit, driving }
+enum ModeOfTransport { walking, transit, driving, shuttle }
 enum IconType { left, right, compass, fork, merge, walk, bus, subway, generic }
 
 class Direction {

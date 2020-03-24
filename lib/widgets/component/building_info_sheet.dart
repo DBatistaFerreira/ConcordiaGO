@@ -1,5 +1,6 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/search_result_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart'
     as concordia_constants;
@@ -8,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:concordia_go/widgets/component/google_maps_component.dart';
 
 class BuildingInfoSheet {
   static PersistentBottomSheetController bottomSheetController;
@@ -325,12 +325,9 @@ class BuildingInfoSheet {
                 ),
                 onPressed: () {
                   Navigator.pop(context);
-                  getCurrentLocation().then(
-                    (value) {
-                      BlocProvider.of<DirectionsBloc>(mc)
-                          .add(GetDirections(value, building.coordinates, building.name));
-                    },
-                  );
+                  BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
+                      startingPoint: SearchResult('Your Location', currentLocation),
+                      destination: OutdoorConcordiaResult(building)));
                 },
               ),
             ),
