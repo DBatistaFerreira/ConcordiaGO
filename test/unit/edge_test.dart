@@ -54,9 +54,7 @@ void main() {
 
   // region test functions
   group('Functions', () {
-    test(
-        'isEqual should return true if both edges are the same and false otherwise',
-        () {
+    test('isEqual should return true if both edges are the same and false otherwise', () {
       final notEqual = Edge(to, from, weight);
       expect(edge.isEqual(notEqual), false);
       expect(edge.isEqual(edge), true);

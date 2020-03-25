@@ -9,10 +9,19 @@ class SearchService {
   List<SearchResult> getSearchResults(String query) {
     var searchResults = <SearchResult>[];
 
-    for (var value in buildings.values) {
-      if (value.name.toLowerCase().contains(query.trim().toLowerCase()) ||
-          value.code.toLowerCase().contains(query.trim().toLowerCase())) {
-        searchResults.add(OutdoorConcordiaResult(value));
+    for (var building in buildings.values) {
+      if (building.name.toLowerCase().contains(query.trim().toLowerCase()) ||
+          building.code.toLowerCase().contains(query.trim().toLowerCase())) {
+        searchResults.add(OutdoorConcordiaResult(building));
+      }
+    }
+
+    if (query.isNotEmpty) {
+      for (var room in rooms) {
+        var name = room.building.code + room.number;
+        if (name.toLowerCase().contains(query.toLowerCase().replaceAll(' ', ''))) {
+          searchResults.add(ClassroomResult(room));
+        }
       }
     }
     return searchResults;

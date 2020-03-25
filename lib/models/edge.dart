@@ -58,9 +58,7 @@ class Edge {
 
   /// Returns `true` if this edge has the same values as the edge passed.
   bool isEqual(Edge edge) {
-    return (_to.isEqualTo(edge.getTo())) &&
-        (_from.isEqualTo(edge.getFrom())) &&
-        (_weight == edge.getWeight());
+    return (_to.isEqualTo(edge.getTo())) && (_from.isEqualTo(edge.getFrom())) && (_weight == edge.getWeight());
   }
 
   /// Returns a pretty print format for this edge's values.

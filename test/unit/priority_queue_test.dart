@@ -15,8 +15,7 @@ void main() {
 
   // region test functions
   group('Functions', () {
-    test('isEmpty should return true if the queue is empty and false otherwise',
-        () {
+    test('isEmpty should return true if the queue is empty and false otherwise', () {
       final pq = PriorityQueue();
 
       expect(pq.isEmpty(), true);
@@ -50,9 +49,7 @@ void main() {
       expect(pq.peek(), edge4);
     });
 
-    test(
-        'peek should return the first Edge, with the lowest weight, in the queue',
-        () {
+    test('peek should return the first Edge, with the lowest weight, in the queue', () {
       final pq = PriorityQueue();
 
       expect(pq.peek(), null);
@@ -92,8 +89,7 @@ void main() {
       expect(pq.size(), 4);
     });
 
-    test(
-        'replace should insert the edge passed as the root then reorder as min queue and return the previous root',
+    test('replace should insert the edge passed as the root then reorder as min queue and return the previous root',
         () {
       final pq = PriorityQueue();
 

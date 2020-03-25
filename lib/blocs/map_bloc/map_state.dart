@@ -49,7 +49,8 @@ class IndoorMap extends MapState {
   const IndoorMap(this._buildingCode, this._floorLevel, this._svgFile);
 
   String get svgFile => _svgFile;
-  String get floorLevel => _floorLevel;
-  String get buildingCode => _buildingCode;
 
+  String get floorLevel => _floorLevel;
+
+  String get buildingCode => _buildingCode;
 }

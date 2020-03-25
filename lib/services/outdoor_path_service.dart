@@ -383,12 +383,13 @@ class OutdoorPathService {
     var walkable = schedulerService
             .calculateArrivalTimeInIntFormat(returnedValues[concordia_constants.duration][concordia_constants.text]) <
         35;
+
     if (walkable) {
       // await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
       addWalkingPath(values, buildingDestination, 0);
       setDirections();
     } else {
-      sgwToLoyola = await getFurthestCampus(startLat, startLng);
+      sgwToLoyola = await isSgwCloser(startLat, startLng);
 
       if (sgwToLoyola) {
         var sgwValues = values =
@@ -511,7 +512,7 @@ class OutdoorPathService {
     return jsonDecode(response.body);
   }
 
-  Future<bool> getFurthestCampus(startLat, startLng) async {
+  Future<bool> isSgwCloser(startLat, startLng) async {
     LatLng sgwCoordinates = concordia_constants.sgwCampus['coordinates'];
     LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'];
 
@@ -520,7 +521,7 @@ class OutdoorPathService {
     var distanceToLoyola =
         await Geolocator().distanceBetween(startLat, startLng, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
 
-    return distanceToLoyola > distanceToSGW ? true : false;
+    return distanceToLoyola > distanceToSGW;
   }
 
   void setDirections([String arrival_time]) {

@@ -1,4 +1,5 @@
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/models/classroom_model.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
@@ -7,21 +8,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class SearchResult {
-  String name;
-  LatLng coordinates;
+abstract class SearchResult {
+  final String name;
+  final LatLng coordinates;
 
   SearchResult(this.name, this.coordinates);
 
-  void onTap(BuildContext context, SearchType searchType) {}
-}
-
-class OutdoorConcordiaResult extends SearchResult {
-  final ConcordiaBuilding building;
-
-  OutdoorConcordiaResult(this.building) : super(building.name, building.coordinates);
-
-  @override
   void onTap(BuildContext context, SearchType searchType) {
     switch (searchType) {
       case SearchType.general:
@@ -35,6 +27,37 @@ class OutdoorConcordiaResult extends SearchResult {
         break;
     }
   }
+
+  void _onTapGeneral(BuildContext context);
+
+  void _onTapStartingPoint(BuildContext context);
+
+  void _onTapDestination(BuildContext context);
+}
+
+class YourLocationResult extends SearchResult {
+  YourLocationResult(String name, LatLng coordinates) : super(name, coordinates);
+
+  @override
+  void _onTapGeneral(BuildContext context) {
+    print('This method should never be called.');
+  }
+
+  @override
+  void _onTapStartingPoint(BuildContext context) {
+    BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(startingPoint: this));
+  }
+
+  @override
+  void _onTapDestination(BuildContext context) {
+    print('This method should never be called.');
+  }
+}
+
+class OutdoorConcordiaResult extends SearchResult {
+  final ConcordiaBuilding building;
+
+  OutdoorConcordiaResult(this.building) : super(building.name, building.coordinates);
 
   void _onTapGeneral(BuildContext context) {
     BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
@@ -53,5 +76,31 @@ class OutdoorConcordiaResult extends SearchResult {
 
   String campusInitials() {
     return building.campus == Campus.SGW ? 'SGW' : 'LOY';
+  }
+}
+
+class ClassroomResult extends SearchResult {
+  final Classroom classroom;
+
+  ClassroomResult(this.classroom) : super(classroom.building.code + classroom.number, classroom.building.coordinates);
+
+  @override
+  void _onTapGeneral(BuildContext context) {
+    BlocProvider.of<MapBloc>(context).add(FloorChange(classroom.building.code, classroom.floor, [classroom.node]));
+    Navigator.pushNamed(context, '/indoormap');
+  }
+
+  @override
+  void _onTapStartingPoint(BuildContext context) {
+    // TODO: implement _onTapStartingPoint
+  }
+
+  @override
+  void _onTapDestination(BuildContext context) {
+    // TODO: implement _onTapDestination
+  }
+
+  String campusInitials() {
+    return classroom.building.campus == Campus.SGW ? 'SGW' : 'LOY';
   }
 }

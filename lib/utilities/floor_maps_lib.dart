@@ -1,11 +1,11 @@
 library floor_maps_lib;
 
 const availableIndoorFloors = {
-  'H':['H8','H9'],
-  'MB':['MB1','MBS2'],
-  'CC':['CC1'],
-  'VE':['VE1','VE2'],
-  'VL':['VL1','VL2']
+  'H': ['H8', 'H9'],
+  'MB': ['MB1', 'MBS2'],
+  'CC': ['CC1'],
+  'VE': ['VE1', 'VE2'],
+  'VL': ['VL1', 'VL2']
 };
 
 const nodeGraph = {
@@ -411,8 +411,8 @@ const floorPlan = {
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_135" y="604.998207" x="250.99612" stroke-width="0" stroke="#000000" fill="#000000">854</text>
  </g>
 </svg>''',
-  'H1':'''''',
-  'MB1':'''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  'H1': '''''',
+  'MB1': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
  <g>
@@ -483,7 +483,7 @@ const floorPlan = {
   <text stroke="#000000" transform="matrix(0.8335527777671814,0,0,0.8335527777671814,120.93430990353227,147.4696381604299) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_16" y="780.820731" x="670.096497" stroke-width="0" fill="#000000">1.410</text>
  </g>
 </svg>''',
-  'MBS2':'''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  'MBS2': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
  <g>
@@ -549,7 +549,7 @@ const floorPlan = {
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_15" y="739.989179" x="464.667359" stroke-width="0" stroke="#000000" fill="#000000">S2.135</text>
  </g>
 </svg>''',
-  'CC1':'''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  'CC1': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
     <metadata id="metadata7">image/svg+xml</metadata>
     <g>
@@ -599,7 +599,7 @@ const floorPlan = {
      <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_32" y="480" x="870.5"  stroke-width="0" stroke="#000000" fill="#000000">101</text>
     </g>
    </svg>''',
-  'VE1':'''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  'VE1': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
  <g>
@@ -617,7 +617,7 @@ const floorPlan = {
   </g>
  </g>
 </svg>''',
-  'VE2':'''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  'VE2': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
  <g>
@@ -679,7 +679,7 @@ const floorPlan = {
   </g>
  </g>
 </svg>''',
-  'VL1':'''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  'VL1': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
  <g>
@@ -780,7 +780,7 @@ const floorPlan = {
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_17" y="395.997891" x="248.668069" stroke-width="0" stroke="#000000" fill="#000000">124</text>
  </g>
 </svg>''',
-  'VL2':'''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  'VL2': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
  <g>

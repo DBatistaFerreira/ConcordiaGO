@@ -52,11 +52,11 @@ void main() {
   });
   // endregion getter tests
   // region setter tests
-  group('setters', (){
+  group('setters', () {
     // region setter tests general fixtures
-      final sp = DShortestPath.withNothing();
+    final sp = DShortestPath.withNothing();
     // endregion setter tests general fixtures
-    test('setGraph should set the graph to the graph passed', (){
+    test('setGraph should set the graph to the graph passed', () {
       final g = Graph.withNothing();
       sp.setGraph(g);
       expect(g.getName(), '');
@@ -65,21 +65,21 @@ void main() {
       expect(g.getEdgeIndices().isEmpty, true);
     });
 
-    test('setSource should set the source node to the node passed', (){
+    test('setSource should set the source node to the node passed', () {
       final source = Node('123');
       sp.setSource(source);
       expect(sp.getSource(), source);
       expect(sp.getSource().getId(), '123');
     });
 
-    test('setDestination should set the destination node to the node passed', (){
+    test('setDestination should set the destination node to the node passed', () {
       final destination = Node('321');
       sp.setDestination(destination);
       expect(sp.getDestination(), destination);
       expect(sp.getDestination().getId(), '321');
     });
 
-    test('setDistance should set the distance to the value passed', (){
+    test('setDistance should set the distance to the value passed', () {
       final distance = 34;
       sp.setDistance(distance);
       expect(sp.getDistance(), distance);
@@ -87,11 +87,11 @@ void main() {
   });
   // endregion setter tests
 
-  group('calcShortestPath', (){
+  group('calcShortestPath', () {
     // region calcShortestPath test general fixtures
 
     // endregion calcShortestPath test general fixtures
-    test('calcShortestPath should return a list of the shortest path nodes', (){
+    test('calcShortestPath should return a list of the shortest path nodes', () {
       final g = Graph('H8', cc.edges['H8'], cc.edge_indices['H8']);
       g.setNodesFromEdgeIndices(cc.edge_indices['H8']);
       final sp = DShortestPath(g, g.getNodes()['000003'], g.getNodes()['000000']);

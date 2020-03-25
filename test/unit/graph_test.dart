@@ -3,18 +3,18 @@ import 'package:concordia_go/models/graph.dart';
 import 'package:concordia_go/models/node.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void main(){
+void main() {
   // region test functions
 
   // region constructor tests
-  group('Constructors', (){
+  group('Constructors', () {
     // region constructor general fixtures
     final building_name = 'H8';
     final edges = cc.edges[building_name];
     final edge_indices = cc.edge_indices[building_name];
     // endregion constructor general fixtures
 
-    test('constructor should create a graph object with the values passed', (){
+    test('constructor should create a graph object with the values passed', () {
       final g = Graph(building_name, edges, edge_indices);
 
       expect(g.getName(), building_name);
@@ -22,7 +22,7 @@ void main(){
       expect(g.getEdgeIndices(), edge_indices);
     });
 
-    test('constructorWithNothing should create a graph object with empty values', (){
+    test('constructorWithNothing should create a graph object with empty values', () {
       final g = Graph.withNothing();
 
       expect(g.getName(), '');
@@ -31,14 +31,14 @@ void main(){
       expect(g.getEdgeIndices().isEmpty, true);
     });
 
-    test('constructorWithNodes should create a graph object with values passed', (){
+    test('constructorWithNodes should create a graph object with values passed', () {
       final nodeMap = {
-        '100857' : Node('100857'),
-        '100859' : Node('100859'),
-        '100861' : Node('100861'),
-        '100862' : Node('100862'),
-        '100863' : Node('100863'),
-        '120002' : Node('120002'),
+        '100857': Node('100857'),
+        '100859': Node('100859'),
+        '100861': Node('100861'),
+        '100862': Node('100862'),
+        '100863': Node('100863'),
+        '120002': Node('120002'),
       };
 
       final g = Graph.withNodes(building_name, nodeMap, edges, edge_indices);
@@ -50,7 +50,7 @@ void main(){
       expect(g.getEdgeIndices()[69], edge_indices[69]);
     });
 
-    test('constructorFromGraph should create a graph object from the graph passed', (){
+    test('constructorFromGraph should create a graph object from the graph passed', () {
       final graph = Graph('name', edges, edge_indices);
       final g = Graph.fromGraph(graph);
 
@@ -63,11 +63,11 @@ void main(){
   // endregion constructor tests
 
   // region getters and setters tests
-  group('Getters and Setters', (){
+  group('Getters and Setters', () {
     // region getters and setters general fixtures
 
     // endregion getters and setters general fixtures
-    test('setName should set the name of the graph to the string passed', (){
+    test('setName should set the name of the graph to the string passed', () {
       final g = Graph.withNothing();
 
       g.setName('testName');
@@ -75,15 +75,15 @@ void main(){
       expect(g.getName(), 'testName');
     });
 
-    test('setNodes should set the nodes of the graph to the Map<String, Node> passed', (){
+    test('setNodes should set the nodes of the graph to the Map<String, Node> passed', () {
       final g = Graph.withNothing();
       final nodeMap = {
-        '100857' : Node('100857'),
-        '100859' : Node('100859'),
-        '100861' : Node('100861'),
-        '100862' : Node('100862'),
-        '100863' : Node('100863'),
-        '120002' : Node('120002'),
+        '100857': Node('100857'),
+        '100859': Node('100859'),
+        '100861': Node('100861'),
+        '100862': Node('100862'),
+        '100863': Node('100863'),
+        '120002': Node('120002'),
       };
 
       g.setNodes(nodeMap);
@@ -93,7 +93,7 @@ void main(){
       expect(g.getNodes().length, nodeMap.length);
     });
 
-    test('setNodesFromEdgeIndices should create a Map<String, Node> from the edge indices list passed', (){
+    test('setNodesFromEdgeIndices should create a Map<String, Node> from the edge indices list passed', () {
       final g = Graph.withNothing();
       final edge_indices = [
         '100842',
@@ -109,7 +109,7 @@ void main(){
       expect(g.getNodes().length, edge_indices.length);
     });
 
-    test('setEdges should set the edges of the graph to the 2D matrix List<List<int>> passed', (){
+    test('setEdges should set the edges of the graph to the 2D matrix List<List<int>> passed', () {
       final g = Graph.withNothing();
       final edges = cc.edges['H8'];
 
@@ -120,7 +120,7 @@ void main(){
       expect(g.getEdges().length, edges.length);
     });
 
-    test('setEdgeIndices should set the edge indices of the graph to the list of edge indices passed', (){
+    test('setEdgeIndices should set the edge indices of the graph to the list of edge indices passed', () {
       final g = Graph.withNothing();
       final edge_indices = [
         '100842',
@@ -137,22 +137,22 @@ void main(){
       expect(g.getEdgeIndices().length, edge_indices.length);
     });
 
-    test('getName should return the name of the graph as a string', (){
+    test('getName should return the name of the graph as a string', () {
       final g = Graph.withNothing();
       g.setName('name');
 
       expect(g.getName(), 'name');
     });
 
-    test('getNodes should return the nodes of the graph as a Map<String, Node>', (){
+    test('getNodes should return the nodes of the graph as a Map<String, Node>', () {
       final g = Graph.withNothing();
       final nodeMap = {
-        '100857' : Node('100857'),
-        '100859' : Node('100859'),
-        '100861' : Node('100861'),
-        '100862' : Node('100862'),
-        '100863' : Node('100863'),
-        '120002' : Node('120002'),
+        '100857': Node('100857'),
+        '100859': Node('100859'),
+        '100861': Node('100861'),
+        '100862': Node('100862'),
+        '100863': Node('100863'),
+        '120002': Node('120002'),
       };
 
       g.setNodes(nodeMap);
@@ -162,7 +162,7 @@ void main(){
       expect(g.getNodes().containsKey('100859'), true);
     });
 
-    test('getIndex should return the index of the node passed', (){
+    test('getIndex should return the index of the node passed', () {
       final g = Graph('H8', cc.edges['H8'], cc.edge_indices['H8']);
       g.setNodesFromEdgeIndices(cc.edge_indices['H8']);
 
@@ -170,15 +170,15 @@ void main(){
       expect(g.getIndex(Node('100815')), 53);
     });
 
-    test('getNodesAsList should return the nodes of the graph as a List<Node>', (){
+    test('getNodesAsList should return the nodes of the graph as a List<Node>', () {
       final g = Graph.withNothing();
       final nodeMap = {
-        '100857' : Node('100857'),
-        '100859' : Node('100859'),
-        '100861' : Node('100861'),
-        '100862' : Node('100862'),
-        '100863' : Node('100863'),
-        '120002' : Node('120002'),
+        '100857': Node('100857'),
+        '100859': Node('100859'),
+        '100861': Node('100861'),
+        '100862': Node('100862'),
+        '100863': Node('100863'),
+        '120002': Node('120002'),
       };
       final nodeList = [
         Node('100857'),
@@ -195,15 +195,15 @@ void main(){
       expect(g.getNodesAsList()[3].getId(), '100862');
     });
 
-    test('getNodesIDsAsList should return the node IDs of the graph as a List<String>', (){
+    test('getNodesIDsAsList should return the node IDs of the graph as a List<String>', () {
       final g = Graph.withNothing();
       final nodeMap = {
-        '100857' : Node('100857'),
-        '100859' : Node('100859'),
-        '100861' : Node('100861'),
-        '100862' : Node('100862'),
-        '100863' : Node('100863'),
-        '120002' : Node('120002'),
+        '100857': Node('100857'),
+        '100859': Node('100859'),
+        '100861': Node('100861'),
+        '100862': Node('100862'),
+        '100863': Node('100863'),
+        '120002': Node('120002'),
       };
       final nodeList = [
         '100857',
@@ -220,7 +220,7 @@ void main(){
       expect(g.getNodeIDsAsList()[2], '100861');
     });
 
-    test('getConnectedNodes should return a list of nodes that are connected to the node passed.', (){
+    test('getConnectedNodes should return a list of nodes that are connected to the node passed.', () {
       final g = Graph('H8', cc.edges['H8'], cc.edge_indices['H8']);
 
       g.setNodesFromEdgeIndices(cc.edge_indices['H8']);
@@ -230,7 +230,7 @@ void main(){
       expect(g.getConnectedNodes(g.getNodes()['100805'])[0].getId(), '000003');
     });
 
-    test('getEdges should return the edges of the graph as a 2D Matrix List<List<int>>', (){
+    test('getEdges should return the edges of the graph as a 2D Matrix List<List<int>>', () {
       final g = Graph.withNothing();
       g.setEdges(cc.edges['H8']);
 
@@ -239,7 +239,7 @@ void main(){
       expect(g.getEdges()[44][9], cc.edges['H8'][44][9]);
     });
 
-    test('getEdgeIndices should return the edge indices of the graph as a List<String>', (){
+    test('getEdgeIndices should return the edge indices of the graph as a List<String>', () {
       final g = Graph.withNothing();
       g.setEdgeIndices(cc.edge_indices['H8']);
 
@@ -248,7 +248,7 @@ void main(){
       expect(g.getEdgeIndices()[33], cc.edge_indices['H8'][33]);
     });
 
-    test('getWeight should return an int for the weighted edge between the from and to nodes passed.', (){
+    test('getWeight should return an int for the weighted edge between the from and to nodes passed.', () {
       final g = Graph('H8', cc.edges['H8'], cc.edge_indices['H8']);
 
       g.setNodesFromEdgeIndices(g.getEdgeIndices());
@@ -258,7 +258,6 @@ void main(){
       expect(g.getWeight(Node('000000'), Node('000001')), 6);
     });
     // endregion getters and setters tests
-
   });
   // endregion test functions
 }

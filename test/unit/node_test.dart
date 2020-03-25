@@ -26,9 +26,7 @@ void main() {
 
   // region test functions
   group('Functions', () {
-    test(
-        'isEqualTo should return true if the nodes are the same and false otherwise',
-        () {
+    test('isEqualTo should return true if the nodes are the same and false otherwise', () {
       final testNode = Node('5');
       final equalNode = Node('5');
 

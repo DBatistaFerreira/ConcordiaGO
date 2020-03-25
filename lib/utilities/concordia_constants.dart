@@ -1,5 +1,6 @@
 library concordia_constants;
 
+import 'package:concordia_go/models/classroom_model.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -1398,6 +1399,17 @@ const buildings = {
   ),
 };
 
+final rooms = [
+  Classroom(building: buildings['H'], floor: 'H8', number: '801'),
+  Classroom(building: buildings['H'], floor: 'H8', number: '803'),
+  Classroom(building: buildings['H'], floor: 'H8', number: '807'),
+  Classroom(building: buildings['H'], floor: 'H8', number: '809'),
+  Classroom(building: buildings['H'], floor: 'H8', number: '811'),
+  Classroom(building: buildings['H'], floor: 'H8', number: '813'),
+  Classroom(building: buildings['H'], floor: 'H8', number: '819'),
+  Classroom(building: buildings['H'], floor: 'H8', number: '820'),
+];
+
 // region floor plan edges
 const edges = {
   // region H8 floor plan edges
@@ -1519,8 +1531,8 @@ const edges = {
 
 const edge_indices = {
   // region H8 edge matrix indices
-  'H8':
-  [           // index
+  'H8': [
+    // index
     '000000', // 0,
     '000001', // 1,
     '000002', // 2,

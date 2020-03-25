@@ -2,8 +2,7 @@ import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/models/search_result_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart'
-    as concordia_constants;
+import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/utilities/floor_maps_lib.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -57,34 +56,34 @@ class BuildingInfoSheet {
     );
   }
 
-  static Widget buildIndoorButton(BuildContext context, ConcordiaBuilding building) {
-    if (availableIndoorFloors[building.code]!=null) {
-      return
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: RaisedButton.icon(
-            color: Colors.white,
-            elevation: 0.0,
-            icon: Icon(
-              Icons.transit_enterexit,
-              color: concordiaRed,
-            ),
-            label: Text(
-              'Indoor',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: concordiaRed, fontSize: 16.0),
-            ),
-            onPressed: () {
-              BlocProvider.of<MapBloc>(context).add(FloorChange(building.code, availableIndoorFloors[building.code].first));
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/indoormap');
-            },
+  static Widget goIndoorsButton(BuildContext context, ConcordiaBuilding building) {
+    if (availableIndoorFloors[building.code] != null) {
+      return Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: RaisedButton.icon(
+          color: Colors.white,
+          elevation: 0.0,
+          icon: Icon(
+            Icons.transit_enterexit,
+            color: concordiaRed,
           ),
-        );
+          label: Text(
+            'Indoor',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: concordiaRed, fontSize: 16.0),
+          ),
+          onPressed: () {
+            BlocProvider.of<MapBloc>(context)
+                .add(FloorChange(building.code, availableIndoorFloors[building.code].first));
+            Navigator.pop(context);
+            Navigator.pushNamed(context, '/indoormap');
+          },
+        ),
+      );
     }
     return Container();
   }
+
   static Widget buildingInfoHeader(BuildContext context, ConcordiaBuilding building) {
     return Container(
       decoration: BoxDecoration(
@@ -124,8 +123,9 @@ class BuildingInfoSheet {
             ),
           ),
           Align(
-              alignment: Alignment.centerRight,
-              child: buildIndoorButton(context, building))
+            alignment: Alignment.centerRight,
+            child: goIndoorsButton(context, building),
+          )
         ],
       ),
     );
@@ -327,7 +327,7 @@ class BuildingInfoSheet {
                 onPressed: () {
                   Navigator.pop(context);
                   BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
-                      startingPoint: SearchResult('Your Location', currentLocation),
+                      startingPoint: YourLocationResult('Your Location', currentLocation),
                       destination: OutdoorConcordiaResult(building)));
                 },
               ),

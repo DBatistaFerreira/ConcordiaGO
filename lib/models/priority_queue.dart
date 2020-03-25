@@ -70,8 +70,7 @@ class PriorityQueue {
       if (_hasLeftChild(index) && _hasRightChild(index)) {
         if (_pq[index].getWeight() > _pq[_leftChild(index)].getWeight() ||
             _pq[index].getWeight() > _pq[_rightChild(index)].getWeight()) {
-          if (_pq[_leftChild(index)].getWeight() <
-              _pq[_rightChild(index)].getWeight()) {
+          if (_pq[_leftChild(index)].getWeight() < _pq[_rightChild(index)].getWeight()) {
             _swap(index, _leftChild(index));
             _sink(_leftChild(index));
           } else {

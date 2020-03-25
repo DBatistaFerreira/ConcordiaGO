@@ -33,8 +33,8 @@ class _SearchResultsState extends State<SearchResults> {
                         trailing: Icon(Icons.gps_fixed),
                         title: Text('Your Location'),
                         onTap: () {
-                          BlocProvider.of<SearchBloc>(context).add(
-                              SearchDirectionsEvent(startingPoint: SearchResult('Your Location', currentLocation)));
+                          BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
+                              startingPoint: YourLocationResult('Your Location', currentLocation)));
                         },
                       )
                     : Container(

@@ -33,8 +33,7 @@ class Graph {
 
   // region constructors
   /// Default constructor to initialize this graph with the values passed.
-  Graph(
-      String building_code, List<List<int>> edges, List<String> edge_indices) {
+  Graph(String building_code, List<List<int>> edges, List<String> edge_indices) {
     _building_code = building_code;
     _nodes = <String, Node>{};
     _edges = edges;
@@ -49,8 +48,7 @@ class Graph {
     _edge_indices = <String>[];
   }
 
-  Graph.withNodes(String building_code, Map<String, Node> nodes,
-      List<List<int>> edges, List<String> edge_indices) {
+  Graph.withNodes(String building_code, Map<String, Node> nodes, List<List<int>> edges, List<String> edge_indices) {
     _building_code = building_code;
     _nodes = nodes;
     _edges = edges;
@@ -78,12 +76,12 @@ class Graph {
   }
 
   /// Returns the index of the [node] on this graph.
-  int getIndex(Node node){
+  int getIndex(Node node) {
     return _edge_indices.indexOf(node.getId());
   }
 
   /// Returns the [node] of this graph as a list.
-  List<Node> getNodesAsList(){
+  List<Node> getNodesAsList() {
     var list = <Node>[];
     _nodes.forEach((k, v) => list.add(Node(v.getId())));
 
@@ -91,9 +89,9 @@ class Graph {
   }
 
   /// Returns the [node] IDs of this graph as a list of strings.
-  List<String> getNodeIDsAsList(){
+  List<String> getNodeIDsAsList() {
     var idList = <String>[];
-    for (var id in _nodes.keys){
+    for (var id in _nodes.keys) {
       idList.add(id);
     }
 
@@ -101,12 +99,12 @@ class Graph {
   }
 
   /// Returns a list of [node]s that are connected to the [node] passed.
-  List<Node> getConnectedNodes(Node node){
+  List<Node> getConnectedNodes(Node node) {
     var connected = <Node>[];
 
     var index = 0;
-    for (var weight in _edges[_edge_indices.indexOf(node.getId())]){
-      if (weight > 0){
+    for (var weight in _edges[_edge_indices.indexOf(node.getId())]) {
+      if (weight > 0) {
         connected.add(_nodes[_edge_indices[index]]);
       }
       index++;
@@ -115,7 +113,7 @@ class Graph {
     return connected;
   }
 
-  int getWeight(Node from, Node to){
+  int getWeight(Node from, Node to) {
     return _edges[_edge_indices.indexOf(from.getId())][_edge_indices.indexOf(to.getId())];
   }
 
