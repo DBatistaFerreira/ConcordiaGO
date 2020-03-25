@@ -327,6 +327,7 @@ class OutdoorPathService {
     _currentInstruction = 0;
     _polyLines.clear();
     isShuttlePossible = true;
+    schedulerService.clearAll();
   }
 
   /*
@@ -382,16 +383,16 @@ class OutdoorPathService {
     var walkable = schedulerService
             .calculateArrivalTimeInIntFormat(returnedValues[concordia_constants.duration][concordia_constants.text]) <
         35;
-
     if (walkable) {
-      await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
+      // await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
+      addWalkingPath(values, buildingDestination, 0);
+      setDirections();
     } else {
-
       sgwToLoyola = await getFurthestCampus(startLat, startLng);
 
       if (sgwToLoyola) {
         var sgwValues = values =
-        await googleMapsRequest(startLat, startLng, sgwCoordinates.latitude, sgwCoordinates.longitude, "walking");
+            await googleMapsRequest(startLat, startLng, sgwCoordinates.latitude, sgwCoordinates.longitude, "walking");
         var loyolaValues =
             await googleMapsRequest(loyolaCoordinates.latitude, loyolaCoordinates.longitude, endLat, endLng, "walking");
         var arrival_time = addWalkingPath(sgwValues, buildingDestination, 0);
@@ -514,12 +515,13 @@ class OutdoorPathService {
     LatLng sgwCoordinates = concordia_constants.sgwCampus['coordinates'];
     LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'];
 
-    var distanceToSGW = await Geolocator().distanceBetween(startLat, startLng, sgwCoordinates.latitude, sgwCoordinates.longitude);
-    var distanceToLoyola = await Geolocator().distanceBetween(startLat, startLng, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
+    var distanceToSGW =
+        await Geolocator().distanceBetween(startLat, startLng, sgwCoordinates.latitude, sgwCoordinates.longitude);
+    var distanceToLoyola =
+        await Geolocator().distanceBetween(startLat, startLng, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
 
     return distanceToLoyola > distanceToSGW ? true : false;
   }
-
 
   void setDirections([String arrival_time]) {
     var tempDirections = _listDirections.toDirection();
