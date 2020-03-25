@@ -87,7 +87,7 @@ class FloorChange extends MapEvent {
     if(paths!=null){
       List<List<int>> pathMap = List();
       for(var path in paths){
-        pathMap.add(floor_maps.nodeGraph['H'][floorLevel][path.getId()]);
+        pathMap.add(floor_maps.nodeGraph[floorLevel][path.getId()]);
       }
       svgFile = IndoorPathService.parse(svgFile, pathMap);
     }
