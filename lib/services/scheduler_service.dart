@@ -38,6 +38,11 @@ class SchedulerService {
     return newTime;
   }
 
+  void clearAll() {
+    isShuttlePossible = true;
+    nextShuttleTime = 0;
+  }
+
   String calculateTotalArrivalTime(walkToShuttleStop, walkToDestination, String departureCampus) {
     var currentTime = DateTime.now();
     var currentTimeInIntFormat = currentTime.hour * 60 + currentTime.minute;
