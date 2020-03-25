@@ -4,6 +4,7 @@ import 'package:concordia_go/models/search_result_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart'
     as concordia_constants;
+import 'package:concordia_go/utilities/floor_maps_lib.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class BuildingInfoSheet {
   }
 
   static Widget buildIndoorButton(BuildContext context, ConcordiaBuilding building) {
-    if (building.code == 'H') {
+    if (availableIndoorFloors[building.code]!=null) {
       return
         Padding(
           padding: const EdgeInsets.all(15.0),
@@ -75,7 +76,7 @@ class BuildingInfoSheet {
                   color: concordiaRed, fontSize: 16.0),
             ),
             onPressed: () {
-              BlocProvider.of<MapBloc>(context).add(FloorChange('H8'));
+              BlocProvider.of<MapBloc>(context).add(FloorChange(building.code, availableIndoorFloors[building.code].first));
               Navigator.pop(context);
               Navigator.pushNamed(context, '/indoormap');
             },

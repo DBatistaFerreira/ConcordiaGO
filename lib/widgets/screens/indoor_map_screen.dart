@@ -19,7 +19,8 @@ class IndoorMapScreen extends StatefulWidget {
 }
 
 class IndoorMapState extends State<IndoorMapScreen> {
-  var _floorSVG;
+  String _floorSVG;
+  String _buildingCode;
 
   IndoorMapState();
 
@@ -39,9 +40,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
             BlocBuilder<MapBloc, MapState>(builder: (context, state) {
               if (state is IndoorMap) {
                 _floorSVG = state.svgFile;
-              }
-              if (_floorSVG == null) {
-                BlocProvider.of<MapBloc>(context).add(FloorChange('H8'));
+                _buildingCode = state.buildingCode;
               }
               return PhotoView.customChild(
                 child: SvgPicture.string(
@@ -68,10 +67,10 @@ class IndoorMapState extends State<IndoorMapScreen> {
                     final sp = DShortestPath(
                         g, g.getNodes()['100811'], g.getNodes()['100845']);
                     var path = sp.calcShortestPath();
-                    BlocProvider.of<MapBloc>(context).add(FloorChange('H8', path));
+                    BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode,'H8', path));
                   },
                   child: Text(
-                    "811-845",
+                    "Test: 811-845",
                   ),
                 ),
                 FlatButton(
@@ -81,10 +80,10 @@ class IndoorMapState extends State<IndoorMapScreen> {
                     final sp = DShortestPath(
                         g, g.getNodes()['100859'], g.getNodes()['100832']);
                     var path = sp.calcShortestPath();
-                    BlocProvider.of<MapBloc>(context).add(FloorChange('H8', path));
+                    BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode,'H8', path));
                   },
                   child: Text(
-                    "859-832",
+                    "Test: 859-832",
                   ),
                 )
               ],

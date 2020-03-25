@@ -44,10 +44,12 @@ class DirectionMapState extends MapState {
 class IndoorMap extends MapState {
   final String _svgFile;
   final String _floorLevel;
+  final String _buildingCode;
 
-  const IndoorMap(this._floorLevel, this._svgFile);
+  const IndoorMap(this._buildingCode, this._floorLevel, this._svgFile);
 
   String get svgFile => _svgFile;
   String get floorLevel => _floorLevel;
+  String get buildingCode => _buildingCode;
 
 }
