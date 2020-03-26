@@ -11,4 +11,9 @@ class SameFloorDirectionHandler implements DirectionHandler {
   void setNext(DirectionHandler handler) {
     // TODO: implement setNext
   }
+
+  /// Returns `true` if the request's source building is equal to the destination building.
+  bool isSameFloor(DirectionRequest request){
+    return request.isEqual(request.getBuildingSource(), request.getBuildingDestination());
+  }
 }
