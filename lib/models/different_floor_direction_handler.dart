@@ -11,4 +11,9 @@ class DifferentFloorDirectionHandler implements DirectionHandler {
   void setNext(DirectionHandler handler) {
     // TODO: implement setNext
   }
+
+  bool _isDifferentFloor(DirectionRequest request){
+    return (request.isEqual(request.getBuildingCode(0), request.getBuildingCode(1)))
+        && (!request.isEqual(request.getBuildingFloor(0), request.getBuildingFloor(1)));
+  }
 }
