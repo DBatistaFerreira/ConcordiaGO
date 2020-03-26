@@ -24,6 +24,7 @@ dependencies:
   xml: ^3.5.0
   location_permissions: ^2.0.5
   mockito: ^4.1.1
+  validators: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
