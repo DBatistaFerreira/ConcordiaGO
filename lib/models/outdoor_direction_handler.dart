@@ -12,7 +12,15 @@ class OutdoorDirectionHandler implements DirectionHandler {
 
   @override
   void handle(DirectionRequest request) {
-    // TODO: implement handle
-    
+    if(_isOutdoor(request)){
+      // TODO: implement the process of outdoor direction handling
+    }
+    else{
+      _next_handler.handle(request);
+    }
+  }
+
+  bool _isOutdoor(DirectionRequest request){
+    // TODO: implement checks to determine if request is outdoor direction
   }
 }
