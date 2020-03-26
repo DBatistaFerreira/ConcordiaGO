@@ -163,41 +163,4 @@ class Graph {
     _edge_indices = edge_indices;
   }
   // endregion setters
-/*
-  // region functions
-  // region add...
-  /*
-  when adding a node to the graph, the node id is added to the list along with
-  the node object itself. The nodes can be referenced by id (aka node name).
-   */
-  /// Add a [node] to this graph.
-  void addNode(Node node) {
-    // TODO: verify completion
-    _nodes[node.getId()] = node;
-  }
-
-  /*
-  can only add an edge between nodes that already exist in the graph.
-  so before adding an edge, check to see if the nodes passed are already
-  added to the graph (exist in the _nodes list).
-  */
-  /// Add an edge and its [weight] to this graph.
-  void addEdge() {
-    // TODO: implement
-  }
-  // endregion add...
-
-  /*
-  when deleting a node from the graph, the edges must also be deleted, since
-  edges cannot exist without nodes. edge cannot be connected to a node that
-  was deleted and no longer exists.
-  */
-  /// Deletes a [node] from this graph.
-  Node delNode(Node node) {
-    // TODO: not finished
-    return _nodes.remove(node.getId());
-  }
-
-  // endregion functions
- */
 }
