@@ -13,25 +13,41 @@ class DirectionRequest{
   List<String> _rooms;
 
   /// Constructor to create a direction request object with the buildings and rooms involved.
-  DirectionRequest(List<String> buildings, List<String> rooms){
-    _buildings = buildings;
-    _rooms = rooms;
+  DirectionRequest(String buildingSource, String buildingDestination, String roomSource, String roomDestination){
+    _buildings.insert(0, buildingSource);
+    _buildings.insert(1, buildingDestination);
+    _rooms.insert(0, roomSource);
+    _rooms.insert(1, roomDestination);
   }
 
   /// Constructor to create a direction request object with nothing set.
   DirectionRequest.withNothing(){
-    _buildings = <String>[];
-    _rooms = <String>[];
+    _buildings = List(2);
+    _rooms = List(2);
   }
 
   /// Sets the [buildings] list to the buildings list passed.
-  void setBuildings(List<String> buildings){
-    _buildings = buildings;
+  ///
+  /// The [buildings] list passed must be of length 2 with [source, destination].
+  void setBuilding(List<String> buildings){
+    if(buildings.length != 2){
+      throw Exception('buildings list must be of length 2: [source, destination]');
+    }
+    else{
+      _buildings = buildings;
+    }
   }
 
   /// Sets the [rooms] list to the rooms list passed.
+  ///
+  /// The [rooms] list passed must be of length 2 with [source, destination].
   void setRooms(List<String> rooms){
-    _rooms = rooms;
+    if(rooms.length != 2){
+      throw Exception('rooms list must be of length 2: [source, destination]');
+    }
+    else{
+      _rooms = rooms;
+    }
   }
 
   /// Sets the source room node ID of the [rooms] list to the room node ID passed.
