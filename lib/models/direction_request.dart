@@ -1,3 +1,6 @@
+
+import 'package:validators/validators.dart';
+
 /// A direction request to be sent to the direction handler.
 class DirectionRequest {
   /// List of strings to hold the building codes of the directions.
@@ -96,5 +99,53 @@ class DirectionRequest {
   /// Returns the destination room node ID of the [rooms] list.
   String getRoomDestination() {
     return _rooms[1];
+  }
+
+  /// Returns `true` if the first string is equal to the second string.
+  bool isEqual(String first, String second){
+    return (first == second);
+  }
+
+  /// Returns the building code of the building index passed.
+  ///
+  /// 0 index for the direction's source building.
+  /// 1 index for the direction's destination building.
+  String getBuildingCode(int index){
+    return _extract('letters', index);
+  }
+
+  /// Returns the building floor of the building index passed.
+  ///
+  /// 0 index for the direction's source building.
+  /// 1 index for the direction's destination building.
+  String getBuildingFloor(int index){
+    return _extract('numbers', index);
+  }
+
+  /// Returns the building code or building floor, depending on the [type] passed, of the building [index] passed.
+  ///
+  /// 0 index for the direction's source building.
+  /// 1 index for the direction's destination building.
+  String _extract(String type, int index) {
+    if(index != 0 && index != 1){
+      throw Exception('index must be within range [0, 1] : [source, destination]');
+    }
+    else if (type != 'letters' && type != 'numbers'){
+      throw Exception('type must equal \'letters\' or \'numbers\'');
+    }
+    else{
+      var letters = '';
+      var numbers = '';
+    
+      for(var char in _buildings[index].split('')){
+        if(isNumeric(char)){
+          numbers += char;
+        } else {
+          letters += char;
+        }
+      }
+    
+      return (type == 'letters') ? letters : numbers;
+    }
   }
 }
