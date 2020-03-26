@@ -2,6 +2,7 @@ import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/classroom_model.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
+import 'package:concordia_go/widgets/component/room_info_sheet.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -87,17 +88,19 @@ class ClassroomResult extends SearchResult {
   @override
   void _onTapGeneral(BuildContext context) {
     BlocProvider.of<MapBloc>(context).add(FloorChange(classroom.building.code, classroom.floor, [classroom.node]));
+    BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaRoomInfoEvent(classroom.building.code, classroom.floor, classroom.node.getId()));
     Navigator.pushNamed(context, '/indoormap');
+    RoomInfoSheet.buildInfoSheet(context);
   }
 
   @override
   void _onTapStartingPoint(BuildContext context) {
-    // TODO: implement _onTapStartingPoint
+    BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(startingPoint: this));
   }
 
   @override
   void _onTapDestination(BuildContext context) {
-    // TODO: implement _onTapDestination
+    BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(destination: this));
   }
 
   String campusInitials() {

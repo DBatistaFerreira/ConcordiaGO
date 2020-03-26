@@ -4,6 +4,7 @@ import 'package:concordia_go/models/shortest_path.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/widgets/component/floor_selection_dropdown.dart';
+import 'package:concordia_go/widgets/component/room_info_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,7 +61,9 @@ class IndoorMapState extends State<IndoorMapScreen> {
           Align(
             alignment: Alignment.topRight,
             child: FloorSelectionDropdown(),
-          ),
+          )
+          ,
+          // To remove later
           Column(
             children: <Widget>[
               FlatButton(

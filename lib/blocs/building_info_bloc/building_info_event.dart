@@ -20,3 +20,16 @@ class ConcordiaBuildingInfoEvent extends BuildingInfoEvent {
     return ConcordiaBuildingInfoState(concordia_constants.buildings[_buildingCode], _moreInfo);
   }
 }
+class ConcordiaRoomInfoEvent extends BuildingInfoEvent {
+  final String _room;
+  final String _floor;
+  final String _buildingCode;
+
+  const ConcordiaRoomInfoEvent(this._buildingCode, this._floor, this._room);
+
+  @override
+  BuildingInfoState createState() {
+    return ConcordiaRoomInfoState(concordia_constants.buildings[_buildingCode], _floor, _room);
+  }
+}
+
