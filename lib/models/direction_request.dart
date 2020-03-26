@@ -29,6 +29,14 @@ class DirectionRequest{
     _rooms[1] = room;
   }
 
+  void setBuildingSource(String building){
+    _buildings[0] = building;
+  }
+
+  void setBuildingDestination(String building){
+    _buildings[1] = building;
+  }
+
   List<String> getBuildings(){
     return _buildings;
   }
