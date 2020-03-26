@@ -38,8 +38,8 @@ class DirectionsSearchState extends State<DirectionsSearch> {
     return BlocListener<SearchBloc, SearchState>(
       listener: (context, state) {
         if (state is SearchDirectionsState) {
-          startingPoint = state.startingPoint != null ? state.startingPoint : startingPoint;
-          destination = state.destination != null ? state.destination : destination;
+          startingPoint = state.startingPoint ?? startingPoint;
+          destination = state.destination ?? destination;
           _startTextController.text = startingPoint?.name;
           _destTextController.text = destination?.name;
         }
@@ -187,11 +187,13 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                                 BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
                                 OutdoorPathService.instance.clearAll();
                                 var modeOfTransport = getModeOfTransportFromButton(isSelected);
+                                debugPrint('SENDING EVENT');
                                 BlocProvider.of<DirectionsBloc>(context).add(GetDirectionsEvent(
                                     startingPoint.coordinates,
                                     destination.coordinates,
                                     destination.name,
                                     modeOfTransport));
+                                debugPrint('DONE SENDING');
                               }
                             },
                             icon: Icon(

@@ -87,6 +87,7 @@ class ClassroomResult extends SearchResult {
 
   @override
   void _onTapGeneral(BuildContext context) {
+    BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
     BlocProvider.of<MapBloc>(context).add(FloorChange(classroom.building.code, classroom.floor, [classroom.node]));
     BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaRoomInfoEvent(classroom.building.code, classroom.floor, classroom.node.getId()));
     Navigator.pushNamed(context, '/indoormap');

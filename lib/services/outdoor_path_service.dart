@@ -530,8 +530,6 @@ class OutdoorPathService {
     return distanceToLoyola > distanceToSGW;
   }
 
-
-
   void setDirections([String arrival_time]) {
     var tempDirections = _listDirections.toDirection();
     if (arrival_time != null) {
@@ -554,5 +552,4 @@ class OutdoorPathService {
   void singleDirections(List<Direction> value) {
     _singleDirections = value;
   }
-
 }
