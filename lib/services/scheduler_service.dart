@@ -11,7 +11,7 @@ class SchedulerService {
   int scheduleNextShuttleTime(String currentTimeInStringFormat, String departureCampus) {
     isShuttlePossible = false;
     var currentTime = stringTimeToInt(currentTimeInStringFormat);
-    var currentDay = DateTime.now().weekday;
+    var currentDay = getCurrentWeekDay();
     var todaysShuttleTimes = ((concordia_constants.shuttleStops[concordia_constants.campusSGW]
         [concordia_constants.shuttleSchedule] as List)[currentDay - 1] as List);
     todaysShuttleTimes.isEmpty ? isShuttlePossible = false : isShuttlePossible = true;
@@ -44,7 +44,7 @@ class SchedulerService {
   }
 
   String calculateTotalArrivalTime(walkToShuttleStop, walkToDestination, String departureCampus) {
-    var currentTime = DateTime.now();
+    var currentTime = getCurrentTime();
     var currentTimeInIntFormat = currentTime.hour * 60 + currentTime.minute;
     var busDepartureTime = scheduleNextShuttleTime(intTimeToString(walkToShuttleStop), departureCampus);
     if (busDepartureTime == -1) {
@@ -61,9 +61,12 @@ class SchedulerService {
     var brokenTimeValues = timeInStringFormat.split(':');
     var hours = int.parse(brokenTimeValues[0]);
     var minutes = int.parse(brokenTimeValues[1]) + timeToAdd;
-    if (minutes > 60) {
+    while (minutes > 59) {
       hours++;
       minutes -= 60;
+    }
+    if(hours > 23){
+      hours -= 24;
     }
     var newTime;
     if (minutes < 10) {
@@ -90,7 +93,7 @@ class SchedulerService {
     } else {
       duration = int.parse(durationToSplit[0]) * 60 + int.parse(durationToSplit[2]);
     }
-    var currentTime = DateTime.now();
+    var currentTime = getCurrentTime();
     var newDuration = Duration(days: 0, hours: 0, minutes: duration);
     var calculated_time = currentTime.add(newDuration);
     var arrival_time;
@@ -115,4 +118,30 @@ class SchedulerService {
     }
     return duration;
   }
+
+  DateTime getCurrentTime(){
+    return DateTime.now();
+  }
+
+  String stringTime(){
+    if(DateTime.now().minute > 10) {
+      return '${DateTime
+          .now()
+          .hour}:${DateTime
+          .now()
+          .minute}';
+    } else {
+      return '${DateTime
+          .now()
+          .hour}:0${DateTime
+          .now()
+          .minute}';
+    }
+
+  }
+
+  int getCurrentWeekDay(){
+    return DateTime.now().weekday;
+  }
+
 }

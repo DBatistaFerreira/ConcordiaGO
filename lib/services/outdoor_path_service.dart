@@ -35,23 +35,29 @@ class OutdoorPathService {
   * Update in Sprint 3 will change its layout to provide a more testable class
    */
 
-  Future<void> nicksMagicalChooserOfDirections(
+  Future<int> nicksMagicalChooserOfDirections(
       startLat, startLng, endLat, endLng, buildingDestination, modeOfTransport) async {
     // STARTING MAGIC
     switch (modeOfTransport) {
       case ModeOfTransport.walking:
         await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
+        return 1;
         break;
       case ModeOfTransport.driving:
         await drivingDirections(startLat, startLng, endLat, endLng, buildingDestination);
+        return 2;
         break;
       case ModeOfTransport.transit:
         await transitDirections(startLat, startLng, endLat, endLng, buildingDestination);
+        return 3;
         break;
       case ModeOfTransport.shuttle:
         await setShuttlePath(startLat, startLng, endLat, endLng, buildingDestination);
+        return 4;
         break;
     }
+
+    return -1; //Invalid mode of Transport
     // ENDING MAGIC
   }
 
@@ -524,6 +530,8 @@ class OutdoorPathService {
     return distanceToLoyola > distanceToSGW;
   }
 
+
+
   void setDirections([String arrival_time]) {
     var tempDirections = _listDirections.toDirection();
     if (arrival_time != null) {
@@ -537,4 +545,14 @@ class OutdoorPathService {
       }
     }
   }
+
+  /*
+  *
+  * METHODS ONLY FOR TESTING
+  *
+  */
+  void singleDirections(List<Direction> value) {
+    _singleDirections = value;
+  }
+
 }
