@@ -1,8 +1,7 @@
-
 import 'package:concordia_go/models/direction_handler.dart';
 import 'package:concordia_go/models/direction_request.dart';
 
-class DifferentBuildingDirectionHandler implements DirectionHandler{
+class DifferentBuildingDirectionHandler implements DirectionHandler {
   @override
   void handle(DirectionRequest request) {
     // TODO: implement handle
@@ -12,5 +11,4 @@ class DifferentBuildingDirectionHandler implements DirectionHandler{
   void setNext(DirectionHandler handler) {
     // TODO: implement setNext
   }
-
 }

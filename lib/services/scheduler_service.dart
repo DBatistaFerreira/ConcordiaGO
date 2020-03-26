@@ -65,7 +65,7 @@ class SchedulerService {
       hours++;
       minutes -= 60;
     }
-    if(hours > 23){
+    if (hours > 23) {
       hours -= 24;
     }
     var newTime;
@@ -119,29 +119,19 @@ class SchedulerService {
     return duration;
   }
 
-  DateTime getCurrentTime(){
+  DateTime getCurrentTime() {
     return DateTime.now();
   }
 
-  String stringTime(){
-    if(DateTime.now().minute > 10) {
-      return '${DateTime
-          .now()
-          .hour}:${DateTime
-          .now()
-          .minute}';
+  String stringTime() {
+    if (DateTime.now().minute > 10) {
+      return '${DateTime.now().hour}:${DateTime.now().minute}';
     } else {
-      return '${DateTime
-          .now()
-          .hour}:0${DateTime
-          .now()
-          .minute}';
+      return '${DateTime.now().hour}:0${DateTime.now().minute}';
     }
-
   }
 
-  int getCurrentWeekDay(){
+  int getCurrentWeekDay() {
     return DateTime.now().weekday;
   }
-
 }

@@ -86,6 +86,7 @@ class ClassroomResult extends SearchResult {
 
   @override
   void _onTapGeneral(BuildContext context) {
+    BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
     BlocProvider.of<MapBloc>(context).add(FloorChange(classroom.building.code, classroom.floor, [classroom.node]));
     Navigator.pushNamed(context, '/indoormap');
   }
