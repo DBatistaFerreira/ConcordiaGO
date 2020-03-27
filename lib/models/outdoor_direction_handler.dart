@@ -21,46 +21,42 @@ class OutdoorDirectionHandler implements DirectionHandler {
   @override
   void handle(DirectionRequest request) {
     if (canHandle(request)) {
-     handleBuildingToBuilding(request);
+     handleOutdoorRequest(request);
 
     } else {
       _next_handler.handle(request);
     }
   }
 
-  void handleBuildingToBuilding(DirectionRequest request) {
+  void handleOutdoorRequest(DirectionRequest request) {
+     var departureCoordinate = _isHotspot(request.source) ? request.source.coordinates : request.source.building.coordinates;
+     var destinationCoordinate = _isHotspot(request.destination) ? request.destination.coordinates : request.destination.building.coordinates;
+     var destination = _isHotspot(request.destination) ? request.destination.name : request.destination.building.name;
+
+
     BlocProvider.of<DirectionsBloc>(mapContext).add(GetDirectionsEvent(
-        request.source.building.coordinates,
-        request.destination.building.coordinates,
-        request.destination.building.name,
-        ModeOfTransport.walking));
+        departureCoordinate,
+        destinationCoordinate,
+        destination,
+        request.destination.transport_mode));
 
     if (request.destination.hasNode()) {
-      var newDobject = Dobject.outdoor(node: Node('990000'),
+      var newSource = Dobject.outdoor(node: Node('990000'),
           building: request.destination.building,
           floor: '1');
-      OutdoorPathService.instance.addDObject(newDobject, request.destination);
+      OutdoorPathService.instance.addDObject(newSource, request.destination);
     }
   }
 
-  void handleHotspotToBuilding(DirectionRequest request){
-    BlocProvider.of<DirectionsBloc>(mapContext).add(GetDirectionsEvent(
-        request.source.coordinates,
-        request.destination.building.coordinates,
-        request.destination.building.name,
-        request.destination.building.transport_mode));
-
-  }
 
   @override
   bool canHandle(DirectionRequest request) {
-    return !request.source.hasNode(); // TODO: refactor using Dobject isOutdoor function
+    return !request.source.hasNode();
   }
 
   bool _isHotspot(newDObject){
-    if(newDObject.building == null && newDObject.coordinates != null){
-
-    }
+    print('we in here');
+    return (newDObject.building == null && newDObject.coordinates != null);
   }
 }
 
