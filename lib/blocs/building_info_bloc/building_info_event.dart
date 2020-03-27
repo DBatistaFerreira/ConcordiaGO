@@ -1,4 +1,5 @@
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/blocs/building_info_bloc/building_info_state.dart';
 import 'package:meta/meta.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 
