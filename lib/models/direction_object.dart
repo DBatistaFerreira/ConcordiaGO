@@ -90,4 +90,11 @@ class Dobject {
     return (_transport_mode != null);
   }
 
+  bool isIndoor(){
+    return (_node != null && _building != null && _floor != null);
+  }
+
+  bool isOutdoor(){
+
+  }
 }
