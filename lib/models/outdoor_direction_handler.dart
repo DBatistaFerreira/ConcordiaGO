@@ -20,7 +20,7 @@ class OutdoorDirectionHandler implements DirectionHandler {
 
   @override
   void handle(DirectionRequest request) {
-    if (_isOutdoor(request)) {
+    if (canHandle(request)) {
      handleBuildingToBuilding(request);
 
     } else {
@@ -28,25 +28,20 @@ class OutdoorDirectionHandler implements DirectionHandler {
     }
   }
 
-  void handleBuildingToBuilding(DirectionRequest request){
+  void handleBuildingToBuilding(DirectionRequest request) {
     BlocProvider.of<DirectionsBloc>(mapContext).add(GetDirectionsEvent(
         request.source.building.coordinates,
         request.destination.building.coordinates,
         request.destination.building.name,
         ModeOfTransport.walking));
-    if (canHandle(request)) {
-      BlocProvider.of<DirectionsBloc>(mapContext).add(GetDirectionsEvent(
-          request.source.building.coordinates,
-          request.destination.building.coordinates,
-          request.destination.building.name,
-          ModeOfTransport.walking));
 
-      if (request.destination.hasNode()) {
-        var newDobject = Dobject.outdoor(node: Node('990000'),
-            building: request.destination.building,
-            floor: '1');
-        OutdoorPathService.instance.addDObject(newDobject, request.destination);
-      }
+    if (request.destination.hasNode()) {
+      var newDobject = Dobject.outdoor(node: Node('990000'),
+          building: request.destination.building,
+          floor: '1');
+      OutdoorPathService.instance.addDObject(newDobject, request.destination);
+    }
+  }
 
   void handleHotspotToBuilding(DirectionRequest request){
     BlocProvider.of<DirectionsBloc>(mapContext).add(GetDirectionsEvent(
