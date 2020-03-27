@@ -1,3 +1,6 @@
+import 'package:concordia_go/models/direction_object.dart';
+import 'package:concordia_go/models/direction_request.dart';
+import 'package:concordia_go/models/same_floor_direction_handler.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -23,6 +26,7 @@ class OutdoorPathService {
   int _currentInstruction = 0;
   bool isShuttlePossible = true;
   SchedulerService schedulerService = SchedulerService.instance;
+  List<Dobject> dObjectList = <Dobject>[];
 
   /*
   * The transitDirections method is the core method used for outdoor path directions. It operates in steps
@@ -300,6 +304,10 @@ class OutdoorPathService {
 
   Direction getNextInstruction() {
     if (_currentInstruction == _singleDirections.length - 1) {
+      if (dObjectList.isNotEmpty){
+        SameFloorDirectionHandler sameFloorDirectionHandler = SameFloorDirectionHandler();
+        sameFloorDirectionHandler.handle(DirectionRequest(dObjectList[0],dObjectList[1]));
+      }
       return _singleDirections[_currentInstruction];
       // HANDLE END OF NAVIGATION
     }
@@ -333,6 +341,7 @@ class OutdoorPathService {
     _polyLines.clear();
     isShuttlePossible = true;
     schedulerService.clearAll();
+    dObjectList.clear();
   }
 
   /*
@@ -515,6 +524,12 @@ class OutdoorPathService {
         'https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${endLat},${endLng}&mode=${modeOfTransport}&key=${_apiKey}';
     var response = await http.get(url);
     return jsonDecode(response.body);
+  }
+
+  void addDObject(Dobject1, Dobject2){
+    dObjectList = List<Dobject>();
+    dObjectList.add(Dobject1);
+    dObjectList.add(Dobject2);
   }
 
   Future<bool> isSgwCloser(startLat, startLng) async {
