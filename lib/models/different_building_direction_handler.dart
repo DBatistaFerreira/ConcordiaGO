@@ -12,7 +12,7 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
 
   @override
   void handle(DirectionRequest request) {
-    if(_isDifferentBuilding(request)){
+    if(canHandle(request)){
       // TODO: implement the process of outdoor direction handling
     }
     else{
@@ -21,7 +21,9 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
   }
 
   /// Returns `true` if the request involves directions from rooms in different buildings.
-  bool _isDifferentBuilding(DirectionRequest request){
-    return (!request.isEqual(request.getBuildingCode(0), request.getBuildingCode(1)));
+  @override
+  bool canHandle(DirectionRequest request) {
+    return (request.source.isIndoor() && request.destination.isIndoor())
+        && (request.source.building != request.destination.building);
   }
 }

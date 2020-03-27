@@ -20,7 +20,7 @@ class OutdoorDirectionHandler implements DirectionHandler {
 
   @override
   void handle(DirectionRequest request) {
-    if (_isOutdoor(request)) {
+    if (canHandle(request)) {
       BlocProvider.of<DirectionsBloc>(mapContext).add(GetDirectionsEvent(
           request.source.building.coordinates,
           request.destination.building.coordinates,
@@ -39,7 +39,8 @@ class OutdoorDirectionHandler implements DirectionHandler {
     }
   }
 
-  bool _isOutdoor(DirectionRequest request){
-    return !request.source.hasNode();
+  @override
+  bool canHandle(DirectionRequest request) {
+    return !request.source.hasNode(); // TODO: refactor using Dobject isOutdoor function
   }
 

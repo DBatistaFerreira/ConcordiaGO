@@ -12,8 +12,9 @@ class SameFloorDirectionHandler implements DirectionHandler {
 
   @override
   void handle(DirectionRequest request) {
-    if(_isSameFloor(request)){
+    if(canHandle(request)){
       // TODO: implement the process of same floor direction handling
+      
     }
     else{
       _next_handler.handle(request);
@@ -21,7 +22,8 @@ class SameFloorDirectionHandler implements DirectionHandler {
   }
 
   /// Returns `true` if the request involves directions from two rooms on the same floor of a building.
-  bool _isSameFloor(DirectionRequest request){
+  @override
+  bool canHandle(DirectionRequest request) {
     return (request.source.isIndoor() && request.destination.isIndoor())
         && (request.source.building == request.destination.building)
         && (request.source.floor == request.destination.floor);
