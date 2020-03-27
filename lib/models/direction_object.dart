@@ -30,4 +30,24 @@ class Dobject {
   LatLng get coordinates => _coordinates;
   String get floor => _floor;
   String get name => _name;
+
+  void setNode(Node node){
+    _node = node;
+  }
+
+  void setBuilding(ConcordiaBuilding building){
+    _building = building;
+  }
+
+  void setCoordinates(LatLng coordinates){
+    _coordinates = coordinates;
+  }
+
+  void setFloor(String floor){
+    _floor = floor;
+  }
+
+  void setName(String name){
+    _name = name;
+  }
 }
