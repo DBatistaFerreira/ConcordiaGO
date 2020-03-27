@@ -21,7 +21,6 @@ class CampusBuildingListMenu extends StatefulWidget {
 class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
   final Campus campus;
 
-
   CampusBuildingListMenuState(this.campus);
 
   @override

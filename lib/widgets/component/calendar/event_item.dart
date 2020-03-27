@@ -10,10 +10,12 @@ class EventItem extends StatelessWidget {
   final VoidCallback _onLoadingStarted;
   final Function(bool) _onDeleteFinished;
 
+  final bool _isFirst;
+
   final double _eventFieldNameWidth = 75.0;
 
-  EventItem(this._calendarEvent, this._deviceCalendarPlugin,
-      this._onLoadingStarted, this._onDeleteFinished, this._onTapped);
+  EventItem(this._calendarEvent, this._deviceCalendarPlugin, this._onLoadingStarted, this._onDeleteFinished,
+      this._onTapped, this._isFirst);
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +27,13 @@ class EventItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: FlutterLogo(),
-            ),
+            Padding(padding: const EdgeInsets.symmetric(vertical: 10.0)
+                //child: FlutterLogo(),
+                ),
             ListTile(
                 title: Text(_calendarEvent.title ?? ''),
-                subtitle: Text(_calendarEvent.description ?? '')),
+                subtitle: Text(_calendarEvent.description ?? ''),
+                trailing: _isFirst ? Text('My next class') : Text('')),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
@@ -44,11 +46,7 @@ class EventItem extends StatelessWidget {
                           width: _eventFieldNameWidth,
                           child: Text('Starts'),
                         ),
-                        Text(_calendarEvent == null
-                            ? ''
-                            : DateFormat.yMd()
-                                .add_jm()
-                                .format(_calendarEvent.start)),
+                        Text(_calendarEvent == null ? '' : DateFormat.yMd().add_jm().format(_calendarEvent.start)),
                       ],
                     ),
                   ),
@@ -63,11 +61,7 @@ class EventItem extends StatelessWidget {
                           width: _eventFieldNameWidth,
                           child: Text('Ends'),
                         ),
-                        Text(_calendarEvent.end == null
-                            ? ''
-                            : DateFormat.yMd()
-                                .add_jm()
-                                .format(_calendarEvent.end)),
+                        Text(_calendarEvent.end == null ? '' : DateFormat.yMd().add_jm().format(_calendarEvent.end)),
                       ],
                     ),
                   ),
@@ -82,10 +76,7 @@ class EventItem extends StatelessWidget {
                           width: _eventFieldNameWidth,
                           child: Text('All day?'),
                         ),
-                        Text(_calendarEvent.allDay != null &&
-                                _calendarEvent.allDay
-                            ? 'Yes'
-                            : 'No')
+                        Text(_calendarEvent.allDay != null && _calendarEvent.allDay ? 'Yes' : 'No')
                       ],
                     ),
                   ),
@@ -171,8 +162,7 @@ class EventItem extends StatelessWidget {
                         barrierDismissible: false,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text(
-                                'Are you sure you want to delete this event?'),
+                            title: Text('Are you sure you want to delete this event?'),
                             actions: [
                               FlatButton(
                                 onPressed: () {
@@ -184,12 +174,9 @@ class EventItem extends StatelessWidget {
                                 onPressed: () async {
                                   Navigator.of(context).pop();
                                   _onLoadingStarted();
-                                  final deleteResult =
-                                      await _deviceCalendarPlugin.deleteEvent(
-                                          _calendarEvent.calendarId,
-                                          _calendarEvent.eventId);
-                                  _onDeleteFinished(deleteResult.isSuccess &&
-                                      deleteResult.data);
+                                  final deleteResult = await _deviceCalendarPlugin.deleteEvent(
+                                      _calendarEvent.calendarId, _calendarEvent.eventId);
+                                  _onDeleteFinished(deleteResult.isSuccess && deleteResult.data);
                                 },
                                 child: Text('Ok'),
                               ),

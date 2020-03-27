@@ -1,11 +1,10 @@
 part of 'calendar_bloc.dart';
 
 @immutable
-abstract class CalendarEvent{
+abstract class CalendarEvent {
   const CalendarEvent();
 
   CalendarState createState();
-
 }
 
 class GetCurrentClass extends CalendarEvent {
@@ -30,4 +29,3 @@ class GetNextClass extends CalendarEvent {
     return ClassInfo(event.title, event.location, event.start, event.end);
   }
 }
-

@@ -68,13 +68,12 @@ class QuickMenuState extends State<QuickMenu> {
             // TODO
           ),
           ListTile(
-            leading: Icon(Icons.calendar_today),
-            title: Text('My Schedule'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/calendars');
-            }
-          ),
+              leading: Icon(Icons.calendar_today),
+              title: Text('My Schedule'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/calendars');
+              }),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),

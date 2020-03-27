@@ -28,19 +28,18 @@ class LoadSGWCampusBuildingListMenu extends StatelessWidget {
           create: (context) => SearchBloc(),
         ),
       ],
-        child: MaterialApp(
-          title: applicationName,
-          initialRoute: '/',
-          routes: {
-            '/': (context) => CampusBuildingListMenu(Campus.SGW),
-          },
-        ),
+      child: MaterialApp(
+        title: applicationName,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => CampusBuildingListMenu(Campus.SGW),
+        },
+      ),
     );
   }
 }
 
 class LoadLoyolaCampusBuildingListMenu extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

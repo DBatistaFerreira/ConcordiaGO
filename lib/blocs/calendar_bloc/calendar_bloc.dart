@@ -12,8 +12,8 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
 
   @override
   Stream<CalendarState> mapEventToState(
-      CalendarEvent event,
-      ) async* {
+    CalendarEvent event,
+  ) async* {
     yield event.createState();
   }
 }

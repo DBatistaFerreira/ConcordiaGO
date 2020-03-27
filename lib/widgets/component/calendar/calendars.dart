@@ -1,3 +1,5 @@
+import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -34,12 +36,34 @@ class _CalendarsPageState extends State<CalendarsPage> {
 
   @override
   Widget build(BuildContext context) {
+    screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Calendars'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(screenHeight / 12),
+        child: AppBar(
+          title: Image.asset('assets/logo.png', height: screenHeight / 12),
+          backgroundColor: application_constants.concordiaRed,
+        ),
       ),
       body: Column(
-        children: [
+        children: <Widget>[
+          Container(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                'My Calendars',
+                style: TextStyle(
+                  fontFamily: 'Raleway',
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: application_constants.listElementTextSize,
+                ),
+              ),
+            ),
+            color: application_constants.concordiaRed,
+            height: screenHeight / 15,
+          ),
           Expanded(
             flex: 1,
             child: ListView.builder(
@@ -50,10 +74,8 @@ class _CalendarsPageState extends State<CalendarsPage> {
                       ? 'readOnlyCalendar${_readOnlyCalendars.indexWhere((c) => c.id == _calendars[index].id)}'
                       : 'writableCalendar${_writableCalendars.indexWhere((c) => c.id == _calendars[index].id)}'),
                   onTap: () async {
-                    await Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return CalendarEventsPage(_calendars[index],
-                          key: Key('calendarEventsPage'));
+                    await Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                      return CalendarEventsPage(_calendars[index], key: Key('calendarEventsPage'));
                     }));
                   },
                   child: Padding(
@@ -67,9 +89,7 @@ class _CalendarsPageState extends State<CalendarsPage> {
                             style: Theme.of(context).textTheme.subhead,
                           ),
                         ),
-                        Icon(_calendars[index].isReadOnly
-                            ? Icons.lock
-                            : Icons.lock_open)
+                        Icon(_calendars[index].isReadOnly ? Icons.lock : Icons.lock_open)
                       ],
                     ),
                   ),
