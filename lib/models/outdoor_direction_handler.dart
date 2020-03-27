@@ -1,4 +1,5 @@
 import 'package:concordia_go/models/direction_handler.dart';
+import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/direction_request.dart';
 
 class OutdoorDirectionHandler implements DirectionHandler {
@@ -13,6 +14,7 @@ class OutdoorDirectionHandler implements DirectionHandler {
   @override
   void handle(DirectionRequest request) {
     if(_isOutdoor(request)){
+
       // TODO: implement the process of outdoor direction handling
     }
     else{

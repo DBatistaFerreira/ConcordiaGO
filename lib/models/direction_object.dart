@@ -25,6 +25,14 @@ class Dobject {
     _floor = floor;
   }
 
+  Dobject.outdoor({Node node, ConcordiaBuilding building, LatLng coordinates, String floor, String name}){
+    _node = node;
+    _building = building;
+    _coordinates = coordinates;
+    _floor = floor;
+    _name = name;
+  }
+
   Node get node => _node;
   ConcordiaBuilding get building => _building;
   LatLng get coordinates => _coordinates;
@@ -50,4 +58,25 @@ class Dobject {
   void setName(String name){
     _name = name;
   }
+
+  bool hasNode(){
+    return (_node == null);
+  }
+
+  bool hasBuilding(){
+    return (_building == null);
+  }
+
+  bool hasCoordinates(){
+    return (_coordinates == null);
+  }
+
+  bool hasFloor(){
+    return (_floor == null);
+  }
+
+  bool hasName(){
+    return (_name == null);
+  }
+
 }
