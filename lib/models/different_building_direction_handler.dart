@@ -20,6 +20,7 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
     }
   }
 
+  /// Returns `true` if the request involves directions from rooms in different buildings.
   bool _isDifferentBuilding(DirectionRequest request){
     return (!request.isEqual(request.getBuildingCode(0), request.getBuildingCode(1)));
   }

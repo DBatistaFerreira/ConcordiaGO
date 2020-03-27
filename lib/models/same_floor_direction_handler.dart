@@ -20,7 +20,7 @@ class SameFloorDirectionHandler implements DirectionHandler {
     }
   }
 
-  /// Returns `true` if the request's source building is equal to the destination building.
+  /// Returns `true` if the request involves directions from two rooms on the same floor of a building.
   bool _isSameFloor(DirectionRequest request){
     return request.isEqual(request.getBuildingSource(), request.getBuildingDestination());
   }
