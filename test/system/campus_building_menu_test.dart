@@ -2,7 +2,7 @@ import 'package:concordia_go/blocs/building_info_bloc/building_info_bloc.dart';
 import 'package:concordia_go/blocs/directions_bloc/directions_bloc.dart';
 import 'package:concordia_go/blocs/map_bloc/map_bloc.dart';
 import 'package:concordia_go/blocs/search_bloc/search_bloc.dart';
-import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/concordia_building.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
 import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
 import 'package:flutter/material.dart';

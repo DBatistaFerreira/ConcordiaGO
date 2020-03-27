@@ -1,7 +1,7 @@
 library concordia_constants;
 
-import 'package:concordia_go/models/classroom_model.dart';
-import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/classroom.dart';
+import 'package:concordia_go/models/concordia_building.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const concordiaUrl = 'https://www.concordia.ca';

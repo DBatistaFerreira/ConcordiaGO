@@ -1,6 +1,6 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/models/classroom_model.dart';
-import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/classroom.dart';
+import 'package:concordia_go/models/concordia_building.dart';
 import 'package:concordia_go/models/search_result_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:flutter/cupertino.dart';

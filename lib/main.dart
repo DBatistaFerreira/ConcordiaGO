@@ -1,4 +1,4 @@
-import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/concordia_building.dart';
 import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
 import 'package:concordia_go/widgets/screens/indoor_map_screen.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,4 +1,4 @@
-import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/concordia_building.dart';
 import 'package:meta/meta.dart';
 
 @immutable

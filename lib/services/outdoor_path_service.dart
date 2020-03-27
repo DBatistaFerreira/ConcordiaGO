@@ -1,4 +1,3 @@
-import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

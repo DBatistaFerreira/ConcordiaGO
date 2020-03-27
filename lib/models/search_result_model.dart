@@ -1,6 +1,6 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/models/classroom_model.dart';
-import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/classroom.dart';
+import 'package:concordia_go/models/concordia_building.dart';
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
