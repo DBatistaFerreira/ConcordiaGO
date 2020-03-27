@@ -24,6 +24,6 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
   @override
   bool canHandle(DirectionRequest request) {
     return (request.source.isIndoor() && request.destination.isIndoor())
-        && (request.source.building != request.destination.building);
+        && (request.source.building.code != request.destination.building.code);
   }
 }
