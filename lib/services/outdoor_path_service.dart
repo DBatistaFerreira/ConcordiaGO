@@ -307,6 +307,8 @@ class OutdoorPathService {
       if (dObjectList.isNotEmpty){
         SameFloorDirectionHandler sameFloorDirectionHandler = SameFloorDirectionHandler();
         sameFloorDirectionHandler.handle(DirectionRequest(dObjectList[0],dObjectList[1]));
+      }else{
+        //End Navigation clearAll()
       }
       return _singleDirections[_currentInstruction];
       // HANDLE END OF NAVIGATION
