@@ -1,6 +1,4 @@
-
 import 'package:concordia_go/models/direction_object.dart';
-import 'package:validators/validators.dart';
 
 /// A direction request to be sent to the direction handler.
 class DirectionRequest {
