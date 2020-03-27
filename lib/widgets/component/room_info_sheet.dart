@@ -14,11 +14,8 @@ class RoomInfoSheet {
   static double tileFontSize = 14.0;
   static double iconSize = screenWidth / 14;
 
-  static void buildInfoSheet(BuildContext context) {
-    bottomSheetController= showBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (BuildContext context) {
+  static void buildInfoSheet(ScaffoldState scaffoldState) {
+    scaffoldState.showBottomSheet((context){
         return BlocBuilder<BuildingInfoBloc, BuildingInfoState>(
           builder: (context, state) {
             var sheetHeight = (2 * screenHeight / 12) + (screenHeight / 11);
@@ -119,36 +116,34 @@ class RoomInfoSheet {
     return Container(
       height: screenHeight / 12,
       color: concordiaRed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: Container(
-              height: screenHeight / 18,
-              width: 70,
-              child: FlatButton(
-                padding: EdgeInsets.zero,
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
-                child: Icon(
-                  Icons.directions,
-                  color: Colors.black,
-                  size: 32,
-                ),
-                onPressed: () {
-                  // TODO
-                  Navigator.pop(context);
-                  BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
-                      startingPoint: ClassroomResult(Classroom(building:building,floor:floor,number: room)),
-                      destination: OutdoorConcordiaResult(building)));
-                },
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Padding(
+          padding: EdgeInsets.only(right: 20.0),
+          child: Container(
+            height: screenHeight / 18,
+            width: 70,
+            child: FlatButton(
+              padding: EdgeInsets.zero,
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24.0),
               ),
+              child: Icon(
+                Icons.directions,
+                color: Colors.black,
+                size: 32,
+              ),
+              onPressed: () {
+                // TODO Add navigation bar
+                /*Navigator.pop(context);
+                BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
+                    startingPoint: ClassroomResult(Classroom(building:building,floor:floor,number: room)),
+                    destination: OutdoorConcordiaResult(building)));*/
+              },
             ),
           ),
-        ],
+        ),
       ),
     );
   }

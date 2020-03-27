@@ -2,10 +2,10 @@ import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/classroom_model.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
-import 'package:concordia_go/widgets/component/room_info_sheet.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -88,10 +88,9 @@ class ClassroomResult extends SearchResult {
   @override
   void _onTapGeneral(BuildContext context) {
     BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
-    BlocProvider.of<MapBloc>(context).add(FloorChange(classroom.building.code, classroom.floor, [classroom.node]));
+    BlocProvider.of<MapBloc>(context).add(FloorChange(classroom.building.code, classroom.floor, [classroom.node], true));
     BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaRoomInfoEvent(classroom.building.code, classroom.floor, classroom.node.getId()));
     Navigator.pushNamed(context, '/indoormap');
-    RoomInfoSheet.buildInfoSheet(context);
   }
 
   @override

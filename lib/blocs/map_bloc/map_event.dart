@@ -79,8 +79,9 @@ class FloorChange extends MapEvent {
   final String _floorLevel;
   final List<Node> _paths;
   final String _buildingCode;
+  final bool _showDrawer;
 
-  const FloorChange(this._buildingCode, this._floorLevel, [this._paths]);
+  const FloorChange(this._buildingCode, this._floorLevel, [this._paths, this._showDrawer=false]);
 
   @override
   Future<MapState> createState() async {
@@ -92,6 +93,6 @@ class FloorChange extends MapEvent {
       }
       svgFile = IndoorPathService.parse(svgFile, pathMap);
     }
-    return IndoorMap(_buildingCode, _floorLevel, svgFile);
+    return IndoorMap(_buildingCode, _floorLevel, svgFile, _showDrawer);
   }
 }
