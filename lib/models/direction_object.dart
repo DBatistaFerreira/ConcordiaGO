@@ -95,6 +95,6 @@ class Dobject {
   }
 
   bool isOutdoor(){
-
+    // TODO: implement is outdoor checks
   }
 }

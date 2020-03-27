@@ -22,7 +22,8 @@ class DifferentFloorDirectionHandler implements DirectionHandler {
 
   /// Returns `true` if the request involves directions between rooms in the same building but on different floors.
   bool _isDifferentFloor(DirectionRequest request){
-    return (request.isEqual(request.getBuildingCode(0), request.getBuildingCode(1)))
-        && (!request.isEqual(request.getBuildingFloor(0), request.getBuildingFloor(1)));
+    return (request.source.isIndoor() && request.destination.isIndoor())
+        && (request.source.building == request.destination.building)
+        && (request.source.floor != request.destination.floor);
   }
 }
