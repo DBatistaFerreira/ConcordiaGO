@@ -12,7 +12,6 @@ class Segment {
   void addSubstep(Direction substep) {
     hasSubstep = true;
     if (substep == null) {
-      print(substep);
     } else {
       substeps.add(substep);
     }
