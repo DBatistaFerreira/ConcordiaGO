@@ -77,7 +77,7 @@ class RoomInfoSheet {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'H' + room.substring(3),
+                  building.code + room.substring(3),
                   style: TextStyle(color: Colors.white, fontSize: 18),
                   overflow: TextOverflow.fade,
                 ),
@@ -143,7 +143,7 @@ class RoomInfoSheet {
                 BlocProvider.of<SearchBloc>(context).add(
                   SearchDirectionsEvent(
                     source: Dobject.hotspot(currentLocation, 'Your Location'),
-                    destination: Dobject.indoor(Node(room), building, floor, 'H' + room.substring(3)),
+                    destination: Dobject.indoor(Node(room), building, floor, building.code + room.substring(3)),
                   ),
                 );
               },
