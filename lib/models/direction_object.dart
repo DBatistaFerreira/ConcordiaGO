@@ -23,13 +23,6 @@ class Dobject {
   Dobject.indoor(Node node, ConcordiaBuilding building, String floor, String name) {
     _node = node;
     _building = building;
-    _floor = floor;
-    _name = name;
-  }
-
-  Dobject.node(Node node, ConcordiaBuilding building, String floor, String name) {
-    _node = node;
-    _building = building;
     _coordinates = building.coordinates;
     _floor = floor;
     _name = name;

@@ -2,9 +2,7 @@ import 'package:concordia_go/services/indoor_path_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:xml/xml.dart' as xml;
 
-
 void main() {
-
   final String svgTemplate = '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
     <metadata id="metadata7">image/svg+xml</metadata>
    
@@ -18,21 +16,25 @@ void main() {
    </g>
    </svg>''';
 
-
   test('parse', () {
     var mockSVG = svgTemplate;
-    var parsedSVG = IndoorPathService.parse(mockSVG, [[0,1],[1,20]]);
+    var parsedSVG = IndoorPathService.parse(mockSVG, [
+      [0, 1],
+      [1, 20]
+    ]);
     var parsedSVGtoXML = xml.parse(parsedSVG);
-    expect(parsedSVGtoXML.findAllElements('path').length==2,true);
-    expect(parsedSVGtoXML.findAllElements('line').length==1,true);
-    expect(parsedSVG!=null,true);
+    expect(parsedSVGtoXML.findAllElements('path').length == 2, true);
+    expect(parsedSVGtoXML.findAllElements('line').length == 1, true);
+    expect(parsedSVG != null, true);
   });
 
   test('addMarkerTag', () {
     var mockSVG = svgTemplate;
-    var parsedSVG = IndoorPathService.parse(mockSVG, [[0,1]]);
+    var parsedSVG = IndoorPathService.parse(mockSVG, [
+      [0, 1]
+    ]);
     var parsedSVGtoXML = xml.parse(parsedSVG);
-    expect(parsedSVGtoXML.findAllElements('path').length==1,true);
-    expect(parsedSVG!=null,true);
+    expect(parsedSVGtoXML.findAllElements('path').length == 1, true);
+    expect(parsedSVG != null, true);
   });
 }

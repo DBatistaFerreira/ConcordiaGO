@@ -7,7 +7,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:concordia_go/blocs/bloc.dart';
 
 abstract class DirectionsEvent {
-  final OutdoorPathService outdoorPathService = OutdoorPathService.instance;
   InstructionState _state;
 
   set state(InstructionState value) {
@@ -16,7 +15,7 @@ abstract class DirectionsEvent {
 
   DirectionsEvent();
 
-  Future<DirectionsState> createState();
+  Future<DirectionsState> createState(OutdoorPathService outdoorPathService);
 }
 
 class GetDirectionsEvent extends DirectionsEvent {
@@ -28,8 +27,8 @@ class GetDirectionsEvent extends DirectionsEvent {
   GetDirectionsEvent(this._startCoordinates, this._endCoordinates, this._destination, this._modeOfTransport);
 
   @override
-  Future<DirectionsState> createState() async {
-    await outdoorPathService.nicksMagicalChooserOfDirections(
+  Future<DirectionsState> createState(OutdoorPathService outdoorPathService) async {
+    await outdoorPathService.getDirections(
       _startCoordinates.latitude,
       _startCoordinates.longitude,
       _endCoordinates.latitude,
@@ -51,7 +50,7 @@ class NextInstructionEvent extends DirectionsEvent {
   NextInstructionEvent();
 
   @override
-  Future<DirectionsState> createState() async {
+  Future<DirectionsState> createState(OutdoorPathService outdoorPathService) async {
     Direction newInstruction = await outdoorPathService.getNextInstruction();
     BlocProvider.of<MapBloc>(mc)
         .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
@@ -63,7 +62,7 @@ class PreviousInstructionEvent extends DirectionsEvent {
   PreviousInstructionEvent();
 
   @override
-  Future<DirectionsState> createState() async {
+  Future<DirectionsState> createState(OutdoorPathService outdoorPathService) async {
     Direction newInstruction = await outdoorPathService.getPreviousInstruction();
     BlocProvider.of<MapBloc>(mc)
         .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));

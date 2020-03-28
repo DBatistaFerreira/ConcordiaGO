@@ -48,9 +48,8 @@ class DifferentFloorDirectionHandler implements DirectionHandler {
       // TODO: implement user interaction for next floor shortest_path
 
       Navigator.pushNamed(mapContext, '/indoormap');
-      BlocProvider.of<MapBloc>(mapContext).add(
-          FloorChange(request.source.building.code,request.source.floor,{request.source.floor:source_shortest_path, request.destination.floor:destination_shortest_path}));
-
+      BlocProvider.of<MapBloc>(mapContext).add(FloorChange(request.source.building.code, request.source.floor,
+          {request.source.floor: source_shortest_path, request.destination.floor: destination_shortest_path}));
     } else {
       _nextHandler.handle(request);
     }

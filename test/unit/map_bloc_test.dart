@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/models/classroom.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -12,27 +13,24 @@ class MockSwitchCampusEvent extends Mock implements SwitchCampusEvent {
 }
 
 void main() {
+  final Classroom room = rooms[0];
   final moveCameraEvent = MoveCameraEvent(buildings['H'].coordinates, 1.0, false);
   final selectConcordiaBuildingEvent = SelectConcordiaBuildingEvent(buildings['H'].code);
   final switchCampusEvent = MockSwitchCampusEvent();
   final directionLinesEvent = DirectionLinesEvent(null);
-  final floorChangeEvent = FloorChange('H','8');
+  final floorChangeEvent = FloorChange(room.building.code, room.floor);
 
   blocTest(
     'Send move camera event',
     build: () async => MapBloc(),
-    act: (bloc) {
-      return bloc.add(moveCameraEvent);
-    },
+    act: (bloc) => bloc.add(moveCameraEvent),
     expect: [isA<BasicMapState>()],
   );
 
   blocTest(
     'Send select concordia building event',
     build: () async => MapBloc(),
-    act: (bloc) {
-      return bloc.add(selectConcordiaBuildingEvent);
-    },
+    act: (bloc) => bloc.add(selectConcordiaBuildingEvent),
     expect: [isA<ConcordiaMapState>()],
   );
 
@@ -46,18 +44,14 @@ void main() {
   blocTest(
     'Send direction lines event',
     build: () async => MapBloc(),
-    act: (bloc) {
-      return bloc.add(directionLinesEvent);
-    },
+    act: (bloc) => bloc.add(directionLinesEvent),
     expect: [isA<DirectionMapState>()],
   );
 
   blocTest(
     'Send floor change event',
     build: () async => MapBloc(),
-    act: (bloc) {
-      return bloc.add(floorChangeEvent);
-    },
+    act: (bloc) => bloc.add(floorChangeEvent),
     expect: [isA<IndoorMap>()],
   );
 }

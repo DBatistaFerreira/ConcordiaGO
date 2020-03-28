@@ -3,6 +3,7 @@ import 'package:concordia_go/models/concordia_building.dart';
 import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
+import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -139,9 +140,12 @@ class RoomInfoSheet {
                 // TODO Add navigation bar
                 bottomSheetController.close();
                 Navigator.pop(context);
-                BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
-                    source: Dobject.indoor(Node(room), building,floor, 'H'+room.substring(3)),
-                    destination: Dobject.building(building)));
+                BlocProvider.of<SearchBloc>(context).add(
+                  SearchDirectionsEvent(
+                    source: Dobject.hotspot(currentLocation, 'Your Location'),
+                    destination: Dobject.indoor(Node(room), building, floor, 'H' + room.substring(3)),
+                  ),
+                );
               },
             ),
           ),

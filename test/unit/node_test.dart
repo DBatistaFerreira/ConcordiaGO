@@ -9,7 +9,7 @@ void main() {
   // region test getters
   group('Getters', () {
     test('getId should return the id int of the node', () {
-      expect(node.getId(), 5);
+      expect(node.getId(), '5');
     });
   });
   // endregion test getters
@@ -19,7 +19,7 @@ void main() {
     test('setId should set the node id to the int passed', () {
       node.setId('3');
 
-      expect(node.getId(), 3);
+      expect(node.getId(), '3');
     });
   });
   // endregion test setters

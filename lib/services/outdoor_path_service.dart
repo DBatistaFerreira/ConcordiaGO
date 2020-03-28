@@ -38,9 +38,8 @@ class OutdoorPathService {
   * Update in Sprint 3 will change its layout to provide a more testable class
    */
 
-  Future<int> nicksMagicalChooserOfDirections(
+  Future<int> getDirections(
       startLat, startLng, endLat, endLng, buildingDestination, modeOfTransport) async {
-    // STARTING MAGIC
     switch (modeOfTransport) {
       case ModeOfTransport.walking:
         await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);

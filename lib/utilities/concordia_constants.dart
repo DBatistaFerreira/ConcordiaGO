@@ -46,7 +46,7 @@ const loyolaCampus = {
 };
 
 const double poiZoomLevel = 17.5;
-const double campusZoomLevel = 16.5;
+const double campusZoomLevel = 16.0;
 const double navZoomLevel = 16.0;
 
 const buildings = {
@@ -1402,82 +1402,82 @@ const buildings = {
 final rooms = [
   // region H building rooms
   /// H8
-  Classroom(building: buildings['H'], floor: '8', number: '801'),
-  Classroom(building: buildings['H'], floor: '8', number: '802'),
-  Classroom(building: buildings['H'], floor: '8', number: '803'),
-  Classroom(building: buildings['H'], floor: '8', number: '805'),
-  Classroom(building: buildings['H'], floor: '8', number: '807'),
-  Classroom(building: buildings['H'], floor: '8', number: '810'),
-  Classroom(building: buildings['H'], floor: '8', number: '811'),
-  Classroom(building: buildings['H'], floor: '8', number: '813'),
-  Classroom(building: buildings['H'], floor: '8', number: '815'),
-  Classroom(building: buildings['H'], floor: '8', number: '817'),
-  Classroom(building: buildings['H'], floor: '8', number: '819'),
-  Classroom(building: buildings['H'], floor: '8', number: '820'),
-  Classroom(building: buildings['H'], floor: '8', number: '821'),
-  Classroom(building: buildings['H'], floor: '8', number: '822'),
-  Classroom(building: buildings['H'], floor: '8', number: '823'),
-  Classroom(building: buildings['H'], floor: '8', number: '825'),
-  Classroom(building: buildings['H'], floor: '8', number: '827'),
-  Classroom(building: buildings['H'], floor: '8', number: '829'),
-  Classroom(building: buildings['H'], floor: '8', number: '831'),
-  Classroom(building: buildings['H'], floor: '8', number: '832'),
-  Classroom(building: buildings['H'], floor: '8', number: '833'),
-  Classroom(building: buildings['H'], floor: '8', number: '835'),
-  Classroom(building: buildings['H'], floor: '8', number: '837'),
-  Classroom(building: buildings['H'], floor: '8', number: '841'),
-  Classroom(building: buildings['H'], floor: '8', number: '842'),
-  Classroom(building: buildings['H'], floor: '8', number: '843'),
-  Classroom(building: buildings['H'], floor: '8', number: '845'),
-  Classroom(building: buildings['H'], floor: '8', number: '847'),
-  Classroom(building: buildings['H'], floor: '8', number: '849'),
-  Classroom(building: buildings['H'], floor: '8', number: '851'),
-  Classroom(building: buildings['H'], floor: '8', number: '852'),
-  Classroom(building: buildings['H'], floor: '8', number: '853'),
-  Classroom(building: buildings['H'], floor: '8', number: '854'),
-  Classroom(building: buildings['H'], floor: '8', number: '855'),
-  Classroom(building: buildings['H'], floor: '8', number: '857'),
-  Classroom(building: buildings['H'], floor: '8', number: '859'),
-  Classroom(building: buildings['H'], floor: '8', number: '861'),
-  Classroom(building: buildings['H'], floor: '8', number: '862'),
-  Classroom(building: buildings['H'], floor: '8', number: '863'),
-  Classroom(building: buildings['H'], floor: '8', number: '865'),
-  Classroom(building: buildings['H'], floor: '8', number: '867'),
+  Classroom(buildings['H'], '8', '801'),
+  Classroom(buildings['H'], '8', '802'),
+  Classroom(buildings['H'], '8', '803'),
+  Classroom(buildings['H'], '8', '805'),
+  Classroom(buildings['H'], '8', '807'),
+  Classroom(buildings['H'], '8', '810'),
+  Classroom(buildings['H'], '8', '811'),
+  Classroom(buildings['H'], '8', '813'),
+  Classroom(buildings['H'], '8', '815'),
+  Classroom(buildings['H'], '8', '817'),
+  Classroom(buildings['H'], '8', '819'),
+  Classroom(buildings['H'], '8', '820'),
+  Classroom(buildings['H'], '8', '821'),
+  Classroom(buildings['H'], '8', '822'),
+  Classroom(buildings['H'], '8', '823'),
+  Classroom(buildings['H'], '8', '825'),
+  Classroom(buildings['H'], '8', '827'),
+  Classroom(buildings['H'], '8', '829'),
+  Classroom(buildings['H'], '8', '831'),
+  Classroom(buildings['H'], '8', '832'),
+  Classroom(buildings['H'], '8', '833'),
+  Classroom(buildings['H'], '8', '835'),
+  Classroom(buildings['H'], '8', '837'),
+  Classroom(buildings['H'], '8', '841'),
+  Classroom(buildings['H'], '8', '842'),
+  Classroom(buildings['H'], '8', '843'),
+  Classroom(buildings['H'], '8', '845'),
+  Classroom(buildings['H'], '8', '847'),
+  Classroom(buildings['H'], '8', '849'),
+  Classroom(buildings['H'], '8', '851'),
+  Classroom(buildings['H'], '8', '852'),
+  Classroom(buildings['H'], '8', '853'),
+  Classroom(buildings['H'], '8', '854'),
+  Classroom(buildings['H'], '8', '855'),
+  Classroom(buildings['H'], '8', '857'),
+  Classroom(buildings['H'], '8', '859'),
+  Classroom(buildings['H'], '8', '861'),
+  Classroom(buildings['H'], '8', '862'),
+  Classroom(buildings['H'], '8', '863'),
+  Classroom(buildings['H'], '8', '865'),
+  Classroom(buildings['H'], '8', '867'),
 
   /// H9
-  Classroom(building: buildings['H'], floor: '9', number: '902'),
-  Classroom(building: buildings['H'], floor: '9', number: '903'),
-  Classroom(building: buildings['H'], floor: '9', number: '907'),
-  Classroom(building: buildings['H'], floor: '9', number: '909'),
-  Classroom(building: buildings['H'], floor: '9', number: '910'),
-  Classroom(building: buildings['H'], floor: '9', number: '911'),
-  Classroom(building: buildings['H'], floor: '9', number: '913'),
-  Classroom(building: buildings['H'], floor: '9', number: '914'),
-  Classroom(building: buildings['H'], floor: '9', number: '915'),
-  Classroom(building: buildings['H'], floor: '9', number: '917'),
-  Classroom(building: buildings['H'], floor: '9', number: '919'),
-  Classroom(building: buildings['H'], floor: '9', number: '920'),
-  Classroom(building: buildings['H'], floor: '9', number: '921'),
-  Classroom(building: buildings['H'], floor: '9', number: '923'),
-  Classroom(building: buildings['H'], floor: '9', number: '925'),
-  Classroom(building: buildings['H'], floor: '9', number: '927'),
-  Classroom(building: buildings['H'], floor: '9', number: '928'),
-  Classroom(building: buildings['H'], floor: '9', number: '929'),
-  Classroom(building: buildings['H'], floor: '9', number: '933'),
-  Classroom(building: buildings['H'], floor: '9', number: '937'),
-  Classroom(building: buildings['H'], floor: '9', number: '941'),
-  Classroom(building: buildings['H'], floor: '9', number: '943'),
-  Classroom(building: buildings['H'], floor: '9', number: '945'),
-  Classroom(building: buildings['H'], floor: '9', number: '961'),
-  Classroom(building: buildings['H'], floor: '9', number: '962'),
-  Classroom(building: buildings['H'], floor: '9', number: '963'),
-  Classroom(building: buildings['H'], floor: '9', number: '964'),
-  Classroom(building: buildings['H'], floor: '9', number: '965'),
-  Classroom(building: buildings['H'], floor: '9', number: '966'),
-  Classroom(building: buildings['H'], floor: '9', number: '967'),
-  Classroom(building: buildings['H'], floor: '9', number: '968'),
-  Classroom(building: buildings['H'], floor: '9', number: '980'),
-  Classroom(building: buildings['H'], floor: '9', number: '981'),
+  Classroom(buildings['H'], '9', '902'),
+  Classroom(buildings['H'], '9', '903'),
+  Classroom(buildings['H'], '9', '907'),
+  Classroom(buildings['H'], '9', '909'),
+  Classroom(buildings['H'], '9', '910'),
+  Classroom(buildings['H'], '9', '911'),
+  Classroom(buildings['H'], '9', '913'),
+  Classroom(buildings['H'], '9', '914'),
+  Classroom(buildings['H'], '9', '915'),
+  Classroom(buildings['H'], '9', '917'),
+  Classroom(buildings['H'], '9', '919'),
+  Classroom(buildings['H'], '9', '920'),
+  Classroom(buildings['H'], '9', '921'),
+  Classroom(buildings['H'], '9', '923'),
+  Classroom(buildings['H'], '9', '925'),
+  Classroom(buildings['H'], '9', '927'),
+  Classroom(buildings['H'], '9', '928'),
+  Classroom(buildings['H'], '9', '929'),
+  Classroom(buildings['H'], '9', '933'),
+  Classroom(buildings['H'], '9', '937'),
+  Classroom(buildings['H'], '9', '941'),
+  Classroom(buildings['H'], '9', '943'),
+  Classroom(buildings['H'], '9', '945'),
+  Classroom(buildings['H'], '9', '961'),
+  Classroom(buildings['H'], '9', '962'),
+  Classroom(buildings['H'], '9', '963'),
+  Classroom(buildings['H'], '9', '964'),
+  Classroom(buildings['H'], '9', '965'),
+  Classroom(buildings['H'], '9', '966'),
+  Classroom(buildings['H'], '9', '967'),
+  Classroom(buildings['H'], '9', '968'),
+  Classroom(buildings['H'], '9', '980'),
+  Classroom(buildings['H'], '9', '981'),
 
   // endregion H building rooms
 ];
@@ -1497,6 +1497,44 @@ const edges = {
       8 : [35, 40)mm
       9 : [40, ++)mm
    */
+  // region H1 floor plan edges
+  'H1':
+    [
+          //  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30
+      /* 0*/[ 0, 4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /* 1*/[ 4, 0, 8,-1,-1,-1,-1,-1,-1, 4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /* 2*/[-1, 8, 0, 7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1],
+      /* 3*/[-1,-1, 7, 0, 8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /* 4*/[-1,-1,-1, 8, 0, 4, 3, 5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /* 5*/[-1,-1,-1,-1, 4, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /* 6*/[-1,-1,-1,-1, 3,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 2],
+      /* 7*/[-1,-1,-1,-1, 5,-1,-1, 0, 9,-1,-1,-1,-1,-1,-1,-1,-1,-1, 8,-1,-1,-1,-1,-1, 1, 1, 1, 1, 1, 1,-1],
+      /* 8*/[-1,-1,-1,-1,-1,-1,-1, 9, 0, 4, 3,-1,-1,-1,-1,-1,-1,-1, 3,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /* 9*/[-1, 4,-1,-1,-1,-1,-1,-1, 3, 0, 5, 4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*10*/[-1,-1,-1,-1,-1,-1,-1,-1, 3, 5, 0, 4, 5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*11*/[-1,-1,-1,-1,-1,-1,-1,-1,-1, 4, 4, 0, 6, 7,-1,-1,-1,-1,-1, 9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*12*/[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 5, 6, 0, 4,-1, 1,-1, 8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*13*/[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 7, 4, 0, 6,-1,-1, 6,-1, 9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*14*/[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 6, 0,-1,-1, 4,-1, 9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*15*/[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*16*/[-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*17*/[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 8, 6, 4,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*18*/[-1,-1,-1,-1,-1,-1,-1, 8, 3,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*19*/[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 9,-1, 9, 9,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*20*/[-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*21*/[ 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*22*/[-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1],
+      /*23*/[-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1],
+      /*24*/[-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1],
+      /*25*/[-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1],
+      /*26*/[-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1],
+      /*27*/[-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1],
+      /*28*/[-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1],
+      /*29*/[-1,-1,-1,-1,-1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1],
+      /*30*/[-1,-1,-1,-1,-1,-1, 2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0],
+    ],
+  // endregion H1 floor plan edges
+  
   // region H8 floor plan edges
   'H8':
       [
@@ -10431,7 +10469,7 @@ const edges = {
     ],
   ],
   // endregion H8 floor plan edges
-  
+
   // region H9 floor plan edges
   'H9':
       [
@@ -10525,6 +10563,42 @@ const edges = {
 // region floor plan edge matrix indices
 
 const edge_indices = {
+  // region H1 edge matrix indices
+  'H1': [
+              // index
+    '000000', // 0,
+    '000001', // 1,
+    '000002', // 2,
+    '000003', // 3,
+    '000004', // 4,
+    '000005', // 5,
+    '000006', // 6,
+    '000007', // 7,
+    '000008', // 8,
+    '000009', // 9,
+    '000010', // 10
+    '000011', // 11
+    '000012', // 12
+    '000013', // 13
+    '000014', // 14
+    '000015', // 15
+    '000016', // 16
+    '140000', // 17
+    '180000', // 18
+    '100110', // 19
+    '100112', // 20
+    '100114', // 21
+    '170000', // 22
+    '130000', // 23
+    '120000', // 24
+    '120001', // 25
+    '110000', // 26
+    '110001', // 27
+    '110002', // 28
+    '110003', // 29
+    '110004', // 30
+  ],
+  // endregion H1 edge matrix indices
   // region H8 edge matrix indices
   'H8': [
               // index
