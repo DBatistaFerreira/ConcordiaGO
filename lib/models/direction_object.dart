@@ -26,6 +26,28 @@ class Dobject {
     _floor = floor;
   }
 
+  Dobject.node(Node node, ConcordiaBuilding building, String floor, String name, ModeOfTransport modeOfTransport){
+    _node = node;
+    _building = building;
+    _coordinates = building.coordinates;
+    _floor = floor;
+    _name = name;
+    _transport_mode = modeOfTransport;
+  }
+
+  Dobject.building(ConcordiaBuilding building, ModeOfTransport modeOfTransport){
+    _building = building;
+    _coordinates = building.coordinates;
+    _name = building.name;
+    _transport_mode = modeOfTransport;
+  }
+
+  Dobject.hotspot(LatLng coordinates, String name, ModeOfTransport modeOfTransport){
+    _coordinates = coordinates;
+    _name = name;
+    _transport_mode = modeOfTransport;
+  }
+
   Dobject.outdoor({Node node, ConcordiaBuilding building, LatLng coordinates, String floor, String name, ModeOfTransport transport_mode}){
     _node = node;
     _building = building;

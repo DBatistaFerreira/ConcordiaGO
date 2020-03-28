@@ -4,7 +4,6 @@ import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/direction_request.dart';
 import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
-import 'package:concordia_go/utilities/direction.dart';
 import 'package:concordia_go/widgets/component/google_maps_component.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/blocs/bloc.dart';
@@ -33,12 +32,12 @@ class OutdoorDirectionHandler implements DirectionHandler {
      var destinationCoordinate = _isHotspot(request.destination) ? request.destination.coordinates : request.destination.building.coordinates;
      var destination = _isHotspot(request.destination) ? request.destination.name : request.destination.building.name;
 
-
     BlocProvider.of<DirectionsBloc>(mapContext).add(GetDirectionsEvent(
         departureCoordinate,
         destinationCoordinate,
         destination,
         request.destination.transport_mode));
+
 
     if (request.destination.hasNode()) {
       var newSource = Dobject.outdoor(node: Node('990000'),
@@ -55,7 +54,6 @@ class OutdoorDirectionHandler implements DirectionHandler {
   }
 
   bool _isHotspot(newDObject){
-    print('we in here');
     return (newDObject.building == null && newDObject.coordinates != null);
   }
 }
