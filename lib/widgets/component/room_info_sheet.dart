@@ -1,5 +1,7 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/concordia_building.dart';
+import 'package:concordia_go/models/direction_object.dart';
+import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,7 @@ class RoomInfoSheet {
 
             if (state is ConcordiaRoomInfoState) {
               var building = state.building;
-              var room = 'H' + state.room.substring(3);
+              var room = state.room;
               var floor = state.floor;
               return Container(
                 height: sheetHeight,
@@ -74,7 +76,7 @@ class RoomInfoSheet {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  room,
+                  'H' + room.substring(3),
                   style: TextStyle(color: Colors.white, fontSize: 18),
                   overflow: TextOverflow.fade,
                 ),
@@ -135,10 +137,10 @@ class RoomInfoSheet {
               ),
               onPressed: () {
                 // TODO Add navigation bar
-                /*Navigator.pop(context);
+                Navigator.pop(context);
                 BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
-                    startingPoint: ClassroomResult(Classroom(building:building,floor:floor,number: room)),
-                    destination: OutdoorConcordiaResult(building)));*/
+                    source: Dobject.indoor(Node(room), building,floor),
+                    destination: Dobject.building(building)));
               },
             ),
           ),
