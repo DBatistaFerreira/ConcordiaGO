@@ -12,26 +12,23 @@ import 'event_item.dart';
 
 class CalendarEventsPage extends StatefulWidget {
   final Calendar _calendar;
+  DeviceCalendarPlugin _deviceCalendarPlugin;
 
-  CalendarEventsPage(this._calendar, {Key key}) : super(key: key);
+  CalendarEventsPage(this._calendar,this._deviceCalendarPlugin,  {Key key}) : super(key: key);
 
   @override
   _CalendarEventsPageState createState() {
-    return _CalendarEventsPageState(_calendar);
+    return _CalendarEventsPageState(_calendar, _deviceCalendarPlugin);
   }
 }
 
 class _CalendarEventsPageState extends State<CalendarEventsPage> {
   final Calendar _calendar;
-  BuildContext _scaffoldContext;
 
   DeviceCalendarPlugin _deviceCalendarPlugin;
   List<Event> _calendarEvents;
-  bool _isLoading = true;
 
-  _CalendarEventsPageState(this._calendar) {
-    _deviceCalendarPlugin = DeviceCalendarPlugin();
-  }
+  _CalendarEventsPageState(this._calendar, this._deviceCalendarPlugin);
 
   @override
   initState() {
@@ -77,40 +74,14 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
                     itemCount: _calendarEvents?.length ?? 0,
                     itemBuilder: (BuildContext context, int index) {
                       var _isFirst = index == 0;
-                      return EventItem(_calendarEvents[index], _deviceCalendarPlugin, _onLoading, _onDeletedFinished,
-                          _onTapped, _isFirst);
+                      return EventItem(_calendarEvents[index], _onTapped, _isFirst);
                     },
                   ),
-//              if (_isLoading)
-//                Center(
-//                  child: CircularProgressIndicator(),
-//                )
                 )
               : Center(child: Text('No events found')),
         ],
       ),
     );
-  }
-
-  void _onLoading() {
-    setState(() {
-      _isLoading = true;
-    });
-  }
-
-  Future _onDeletedFinished(bool deleteSucceeded) async {
-    if (deleteSucceeded) {
-      await _retrieveCalendarEvents();
-    } else {
-      Scaffold.of(_scaffoldContext).showSnackBar(SnackBar(
-        content: Text('Oops, we ran into an issue deleting the event'),
-        backgroundColor: Colors.red,
-        duration: Duration(seconds: 5),
-      ));
-      setState(() {
-        _isLoading = false;
-      });
-    }
   }
 
   Future _onTapped(Event event) async {
@@ -132,7 +103,6 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
         _calendar.id, RetrieveEventsParams(startDate: startDate, endDate: endDate));
     setState(() {
       _calendarEvents = calendarEventsResult?.data;
-      _isLoading = false;
     });
   }
 }

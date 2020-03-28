@@ -4,18 +4,14 @@ import 'package:intl/intl.dart';
 
 class EventItem extends StatelessWidget {
   final Event _calendarEvent;
-  final DeviceCalendarPlugin _deviceCalendarPlugin;
 
   final Function(Event) _onTapped;
-  final VoidCallback _onLoadingStarted;
-  final Function(bool) _onDeleteFinished;
 
   final bool _isFirst;
 
   final double _eventFieldNameWidth = 75.0;
 
-  EventItem(this._calendarEvent, this._deviceCalendarPlugin, this._onLoadingStarted, this._onDeleteFinished,
-      this._onTapped, this._isFirst);
+  EventItem(this._calendarEvent, this._onTapped, this._isFirst);
 
   @override
   Widget build(BuildContext context) {
@@ -147,47 +143,6 @@ class EventItem extends StatelessWidget {
                 ],
               ),
             ),
-            ButtonBar(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    _onTapped(_calendarEvent);
-                  },
-                  icon: Icon(Icons.edit),
-                ),
-                IconButton(
-                  onPressed: () async {
-                    await showDialog<Null>(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Are you sure you want to delete this event?'),
-                            actions: [
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('Cancel'),
-                              ),
-                              FlatButton(
-                                onPressed: () async {
-                                  Navigator.of(context).pop();
-                                  _onLoadingStarted();
-                                  final deleteResult = await _deviceCalendarPlugin.deleteEvent(
-                                      _calendarEvent.calendarId, _calendarEvent.eventId);
-                                  _onDeleteFinished(deleteResult.isSuccess && deleteResult.data);
-                                },
-                                child: Text('Ok'),
-                              ),
-                            ],
-                          );
-                        });
-                  },
-                  icon: Icon(Icons.delete),
-                ),
-              ],
-            )
           ],
         ),
       ),

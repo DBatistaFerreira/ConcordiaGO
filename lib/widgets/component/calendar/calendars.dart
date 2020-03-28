@@ -7,26 +7,19 @@ import 'package:flutter/material.dart';
 import 'calendar_events.dart';
 
 class CalendarsPage extends StatefulWidget {
-  CalendarsPage({Key key}) : super(key: key);
+  final DeviceCalendarPlugin _deviceCalendarPlugin;
+  CalendarsPage(this._deviceCalendarPlugin, {Key key}) : super(key: key);
 
   @override
   _CalendarsPageState createState() {
-    return _CalendarsPageState();
+    return _CalendarsPageState(_deviceCalendarPlugin);
   }
 }
 
 class _CalendarsPageState extends State<CalendarsPage> {
   DeviceCalendarPlugin _deviceCalendarPlugin;
   List<Calendar> _calendars;
-  List<Calendar> get _writableCalendars =>
-      _calendars?.where((c) => !c.isReadOnly)?.toList() ?? List<Calendar>();
-
-  List<Calendar> get _readOnlyCalendars =>
-      _calendars?.where((c) => c.isReadOnly)?.toList() ?? List<Calendar>();
-
-  _CalendarsPageState() {
-    _deviceCalendarPlugin = DeviceCalendarPlugin();
-  }
+  _CalendarsPageState(this._deviceCalendarPlugin);
 
   @override
   initState() {
@@ -70,12 +63,10 @@ class _CalendarsPageState extends State<CalendarsPage> {
               itemCount: _calendars?.length ?? 0,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                  key: Key(_calendars[index].isReadOnly
-                      ? 'readOnlyCalendar${_readOnlyCalendars.indexWhere((c) => c.id == _calendars[index].id)}'
-                      : 'writableCalendar${_writableCalendars.indexWhere((c) => c.id == _calendars[index].id)}'),
+                  key: Key('${_calendars.indexWhere((c) => c.id == _calendars[index].id)}'),
                   onTap: () async {
                     await Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                      return CalendarEventsPage(_calendars[index], key: Key('calendarEventsPage'));
+                      return CalendarEventsPage(_calendars[index],_deviceCalendarPlugin, key: Key('calendarEventsPage'));
                     }));
                   },
                   child: Padding(
@@ -89,7 +80,6 @@ class _CalendarsPageState extends State<CalendarsPage> {
                             style: Theme.of(context).textTheme.subhead,
                           ),
                         ),
-                        Icon(_calendars[index].isReadOnly ? Icons.lock : Icons.lock_open)
                       ],
                     ),
                   ),
@@ -105,9 +95,9 @@ class _CalendarsPageState extends State<CalendarsPage> {
   void _retrieveCalendars() async {
     try {
       var permissionsGranted = await _deviceCalendarPlugin.hasPermissions();
-      if (permissionsGranted.isSuccess && !permissionsGranted.data) {
+      if (!permissionsGranted.isSuccess) {
         permissionsGranted = await _deviceCalendarPlugin.requestPermissions();
-        if (!permissionsGranted.isSuccess || !permissionsGranted.data) {
+        if (!permissionsGranted.isSuccess) {
           return;
         }
       }
