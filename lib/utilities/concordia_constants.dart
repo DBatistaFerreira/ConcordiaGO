@@ -484,7 +484,12 @@ const buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ['Residences', 'Grey Nuns Library', 'Daycare Centre', 'Summer Accommodation'],
+    services: [
+      'Residences',
+      'Grey Nuns Library',
+      'Daycare Centre',
+      'Summer Accommodation'
+    ],
     departments: ['No departments in this building'],
   ),
   'GS': ConcordiaBuilding(
@@ -607,7 +612,15 @@ const buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ['ACUMAE', 'SCOMM', 'CUSSU', 'CUUSS-TS', 'CULEU', 'CUPEU', 'CUCEPTFU'],
+    services: [
+      'ACUMAE',
+      'SCOMM',
+      'CUSSU',
+      'CUUSS-TS',
+      'CULEU',
+      'CUPEU',
+      'CUCEPTFU'
+    ],
     departments: ['No departments in this building'],
   ),
   'MU': ConcordiaBuilding(
@@ -1034,7 +1047,11 @@ const buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ['F.C. Smith Auditorium', 'Cazalet Theater', 'Concordia Multi-Faith and Spirituality Centre'],
+    services: [
+      'F.C. Smith Auditorium',
+      'Cazalet Theater',
+      'Concordia Multi-Faith and Spirituality Centre'
+    ],
     departments: ['No departments in this building'],
   ),
   'GE': ConcordiaBuilding(
@@ -1262,7 +1279,10 @@ const buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ['Loyola Jesuit Hall and Conference Centre', 'Conference Services'],
+    services: [
+      'Loyola Jesuit Hall and Conference Centre',
+      'Conference Services'
+    ],
     departments: ['No departments in this building'],
   ),
   'SC': ConcordiaBuilding(
@@ -1320,7 +1340,13 @@ const buildings = {
     hours: {
       'none': 'Unavailable',
     },
-    services: ['Science College', 'Science Technical Centre', 'Animal Care Facilities', 'Security Office', 'Cafe'],
+    services: [
+      'Science College',
+      'Science Technical Centre',
+      'Animal Care Facilities',
+      'Security Office',
+      'Cafe'
+    ],
     departments: [
       'Biology',
       'Chemistry and Biochemistry',

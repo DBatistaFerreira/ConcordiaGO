@@ -1,5 +1,6 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/utilities/concordia_constants.dart'
+    as concordia_constants;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 abstract class MapEvent {
@@ -28,7 +29,9 @@ class CameraMoveConcordia extends MapEvent {
   @override
   MapState createState() {
     return MapWithMarker(
-        _buildingCode, concordia_constants.buildings[_buildingCode].coordinates, concordia_constants.poiZoomLevel);
+        _buildingCode,
+        concordia_constants.buildings[_buildingCode].coordinates,
+        concordia_constants.poiZoomLevel);
   }
 }
 

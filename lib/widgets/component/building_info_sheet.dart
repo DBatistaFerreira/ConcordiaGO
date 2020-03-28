@@ -1,7 +1,8 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/concordia_building_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/utilities/concordia_constants.dart'
+    as concordia_constants;
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,14 +29,17 @@ class BuildingInfoSheet {
             if (state is ConcordiaBuildingInfoState) {
               var building = state.building;
               if (state.moreInfo) {
-                sheetHeight = (4 * screenHeight / 12) + (screenHeight / 11) + (3 * 58);
+                sheetHeight =
+                    (4 * screenHeight / 12) + (screenHeight / 11) + (3 * 58);
               }
               return Container(
                 height: sheetHeight,
                 child: Column(
                   children: [
                     buildingInfoHeader(building),
-                    !state.moreInfo ? buildingInfoAddress(building) : buildingInfoList(context, building),
+                    !state.moreInfo
+                        ? buildingInfoAddress(building)
+                        : buildingInfoList(context, building),
                     buildingInfoFooter(context, building, state.moreInfo),
                   ],
                 ),
@@ -69,7 +73,8 @@ class BuildingInfoSheet {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: building.code.length == 2 ? 13.0 : 21.0, right: 20.0),
+            padding: EdgeInsets.only(
+                left: building.code.length == 2 ? 13.0 : 21.0, right: 20.0),
             child: Text(
               building.code,
               style: TextStyle(color: Colors.white, fontSize: 24),
@@ -118,7 +123,8 @@ class BuildingInfoSheet {
     );
   }
 
-  static Widget buildingInfoList(BuildContext context, ConcordiaBuilding building) {
+  static Widget buildingInfoList(
+      BuildContext context, ConcordiaBuilding building) {
     return Expanded(
       child: Container(
         color: Colors.white,
@@ -199,14 +205,20 @@ class BuildingInfoSheet {
                       children: building.hours.length > 1
                           ? <Widget>[
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: building.hours.keys.map((key) => Text(key)).toList(),
+                                children: building.hours.keys
+                                    .map((key) => Text(key))
+                                    .toList(),
                               ),
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: building.hours.values.map((value) => Text(value)).toList(),
+                                children: building.hours.values
+                                    .map((value) => Text(value))
+                                    .toList(),
                               )
                             ]
                           : <Widget>[
@@ -233,7 +245,9 @@ class BuildingInfoSheet {
                     padding: EdgeInsets.fromLTRB(40.0, 5.0, 40.0, 5.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: building.departments.map((item) => Text('•   ' + item)).toList(),
+                      children: building.departments
+                          .map((item) => Text('•   ' + item))
+                          .toList(),
                     ),
                   ),
                 ],
@@ -255,7 +269,9 @@ class BuildingInfoSheet {
                     padding: EdgeInsets.fromLTRB(40.0, 5.0, 40.0, 5.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: building.services.map((item) => Text('•   ' + item)).toList(),
+                      children: building.services
+                          .map((item) => Text('•   ' + item))
+                          .toList(),
                     ),
                   ),
                 ],
@@ -267,14 +283,17 @@ class BuildingInfoSheet {
     );
   }
 
-  static Widget buildingInfoFooter(BuildContext context, ConcordiaBuilding building, bool moreInfo) {
+  static Widget buildingInfoFooter(
+      BuildContext context, ConcordiaBuilding building, bool moreInfo) {
     return Container(
       height: screenHeight / 12,
       color: concordiaRed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          moreInfo ? lessButton(context, building.code) : moreButton(context, building.code),
+          moreInfo
+              ? lessButton(context, building.code)
+              : moreButton(context, building.code),
           Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: Container(
@@ -295,8 +314,8 @@ class BuildingInfoSheet {
                   Navigator.pop(context);
                   getCurrentLocation().then(
                     (value) {
-                      BlocProvider.of<DirectionsBloc>(mc)
-                          .add(GetDirections(value, building.coordinates, building.name));
+                      BlocProvider.of<DirectionsBloc>(mc).add(GetDirections(
+                          value, building.coordinates, building.name));
                     },
                   );
                 },
@@ -319,7 +338,8 @@ class BuildingInfoSheet {
           size: 32,
         ),
         onPressed: () {
-          BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfoEvent(buildingCode, true));
+          BlocProvider.of<BuildingInfoBloc>(context)
+              .add(ConcordiaBuildingInfoEvent(buildingCode, true));
         },
       ),
     );
@@ -335,7 +355,8 @@ class BuildingInfoSheet {
           size: 32,
         ),
         onPressed: () {
-          BlocProvider.of<BuildingInfoBloc>(context).add(ConcordiaBuildingInfoEvent(buildingCode, false));
+          BlocProvider.of<BuildingInfoBloc>(context)
+              .add(ConcordiaBuildingInfoEvent(buildingCode, false));
         },
       ),
     );

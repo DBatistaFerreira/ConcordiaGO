@@ -23,7 +23,8 @@ class Journey {
   List<Direction> toDirection() {
     var routeDirections = <Direction>[];
     for (var i = 0; i < routeSegments.length; i++) {
-      if (routeSegments[i].mainDirective.transitType == ModeOfTransport.transit) {
+      if (routeSegments[i].mainDirective.transitType ==
+          ModeOfTransport.transit) {
         routeDirections.add(routeSegments[i].mainDirective);
       }
       for (var j = 0; j < routeSegments[i].substeps.length; j++) {

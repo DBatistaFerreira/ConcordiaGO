@@ -1,4 +1,5 @@
-import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart'
+    as application_constants;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -67,10 +68,12 @@ class QuickMenuState extends State<QuickMenu> {
             // TODO
           ),
           ListTile(
-            leading: Icon(Icons.calendar_today),
-            title: Text('My Schedule'),
-            // TODO
-          ),
+              leading: Icon(Icons.calendar_today),
+              title: Text('My Schedule'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/calendars');
+              }),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),

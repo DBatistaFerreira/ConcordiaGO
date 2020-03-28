@@ -19,6 +19,9 @@ dependencies:
   url_launcher: ^5.4.2
   http : any
   sliding_up_panel: ^1.0.0
+  location_permissions: ^2.0.5
+  device_calendar: ^3.0.0+3
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +29,7 @@ dev_dependencies:
   flutter_launcher_name: ^0.0.1
   pedantic: ^1.8.0+1
   bloc_test: any
+  mockito: ^4.1.1
 
 flutter_launcher_name:
   name: "Concordia GO"

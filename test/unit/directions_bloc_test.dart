@@ -19,7 +19,8 @@ void main() {
   blocTest(
     'GetDirections event yields InstructionUpdate',
     build: () async => DirectionsBloc(),
-    act: (bloc) => bloc.add(GetDirections(LatLng(0, 0), LatLng(0, 0), 'Atlantic Ocean under West Africa')),
+    act: (bloc) => bloc.add(GetDirections(
+        LatLng(0, 0), LatLng(0, 0), 'Atlantic Ocean under West Africa')),
     expect: [
 //      isA<InstructionUpdate>(),
     ],

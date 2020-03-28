@@ -6,7 +6,8 @@ import 'package:concordia_go/utilities/direction.dart';
 import 'package:concordia_go/utilities/segment.dart';
 import 'package:concordia_go/utilities/journey.dart';
 import 'package:flutter/material.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/utilities/concordia_constants.dart'
+    as concordia_constants;
 
 var _apiKey = '';
 
@@ -26,7 +27,8 @@ class OutdoorPathService {
   * Update in Sprint 3 will change its layout to provide a more testable class
    */
 
-  static void transitDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
+  static void transitDirections(
+      startLat, startLng, endLat, endLng, buildingDestination) async {
     _singleDirections = <Direction>[];
     _listDirections = Journey();
     var url =
@@ -34,7 +36,8 @@ class OutdoorPathService {
     var response = await http.get(url); //Google Directions API call
     Map values = jsonDecode(response.body);
     var myPoints = PolyUtil();
-    var returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
+    var returnedValues =
+        values[concordia_constants.route][0][concordia_constants.legs][0];
     var returnedSteps = returnedValues[concordia_constants.steps];
     for (var i = 0; i < returnedSteps.length; i++) {
       var subInstruction = true;
@@ -44,17 +47,24 @@ class OutdoorPathService {
         arrival_time = returnedValues[concordia_constants.arrival_time]
             [concordia_constants.text]; //Arrival time extraction from API
       } catch (Exception) {
-        arrival_time = calculateArrivalTime(returnedValues[concordia_constants.duration][concordia_constants.text]);
+        arrival_time = calculateArrivalTime(
+            returnedValues[concordia_constants.duration]
+                [concordia_constants.text]);
       }
-      var pointArray = myPoints
-          .decode(returnedSteps[i][concordia_constants.polyline][concordia_constants.points]); //polyLine extraction
+      var pointArray = myPoints.decode(returnedSteps[i]
+              [concordia_constants.polyline]
+          [concordia_constants.points]); //polyLine extraction
       Segment newSegment;
-      if (returnedSteps[i][concordia_constants.travel_mode] == concordia_constants.walking) {
+      if (returnedSteps[i][concordia_constants.travel_mode] ==
+          concordia_constants.walking) {
         //Creating Walking directions if API specifies a walk path
-        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
+        var newDirection = toDirection(returnedSteps[i],
+            ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection); //Adding it to a segment
         try {
-          if (returnedSteps[0][concordia_constants.steps][i][concordia_constants.instruction] == null) {
+          if (returnedSteps[0][concordia_constants.steps][i]
+                  [concordia_constants.instruction] ==
+              null) {
             //Dealing with null cases from the directions API
             subInstruction = false;
           }
@@ -63,25 +73,33 @@ class OutdoorPathService {
         }
         if (subInstruction) {
           //If a null case is detected (CONTROL FLOW = FALSE), the main directive will match its subinstruction. Eliminating null values.
-          for (var j = 0; j < returnedSteps[i][concordia_constants.steps].length; j++) {
-            newDirection = toDirection(returnedSteps[i][concordia_constants.steps][j], ModeOfTransport.walking,
-                arrival_time, buildingDestination);
+          for (var j = 0;
+              j < returnedSteps[i][concordia_constants.steps].length;
+              j++) {
+            newDirection = toDirection(
+                returnedSteps[i][concordia_constants.steps][j],
+                ModeOfTransport.walking,
+                arrival_time,
+                buildingDestination);
             newSegment.addSubstep(newDirection);
           }
         } else {
           newSegment.addSubstep(
               newDirection); //Creating subdirections matching the initial direction PINK = WALKING DIRECTION
         }
-        addNewPolyline(Colors.pink, pointArray, i); //extracted polyLines are added to the primary polyLine set.
+        addNewPolyline(Colors.pink, pointArray,
+            i); //extracted polyLines are added to the primary polyLine set.
       } else {
         //If the transport type is not walking in the above control flow, a transit direction is detected. Two steps (Get on / Get off)
-        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.transit, arrival_time, buildingDestination);
-        newSegment =
-            Segment(newDirection); //Initial direction and segment created for getting onto the bus/subway/train
+        var newDirection = toDirection(returnedSteps[i],
+            ModeOfTransport.transit, arrival_time, buildingDestination);
+        newSegment = Segment(
+            newDirection); //Initial direction and segment created for getting onto the bus/subway/train
 
         newDirection = endTransit(
             //Direction for getting off the train
-            returnedSteps[i][concordia_constants.transit_details][concordia_constants.arrival_stop],
+            returnedSteps[i][concordia_constants.transit_details]
+                [concordia_constants.arrival_stop],
             ModeOfTransport.transit,
             arrival_time,
             buildingDestination);
@@ -89,8 +107,8 @@ class OutdoorPathService {
         addNewPolyline(Colors.teal, pointArray,
             i); //extracted polyLines are added to the primary polyLine set. TEAL = TRANSIT DIRECTION
       }
-      _listDirections
-          .addSegment(newSegment); //Loop iteration ends here. Segment created in the iteration is added to the list.
+      _listDirections.addSegment(
+          newSegment); //Loop iteration ends here. Segment created in the iteration is added to the list.
     }
     setDirections(); //Directions are transformed from Journey format to List<Direction> for easier UI presentation.
   }
@@ -101,7 +119,8 @@ class OutdoorPathService {
   * Provides directions for TRANSIT_TYPE = DRIVING
   *
    */
-  static void drivingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
+  static void drivingDirections(
+      startLat, startLng, endLat, endLng, buildingDestination) async {
     _singleDirections = <Direction>[];
     _listDirections = Journey();
     var url =
@@ -109,27 +128,40 @@ class OutdoorPathService {
     var response = await http.get(url);
     Map values = jsonDecode(response.body);
     var myPoints = PolyUtil();
-    var returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
+    var returnedValues =
+        values[concordia_constants.route][0][concordia_constants.legs][0];
     var returnedSteps = returnedValues[concordia_constants.steps];
     for (var i = 0; i < returnedSteps.length; i++) {
       var subInstruction = true;
-      var arrival_time = calculateArrivalTime(returnedValues[concordia_constants.duration][concordia_constants.text]);
-      var pointArray = myPoints.decode(returnedSteps[i][concordia_constants.polyline][concordia_constants.points]);
+      var arrival_time = calculateArrivalTime(
+          returnedValues[concordia_constants.duration]
+              [concordia_constants.text]);
+      var pointArray = myPoints.decode(returnedSteps[i]
+          [concordia_constants.polyline][concordia_constants.points]);
       Segment newSegment;
-      if (returnedSteps[i][concordia_constants.travel_mode] == concordia_constants.driving) {
-        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.driving, arrival_time, buildingDestination);
+      if (returnedSteps[i][concordia_constants.travel_mode] ==
+          concordia_constants.driving) {
+        var newDirection = toDirection(returnedSteps[i],
+            ModeOfTransport.driving, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
-          if (returnedSteps[i][concordia_constants.steps][0][concordia_constants.instruction] == null) {
+          if (returnedSteps[i][concordia_constants.steps][0]
+                  [concordia_constants.instruction] ==
+              null) {
             subInstruction = false;
           }
         } catch (Exception) {
           subInstruction = false;
         }
         if (subInstruction) {
-          for (var j = 0; j < returnedSteps[i][concordia_constants.steps].length; j++) {
-            newDirection = toDirection(returnedSteps[i][concordia_constants.steps][j], ModeOfTransport.driving,
-                arrival_time, buildingDestination);
+          for (var j = 0;
+              j < returnedSteps[i][concordia_constants.steps].length;
+              j++) {
+            newDirection = toDirection(
+                returnedSteps[i][concordia_constants.steps][j],
+                ModeOfTransport.driving,
+                arrival_time,
+                buildingDestination);
             newSegment.addSubstep(newDirection);
           }
         } else {
@@ -138,11 +170,13 @@ class OutdoorPathService {
 
         addNewPolyline(Colors.teal, pointArray, i);
       } else {
-        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
+        var newDirection = toDirection(returnedSteps[i],
+            ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
 
         newDirection = endTransit(
-            returnedSteps[i][concordia_constants.transit_details][concordia_constants.arrival_stop],
+            returnedSteps[i][concordia_constants.transit_details]
+                [concordia_constants.arrival_stop],
             ModeOfTransport.walking,
             arrival_time,
             buildingDestination);
@@ -162,7 +196,8 @@ class OutdoorPathService {
   *
    */
 
-  static void walkingDirections(startLat, startLng, endLat, endLng, buildingDestination) async {
+  static void walkingDirections(
+      startLat, startLng, endLat, endLng, buildingDestination) async {
     _singleDirections = <Direction>[];
     _listDirections = Journey();
     var url =
@@ -170,27 +205,40 @@ class OutdoorPathService {
     var response = await http.get(url);
     Map values = jsonDecode(response.body);
     var myPoints = PolyUtil();
-    var returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
+    var returnedValues =
+        values[concordia_constants.route][0][concordia_constants.legs][0];
     var returnedSteps = returnedValues[concordia_constants.steps];
     for (var i = 0; i < returnedSteps.length; i++) {
       var subInstruction = true;
-      var arrival_time = calculateArrivalTime(returnedValues[concordia_constants.duration][concordia_constants.text]);
-      var pointArray = myPoints.decode(returnedSteps[i][concordia_constants.polyline][concordia_constants.points]);
+      var arrival_time = calculateArrivalTime(
+          returnedValues[concordia_constants.duration]
+              [concordia_constants.text]);
+      var pointArray = myPoints.decode(returnedSteps[i]
+          [concordia_constants.polyline][concordia_constants.points]);
       Segment newSegment;
-      if (returnedSteps[i][concordia_constants.travel_mode] == concordia_constants.walking) {
-        var newDirection = toDirection(returnedSteps[i], ModeOfTransport.walking, arrival_time, buildingDestination);
+      if (returnedSteps[i][concordia_constants.travel_mode] ==
+          concordia_constants.walking) {
+        var newDirection = toDirection(returnedSteps[i],
+            ModeOfTransport.walking, arrival_time, buildingDestination);
         newSegment = Segment(newDirection);
         try {
-          if (returnedSteps[i][concordia_constants.steps][0][concordia_constants.instruction] == null) {
+          if (returnedSteps[i][concordia_constants.steps][0]
+                  [concordia_constants.instruction] ==
+              null) {
             subInstruction = false;
           }
         } catch (Exception) {
           subInstruction = false;
         }
         if (subInstruction) {
-          for (var j = 0; j < returnedSteps[i][concordia_constants.steps].length; j++) {
-            newDirection = toDirection(returnedSteps[i][concordia_constants.steps][j], ModeOfTransport.walking,
-                arrival_time, buildingDestination);
+          for (var j = 0;
+              j < returnedSteps[i][concordia_constants.steps].length;
+              j++) {
+            newDirection = toDirection(
+                returnedSteps[i][concordia_constants.steps][j],
+                ModeOfTransport.walking,
+                arrival_time,
+                buildingDestination);
             newSegment.addSubstep(newDirection);
           }
         } else {
@@ -209,13 +257,18 @@ class OutdoorPathService {
   * Takes the the raw data from the Directions API JSON and transforms it into the Direction object used by the application
   *
    */
-  static Direction toDirection(apiJson, ModeOfTransport transportType, String arrival_time, destination) {
+  static Direction toDirection(apiJson, ModeOfTransport transportType,
+      String arrival_time, destination) {
     var instruction = apiJson[concordia_constants.instruction];
-    var lat = apiJson[concordia_constants.start_location][concordia_constants.latitude];
-    var lng = apiJson[concordia_constants.start_location][concordia_constants.longitude];
+    var lat = apiJson[concordia_constants.start_location]
+        [concordia_constants.latitude];
+    var lng = apiJson[concordia_constants.start_location]
+        [concordia_constants.longitude];
     var coordinate = LatLng(lat, lng);
-    var distance = apiJson[concordia_constants.distance][concordia_constants.text];
-    return Direction(instruction, coordinate, transportType, distance, arrival_time, destination);
+    var distance =
+        apiJson[concordia_constants.distance][concordia_constants.text];
+    return Direction(instruction, coordinate, transportType, distance,
+        arrival_time, destination);
   }
 
   /*
@@ -224,13 +277,17 @@ class OutdoorPathService {
   *
    */
 
-  static Direction endTransit(apiJson, ModeOfTransport transportType, String arrival_time, destination) {
+  static Direction endTransit(apiJson, ModeOfTransport transportType,
+      String arrival_time, destination) {
     var instruction = 'Get off at ${apiJson[concordia_constants.name]}';
-    var lat = apiJson[concordia_constants.location][concordia_constants.latitude];
-    var lng = apiJson[concordia_constants.location][concordia_constants.longitude];
+    var lat =
+        apiJson[concordia_constants.location][concordia_constants.latitude];
+    var lng =
+        apiJson[concordia_constants.location][concordia_constants.longitude];
     var coordinate = LatLng(lat, lng);
     var distance = '';
-    return Direction(instruction, coordinate, transportType, distance, arrival_time, destination);
+    return Direction(instruction, coordinate, transportType, distance,
+        arrival_time, destination);
   }
 
   /*
@@ -240,7 +297,11 @@ class OutdoorPathService {
    */
 
   static void addNewPolyline(Color colorChoice, pointValues, index) {
-    _polyLines.add(Polyline(polylineId: PolylineId('${index}'), width: 4, points: pointValues, color: colorChoice));
+    _polyLines.add(Polyline(
+        polylineId: PolylineId('${index}'),
+        width: 4,
+        points: pointValues,
+        color: colorChoice));
   }
 
   static Set<Polyline> getPolylines() {
@@ -325,16 +386,19 @@ class OutdoorPathService {
     if (durationToSplit.length == 2) {
       duration = int.parse(durationToSplit[0]);
     } else {
-      duration = int.parse(durationToSplit[0]) * 60 + int.parse(durationToSplit[2]);
+      duration =
+          int.parse(durationToSplit[0]) * 60 + int.parse(durationToSplit[2]);
     }
     var currentTime = DateTime.now();
     var newDuration = Duration(days: 0, hours: 0, minutes: duration);
     var calculated_time = currentTime.add(newDuration);
     var arrival_time;
     if (calculated_time.minute > 9) {
-      arrival_time = '${calculated_time.hour.toString()}:${calculated_time.minute.toString()}';
+      arrival_time =
+          '${calculated_time.hour.toString()}:${calculated_time.minute.toString()}';
     } else {
-      arrival_time = '${calculated_time.hour.toString()}:0${calculated_time.minute.toString()}';
+      arrival_time =
+          '${calculated_time.hour.toString()}:0${calculated_time.minute.toString()}';
     }
     return arrival_time;
   }
