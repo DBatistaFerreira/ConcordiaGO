@@ -85,7 +85,6 @@ class IndoorMapState extends State<IndoorMapScreen> {
               alignment: Alignment.bottomCenter,
               child: stopNavigationButton(),
             ),
-            // To remove later
           ],
         ));
   }
