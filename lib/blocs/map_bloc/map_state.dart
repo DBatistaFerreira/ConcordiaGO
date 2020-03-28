@@ -50,7 +50,7 @@ class IndoorMap extends MapState {
   final String _floorLevel;
   final String _buildingCode;
   final bool _showDrawer;
-  final List<Node> _paths;
+  final Map<String,List<Node>> _paths;
 
   const IndoorMap(this._buildingCode, this._floorLevel, this._svgFile, this._showDrawer, this._paths);
 
@@ -62,5 +62,5 @@ class IndoorMap extends MapState {
 
   bool get showDrawer => _showDrawer;
 
-  List<Node> get paths => _paths;
+  Map<String,List<Node>> get paths => _paths;
 }

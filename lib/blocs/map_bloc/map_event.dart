@@ -78,7 +78,7 @@ class DirectionLinesEvent extends MapEvent {
 
 class FloorChange extends MapEvent {
   final String _floorLevel;
-  final List<Node> _paths;
+  final Map<String,List<Node>> _paths;
   final String _buildingCode;
   final bool _showDrawer;
 
@@ -89,7 +89,7 @@ class FloorChange extends MapEvent {
     var svgFile = floor_maps.floorPlan[_floorLevel];
     if (_paths != null&&isPathOnFloorLevel()) {
       List<List<int>> pathMap = List();
-      for (var path in _paths) {
+      for (var path in _paths[_floorLevel]) {
         pathMap.add(floor_maps.nodeGraph[_floorLevel][path.getId()]);
       }
       svgFile = IndoorPathService.parse(svgFile, pathMap);
@@ -97,6 +97,6 @@ class FloorChange extends MapEvent {
     return IndoorMap(_buildingCode, _floorLevel, svgFile, _showDrawer, this._paths);
   }
   bool isPathOnFloorLevel(){
-    return (_paths[0].getId().substring(3,4)==_floorLevel.substring(_floorLevel.length - 1));
+    return (_paths[_floorLevel]!=null);
   }
 }
