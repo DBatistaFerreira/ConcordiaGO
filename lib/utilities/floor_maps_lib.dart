@@ -1,7 +1,7 @@
 library floor_maps_lib;
 
 const availableIndoorFloors = {
-  'H': ['H8', 'H9'],
+  'H': ['H1','H8', 'H9'],
   'MB': ['MB1', 'MBS2'],
   'CC': ['CC1'],
   'VE': ['VE1', 'VE2'],
@@ -188,6 +188,56 @@ const nodeGraph = {
 };
 
 const floorPlan = {
+  'H1':'''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+ <metadata id="metadata7">image/svg+xml</metadata>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="1026" width="1026" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g display="inline" id="layer4">
+   <g transform="matrix(-0.99582912,0,0,-0.99239778,1021.6871,1021.4805) " id="g4587">
+    <rect fill="#ffffff" stroke-width="2.011846" stroke-miterlimit="4" id="rect3365" width="1013.302501" height="458.709127" x="1.55452" y="178.912988" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="rect4205" width="110.446667" height="163.469611" x="545.404409" y="433.245793" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="rect4207" width="104.456804" height="138.469633" x="375.947637" y="498.245715" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_1" width="134.446642" height="41.469768" x="545.404407" y="596.245568" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_2" width="155.456745" height="216.469557" x="858.947004" y="420.2458" stroke="#000000"/>
+    <path fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" d="m562.38935,422.13631l39.4444,98.13938l78.20147,116.39946l189.37019,0l78.96815,-114.47551l36.03399,-101.96976l-125.73567,-71.83231l-146.97089,-0.00381l-17.5381,-0.16285l-131.77354,73.9054z" id="path4332" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="rect4336" width="210.537891" height="93.456811" x="181.191299" y="351.007898" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_3" width="379.456429" height="73.469703" x="0.948075" y="563.245638" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_4" width="182.456686" height="73.469703" x="197.947821" y="498.245723" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_5" width="197.456658" height="73.469703" x="2.94809" y="498.245723" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_8" width="86.456825" height="138.469633" x="374.947637" y="306.245971" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_9" width="76.53805" height="38.456885" x="537.190838" y="179.008123" stroke="#000000"/>
+    <text fill="#000000" stroke="#000000" stroke-width="0"  x="754.000003" y="474.666713" id="svg_11" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(-180 773.161376953125,466.62530517578125) ">110</text>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_13" width="86.456825" height="138.469633" x="0.280953" y="432.912644" stroke="#000000"/>
+    <text fill="#000000" stroke="#000000" stroke-width="0"  x="127.333316" y="541.333371" id="svg_14" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(180 146.49468994140625,533.2865600585938) ">118</text>
+    <text fill="#000000" stroke="#000000" stroke-width="0"  x="551.333329" y="501.333382" id="svg_16" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(180 570.4924926757812,493.28182983398443) ">112</text>
+    <text fill="#000000" stroke="#000000" stroke-width="0"  x="411.333327" y="569.333371" id="svg_18" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(180 430.49734497070307,561.2865600585938) ">115</text>
+    <text fill="#000000" stroke="#000000" stroke-width="0"  x="209.999984" y="398.666695" id="svg_19" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(180 230.04931640625,390.6147766113281) ">102</text>
+    <text fill="#000000" stroke="#000000" stroke-width="0"  x="952.666685" y="574.666717" id="svg_20" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(180 972.7180786132812,566.6252441406251) ">109</text>
+    <text fill="#000000" stroke="#000000" stroke-width="0"  x="399.333327" y="382.666705" id="svg_21" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(180 419.3827209472656,374.6145935058594) ">196</text>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_22" width="51.204712" height="38.456885" x="323.857493" y="405.674801" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_23" width="49.871382" height="38.456885" x="274.524162" y="405.674801" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_24" width="30.456822" height="79.802975" x="0.280953" y="432.91265" stroke="#000000"/>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_26" width="86.456825" height="81.136292" x="0.280953" y="356.912651" stroke="#000000"/>
+    <line fill="none" stroke="#000000" stroke-width="2.011846"  x1="216.666648" y1="226.666683" x2="365.999993" y2="226.333335" id="svg_28"  />
+    <line fill="none" stroke="#000000" stroke-width="2.011846"  x1="365.999994" y1="177.33335" x2="365.666659" y2="225" id="svg_29"  />
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_30" width="181.871427" height="38.456885" x="614.524182" y="179.008123" stroke="#000000"/>
+    <text fill="#000000" stroke="#000000" stroke-width="0"  x="599.333331" y="224.000038" id="svg_31" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(180 662.0493774414062,206.61495971679685) ">103</text>
+    <rect fill="#ffd8d8" stroke-width="2.011846" stroke-miterlimit="4" id="svg_33" width="34.456822" height="119.802972" x="0.280953" y="236.912633" stroke="#000000"/>
+    <text fill="#000000" stroke-width="0"  x="-5.516575" y="303.990943" id="svg_34" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(180 17.886415481567383,296.0997314453125) matrix(0.8335283994674683,0,0,1,5.800494831055403,0) " stroke="#000000">101</text>
+    <line fill="none" stroke="#000000" stroke-width="2.011846"  x1="595.333338" y1="524.000033" x2="595.000003" y2="571.666683" id="svg_35"   transform="rotate(-101 595.1668701171875,547.8333740234376) "/>
+    <line fill="none" stroke-width="2.011846"  x1="557.345746" y1="482.721017" x2="559.654413" y2="554.279042" id="svg_36"   transform="rotate(-21 558.5000610351562,518.500244140625) " stroke="#000000"/>
+    <text fill="#000000" stroke="#000000" stroke-width="0" x="571.333334" y="580.000056" id="svg_37" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(180 590.497314453125,571.95361328125) ">114</text>
+    <line fill="none" stroke="#000000" stroke-width="2.011846"  x1="285.999994" y1="302.33335" x2="285.666659" y2="350" id="svg_6"  />
+    <line fill="none" stroke="#000000" stroke-width="2.011846"  x1="215.999994" y1="302.33335" x2="215.666659" y2="350" id="svg_7"  />
+   </g>
+  </g>
+ </g>
+</svg>''',
   'H9': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
@@ -493,7 +543,6 @@ const floorPlan = {
   <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_135" y="604.998207" x="250.99612" stroke-width="0" stroke="#000000" fill="#000000">854</text>
  </g>
 </svg>''',
-  'H1': '''''',
   'MB1': '''<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
 
  <metadata id="metadata7">image/svg+xml</metadata>
