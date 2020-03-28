@@ -1,3 +1,4 @@
+import 'package:concordia_go/models/node.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 abstract class MapState {
@@ -49,8 +50,9 @@ class IndoorMap extends MapState {
   final String _floorLevel;
   final String _buildingCode;
   final bool _showDrawer;
+  final List<Node> _paths;
 
-  const IndoorMap(this._buildingCode, this._floorLevel, this._svgFile, this._showDrawer);
+  const IndoorMap(this._buildingCode, this._floorLevel, this._svgFile, this._showDrawer, this._paths);
 
   String get svgFile => _svgFile;
 
@@ -59,4 +61,6 @@ class IndoorMap extends MapState {
   String get buildingCode => _buildingCode;
 
   bool get showDrawer => _showDrawer;
+
+  List<Node> get paths => _paths;
 }

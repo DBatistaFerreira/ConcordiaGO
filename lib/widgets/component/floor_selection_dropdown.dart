@@ -1,3 +1,4 @@
+import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/utilities/floor_maps_lib.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
@@ -14,6 +15,7 @@ class FloorSelectionDropdown extends StatefulWidget {
 class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
   String dropdownValue;
   String _buildingCode;
+  List<Node> _paths;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
             if (state is IndoorMap) {
               dropdownValue = state.floorLevel;
               _buildingCode = state.buildingCode;
+              _paths = state.paths;
             }
             return DropdownButtonHideUnderline(
               child: DropdownButton<String>(
@@ -44,7 +47,7 @@ class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
                 focusColor: Colors.black,
                 style: TextStyle(color: application_constants.concordiaRed, fontSize: 28),
                 onChanged: (String newValue) {
-                  BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode, newValue));
+                  BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode, newValue, _paths));
                 },
                 items: availableIndoorFloors[_buildingCode].map<DropdownMenuItem<String>>(
                   (String value) {
