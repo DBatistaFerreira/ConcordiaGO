@@ -15,7 +15,7 @@ class FloorSelectionDropdown extends StatefulWidget {
 class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
   String dropdownValue;
   String _buildingCode;
-  List<Node> _paths;
+  Map<String,List<Node>> _paths;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
                 focusColor: Colors.black,
                 style: TextStyle(color: application_constants.concordiaRed, fontSize: 28),
                 onChanged: (String newValue) {
-                  BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode, newValue, _paths));
+                  BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode, newValue,_paths));
                 },
                 items: availableIndoorFloors[_buildingCode].map<DropdownMenuItem<String>>(
                   (String value) {

@@ -33,7 +33,7 @@ class _SearchResultsState extends State<SearchResults> {
 
   void _onTapGeneral(Dobject result) {
     if (result.hasNode()) {
-      BlocProvider.of<MapBloc>(context).add(FloorChange(result.building.code, result.floor, [result.node], true));
+      BlocProvider.of<MapBloc>(context).add(FloorChange(result.building.code, result.floor, {result.floor:[result.node]}, true));
       BlocProvider.of<BuildingInfoBloc>(context)
           .add(ConcordiaRoomInfoEvent(result.building.code, result.floor, result.node.getId()));
       Navigator.pushNamed(context, '/indoormap');

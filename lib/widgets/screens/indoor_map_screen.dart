@@ -28,7 +28,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
   String _floorSVG;
   String _buildingCode;
   String _floorLevel;
-  List<Node> _paths;
+  Map<String,List<Node>> _paths;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _showDrawer = false;
 
@@ -96,7 +96,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
                         concordia_constants.edge_indices['H8']);
                     final sp = DShortestPath(
                         g, g.getNodes()['100811'], g.getNodes()['100845']);
-                    var path = sp.calcShortestPath();
+                    var path = {'H8':sp.calcShortestPath()};
                     BlocProvider.of<MapBloc>(context)
                         .add(FloorChange(_buildingCode, 'H8', path));
                   },
@@ -112,7 +112,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
                         concordia_constants.edge_indices['H8']);
                     final sp = DShortestPath(
                         g, g.getNodes()['100859'], g.getNodes()['100832']);
-                    var path = sp.calcShortestPath();
+                    var path =  {'H8':sp.calcShortestPath()};
                     BlocProvider.of<MapBloc>(context)
                         .add(FloorChange(_buildingCode, 'H8', path));
                     buildInfoSheet(_showDrawer);
