@@ -75,7 +75,6 @@ class BuildingInfoSheet {
           onPressed: () {
             BlocProvider.of<MapBloc>(context)
                 .add(FloorChange(building.code, availableIndoorFloors[building.code].first));
-            Navigator.pop(context);
             Navigator.pushNamed(context, '/indoormap');
           },
         ),

@@ -1,9 +1,13 @@
+import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/direction_handler.dart';
 import 'package:concordia_go/models/direction_request.dart';
 import 'package:concordia_go/models/shortest_path.dart';
 import 'package:concordia_go/models/graph.dart';
 import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as cc;
+import 'package:concordia_go/widgets/component/google_maps_component.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DifferentFloorDirectionHandler implements DirectionHandler {
   DirectionHandler _nextHandler;
@@ -41,6 +45,12 @@ class DifferentFloorDirectionHandler implements DirectionHandler {
       var destination_shortest_path = destination_algorithm.calcShortestPath();
 
       // TODO: implement passing of shortest path to indoor directions view and draw path on SVG
+      // TODO: implement user interaction for next floor shortest_path
+
+      Navigator.pushNamed(mapContext, '/indoormap');
+      BlocProvider.of<MapBloc>(mapContext).add(
+          FloorChange(request.source.building.code,request.source.floor,{request.source.floor:source_shortest_path, request.destination.floor:destination_shortest_path}));
+
     } else {
       _nextHandler.handle(request);
     }

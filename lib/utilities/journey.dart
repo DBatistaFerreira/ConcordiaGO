@@ -33,14 +33,4 @@ class Journey {
     return routeDirections;
   }
 
-  void printRoute() {
-    for (var i = 0; i < routeSegments.length; i++) {
-      routeSegments[i].mainDirective.instruction;
-      routeSegments[i].mainDirective.icons;
-      for (var j = 0; j < routeSegments[i].substeps.length; j++) {
-        print('   -' + routeSegments[i].substeps[j].instruction);
-        print('   -' + routeSegments[i].substeps[j].icons.toString());
-      }
-    }
-  }
 }
