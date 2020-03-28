@@ -40,12 +40,12 @@ class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
                 value: dropdownValue,
                 icon: Icon(
                   Icons.import_export,
-                  color: application_constants.concordiaRed,
+                  color: _paths!=null&&_paths[dropdownValue]==null?Colors.grey:application_constants.concordiaRed,
                 ),
                 iconSize: 40,
                 elevation: 16,
                 focusColor: Colors.black,
-                style: TextStyle(color: application_constants.concordiaRed, fontSize: 28),
+                style: TextStyle(color: _paths!=null&& _paths[dropdownValue]==null?Colors.grey:application_constants.concordiaRed, fontSize: 28),
                 onChanged: (String newValue) {
                   BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode, newValue,_paths));
                 },
