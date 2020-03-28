@@ -1401,6 +1401,9 @@ const buildings = {
 
 final rooms = [
   // region H building rooms
+  /// H1
+  Classroom(buildings['H'], '1', '110'),
+
   /// H8
   Classroom(buildings['H'], '8', '801'),
   Classroom(buildings['H'], '8', '802'),
@@ -1480,6 +1483,20 @@ final rooms = [
   Classroom(buildings['H'], '9', '981'),
 
   // endregion H building rooms
+
+  //Region MB building Rooms
+  Classroom(buildings['MB'], '1', '115'),
+  Classroom(buildings['MB'], '1', '130'),
+  Classroom(buildings['MB'], '1', '210'),
+  Classroom(buildings['MB'], '1', '301'),
+  Classroom(buildings['MB'], '1', '347'),
+  Classroom(buildings['MB'], '1', '349'),
+  Classroom(buildings['MB'], '1', '410'),
+  Classroom(buildings['MB'], '1', '424'),
+  Classroom(buildings['MB'], '1', '432'),
+  Classroom(buildings['MB'], '1', '437'),
+  Classroom(buildings['MB'], '1', '493'),
+
 ];
 
 // region floor plan edges
