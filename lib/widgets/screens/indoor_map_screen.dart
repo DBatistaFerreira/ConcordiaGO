@@ -175,7 +175,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
 
   void buildInfoSheet(bool showDrawer) {
     if (showDrawer) {
-      RoomInfoSheet.buildInfoSheet(_scaffoldKey.currentState);
+      RoomInfoSheet.buildInfoSheet(_scaffoldKey.currentState, _scaffoldKey.currentContext);
     }
   }
 }

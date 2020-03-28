@@ -14,8 +14,8 @@ class RoomInfoSheet {
   static double tileFontSize = 14.0;
   static double iconSize = screenWidth / 14;
 
-  static void buildInfoSheet(ScaffoldState scaffoldState) {
-    scaffoldState.showBottomSheet(
+  static void buildInfoSheet(ScaffoldState scaffoldState, BuildContext mainContext) {
+    bottomSheetController = scaffoldState.showBottomSheet(
       (context) {
         return BlocBuilder<BuildingInfoBloc, BuildingInfoState>(
           builder: (context, state) {
@@ -31,7 +31,7 @@ class RoomInfoSheet {
                   children: [
                     roomInfoHeader(context, building, floor, room),
                     buildingInfoAddress(building),
-                    buildingInfoFooter(context, building, floor, room),
+                    buildingInfoFooter(mainContext, building, floor, room),
                   ],
                 ),
               );
@@ -137,9 +137,10 @@ class RoomInfoSheet {
               ),
               onPressed: () {
                 // TODO Add navigation bar
+                bottomSheetController.close();
                 Navigator.pop(context);
                 BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
-                    source: Dobject.indoor(Node(room), building,floor),
+                    source: Dobject.indoor(Node(room), building,floor, 'H'+room.substring(3)),
                     destination: Dobject.building(building)));
               },
             ),

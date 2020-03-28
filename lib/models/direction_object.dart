@@ -20,10 +20,11 @@ class Dobject {
     _transportMode = null;
   }
 
-  Dobject.indoor(Node node, ConcordiaBuilding building, String floor) {
+  Dobject.indoor(Node node, ConcordiaBuilding building, String floor, String name) {
     _node = node;
     _building = building;
     _floor = floor;
+    _name = name;
   }
 
   Dobject.node(Node node, ConcordiaBuilding building, String floor, String name) {
