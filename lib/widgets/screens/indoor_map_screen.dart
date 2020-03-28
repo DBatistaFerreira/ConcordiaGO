@@ -86,42 +86,6 @@ class IndoorMapState extends State<IndoorMapScreen> {
               child: stopNavigationButton(),
             ),
             // To remove later
-            Column(
-              children: <Widget>[
-                FlatButton(
-                  onPressed: () {
-                    final g = Graph('H8', concordia_constants.edges['H8'],
-                        concordia_constants.edge_indices['H8']);
-                    g.setNodesFromEdgeIndices(
-                        concordia_constants.edge_indices['H8']);
-                    final sp = DShortestPath(
-                        g, g.getNodes()['100811'], g.getNodes()['100845']);
-                    var path = {'8':sp.calcShortestPath()};
-                    BlocProvider.of<MapBloc>(context)
-                        .add(FloorChange(_buildingCode, '8', path));
-                  },
-                  child: Text(
-                    "Test: 811-845",
-                  ),
-                ),
-                FlatButton(
-                  onPressed: () {
-                    final g = Graph('H8', concordia_constants.edges['H8'],
-                        concordia_constants.edge_indices['H8']);
-                    g.setNodesFromEdgeIndices(
-                        concordia_constants.edge_indices['H8']);
-                    final sp = DShortestPath(
-                        g, g.getNodes()['100859'], g.getNodes()['100832']);
-                    var path =  {'8':sp.calcShortestPath()};
-                    BlocProvider.of<MapBloc>(context)
-                        .add(FloorChange(_buildingCode, '8', path));
-                  },
-                  child: Text(
-                    "Test: 859-832",
-                  ),
-                )
-              ],
-            ),
           ],
         ));
   }
