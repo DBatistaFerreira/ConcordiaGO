@@ -9,7 +9,7 @@ import 'package:concordia_go/utilities/constant_json.dart' as json;
 
 void main() {
   OutdoorPathService.instance.clearAll();
-  test('NicksMagicalChooserofDirections', () async {
+  test('Direction Type Selection', () async {
     expect(
         await OutdoorPathService.instance
             .getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.walking),
@@ -30,7 +30,7 @@ void main() {
         -1);
   });
 
-  test('toDirection', () {
+  test('JSON to Direction', () {
     OutdoorPathService.instance.clearAll();
     var mockJSON = {
       'html_instructions': 'testInstruction1',
@@ -49,7 +49,7 @@ void main() {
     expect(testDirection.destination, 'TestHall');
   });
 
-  test('endTransit', () {
+  test('JSON to End Transit Direction', () {
     var mockJSON = {
       "location": {"lat": 45.515212, "lng": -73.561050},
       "name": "Berri-UQAM"
@@ -65,7 +65,7 @@ void main() {
     expect(testDirection.destination, 'TestHall');
   });
 
-  test('addPolylinesAndGetPolyLines', () {
+  test('PolyLine Creation and Handling', () {
     OutdoorPathService.instance.clearAll();
     var testPoints = PolyUtil();
     expect(OutdoorPathService.instance.getPolylines(), []);
@@ -77,7 +77,7 @@ void main() {
     expect(savedPolylines.elementAt(0).points.contains(LatLng(45.457730040000005, -73.90346000000001)), false);
   });
 
-  test('getRoute', () {
+  test('Route Getter', () {
     OutdoorPathService.instance.clearAll();
     List<Direction> directionsList = List<Direction>();
     directionsList.add(Direction("test1", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
@@ -90,7 +90,7 @@ void main() {
     expect(OutdoorPathService.instance.getRoute(), directionsList);
   });
 
-  test('getDirection Methods', () {
+  test('Single Direction Getters', () {
     OutdoorPathService.instance.clearAll();
     List<Direction> directionsList = List<Direction>();
     var directions = [
@@ -116,7 +116,7 @@ void main() {
     expect(OutdoorPathService.instance.getNextInstruction(), directions[4]);
   });
 
-  test('calculateArrivalTime', () {
+  test('Calculate New Arrival Time', () {
     OutdoorPathService.instance.clearAll();
     expect(OutdoorPathService.instance.calculateArrivalTime('2 mins'),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 2));
@@ -128,7 +128,7 @@ void main() {
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 495));
   });
 
-  test('addWalkingPath', () {
+  test('Create Walking Path', () {
     OutdoorPathService.instance.clearAll();
     expect(OutdoorPathService.instance.addWalkingPath(json.testJSON, 'Test Hall', 0),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 6));

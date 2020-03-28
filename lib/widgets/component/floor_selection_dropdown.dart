@@ -14,13 +14,8 @@ class FloorSelectionDropdown extends StatefulWidget {
 
 class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
   String dropdownValue;
-<<<<<<< HEAD
-  String _buildingCode='H';
-  Map<String,List<Node>> _paths;
-=======
-  String _buildingCode;
+  String _buildingCode = 'H';
   Map<String, List<Node>> _paths;
->>>>>>> 42fd976c345a4985f51660bd1d9c4ff13bc34087
 
   @override
   Widget build(BuildContext context) {

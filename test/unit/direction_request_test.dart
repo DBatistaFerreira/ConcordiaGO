@@ -31,6 +31,7 @@ void main() {
     final source2 = Dobject();
     final dest2 = Dobject();
     // endregion setter test fixtures
+
     test('setters should set the value of the field to the given value', () {
       final request = DirectionRequest(source, dest);
 
