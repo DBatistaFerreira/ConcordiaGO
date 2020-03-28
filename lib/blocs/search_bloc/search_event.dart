@@ -1,5 +1,5 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/models/search_result_model.dart';
+import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/services/search_service.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,13 +36,13 @@ class EndSearchEvent extends SearchEvent {
 }
 
 class SearchDirectionsEvent extends SearchEvent {
-  final SearchResult startingPoint;
-  final SearchResult destination;
+  final Dobject source;
+  final Dobject destination;
 
-  const SearchDirectionsEvent({this.startingPoint, this.destination});
+  const SearchDirectionsEvent({this.source, this.destination});
 
   @override
   SearchState createState() {
-    return SearchDirectionsState(startingPoint, destination);
+    return SearchDirectionsState(source, destination);
   }
 }

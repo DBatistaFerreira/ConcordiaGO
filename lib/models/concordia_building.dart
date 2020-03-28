@@ -26,9 +26,13 @@ class ConcordiaBuilding {
     this.services,
   });
 
+  String campusName() {
+    return describeEnum(campus);
+  }
+
   String campusString() {
-    var campusName = describeEnum(campus);
-    return '${campusName} Campus';
+    var name = campusName();
+    return '${name} Campus';
   }
 }
 

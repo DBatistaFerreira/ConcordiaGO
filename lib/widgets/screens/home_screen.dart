@@ -149,12 +149,13 @@ class HomePageState extends State<HomeScreen> {
                 );
               } else {
                 _initGeolocationServices().then((value) => BlocProvider.of<MapBloc>(context)
-                    .add(MoveCameraEvent(currentLocation, concordia_constants.poiZoomLevel)));
+                    .add(MoveCameraEvent(currentLocation, concordia_constants.poiZoomLevel, false)));
               }
             },
           );
         } else {
-          BlocProvider.of<MapBloc>(context).add(MoveCameraEvent(currentLocation, concordia_constants.poiZoomLevel));
+          BlocProvider.of<MapBloc>(context)
+              .add(MoveCameraEvent(currentLocation, concordia_constants.poiZoomLevel, false));
         }
       },
     );

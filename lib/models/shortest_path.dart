@@ -8,7 +8,7 @@ class DShortestPath {
   int _distance;
   Map<String, Node> _visited;
   Map<String, Node> _unvisited;
-  List<Node> _shortest_path;
+  List<Node> _shortestPath;
   List _table;
 
   // region constructors
@@ -19,7 +19,7 @@ class DShortestPath {
     _distance = 0;
     _visited = <String, Node>{};
     _unvisited = Map.from(graph.getNodes());
-    _shortest_path = <Node>[];
+    _shortestPath = <Node>[];
     _table = [];
   }
 
@@ -30,7 +30,7 @@ class DShortestPath {
     _distance = 0;
     _visited = <String, Node>{};
     _unvisited = <String, Node>{};
-    _shortest_path = <Node>[];
+    _shortestPath = <Node>[];
     _table = [];
   }
   // endregion constructors
@@ -54,7 +54,7 @@ class DShortestPath {
   }
 
   List<Node> getShortestPath() {
-    return _shortest_path;
+    return _shortestPath;
   }
 
   List getTable() {
@@ -82,7 +82,7 @@ class DShortestPath {
   }
 
   void setShortestPath(List<Node> shortest_path) {
-    _shortest_path = shortest_path;
+    _shortestPath = shortest_path;
   }
 
   void setTable(List table) {
@@ -158,7 +158,7 @@ class DShortestPath {
 
     _generateNodePathList();
 
-    return _shortest_path;
+    return _shortestPath;
   }
 
   void _generateNodePathList() {
@@ -166,11 +166,11 @@ class DShortestPath {
 
     var node = _destination;
     while (!_getTableNode(node).isEqualTo(_source)) {
-      _shortest_path.insert(0, node);
+      _shortestPath.insert(0, node);
       node = _getTableVia(node);
     }
 
-    _shortest_path.insert(0, _source);
+    _shortestPath.insert(0, _source);
   }
 
   void _greedyDijkstra() {

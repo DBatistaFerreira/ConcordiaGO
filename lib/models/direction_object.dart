@@ -9,92 +9,124 @@ class Dobject {
   LatLng _coordinates;
   String _floor;
   String _name;
-  ModeOfTransport _transport_mode;
+  ModeOfTransport _transportMode;
 
-  Dobject(){
+  Dobject() {
     _node = null;
     _building = null;
     _coordinates = null;
     _floor = null;
     _name = null;
-    _transport_mode = null;
+    _transportMode = null;
   }
 
-  Dobject.indoor(Node node, ConcordiaBuilding building, String floor){
+  Dobject.indoor(Node node, ConcordiaBuilding building, String floor) {
     _node = node;
     _building = building;
     _floor = floor;
   }
 
-  Dobject.outdoor({Node node, ConcordiaBuilding building, LatLng coordinates, String floor, String name, ModeOfTransport transport_mode}){
+  Dobject.node(Node node, ConcordiaBuilding building, String floor, String name) {
+    _node = node;
+    _building = building;
+    _coordinates = building.coordinates;
+    _floor = floor;
+    _name = name;
+    _transportMode = null;
+  }
+
+  Dobject.building(ConcordiaBuilding building) {
+    _building = building;
+    _coordinates = building.coordinates;
+    _name = building.name;
+  }
+
+  Dobject.hotspot(LatLng coordinates, String name) {
+    _coordinates = coordinates;
+    _name = name;
+  }
+
+  Dobject.outdoor(
+      {Node node,
+      ConcordiaBuilding building,
+      LatLng coordinates,
+      String floor,
+      String name,
+      ModeOfTransport transport_mode}) {
     _node = node;
     _building = building;
     _coordinates = coordinates;
     _floor = floor;
     _name = name;
-    _transport_mode = transport_mode;
+    _transportMode = transport_mode;
   }
 
   Node get node => _node;
-  ConcordiaBuilding get building => _building;
-  LatLng get coordinates => _coordinates;
-  String get floor => _floor;
-  String get name => _name;
-  ModeOfTransport get transport_mode => _transport_mode;
 
-  set node(Node node){
+  ConcordiaBuilding get building => _building;
+
+  LatLng get coordinates => _coordinates;
+
+  String get floor => _floor;
+
+  String get name => _name;
+
+  ModeOfTransport get transportMode => _transportMode;
+
+  set node(Node node) {
     _node = node;
   }
 
-  set building(ConcordiaBuilding building){
+  set building(ConcordiaBuilding building) {
     _building = building;
   }
 
-  set coordinates(LatLng coordinates){
+  set coordinates(LatLng coordinates) {
     _coordinates = coordinates;
   }
 
-  set floor(String floor){
+  set floor(String floor) {
     _floor = floor;
   }
 
-  set name(String name){
+  set name(String name) {
     _name = name;
   }
 
-  set transport_mode(ModeOfTransport transport_mode){
-    _transport_mode = transport_mode;
+  set transportMode(ModeOfTransport transport_mode) {
+    _transportMode = transport_mode;
   }
 
-  bool hasNode(){
+  bool hasNode() {
     return (_node != null);
   }
 
-  bool hasBuilding(){
+  bool hasBuilding() {
     return (_building != null);
   }
 
-  bool hasCoordinates(){
+  bool hasCoordinates() {
     return (_coordinates != null);
   }
 
-  bool hasFloor(){
+  bool hasFloor() {
     return (_floor != null);
   }
 
-  bool hasName(){
+  bool hasName() {
     return (_name != null);
   }
 
-  bool hasTransportMode(){
-    return (_transport_mode != null);
+  bool hasTransportMode() {
+    return (_transportMode != null);
   }
 
-  bool isIndoor(){
+  bool isIndoor() {
     return (_node != null && _building != null && _floor != null);
   }
 
-  bool isOutdoor(){
+  bool isOutdoor() {
     // TODO: implement is outdoor checks
+    return true;
   }
 }

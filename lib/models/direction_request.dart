@@ -4,6 +4,7 @@ import 'package:concordia_go/models/direction_object.dart';
 class DirectionRequest {
   /// Direction object that holds the information of the source.
   Dobject _source;
+
   /// Direction object that holds the information of the destination.
   Dobject _destination;
 
@@ -16,11 +17,11 @@ class DirectionRequest {
   Dobject get source => _source;
   Dobject get destination => _destination;
 
-  set source(Dobject source){
+  set source(Dobject source) {
     _source = source;
   }
 
-  set destination(Dobject destination){
+  set destination(Dobject destination) {
     _destination = destination;
   }
 }
