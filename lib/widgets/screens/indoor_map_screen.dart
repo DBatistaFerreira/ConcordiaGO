@@ -2,6 +2,7 @@ import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
+import 'package:concordia_go/utilities/floor_maps_lib.dart';
 import 'package:concordia_go/widgets/component/floor_selection_dropdown.dart';
 import 'package:concordia_go/widgets/component/room_info_sheet.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,9 +21,9 @@ class IndoorMapScreen extends StatefulWidget {
 }
 
 class IndoorMapState extends State<IndoorMapScreen> {
-  String _floorSVG;
-  String _buildingCode;
-  String _floorLevel;
+  String _floorSVG = floorPlan['H1'];
+  String _buildingCode = 'H';
+  String _floorLevel = '1';
   Map<String, List<Node>> _paths;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _showDrawer = false;
