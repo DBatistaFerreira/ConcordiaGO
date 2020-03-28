@@ -26,7 +26,7 @@ class OutdoorPathService {
   int _currentInstruction = 0;
   bool isShuttlePossible = true;
   SchedulerService schedulerService = SchedulerService.instance;
-  List<Dobject> dObjectList = <Dobject>[];
+  List<Dobject> dobjectList = <Dobject>[];
 
   /*
   * The transitDirections method is the core method used for outdoor path directions. It operates in steps
@@ -304,10 +304,10 @@ class OutdoorPathService {
 
   Direction getNextInstruction() {
     if (_currentInstruction == _singleDirections.length - 1) {
-      if (dObjectList.isNotEmpty){
+      if (dobjectList.isNotEmpty) {
         SameFloorDirectionHandler sameFloorDirectionHandler = SameFloorDirectionHandler();
-        sameFloorDirectionHandler.handle(DirectionRequest(dObjectList[0],dObjectList[1]));
-      }else{
+        sameFloorDirectionHandler.handle(DirectionRequest(dobjectList[0], dobjectList[1]));
+      } else {
         //End Navigation clearAll()
       }
       return _singleDirections[_currentInstruction];
@@ -343,7 +343,7 @@ class OutdoorPathService {
     _polyLines.clear();
     isShuttlePossible = true;
     schedulerService.clearAll();
-    dObjectList.clear();
+    dobjectList.clear();
   }
 
   /*
@@ -528,10 +528,10 @@ class OutdoorPathService {
     return jsonDecode(response.body);
   }
 
-  void addDObject(Dobject1, Dobject2){
-    dObjectList = List<Dobject>();
-    dObjectList.add(Dobject1);
-    dObjectList.add(Dobject2);
+  void addDObject(Dobject dobject1, Dobject dobject2) {
+    dobjectList = List<Dobject>();
+    dobjectList.add(dobject1);
+    dobjectList.add(dobject2);
   }
 
   Future<bool> isSgwCloser(startLat, startLng) async {

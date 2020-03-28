@@ -9,52 +9,44 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/blocs/bloc.dart';
 
 class OutdoorDirectionHandler implements DirectionHandler {
-
-  DirectionHandler _next_handler;
+  DirectionHandler _nextHandler;
 
   @override
   void setNext(DirectionHandler handler) {
-    _next_handler = handler;
+    _nextHandler = handler;
   }
 
   @override
   void handle(DirectionRequest request) {
     if (canHandle(request)) {
-     handleOutdoorRequest(request);
-
+      handleOutdoorRequest(request);
     } else {
-      _next_handler.handle(request);
+      _nextHandler.handle(request);
     }
   }
 
   void handleOutdoorRequest(DirectionRequest request) {
-     var departureCoordinate = _isHotspot(request.source) ? request.source.coordinates : request.source.building.coordinates;
-     var destinationCoordinate = _isHotspot(request.destination) ? request.destination.coordinates : request.destination.building.coordinates;
-     var destination = _isHotspot(request.destination) ? request.destination.name : request.destination.building.name;
+    var departureCoordinate =
+        _isHotspot(request.source) ? request.source.coordinates : request.source.building.coordinates;
+    var destinationCoordinate =
+        _isHotspot(request.destination) ? request.destination.coordinates : request.destination.building.coordinates;
+    var destination = _isHotspot(request.destination) ? request.destination.name : request.destination.building.name;
 
-    BlocProvider.of<DirectionsBloc>(mapContext).add(GetDirectionsEvent(
-        departureCoordinate,
-        destinationCoordinate,
-        destination,
-        request.destination.transport_mode));
-
+    BlocProvider.of<DirectionsBloc>(mapContext).add(
+        GetDirectionsEvent(departureCoordinate, destinationCoordinate, destination, request.destination.transportMode));
 
     if (request.destination.hasNode()) {
-      var newSource = Dobject.outdoor(node: Node('990000'),
-          building: request.destination.building,
-          floor: '1');
+      var newSource = Dobject.outdoor(node: Node('990000'), building: request.destination.building, floor: '1');
       OutdoorPathService.instance.addDObject(newSource, request.destination);
     }
   }
-
 
   @override
   bool canHandle(DirectionRequest request) {
     return !request.source.hasNode();
   }
 
-  bool _isHotspot(newDObject){
+  bool _isHotspot(newDObject) {
     return (newDObject.building == null && newDObject.coordinates != null);
   }
 }
-

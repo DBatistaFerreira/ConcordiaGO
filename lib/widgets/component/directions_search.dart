@@ -1,5 +1,7 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/models/search_result_model.dart';
+import 'package:concordia_go/models/direction_object.dart';
+import 'package:concordia_go/models/direction_request.dart';
+import 'package:concordia_go/services/direction_chain.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/direction.dart';
@@ -14,8 +16,8 @@ class DirectionsSearch extends StatefulWidget {
 }
 
 class DirectionsSearchState extends State<DirectionsSearch> {
-  SearchResult startingPoint;
-  SearchResult destination;
+  Dobject source;
+  Dobject destination;
   TextEditingController _startTextController = TextEditingController();
   TextEditingController _destTextController = TextEditingController();
 
@@ -38,9 +40,9 @@ class DirectionsSearchState extends State<DirectionsSearch> {
     return BlocListener<SearchBloc, SearchState>(
       listener: (context, state) {
         if (state is SearchDirectionsState) {
-          startingPoint = state.startingPoint ?? startingPoint;
+          source = state.source ?? source;
           destination = state.destination ?? destination;
-          _startTextController.text = startingPoint?.name;
+          _startTextController.text = source?.name;
           _destTextController.text = destination?.name;
         }
       },
@@ -73,7 +75,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                           fillColor: Colors.white,
                         ),
                         onTap: () {
-                          BlocProvider.of<SearchBloc>(context).add(QueryChangeEvent('', SearchType.startingPoint));
+                          BlocProvider.of<SearchBloc>(context).add(QueryChangeEvent('', SearchType.source));
                           FocusScope.of(context).requestFocus(focus);
                         },
                       ),
@@ -147,7 +149,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                           }
                         }
                         BlocProvider.of<SearchBloc>(context)
-                            .add(SearchDirectionsEvent(startingPoint: startingPoint, destination: destination));
+                            .add(SearchDirectionsEvent(source: source, destination: destination));
                       },
                       isSelected: isSelected,
                       renderBorder: false,
@@ -183,17 +185,13 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                               borderRadius: BorderRadius.circular(24.0),
                             ),
                             onPressed: () {
-                              if (startingPoint != null && destination != null) {
+                              if (source != null && destination != null) {
                                 BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
                                 OutdoorPathService.instance.clearAll();
-                                var modeOfTransport = getModeOfTransportFromButton(isSelected);
-                                debugPrint('SENDING EVENT');
-                                BlocProvider.of<DirectionsBloc>(context).add(GetDirectionsEvent(
-                                    startingPoint.coordinates,
-                                    destination.coordinates,
-                                    destination.name,
-                                    modeOfTransport));
-                                debugPrint('DONE SENDING');
+                                source.transportMode = getModeOfTransportFromButton(isSelected);
+                                destination.transportMode = getModeOfTransportFromButton(isSelected);
+                                var request = DirectionRequest(source, destination);
+                                DirectionChain.instance.head.handle(request);
                               }
                             },
                             icon: Icon(

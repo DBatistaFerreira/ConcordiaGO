@@ -1,4 +1,4 @@
-import 'package:concordia_go/models/search_result_model.dart';
+import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
 
 class SearchService {
@@ -6,13 +6,13 @@ class SearchService {
 
   static final SearchService instance = SearchService._privateConstructor();
 
-  List<SearchResult> getSearchResults(String query) {
-    var searchResults = <SearchResult>[];
+  List<Dobject> getSearchResults(String query) {
+    var searchResults = <Dobject>[];
 
     for (var building in buildings.values) {
       if (building.name.toLowerCase().contains(query.trim().toLowerCase()) ||
           building.code.toLowerCase().contains(query.trim().toLowerCase())) {
-        searchResults.add(OutdoorConcordiaResult(building));
+        searchResults.add(Dobject.building(building));
       }
     }
 
@@ -20,7 +20,7 @@ class SearchService {
       for (var room in rooms) {
         var name = room.building.code + room.number;
         if (name.toLowerCase().contains(query.toLowerCase().replaceAll(' ', ''))) {
-          searchResults.add(ClassroomResult(room));
+          searchResults.add(Dobject.node(room.node, room.building, room.floor, name));
         }
       }
     }

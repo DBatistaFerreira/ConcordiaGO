@@ -1,7 +1,5 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/models/classroom.dart';
 import 'package:concordia_go/models/concordia_building.dart';
-import 'package:concordia_go/models/search_result_model.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +13,15 @@ class RoomInfoSheet {
   static double iconSize = screenWidth / 14;
 
   static void buildInfoSheet(ScaffoldState scaffoldState) {
-    scaffoldState.showBottomSheet((context){
+    scaffoldState.showBottomSheet(
+      (context) {
         return BlocBuilder<BuildingInfoBloc, BuildingInfoState>(
           builder: (context, state) {
             var sheetHeight = (2 * screenHeight / 12) + (screenHeight / 11);
 
             if (state is ConcordiaRoomInfoState) {
               var building = state.building;
-              var room = 'H'+state.room.substring(3);
+              var room = 'H' + state.room.substring(3);
               var floor = state.floor;
               return Container(
                 height: sheetHeight,

@@ -11,12 +11,15 @@ class InitialMapState extends MapState {
 class BasicMapState extends MapState {
   final LatLng _cameraPosition;
   final double _zoom;
+  final bool _showMarker;
 
-  const BasicMapState(this._cameraPosition, this._zoom);
+  const BasicMapState(this._cameraPosition, this._zoom, this._showMarker);
 
   LatLng get cameraPosition => _cameraPosition;
 
   double get zoom => _zoom;
+
+  bool get showMarker => _showMarker;
 }
 
 class ConcordiaMapState extends MapState {

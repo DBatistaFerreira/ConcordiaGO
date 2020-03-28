@@ -21,6 +21,7 @@ class ConcordiaBuildingInfoEvent extends BuildingInfoEvent {
     return ConcordiaBuildingInfoState(concordia_constants.buildings[_buildingCode], _moreInfo);
   }
 }
+
 class ConcordiaRoomInfoEvent extends BuildingInfoEvent {
   final String _room;
   final String _floor;
@@ -33,4 +34,3 @@ class ConcordiaRoomInfoEvent extends BuildingInfoEvent {
     return ConcordiaRoomInfoState(concordia_constants.buildings[_buildingCode], _floor, _room);
   }
 }
-

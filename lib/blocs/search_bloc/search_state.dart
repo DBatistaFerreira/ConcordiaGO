@@ -1,4 +1,4 @@
-import 'package:concordia_go/models/search_result_model.dart';
+import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:meta/meta.dart';
 
@@ -10,12 +10,12 @@ abstract class SearchState {
 class InitialSearchState extends SearchState {}
 
 class SearchResultsState extends SearchState {
-  final List<SearchResult> _results;
+  final List<Dobject> _results;
   final SearchType _searchType;
 
   const SearchResultsState(this._results, this._searchType);
 
-  List<SearchResult> get results => _results;
+  List<Dobject> get results => _results;
 
   SearchType get searchType => _searchType;
 }
@@ -25,8 +25,8 @@ class NotSearchingState extends SearchState {
 }
 
 class SearchDirectionsState extends SearchState {
-  final SearchResult startingPoint;
-  final SearchResult destination;
+  final Dobject source;
+  final Dobject destination;
 
-  const SearchDirectionsState(this.startingPoint, this.destination);
+  const SearchDirectionsState(this.source, this.destination);
 }

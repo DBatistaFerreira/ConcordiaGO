@@ -87,6 +87,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                   myLocationEnabled: true,
                   myLocationButtonEnabled: false,
                   buildingsEnabled: false,
+                  // TODO: Extract marker logic to methods
                   markers: state is ConcordiaMapState
                       ? {
                           Marker(
@@ -100,7 +101,14 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                             },
                           ),
                         }
-                      : null,
+                      : state is BasicMapState && state.showMarker == true
+                          ? {
+                              Marker(
+                                markerId: MarkerId('POI'),
+                                position: state.cameraPosition,
+                              )
+                            }
+                          : null,
                   polylines: _polylines,
                   polygons: _buildingShapes,
                   onCameraMove: (value) {

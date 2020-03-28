@@ -17,12 +17,13 @@ abstract class MapEvent {
 class MoveCameraEvent extends MapEvent {
   final LatLng _coordinates;
   final double _zoom;
+  final bool _showMarker;
 
-  const MoveCameraEvent(this._coordinates, this._zoom);
+  const MoveCameraEvent(this._coordinates, this._zoom, this._showMarker);
 
   @override
   Future<MapState> createState() async {
-    return BasicMapState(_coordinates, _zoom);
+    return BasicMapState(_coordinates, _zoom, _showMarker);
   }
 }
 
@@ -48,7 +49,7 @@ class SwitchCampusEvent extends MapEvent {
     var coordinates;
     await getFurthestCampus().then((value) => coordinates = value);
 
-    return BasicMapState(coordinates, concordia_constants.campusZoomLevel);
+    return BasicMapState(coordinates, concordia_constants.campusZoomLevel, false);
   }
 
   Future<LatLng> getFurthestCampus() async {
@@ -81,7 +82,7 @@ class FloorChange extends MapEvent {
   final String _buildingCode;
   final bool _showDrawer;
 
-  const FloorChange(this._buildingCode, this._floorLevel, [this._paths, this._showDrawer=false]);
+  const FloorChange(this._buildingCode, this._floorLevel, [this._paths, this._showDrawer = false]);
 
   @override
   Future<MapState> createState() async {

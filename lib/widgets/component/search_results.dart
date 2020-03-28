@@ -1,6 +1,8 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/models/search_result_model.dart';
+import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
+import 'package:concordia_go/utilities/concordia_constants.dart';
+import 'package:concordia_go/widgets/component/building_info_sheet.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +17,43 @@ class SearchResults extends StatefulWidget {
 }
 
 class _SearchResultsState extends State<SearchResults> {
+  void _onTap(Dobject result, SearchType searchType) {
+    switch (searchType) {
+      case SearchType.general:
+        _onTapGeneral(result);
+        break;
+      case SearchType.source:
+        _onTapSource(result);
+        break;
+      case SearchType.destination:
+        _onTapDestination(result);
+        break;
+    }
+  }
+
+  void _onTapGeneral(Dobject result) {
+    if (result.hasNode()) {
+      BlocProvider.of<MapBloc>(context).add(FloorChange(result.building.code, result.floor, [result.node], true));
+      BlocProvider.of<BuildingInfoBloc>(context)
+          .add(ConcordiaRoomInfoEvent(result.building.code, result.floor, result.node.getId()));
+      Navigator.pushNamed(context, '/indoormap');
+    } else if (result.hasBuilding()) {
+      BlocProvider.of<MapBloc>(context).add(SelectConcordiaBuildingEvent(result.building.code));
+      BlocProvider.of<BuildingInfoBloc>(mc).add(ConcordiaBuildingInfoEvent(result.building.code, false));
+      BuildingInfoSheet.buildInfoSheet(context);
+    } else {
+      BlocProvider.of<MapBloc>(context).add(MoveCameraEvent(result.coordinates, poiZoomLevel, true));
+    }
+  }
+
+  void _onTapSource(Dobject result) {
+    BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(source: result));
+  }
+
+  void _onTapDestination(Dobject result) {
+    BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(destination: result));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchState>(
@@ -28,13 +67,13 @@ class _SearchResultsState extends State<SearchResults> {
                 Container(
                   height: screenHeight / 10,
                 ),
-                state.searchType == SearchType.startingPoint
+                state.searchType == SearchType.source
                     ? ListTile(
                         trailing: Icon(Icons.gps_fixed),
                         title: Text('Your Location'),
                         onTap: () {
-                          BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent(
-                              startingPoint: YourLocationResult('Your Location', currentLocation)));
+                          BlocProvider.of<SearchBloc>(context)
+                              .add(SearchDirectionsEvent(source: Dobject.hotspot(currentLocation, 'Your Location')));
                         },
                       )
                     : Container(
@@ -54,7 +93,7 @@ class _SearchResultsState extends State<SearchResults> {
                                 child: ListTile(
                                   title: Text(_result.name),
                                   trailing: Text(
-                                    _result is OutdoorConcordiaResult ? _result.campusInitials() : '',
+                                    _result.building?.campusName() ?? '',
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.grey,
@@ -62,7 +101,8 @@ class _SearchResultsState extends State<SearchResults> {
                                     ),
                                   ),
                                   onTap: () {
-                                    _result.onTap(context, state.searchType);
+                                    BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
+                                    _onTap(_result, state.searchType);
                                     if (!FocusScope.of(context).hasPrimaryFocus) {
                                       FocusScope.of(context).unfocus();
                                     }

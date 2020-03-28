@@ -7,12 +7,12 @@ import 'package:mockito/mockito.dart';
 class MockSwitchCampusEvent extends Mock implements SwitchCampusEvent {
   @override
   Future<MapState> createState() async {
-    return BasicMapState(null, 0);
+    return BasicMapState(null, 0, false);
   }
 }
 
 void main() {
-  final moveCameraEvent = MoveCameraEvent(buildings['H'].coordinates, 1.0);
+  final moveCameraEvent = MoveCameraEvent(buildings['H'].coordinates, 1.0, false);
   final selectConcordiaBuildingEvent = SelectConcordiaBuildingEvent(buildings['H'].code);
   final switchCampusEvent = MockSwitchCampusEvent();
   final directionLinesEvent = DirectionLinesEvent(null);

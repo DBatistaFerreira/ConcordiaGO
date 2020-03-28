@@ -39,7 +39,8 @@ class GetDirectionsEvent extends DirectionsEvent {
     );
 
     Direction newInstruction = await outdoorPathService.getFirstInstruction();
-    BlocProvider.of<MapBloc>(mc).add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel));
+    BlocProvider.of<MapBloc>(mc)
+        .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
     BlocProvider.of<MapBloc>(mc).add(DirectionLinesEvent(outdoorPathService.getPolylines()));
     revealPanel();
     return InstructionState(newInstruction, outdoorPathService.getRoute());
@@ -52,7 +53,8 @@ class NextInstructionEvent extends DirectionsEvent {
   @override
   Future<DirectionsState> createState() async {
     Direction newInstruction = await outdoorPathService.getNextInstruction();
-    BlocProvider.of<MapBloc>(mc).add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel));
+    BlocProvider.of<MapBloc>(mc)
+        .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
     return InstructionState(newInstruction, _state.directionsList);
   }
 }
@@ -63,7 +65,8 @@ class PreviousInstructionEvent extends DirectionsEvent {
   @override
   Future<DirectionsState> createState() async {
     Direction newInstruction = await outdoorPathService.getPreviousInstruction();
-    BlocProvider.of<MapBloc>(mc).add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel));
+    BlocProvider.of<MapBloc>(mc)
+        .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
     return InstructionState(newInstruction, _state.directionsList);
   }
 }
