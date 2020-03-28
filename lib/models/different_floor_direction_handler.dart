@@ -44,9 +44,6 @@ class DifferentFloorDirectionHandler implements DirectionHandler {
       var source_shortest_path = source_algorithm.calcShortestPath();
       var destination_shortest_path = destination_algorithm.calcShortestPath();
 
-      // TODO: implement passing of shortest path to indoor directions view and draw path on SVG
-      // TODO: implement user interaction for next floor shortest_path
-
       Navigator.pushNamed(mapContext, '/indoormap');
       BlocProvider.of<MapBloc>(mapContext).add(FloorChange(request.source.building.code, request.source.floor,
           {request.source.floor: source_shortest_path, request.destination.floor: destination_shortest_path}));
