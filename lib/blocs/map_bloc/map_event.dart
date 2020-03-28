@@ -86,11 +86,12 @@ class FloorChange extends MapEvent {
 
   @override
   Future<MapState> createState() async {
-    var svgFile = floor_maps.floorPlan[_floorLevel];
+    var floorCode = _buildingCode+_floorLevel;
+    var svgFile = floor_maps.floorPlan[floorCode];
     if (_paths != null&&isPathOnFloorLevel()) {
       List<List<int>> pathMap = List();
       for (var path in _paths[_floorLevel]) {
-        pathMap.add(floor_maps.nodeGraph[_floorLevel][path.getId()]);
+        pathMap.add(floor_maps.nodeGraph[floorCode][path.getId()]);
       }
       svgFile = IndoorPathService.parse(svgFile, pathMap);
     }

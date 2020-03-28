@@ -96,9 +96,9 @@ class IndoorMapState extends State<IndoorMapScreen> {
                         concordia_constants.edge_indices['H8']);
                     final sp = DShortestPath(
                         g, g.getNodes()['100811'], g.getNodes()['100845']);
-                    var path = {'H8':sp.calcShortestPath()};
+                    var path = {'8':sp.calcShortestPath()};
                     BlocProvider.of<MapBloc>(context)
-                        .add(FloorChange(_buildingCode, 'H8', path));
+                        .add(FloorChange(_buildingCode, '8', path));
                   },
                   child: Text(
                     "Test: 811-845",
@@ -112,10 +112,9 @@ class IndoorMapState extends State<IndoorMapScreen> {
                         concordia_constants.edge_indices['H8']);
                     final sp = DShortestPath(
                         g, g.getNodes()['100859'], g.getNodes()['100832']);
-                    var path =  {'H8':sp.calcShortestPath()};
+                    var path =  {'8':sp.calcShortestPath()};
                     BlocProvider.of<MapBloc>(context)
-                        .add(FloorChange(_buildingCode, 'H8', path));
-                    buildInfoSheet(_showDrawer);
+                        .add(FloorChange(_buildingCode, '8', path));
                   },
                   child: Text(
                     "Test: 859-832",

@@ -1,11 +1,11 @@
 library floor_maps_lib;
 
 const availableIndoorFloors = {
-  'H': ['H1','H8', 'H9'],
-  'MB': ['MB1', 'MBS2'],
-  'CC': ['CC1'],
-  'VE': ['VE1', 'VE2'],
-  'VL': ['VL1', 'VL2']
+  'H': ['1','8', '9'],
+  'MB': ['1', 'S2'],
+  'CC': ['1'],
+  'VE': ['1', '2'],
+  'VL': ['1', '2']
 };
 
 const nodeGraph = {
