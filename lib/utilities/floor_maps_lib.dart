@@ -359,7 +359,6 @@ const floorPlan = {
     <rect fill="#ffd8d8" stroke="#000000" stroke-width="2" stroke-miterlimit="4" transform="matrix(-1.0041883,0,0,-1.0076605,1025.9663,1029.3055) " y="53.510307" x="150.04068" height="106.13573" width="90.534554" id="rect4696"/>
     <path fill="#ffd8d8" stroke="#000000" stroke-width="2" stroke-miterlimit="4" id="rect4698" d="m1015.767513,123.95403l0,-75.606027l-48.044134,0l0,61.46729l-7.060699,0l0,14.138736l7.060699,0l48.044134,0z"/>
     <path fill="#ffd8d8" stroke="#000000" stroke-width="2" stroke-miterlimit="4" id="path4703" d="m561.139777,288.10384l-15.633465,-15.199521l-13.155881,15.199511l28.789346,0.00001z"/>
-    <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_4" y="12.904205" x="316.999229" stroke-width="0" stroke="#000000" fill="#000000"/>
    </g>
   </g>
   <text stroke="#000000" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_8" y="812.907495" x="531.000109" stroke-width="0" fill="#000000"/>
