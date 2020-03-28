@@ -20,7 +20,7 @@ class SearchService {
       for (var room in rooms) {
         var name = room.building.code + room.number;
         if (name.toLowerCase().contains(query.toLowerCase().replaceAll(' ', ''))) {
-          searchResults.add(Dobject.node(room.node, room.building, room.floor, name));
+          searchResults.add(Dobject.indoor(room.node, room.building, room.floor, name));
         }
       }
     }

@@ -8,23 +8,22 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   blocTest(
     'Get Search Result',
-    build: () async {
-      return SearchBloc();
-    },
+    build: () async => SearchBloc(),
     act: (bloc) => bloc.add(QueryChangeEvent('H', SearchType.general)),
-    expect: [
-      isA<SearchResultsState>(),
-    ],
+    expect: [isA<SearchResultsState>()],
   );
 
   blocTest(
     'End Searching',
-    build: () async {
-      return SearchBloc();
-    },
+    build: () async => SearchBloc(),
     act: (bloc) => bloc.add(EndSearchEvent()),
-    expect: [
-      isA<NotSearchingState>(),
-    ],
+    expect: [isA<NotSearchingState>()],
+  );
+
+  blocTest(
+    'Search Directions',
+    build: () async => SearchBloc(),
+    act: (bloc) => bloc.add(SearchDirectionsEvent()),
+    expect: [isA<SearchDirectionsState>()],
   );
 }

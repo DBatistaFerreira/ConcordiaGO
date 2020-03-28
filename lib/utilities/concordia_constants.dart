@@ -46,7 +46,7 @@ const loyolaCampus = {
 };
 
 const double poiZoomLevel = 17.5;
-const double campusZoomLevel = 16.5;
+const double campusZoomLevel = 16.0;
 const double navZoomLevel = 16.0;
 
 const buildings = {
@@ -10431,7 +10431,7 @@ const edges = {
     ],
   ],
   // endregion H8 floor plan edges
-  
+
   // region H9 floor plan edges
   'H9':
       [

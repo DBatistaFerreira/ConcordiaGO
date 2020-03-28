@@ -1,4 +1,5 @@
 import 'package:concordia_go/models/concordia_building.dart';
+import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
 import 'package:concordia_go/widgets/screens/indoor_map_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,7 +29,7 @@ class Application extends StatelessWidget {
           create: (context) => BuildingInfoBloc(),
         ),
         BlocProvider<DirectionsBloc>(
-          create: (context) => DirectionsBloc(),
+          create: (context) => DirectionsBloc(OutdoorPathService.instance),
         ),
         BlocProvider<SearchBloc>(
           create: (context) => SearchBloc(),

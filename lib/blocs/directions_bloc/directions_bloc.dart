@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc.dart';
 
 class DirectionsBloc extends Bloc<DirectionsEvent, DirectionsState> {
-  final OutdoorPathService outdoorPathService = OutdoorPathService.instance;
+  final OutdoorPathService _outdoorPathService;
+
+  DirectionsBloc(this._outdoorPathService);
 
   @override
   DirectionsState get initialState => InitialDirectionsState();
@@ -17,6 +19,6 @@ class DirectionsBloc extends Bloc<DirectionsEvent, DirectionsState> {
     if (!(event is GetDirectionsEvent)) {
       event.state = state;
     }
-    yield await event.createState();
+    yield await event.createState(_outdoorPathService);
   }
 }

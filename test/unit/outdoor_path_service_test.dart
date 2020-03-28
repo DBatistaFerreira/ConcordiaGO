@@ -12,23 +12,21 @@ void main() {
   test('NicksMagicalChooserofDirections', () async {
     expect(
         await OutdoorPathService.instance
-            .nicksMagicalChooserOfDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.walking),
+            .getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.walking),
         1);
     expect(
         await OutdoorPathService.instance
-            .nicksMagicalChooserOfDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.driving),
+            .getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.driving),
         2);
     expect(
         await OutdoorPathService.instance
-            .nicksMagicalChooserOfDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.transit),
+            .getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.transit),
         3);
     expect(
         await OutdoorPathService.instance
-            .nicksMagicalChooserOfDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.shuttle),
+            .getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.shuttle),
         4);
-    expect(
-        await OutdoorPathService.instance
-            .nicksMagicalChooserOfDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', 'testing'),
+    expect(await OutdoorPathService.instance.getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', 'testing'),
         -1);
   });
 
