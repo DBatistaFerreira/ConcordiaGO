@@ -16,6 +16,7 @@ void main() {
   final selectConcordiaBuildingEvent = SelectConcordiaBuildingEvent(buildings['H'].code);
   final switchCampusEvent = MockSwitchCampusEvent();
   final directionLinesEvent = DirectionLinesEvent(null);
+  final floorChangeEvent = FloorChange('H','8');
 
   blocTest(
     'Send move camera event',
@@ -49,5 +50,14 @@ void main() {
       return bloc.add(directionLinesEvent);
     },
     expect: [isA<DirectionMapState>()],
+  );
+
+  blocTest(
+    'Send floor change event',
+    build: () async => MapBloc(),
+    act: (bloc) {
+      return bloc.add(floorChangeEvent);
+    },
+    expect: [isA<IndoorMap>()],
   );
 }

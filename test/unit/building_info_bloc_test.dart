@@ -16,4 +16,15 @@ void main() {
     },
     expect: [isA<ConcordiaBuildingInfoState>()],
   );
+
+  final eventIndoor = ConcordiaRoomInfoEvent('H','8','837');
+
+  blocTest(
+    'Get Concordia Room Info',
+    build: () async => BuildingInfoBloc(),
+    act: (bloc) {
+      return bloc.add(eventIndoor);
+    },
+    expect: [isA<ConcordiaRoomInfoState>()],
+  );
 }
