@@ -24,12 +24,6 @@ class LoadIndoorMap extends StatelessWidget {
         BlocProvider<BuildingInfoBloc>(
           create: (context) => BuildingInfoBloc(),
         ),
-        BlocProvider<DirectionsBloc>(
-          create: (context) => DirectionsBloc(),
-        ),
-        BlocProvider<SearchBloc>(
-          create: (context) => SearchBloc(),
-        ),
       ],
       child: MaterialApp(
         home: IndoorMapScreen(),
