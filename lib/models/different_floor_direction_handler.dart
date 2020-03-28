@@ -33,9 +33,9 @@ class DifferentFloorDirectionHandler implements DirectionHandler {
 
       var escalator_node;
       if (int.parse(request.source.floor) > int.parse(request.destination.floor)) {
-        escalator_node = Node('130000');
+        escalator_node = Node('120000');
       } else {
-        escalator_node = Node('130001');
+        escalator_node = Node('120001');
       }
 
       var source_algorithm = DShortestPath(source_graph, request.source.node, escalator_node);
