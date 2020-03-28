@@ -9,12 +9,13 @@ abstract class DirectionsEvent {
   DirectionsState createState();
 }
 
-class GetDirectionsEvent extends DirectionsEvent {
+class GetDirections extends DirectionsEvent {
   final LatLng startCoordinates;
   final LatLng endCoordinates;
   final String destination;
 
-  const GetDirectionsEvent(this.startCoordinates, this.endCoordinates, this.destination);
+  const GetDirections(
+      this.startCoordinates, this.endCoordinates, this.destination);
 
   @override
   DirectionsState createState() {
@@ -23,8 +24,8 @@ class GetDirectionsEvent extends DirectionsEvent {
   }
 }
 
-class NextInstructionEvent extends DirectionsEvent {
-  const NextInstructionEvent();
+class NextDirection extends DirectionsEvent {
+  const NextDirection();
 
   @override
   DirectionsState createState() {
@@ -33,8 +34,8 @@ class NextInstructionEvent extends DirectionsEvent {
   }
 }
 
-class PreviousInstructionEvent extends DirectionsEvent {
-  const PreviousInstructionEvent();
+class PreviousDirection extends DirectionsEvent {
+  const PreviousDirection();
 
   @override
   DirectionsState createState() {

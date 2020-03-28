@@ -3,7 +3,7 @@ os: linux
 install:
   - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
   - cd ..
-  - git clone https://github.com/flutter/flutter.git -b beta
+  - git clone https://github.com/flutter/flutter.git -b stable
   - export PATH="$PATH":"$HOME/.pub-cache/bin"
   - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
   - cd ConcordiaGO
@@ -21,7 +21,7 @@ jobs:
       dart: stable
       os: linux
       script:
-        - dartfmt . -l 120 --fix -n --set-exit-if-changed
+        - dartfmt . --fix -n --set-exit-if-changed
         - flutter analyze
 
     - stage: tests

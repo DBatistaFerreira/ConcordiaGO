@@ -16,9 +16,12 @@ class DirectionsPanel extends StatefulWidget {
 class DirectionsPanelState extends State<DirectionsPanel> {
   @override
   Widget build(context) {
+    // ignore: omit_local_variable_types
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return BlocBuilder<DirectionsBloc, DirectionsState>(
       builder: (context, state) {
-        if (state is InstructionState) {
+        if (state is InstructionUpdate) {
           return Container(
             color: concordiaRed,
             child: Row(
@@ -34,7 +37,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                         child: Container(
                           color: concordiaRed,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 15.0, left: 5.0),
+                            padding:
+                                const EdgeInsets.only(top: 15.0, left: 5.0),
                             child: Align(
                               alignment: Alignment.topCenter,
                               child: getIcon(state.step.icons, screenWidth / 8),
@@ -69,7 +73,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                         child: Container(
                           color: concordiaRed,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 15.0, left: 10.0),
+                            padding:
+                                const EdgeInsets.only(top: 15.0, left: 10.0),
                             child: Text(
                               state.step.instruction,
                               style: TextStyle(
@@ -136,7 +141,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                   alignment: Alignment.topRight,
                                   child: IconButton(
                                     alignment: Alignment.topRight,
-                                    padding: EdgeInsets.only(top: 5.0, right: 5.0),
+                                    padding:
+                                        EdgeInsets.only(top: 5.0, right: 5.0),
                                     iconSize: screenWidth / 14,
                                     icon: Icon(
                                       Icons.close,
@@ -145,7 +151,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                     onPressed: () {
                                       showDialog(
                                         context: context,
-                                        builder: (BuildContext context) => exitNavAlert(context),
+                                        builder: (BuildContext context) =>
+                                            exitNavAlert(context),
                                         barrierDismissible: false,
                                       );
                                     },
@@ -173,7 +180,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                     ),
                                     iconSize: screenWidth / 8,
                                     onPressed: () {
-                                      BlocProvider.of<DirectionsBloc>(context).add(PreviousInstructionEvent());
+                                      BlocProvider.of<DirectionsBloc>(context)
+                                          .add(PreviousDirection());
                                     },
                                   ),
                                 ),
@@ -186,7 +194,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                     ),
                                     iconSize: screenWidth / 8,
                                     onPressed: () {
-                                      BlocProvider.of<DirectionsBloc>(context).add(NextInstructionEvent());
+                                      BlocProvider.of<DirectionsBloc>(context)
+                                          .add(NextDirection());
                                     },
                                   ),
                                 ),

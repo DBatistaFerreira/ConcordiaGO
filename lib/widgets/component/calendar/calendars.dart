@@ -1,4 +1,5 @@
-import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart'
+    as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/services.dart';
@@ -63,10 +64,14 @@ class _CalendarsPageState extends State<CalendarsPage> {
               itemCount: _calendars?.length ?? 0,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                  key: Key('${_calendars.indexWhere((c) => c.id == _calendars[index].id)}'),
+                  key: Key(
+                      '${_calendars.indexWhere((c) => c.id == _calendars[index].id)}'),
                   onTap: () async {
-                    await Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                      return CalendarEventsPage(_calendars[index],_deviceCalendarPlugin, key: Key('calendarEventsPage'));
+                    await Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return CalendarEventsPage(
+                          _calendars[index], _deviceCalendarPlugin,
+                          key: Key('calendarEventsPage'));
                     }));
                   },
                   child: Padding(
@@ -95,9 +100,9 @@ class _CalendarsPageState extends State<CalendarsPage> {
   void _retrieveCalendars() async {
     try {
       var permissionsGranted = await _deviceCalendarPlugin.hasPermissions();
-      if (!permissionsGranted.isSuccess) {
+      if (permissionsGranted.isSuccess && !permissionsGranted.data) {
         permissionsGranted = await _deviceCalendarPlugin.requestPermissions();
-        if (!permissionsGranted.isSuccess) {
+        if (!permissionsGranted.isSuccess || !permissionsGranted.data) {
           return;
         }
       }

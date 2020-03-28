@@ -42,7 +42,11 @@ class EventItem extends StatelessWidget {
                           width: _eventFieldNameWidth,
                           child: Text('Starts'),
                         ),
-                        Text(_calendarEvent == null ? '' : DateFormat.yMd().add_jm().format(_calendarEvent.start)),
+                        Text(_calendarEvent == null
+                            ? ''
+                            : DateFormat.yMd()
+                                .add_jm()
+                                .format(_calendarEvent.start)),
                       ],
                     ),
                   ),
@@ -57,7 +61,11 @@ class EventItem extends StatelessWidget {
                           width: _eventFieldNameWidth,
                           child: Text('Ends'),
                         ),
-                        Text(_calendarEvent.end == null ? '' : DateFormat.yMd().add_jm().format(_calendarEvent.end)),
+                        Text(_calendarEvent.end == null
+                            ? ''
+                            : DateFormat.yMd()
+                                .add_jm()
+                                .format(_calendarEvent.end)),
                       ],
                     ),
                   ),
@@ -72,7 +80,10 @@ class EventItem extends StatelessWidget {
                           width: _eventFieldNameWidth,
                           child: Text('All day?'),
                         ),
-                        Text(_calendarEvent.allDay != null && _calendarEvent.allDay ? 'Yes' : 'No')
+                        Text(_calendarEvent.allDay != null &&
+                                _calendarEvent.allDay
+                            ? 'Yes'
+                            : 'No')
                       ],
                     ),
                   ),

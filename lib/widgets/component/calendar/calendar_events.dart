@@ -5,16 +5,18 @@ import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart'
+    as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 
 import 'event_item.dart';
 
 class CalendarEventsPage extends StatefulWidget {
   final Calendar _calendar;
-  DeviceCalendarPlugin _deviceCalendarPlugin;
+  final DeviceCalendarPlugin _deviceCalendarPlugin;
 
-  CalendarEventsPage(this._calendar,this._deviceCalendarPlugin,  {Key key}) : super(key: key);
+  CalendarEventsPage(this._calendar, this._deviceCalendarPlugin, {Key key})
+      : super(key: key);
 
   @override
   _CalendarEventsPageState createState() {
@@ -74,7 +76,8 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
                     itemCount: _calendarEvents?.length ?? 0,
                     itemBuilder: (BuildContext context, int index) {
                       var _isFirst = index == 0;
-                      return EventItem(_calendarEvents[index], _onTapped, _isFirst);
+                      return EventItem(
+                          _calendarEvents[index], _onTapped, _isFirst);
                     },
                   ),
                 )
@@ -88,7 +91,8 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
     if (event != null) {
       BlocProvider.of<CalendarBloc>(context).add(GetClass(event));
     }
-    final refreshEvents = await Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+    final refreshEvents = await Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext context) {
       return HomeScreen();
     }));
     if (refreshEvents != null && refreshEvents) {
@@ -100,7 +104,8 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
     final startDate = DateTime.now().add(Duration(days: 0));
     final endDate = DateTime.now().add(Duration(days: 30));
     var calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
-        _calendar.id, RetrieveEventsParams(startDate: startDate, endDate: endDate));
+        _calendar.id,
+        RetrieveEventsParams(startDate: startDate, endDate: endDate));
     setState(() {
       _calendarEvents = calendarEventsResult?.data;
     });

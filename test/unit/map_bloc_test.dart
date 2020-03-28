@@ -2,52 +2,36 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-
-class MockSwitchCampusEvent extends Mock implements SwitchCampusEvent {
-  @override
-  Future<MapState> createState() async {
-    return BasicMapState(null, 0);
-  }
-}
 
 void main() {
-  final moveCameraEvent = MoveCameraEvent(buildings['H'].coordinates, 1.0);
-  final selectConcordiaBuildingEvent = SelectConcordiaBuildingEvent(buildings['H'].code);
-  final switchCampusEvent = MockSwitchCampusEvent();
-  final directionLinesEvent = DirectionLinesEvent(null);
+  final eventMapNoMarker = CameraMove(buildings['H'].coordinates, 1.0);
+  final eventMapWithMarker = CameraMoveConcordia(buildings['H'].code);
+  final eventDirectionMap = DirectionLinesEvent(null);
 
   blocTest(
-    'Send move camera event',
+    'Get Map No Marker',
     build: () async => MapBloc(),
     act: (bloc) {
-      return bloc.add(moveCameraEvent);
+      return bloc.add(eventMapNoMarker);
     },
-    expect: [isA<BasicMapState>()],
+    expect: [isA<MapNoMarker>()],
   );
 
   blocTest(
-    'Send select concordia building event',
+    'Get Map With Marker',
     build: () async => MapBloc(),
     act: (bloc) {
-      return bloc.add(selectConcordiaBuildingEvent);
+      return bloc.add(eventMapWithMarker);
     },
-    expect: [isA<ConcordiaMapState>()],
+    expect: [isA<MapWithMarker>()],
   );
 
   blocTest(
-    'Send switch campus event',
-    build: () async => MapBloc(),
-    act: (bloc) => bloc.add(switchCampusEvent),
-    expect: [isA<BasicMapState>()],
-  );
-
-  blocTest(
-    'Send direction lines event',
+    'Get Direction Map',
     build: () async => MapBloc(),
     act: (bloc) {
-      return bloc.add(directionLinesEvent);
+      return bloc.add(eventDirectionMap);
     },
-    expect: [isA<DirectionMapState>()],
+    expect: [isA<DirectionMap>()],
   );
 }

@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:concordia_go/blocs/calendar_bloc/calendar_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';

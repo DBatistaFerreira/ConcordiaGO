@@ -4,27 +4,27 @@ abstract class MapState {
   const MapState();
 }
 
-class InitialMapState extends MapState {
-  const InitialMapState();
+class InitialMap extends MapState {
+  const InitialMap();
 }
 
-class BasicMapState extends MapState {
+class MapNoMarker extends MapState {
   final LatLng _cameraPosition;
   final double _zoom;
 
-  const BasicMapState(this._cameraPosition, this._zoom);
+  const MapNoMarker(this._cameraPosition, this._zoom);
 
   LatLng get cameraPosition => _cameraPosition;
 
   double get zoom => _zoom;
 }
 
-class ConcordiaMapState extends MapState {
+class MapWithMarker extends MapState {
   final String _buildingCode;
   final LatLng _cameraPosition;
   final double _zoom;
 
-  const ConcordiaMapState(this._buildingCode, this._cameraPosition, this._zoom);
+  const MapWithMarker(this._buildingCode, this._cameraPosition, this._zoom);
 
   String get buildingCode => _buildingCode;
 
@@ -33,10 +33,10 @@ class ConcordiaMapState extends MapState {
   double get zoom => _zoom;
 }
 
-class DirectionMapState extends MapState {
+class DirectionMap extends MapState {
   final Set<Polyline> _directionLines;
 
-  const DirectionMapState(this._directionLines);
+  const DirectionMap(this._directionLines);
 
   Set<Polyline> get directionLines => _directionLines;
 }

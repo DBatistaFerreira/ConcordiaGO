@@ -7,22 +7,10 @@ abstract class CalendarEvent {
   CalendarState createState();
 }
 
-class GetCurrentClass extends CalendarEvent {
+class GetClass extends CalendarEvent {
   final Event event;
 
-  const GetCurrentClass(this.event);
-
-  @override
-  CalendarState createState() {
-    return ClassInfo(event.title, event.location, event.start, event.end);
-  }
-}
-
-class GetNextClass extends CalendarEvent {
-
-  final Event event;
-
-  const GetNextClass(this.event);
+  const GetClass(this.event);
 
   @override
   CalendarState createState() {

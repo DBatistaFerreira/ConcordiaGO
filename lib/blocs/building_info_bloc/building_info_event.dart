@@ -1,6 +1,7 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import 'package:concordia_go/utilities/concordia_constants.dart'
+    as concordia_constants;
 
 @immutable
 abstract class BuildingInfoEvent {
@@ -17,6 +18,7 @@ class ConcordiaBuildingInfoEvent extends BuildingInfoEvent {
 
   @override
   BuildingInfoState createState() {
-    return ConcordiaBuildingInfoState(concordia_constants.buildings[_buildingCode], _moreInfo);
+    return ConcordiaBuildingInfoState(
+        concordia_constants.buildings[_buildingCode], _moreInfo);
   }
 }
