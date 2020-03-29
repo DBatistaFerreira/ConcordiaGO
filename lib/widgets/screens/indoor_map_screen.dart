@@ -76,17 +76,16 @@ class IndoorMapState extends State<IndoorMapScreen> {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Column(
-                children: <Widget>[
-                  FloorSelectionDropdown(),
-                  exitBuildingButton()
-                ],
-              ),
+              child: FloorSelectionDropdown(),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: stopNavigationButton(),
             ),
+            Align(
+              alignment: Alignment.topCenter,
+              child:exitBuildingButton()
+            )
           ],
         ));
   }
