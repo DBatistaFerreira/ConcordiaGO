@@ -14,9 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/services/scheduler_service.dart';
 
-Map<String, String> env = Platform.environment;
-
-String _apiKey = env['GOOGLE_API'];
+String _apiKey = Platform.environment['GOOGLE_API'];
 
 class OutdoorPathService {
   OutdoorPathService._privateConstructor();
@@ -45,19 +43,19 @@ class OutdoorPathService {
       ModeOfTransport modeOfTransport) async {
     switch (modeOfTransport) {
       case ModeOfTransport.walking:
-        walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
+        await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
         return 1;
         break;
       case ModeOfTransport.driving:
-        drivingDirections(startLat, startLng, endLat, endLng, buildingDestination);
+        await drivingDirections(startLat, startLng, endLat, endLng, buildingDestination);
         return 2;
         break;
       case ModeOfTransport.transit:
-        transitDirections(startLat, startLng, endLat, endLng, buildingDestination);
+        await transitDirections(startLat, startLng, endLat, endLng, buildingDestination);
         return 3;
         break;
       case ModeOfTransport.shuttle:
-        setShuttlePath(startLat, startLng, endLat, endLng, buildingDestination);
+        await setShuttlePath(startLat, startLng, endLat, endLng, buildingDestination);
         return 4;
         break;
     }
@@ -70,7 +68,7 @@ class OutdoorPathService {
       double startLat, double startLng, double endLat, double endLng, String buildingDestination) async {
     _singleDirections = <Direction>[];
     _listDirections = Journey();
-    final Map<String, dynamic> values = await googleMapsRequest(startLat, startLng, endLat, endLng, 'transit');
+    final dynamic values = await googleMapsRequest(startLat, startLng, endLat, endLng, 'transit');
     final PolyUtil myPoints = PolyUtil();
     final dynamic returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
     final List<dynamic> returnedSteps = returnedValues[concordia_constants.steps] as List<dynamic>;
@@ -82,8 +80,7 @@ class OutdoorPathService {
         arrivalTime = returnedValues[concordia_constants.arrival_time][concordia_constants.text]
             as String; //Arrival time extraction from API
       } catch (Exception) {
-        arrivalTime =
-            calculateArrivalTime(returnedValues[concordia_constants.duration][concordia_constants.text] as String);
+        arrivalTime = calculateArrivalTime(returnedValues[concordia_constants.duration][concordia_constants.text] as String);
       }
       final List<LatLng> pointArray =
           myPoints.decode(returnedSteps[i][concordia_constants.polyline][concordia_constants.points] as String)
@@ -148,7 +145,7 @@ class OutdoorPathService {
       double startLat, double startLng, double endLat, double endLng, String buildingDestination) async {
     _singleDirections = <Direction>[];
     _listDirections = Journey();
-    final Map<String, dynamic> values = await googleMapsRequest(startLat, startLng, endLat, endLng, 'driving');
+    final dynamic values = await googleMapsRequest(startLat, startLng, endLat, endLng, 'driving');
     final PolyUtil myPoints = PolyUtil();
     final dynamic returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
     final List<dynamic> returnedSteps = returnedValues[concordia_constants.steps] as List<dynamic>;
@@ -212,7 +209,7 @@ class OutdoorPathService {
       double startLat, double startLng, double endLat, double endLng, String buildingDestination) async {
     _singleDirections = <Direction>[];
     _listDirections = Journey();
-    final Map<String, dynamic> values = await googleMapsRequest(startLat, startLng, endLat, endLng, 'walking');
+    final dynamic values = await googleMapsRequest(startLat, startLng, endLat, endLng, 'walking');
     final PolyUtil myPoints = PolyUtil();
     final dynamic returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
     final List<dynamic> returnedSteps = returnedValues[concordia_constants.steps] as List<dynamic>;
@@ -289,7 +286,7 @@ class OutdoorPathService {
    */
 
   void addNewPolyline(Color colorChoice, List<LatLng> pointValues, String index) {
-    _polyLines.add(Polyline(polylineId: PolylineId('$index'), width: 4, points: pointValues, color: colorChoice));
+    _polyLines.add(Polyline(polylineId: PolylineId(index), width: 4, points: pointValues, color: colorChoice));
   }
 
   Set<Polyline> getPolylines() {
@@ -413,7 +410,7 @@ class OutdoorPathService {
         [concordia_constants.stopCoordinates] as LatLng;
     bool sgwToLoyola = true;
 
-    Map<String, dynamic> values = await googleMapsRequest(startLat, startLng, endLat, endLng, 'walking');
+    dynamic values = await googleMapsRequest(startLat, startLng, endLat, endLng, 'walking');
     final dynamic returnedValues = values[concordia_constants.route][0][concordia_constants.legs][0];
     final bool walkable = schedulerService.calculateArrivalTimeInIntFormat(
             returnedValues[concordia_constants.duration][concordia_constants.text] as String) <
@@ -427,9 +424,9 @@ class OutdoorPathService {
       sgwToLoyola = await isSgwCloser(startLat, startLng);
 
       if (sgwToLoyola) {
-        final Map<String, dynamic> sgwValues = values =
+        final dynamic sgwValues =
             await googleMapsRequest(startLat, startLng, sgwCoordinates.latitude, sgwCoordinates.longitude, 'walking');
-        final Map<String, dynamic> loyolaValues =
+        final dynamic loyolaValues =
             await googleMapsRequest(loyolaCoordinates.latitude, loyolaCoordinates.longitude, endLat, endLng, 'walking');
         final String arrivalTime = addWalkingPath(sgwValues, buildingDestination, 0);
         createShuttlePath(
@@ -446,9 +443,9 @@ class OutdoorPathService {
             concordia_constants.campusSGW);
         setDirections(finalArrivalTime);
       } else {
-        final Map<String, dynamic> loyolaValues = values = await googleMapsRequest(
+        final dynamic loyolaValues = values = await googleMapsRequest(
             startLat, startLng, loyolaCoordinates.latitude, loyolaCoordinates.longitude, 'walking');
-        final Map<String, dynamic> sgwValues =
+        final dynamic sgwValues =
             await googleMapsRequest(sgwCoordinates.latitude, sgwCoordinates.longitude, endLat, endLng, 'walking');
         final String arrivalTime =
             schedulerService.calculateNewTime(addWalkingPath(loyolaValues, buildingDestination, 0), 30);
@@ -474,7 +471,7 @@ class OutdoorPathService {
     }
   }
 
-  String addWalkingPath(Map<String, dynamic> pathJSON, String buildingDestination, int startIndex) {
+  String addWalkingPath(dynamic pathJSON, String buildingDestination, int startIndex) {
     final PolyUtil myPoints = PolyUtil();
     final dynamic returnedValues = pathJSON[concordia_constants.route][0][concordia_constants.legs][0];
     final List<dynamic> returnedSteps = returnedValues[concordia_constants.steps] as List<dynamic>;
@@ -544,12 +541,12 @@ class OutdoorPathService {
   *
    */
 
-  Future<Map<String, dynamic>> googleMapsRequest(
+  Future<dynamic> googleMapsRequest(
       double startLat, double startLng, double endLat, double endLng, String modeOfTransport) async {
     final String url =
         'https://maps.googleapis.com/maps/api/directions/json?origin=$startLat,$startLng&destination=$endLat,$endLng&mode=$modeOfTransport&key=$_apiKey';
     final http.Response response = await http.get(url);
-    return jsonDecode(response.body) as Future<Map<String, String>>;
+    return jsonDecode(response.body);
   }
 
   void addDObject(Dobject dobject1, Dobject dobject2) {
