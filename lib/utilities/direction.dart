@@ -1,20 +1,11 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-enum ModeOfTransport { walking, transit, driving }
+enum ModeOfTransport { walking, transit, driving, shuttle }
 enum IconType { left, right, compass, fork, merge, walk, bus, subway, generic }
 
 class Direction {
-  String instruction;
-  String distance;
-  String arrivalTime;
-  LatLng coordinate;
-  ModeOfTransport transitType;
-  IconType icons;
-  String destination;
-
-  Direction(this.instruction, this.coordinate, this.transitType, this.distance,
-      this.arrivalTime, this.destination) {
-    var exp = RegExp(r'<[^>]*>', multiLine: true, caseSensitive: true);
+  Direction(this.instruction, this.coordinate, this.transitType, this.distance, this.arrivalTime, this.destination) {
+    final RegExp exp = RegExp(r'<[^>]*>', multiLine: true, caseSensitive: true);
 
     instruction = instruction.replaceAll(exp, '');
     instruction = instruction.replaceAll('Destination', '. Destination');
@@ -39,4 +30,12 @@ class Direction {
       icons = IconType.generic;
     }
   }
+
+  String instruction;
+  String distance;
+  String arrivalTime;
+  LatLng coordinate;
+  ModeOfTransport transitType;
+  IconType icons;
+  String destination;
 }

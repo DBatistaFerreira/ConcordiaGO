@@ -1,19 +1,26 @@
+import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/widgets/screens/quick_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class LoadQuickMenu extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: QuickMenu(),
-    );
-  }
-}
-
 void main() {
+  screenHeight = 500;
+  screenWidth = 200;
+
   testWidgets('Quick Menu', (WidgetTester tester) async {
-    await tester.pumpWidget(LoadQuickMenu());
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          key: scaffoldKey,
+          drawer: QuickMenu(),
+        ),
+      ),
+    );
+
+    scaffoldKey.currentState.openDrawer();
+    await tester.pump();
 
     final favoritePlaces = find.byIcon(Icons.favorite);
     final campuses = find.byIcon(Icons.school);

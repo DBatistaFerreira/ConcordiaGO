@@ -18,7 +18,7 @@ class DirectionsListState extends State<DirectionsList> {
           Expanded(
             flex: 1,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: concordiaRed,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(18.0),
@@ -49,11 +49,11 @@ class DirectionsListState extends State<DirectionsList> {
             child: Container(
               color: Colors.white,
               child: BlocBuilder<DirectionsBloc, DirectionsState>(
-                builder: (context, state) {
-                  if (state is InstructionUpdate) {
+                builder: (BuildContext context, DirectionsState state) {
+                  if (state is InstructionState) {
                     return ListView.builder(
                       itemCount: state.directionsList.length,
-                      itemBuilder: (context, index) {
+                      itemBuilder: (BuildContext context, int index) {
                         return ListTile(
                           title: Text(state.directionsList[index].instruction),
                         );
@@ -62,7 +62,6 @@ class DirectionsListState extends State<DirectionsList> {
                   } else {
                     return Container(
                       height: 350,
-                      child: Text('ELSE'),
                     );
                   }
                 },

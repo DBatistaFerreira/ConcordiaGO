@@ -8,9 +8,9 @@ abstract class CalendarEvent {
 }
 
 class GetClass extends CalendarEvent {
-  final Event event;
-
   const GetClass(this.event);
+
+  final Event event;
 
   @override
   CalendarState createState() {

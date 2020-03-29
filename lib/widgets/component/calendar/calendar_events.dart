@@ -1,22 +1,21 @@
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:concordia_go/utilities/application_constants.dart'
-    as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 
 import 'event_item.dart';
 
 class CalendarEventsPage extends StatefulWidget {
+  const CalendarEventsPage(this._calendar, this._deviceCalendarPlugin, {Key key}) : super(key: key);
+
   final Calendar _calendar;
   final DeviceCalendarPlugin _deviceCalendarPlugin;
-
-  CalendarEventsPage(this._calendar, this._deviceCalendarPlugin, {Key key})
-      : super(key: key);
 
   @override
   _CalendarEventsPageState createState() {
@@ -25,15 +24,15 @@ class CalendarEventsPage extends StatefulWidget {
 }
 
 class _CalendarEventsPageState extends State<CalendarEventsPage> {
-  final Calendar _calendar;
-
-  DeviceCalendarPlugin _deviceCalendarPlugin;
-  List<Event> _calendarEvents;
-
   _CalendarEventsPageState(this._calendar, this._deviceCalendarPlugin);
 
+  final Calendar _calendar;
+
+  final DeviceCalendarPlugin _deviceCalendarPlugin;
+  List<Event> _calendarEvents;
+
   @override
-  initState() {
+  void initState() {
     super.initState();
     _retrieveCalendarEvents();
   }
@@ -70,42 +69,39 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
             color: application_constants.concordiaRed,
             height: screenHeight / 15,
           ),
-          (_calendarEvents?.isNotEmpty ?? false)
-              ? Expanded(
-                  child: ListView.builder(
-                    itemCount: _calendarEvents?.length ?? 0,
-                    itemBuilder: (BuildContext context, int index) {
-                      var _isFirst = index == 0;
-                      return EventItem(
-                          _calendarEvents[index], _onTapped, _isFirst);
-                    },
-                  ),
-                )
-              : Center(child: Text('No events found')),
+          if (_calendarEvents?.isNotEmpty ?? false)
+            Expanded(
+              child: ListView.builder(
+                itemCount: _calendarEvents?.length ?? 0,
+                itemBuilder: (BuildContext context, int index) {
+                  final bool _isFirst = index == 0;
+                  return EventItem(_calendarEvents[index], _onTapped, _isFirst);
+                },
+              ),
+            )
+          else
+            const Center(child: Text('No events found')),
         ],
       ),
     );
   }
 
-  Future _onTapped(Event event) async {
+  Future<void> _onTapped(Event event) async {
     if (event != null) {
       BlocProvider.of<CalendarBloc>(context).add(GetClass(event));
     }
-    final refreshEvents = await Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext context) {
-      return HomeScreen();
-    }));
-    if (refreshEvents != null && refreshEvents) {
+    final HomeScreen refreshEvents =
+        await Navigator.push(context, MaterialPageRoute<HomeScreen>(builder: (BuildContext context) => HomeScreen()));
+    if (refreshEvents != null) {
       await _retrieveCalendarEvents();
     }
   }
 
-  Future _retrieveCalendarEvents() async {
-    final startDate = DateTime.now().add(Duration(days: 0));
-    final endDate = DateTime.now().add(Duration(days: 30));
-    var calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
-        _calendar.id,
-        RetrieveEventsParams(startDate: startDate, endDate: endDate));
+  Future<void> _retrieveCalendarEvents() async {
+    final DateTime startDate = DateTime.now().add(const Duration(days: 0));
+    final DateTime endDate = DateTime.now().add(const Duration(days: 30));
+    final Result<UnmodifiableListView<Event>> calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
+        _calendar.id, RetrieveEventsParams(startDate: startDate, endDate: endDate));
     setState(() {
       _calendarEvents = calendarEventsResult?.data;
     });

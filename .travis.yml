@@ -1,4 +1,3 @@
-language: dart
 os: linux
 install:
   - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
@@ -18,15 +17,12 @@ jobs:
   include:
     - stage: tests
       name: "Static Tests"
-      dart: stable
       os: linux
       script:
-        - dartfmt . --fix -n --set-exit-if-changed
         - flutter analyze
 
     - stage: tests
       name: "Unit Tests"
-      dart: stable
       os: linux
       script:
         - pub global activate coverage

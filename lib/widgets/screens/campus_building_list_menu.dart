@@ -1,9 +1,8 @@
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/models/concordia_building_model.dart';
-import 'package:concordia_go/utilities/application_constants.dart'
-    as application_constants;
-import 'package:concordia_go/utilities/concordia_constants.dart'
-    as concordia_constants;
+import 'package:concordia_go/models/concordia_building.dart';
+import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart';
+import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
 import 'package:concordia_go/widgets/component/google_maps_component.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,27 +10,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CampusBuildingListMenu extends StatefulWidget {
+  const CampusBuildingListMenu(this.campus);
+
   final Campus campus;
 
-  CampusBuildingListMenu(this.campus);
-
   @override
-  State<CampusBuildingListMenu> createState() =>
-      CampusBuildingListMenuState(campus);
+  State<CampusBuildingListMenu> createState() => CampusBuildingListMenuState(campus);
 }
 
 class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
-  final Campus campus;
-
   CampusBuildingListMenuState(this.campus);
+
+  final Campus campus;
 
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
-    var buildingList = <ConcordiaBuilding>[];
+    final List<ConcordiaBuilding> buildingList = <ConcordiaBuilding>[];
 
     concordia_constants.buildings.forEach(
-      (code, building) {
+      (String code, ConcordiaBuilding building) {
         if (building.campus == campus) {
           buildingList.add(building);
         }
@@ -68,7 +65,7 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
             child: ListView.builder(
               shrinkWrap: true,
               itemCount: buildingList.length,
-              itemBuilder: (context, index) {
+              itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   leading: Container(
                     height: application_constants.initialedIconSize,
@@ -88,8 +85,7 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize:
-                                  application_constants.listElementTextSize,
+                              fontSize: application_constants.listElementTextSize,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -102,11 +98,9 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    BlocProvider.of<MapBloc>(context)
-                        .add(CameraMoveConcordia(buildingList[index].code));
-                    BlocProvider.of<BuildingInfoBloc>(context).add(
-                        ConcordiaBuildingInfoEvent(
-                            buildingList[index].code, false));
+                    BlocProvider.of<MapBloc>(context).add(SelectConcordiaBuildingEvent(buildingList[index].code));
+                    BlocProvider.of<BuildingInfoBloc>(context)
+                        .add(ConcordiaBuildingInfoEvent(buildingList[index].code, false));
                     BuildingInfoSheet.buildInfoSheet(mapContext);
                   },
                   trailing: Icon(Icons.keyboard_arrow_right),

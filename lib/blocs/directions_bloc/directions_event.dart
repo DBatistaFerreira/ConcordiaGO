@@ -1,45 +1,67 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:meta/meta.dart';
-import 'package:concordia_go/blocs/bloc.dart';
+part of 'directions_bloc.dart';
 
-@immutable
 abstract class DirectionsEvent {
-  const DirectionsEvent();
+  DirectionsEvent();
 
-  DirectionsState createState();
+  InstructionState _state;
+
+  set state(InstructionState value) {
+    _state = value;
+  }
+
+  Future<DirectionsState> createState(OutdoorPathService outdoorPathService);
 }
 
-class GetDirections extends DirectionsEvent {
-  final LatLng startCoordinates;
-  final LatLng endCoordinates;
-  final String destination;
+class GetDirectionsEvent extends DirectionsEvent {
+  GetDirectionsEvent(this._startCoordinates, this._endCoordinates, this._destination, this._modeOfTransport);
 
-  const GetDirections(
-      this.startCoordinates, this.endCoordinates, this.destination);
+  final LatLng _startCoordinates;
+  final LatLng _endCoordinates;
+  final String _destination;
+  final ModeOfTransport _modeOfTransport;
 
   @override
-  DirectionsState createState() {
-    // TODO: implement createState
-    return null;
+  Future<DirectionsState> createState(OutdoorPathService outdoorPathService) async {
+    await outdoorPathService.getDirections(
+      _startCoordinates.latitude,
+      _startCoordinates.longitude,
+      _endCoordinates.latitude,
+      _endCoordinates.longitude,
+      _destination,
+      _modeOfTransport,
+    );
+
+    final Direction newInstruction = outdoorPathService.getFirstInstruction();
+    BlocProvider.of<MapBloc>(mc)
+        .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
+    BlocProvider.of<MapBloc>(mc).add(DirectionLinesEvent(outdoorPathService.getPolylines()));
+    revealPanel();
+    return InstructionState(newInstruction, outdoorPathService.getRoute());
   }
 }
 
-class NextDirection extends DirectionsEvent {
-  const NextDirection();
+class NextInstructionEvent extends DirectionsEvent {
+  NextInstructionEvent();
 
   @override
-  DirectionsState createState() {
-    // TODO: implement createState
-    return null;
+  Future<DirectionsState> createState(OutdoorPathService outdoorPathService) async {
+    final Direction newInstruction = outdoorPathService.getNextInstruction();
+    if (!outdoorPathService.isLastInstruction()) {
+      BlocProvider.of<MapBloc>(mc)
+          .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
+    }
+    return InstructionState(newInstruction, _state.directionsList);
   }
 }
 
-class PreviousDirection extends DirectionsEvent {
-  const PreviousDirection();
+class PreviousInstructionEvent extends DirectionsEvent {
+  PreviousInstructionEvent();
 
   @override
-  DirectionsState createState() {
-    // TODO: implement createState
-    return null;
+  Future<DirectionsState> createState(OutdoorPathService outdoorPathService) async {
+    final Direction newInstruction = outdoorPathService.getPreviousInstruction();
+    BlocProvider.of<MapBloc>(mc)
+        .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
+    return InstructionState(newInstruction, _state.directionsList);
   }
 }

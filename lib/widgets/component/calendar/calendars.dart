@@ -1,5 +1,6 @@
-import 'package:concordia_go/utilities/application_constants.dart'
-    as application_constants;
+import 'dart:collection';
+
+import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'calendar_events.dart';
 
 class CalendarsPage extends StatefulWidget {
+  const CalendarsPage(this._deviceCalendarPlugin, {Key key}) : super(key: key);
+
   final DeviceCalendarPlugin _deviceCalendarPlugin;
-  CalendarsPage(this._deviceCalendarPlugin, {Key key}) : super(key: key);
 
   @override
   _CalendarsPageState createState() {
@@ -18,12 +20,13 @@ class CalendarsPage extends StatefulWidget {
 }
 
 class _CalendarsPageState extends State<CalendarsPage> {
-  DeviceCalendarPlugin _deviceCalendarPlugin;
-  List<Calendar> _calendars;
   _CalendarsPageState(this._deviceCalendarPlugin);
 
+  final DeviceCalendarPlugin _deviceCalendarPlugin;
+  List<Calendar> _calendars;
+
   @override
-  initState() {
+  void initState() {
     super.initState();
     _retrieveCalendars();
   }
@@ -64,20 +67,18 @@ class _CalendarsPageState extends State<CalendarsPage> {
               itemCount: _calendars?.length ?? 0,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                  key: Key(
-                      '${_calendars.indexWhere((c) => c.id == _calendars[index].id)}'),
+                  key: Key('${_calendars.indexWhere((Calendar calendar) => calendar.id == _calendars[index].id)}'),
                   onTap: () async {
                     await Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return CalendarEventsPage(
-                          _calendars[index], _deviceCalendarPlugin,
-                          key: Key('calendarEventsPage'));
+                        MaterialPageRoute<CalendarEventsPage>(builder: (BuildContext context) {
+                      return CalendarEventsPage(_calendars[index], _deviceCalendarPlugin,
+                          key: const Key('calendarEventsPage'));
                     }));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
-                      children: [
+                      children: <Widget>[
                         Expanded(
                           flex: 1,
                           child: Text(
@@ -97,9 +98,9 @@ class _CalendarsPageState extends State<CalendarsPage> {
     );
   }
 
-  void _retrieveCalendars() async {
+  Future<void> _retrieveCalendars() async {
     try {
-      var permissionsGranted = await _deviceCalendarPlugin.hasPermissions();
+      Result<bool> permissionsGranted = await _deviceCalendarPlugin.hasPermissions();
       if (permissionsGranted.isSuccess && !permissionsGranted.data) {
         permissionsGranted = await _deviceCalendarPlugin.requestPermissions();
         if (!permissionsGranted.isSuccess || !permissionsGranted.data) {
@@ -107,7 +108,7 @@ class _CalendarsPageState extends State<CalendarsPage> {
         }
       }
 
-      final calendarsResult = await _deviceCalendarPlugin.retrieveCalendars();
+      final Result<UnmodifiableListView<Calendar>> calendarsResult = await _deviceCalendarPlugin.retrieveCalendars();
       setState(() {
         _calendars = calendarsResult?.data;
       });

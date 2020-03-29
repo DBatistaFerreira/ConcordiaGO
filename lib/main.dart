@@ -1,20 +1,20 @@
-import 'package:concordia_go/widgets/component/calendar/calendars.dart';
-import 'package:device_calendar/device_calendar.dart';
-import 'package:flutter/material.dart';
-import 'package:concordia_go/models/concordia_building_model.dart';
+import 'package:concordia_go/models/concordia_building.dart';
+import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
+import 'package:concordia_go/widgets/screens/indoor_map_screen.dart';
+import 'package:device_calendar/device_calendar.dart';
+import 'package:concordia_go/widgets/component/calendar/calendars.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/utilities/application_constants.dart'
-    as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
+  SystemChrome.setPreferredOrientations(<DeviceOrientation>[DeviceOrientation.portraitUp]).then((_) {
     runApp(Application());
   });
 }
@@ -23,41 +23,34 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider<dynamic>>[
         BlocProvider<MapBloc>(
-          create: (context) => MapBloc(),
+          create: (BuildContext context) => MapBloc(),
         ),
         BlocProvider<BuildingInfoBloc>(
-          create: (context) => BuildingInfoBloc(),
+          create: (BuildContext context) => BuildingInfoBloc(),
         ),
         BlocProvider<DirectionsBloc>(
-          create: (context) => DirectionsBloc(),
+          create: (BuildContext context) => DirectionsBloc(OutdoorPathService.instance),
         ),
         BlocProvider<SearchBloc>(
-          create: (context) => SearchBloc(),
+          create: (BuildContext context) => SearchBloc(),
         ),
         BlocProvider<CalendarBloc>(
-          create: (context) => CalendarBloc(),
+          create: (BuildContext context) => CalendarBloc(),
         ),
       ],
-      child: GestureDetector(
-        onTap: () {
-          if (!FocusScope.of(context).hasPrimaryFocus) {
-            FocusScope.of(context).unfocus();
-          }
+      child: MaterialApp(
+        title: application_constants.applicationName,
+        initialRoute: '/',
+        routes: <String, Widget Function(BuildContext)>{
+          '/': (BuildContext context) => HomeScreen(),
+          '/sgwbuildings': (BuildContext context) => const CampusBuildingListMenu(Campus.SGW),
+          '/loyolabuildings': (BuildContext context) => const CampusBuildingListMenu(Campus.Loyola),
+          '/calendars': (BuildContext context) =>
+              CalendarsPage(DeviceCalendarPlugin(), key: const Key('calendarsPage')),
+          '/indoormap': (BuildContext context) => const IndoorMapScreen(),
         },
-        child: MaterialApp(
-          title: application_constants.applicationName,
-          initialRoute: '/',
-          routes: {
-            '/': (context) => HomeScreen(),
-            '/sgwbuildings': (context) => CampusBuildingListMenu(Campus.SGW),
-            '/loyolabuildings': (context) =>
-                CampusBuildingListMenu(Campus.Loyola),
-            '/calendars': (context) =>
-                CalendarsPage(DeviceCalendarPlugin(), key: Key('calendarsPage'))
-          },
-        ),
       ),
     );
   }
