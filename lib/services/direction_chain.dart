@@ -4,16 +4,16 @@ import 'package:concordia_go/models/outdoor_direction_handler.dart';
 import 'package:concordia_go/models/same_floor_direction_handler.dart';
 
 class DirectionChain {
+  DirectionChain._privateConstructor() {
+    initChain();
+  }
+
   static final DirectionChain instance = DirectionChain._privateConstructor();
 
   SameFloorDirectionHandler _firstHandler;
   DifferentFloorDirectionHandler _secondHandler;
   DifferentBuildingDirectionHandler _thirdHandler;
   OutdoorDirectionHandler _fourthHandler;
-
-  DirectionChain._privateConstructor() {
-    initChain();
-  }
 
   void initChain() {
     _firstHandler = SameFloorDirectionHandler();

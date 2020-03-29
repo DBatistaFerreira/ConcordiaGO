@@ -1,6 +1,7 @@
 import 'package:concordia_go/models/direction_handler.dart';
 import 'package:concordia_go/models/direction_request.dart';
 import 'package:concordia_go/models/graph.dart';
+import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/models/shortest_path.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as cc;
 import 'package:concordia_go/widgets/component/google_maps_component.dart';
@@ -19,19 +20,18 @@ class SameFloorDirectionHandler implements DirectionHandler {
   @override
   void handle(DirectionRequest request) {
     if (canHandle(request)) {
-      var building_code = request.source.building.code + request.source.floor;
+      final String buildingCode = request.source.building.code + request.source.floor;
 
-      var graph = Graph(building_code, cc.edges[building_code], cc.edge_indices[building_code]);
-      graph.setNodesFromEdgeIndices(cc.edge_indices[building_code]);
+      final Graph graph = Graph(buildingCode, cc.edges[buildingCode], cc.edge_indices[buildingCode]);
+      graph.setNodesFromEdgeIndices(cc.edge_indices[buildingCode]);
 
-      var algorithm = DShortestPath(graph, request.source.node, request.destination.node);
+      final DShortestPath algorithm = DShortestPath(graph, request.source.node, request.destination.node);
 
-      var shortest_path = algorithm.calcShortestPath();
+      final List<Node> shortestPath = algorithm.calcShortestPath();
 
       Navigator.pushNamed(mapContext, '/indoormap');
-      BlocProvider.of<MapBloc>(mapContext).add(
-          FloorChange(request.source.building.code,request.source.floor,{request.source.floor:shortest_path}));
-
+      BlocProvider.of<MapBloc>(mapContext).add(FloorChange(request.source.building.code, request.source.floor,
+          <String, List<Node>>{request.source.floor: shortestPath}));
     } else {
       _nextHandler.handle(request);
     }

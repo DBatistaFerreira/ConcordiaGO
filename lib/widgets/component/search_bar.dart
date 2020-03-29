@@ -39,11 +39,11 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchState>(
-      builder: (context, state) {
-        if (!(state is SearchDirectionsState)) {
+      builder: (BuildContext context, SearchState state) {
+        if (state is! SearchDirectionsState) {
           return Container(
             height: screenHeight / 10,
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Stack(
               children: <Widget>[
                 TextField(
@@ -51,7 +51,7 @@ class _SearchBarState extends State<SearchBar> {
                   controller: _textController,
                   textInputAction: TextInputAction.search,
                   textAlignVertical: TextAlignVertical.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                   decoration: InputDecoration(
@@ -62,13 +62,13 @@ class _SearchBarState extends State<SearchBar> {
                     ),
                     fillColor: Colors.white,
                   ),
-                  onChanged: (searchText) {
+                  onChanged: (String searchText) {
                     if (state is SearchResultsState) {
                       BlocProvider.of<SearchBloc>(context).add(QueryChangeEvent(searchText, state.searchType));
                     }
                   },
                   onTap: () {
-                    if (!(state is SearchResultsState)) {
+                    if (state is! SearchResultsState) {
                       BlocProvider.of<SearchBloc>(context).add(QueryChangeEvent('', SearchType.general));
                     }
                   },
@@ -88,9 +88,9 @@ class _SearchBarState extends State<SearchBar> {
                       }
                       if (state is SearchResultsState) {
                         if (state.searchType == SearchType.general) {
-                          BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
+                          BlocProvider.of<SearchBloc>(context).add(const EndSearchEvent());
                         } else {
-                          BlocProvider.of<SearchBloc>(context).add(SearchDirectionsEvent());
+                          BlocProvider.of<SearchBloc>(context).add(const SearchDirectionsEvent());
                         }
                       }
                     },

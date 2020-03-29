@@ -4,7 +4,7 @@ import 'package:concordia_go/utilities/concordia_constants.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final classroom = Classroom(buildings['H'], '8', '801');
+  final Classroom classroom = Classroom(buildings['H'], '8', '801');
 
   test('Test Classroom getters', () {
     expect(classroom.building, buildings['H']);

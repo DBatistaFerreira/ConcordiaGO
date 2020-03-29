@@ -15,9 +15,9 @@ class DirectionsPanel extends StatefulWidget {
 
 class DirectionsPanelState extends State<DirectionsPanel> {
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return BlocBuilder<DirectionsBloc, DirectionsState>(
-      builder: (context, state) {
+      builder: (BuildContext context, DirectionsState state) {
         if (state is InstructionState) {
           return Container(
             color: concordiaRed,
@@ -84,7 +84,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                         flex: 1,
                         child: Container(
                           child: Padding(
-                            padding: EdgeInsets.only(left: 10.0),
+                            padding: const EdgeInsets.only(left: 10.0),
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
@@ -113,7 +113,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                         child: Container(
                           color: concordiaRed,
                           child: Row(
-                            children: [
+                            children: <Widget>[
                               Expanded(
                                 flex: 3,
                                 child: Padding(
@@ -136,14 +136,14 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                   alignment: Alignment.topRight,
                                   child: IconButton(
                                     alignment: Alignment.topRight,
-                                    padding: EdgeInsets.only(top: 5.0, right: 5.0),
+                                    padding: const EdgeInsets.only(top: 5.0, right: 5.0),
                                     iconSize: screenWidth / 14,
                                     icon: Icon(
                                       Icons.close,
                                       color: Colors.white,
                                     ),
                                     onPressed: () {
-                                      showDialog(
+                                      showDialog<AlertDialog>(
                                         context: context,
                                         builder: (BuildContext context) => exitNavAlert(context),
                                         barrierDismissible: false,
@@ -166,7 +166,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                               children: <Widget>[
                                 Flexible(
                                   child: IconButton(
-                                    padding: EdgeInsets.only(right: 8.0),
+                                    padding: const EdgeInsets.only(right: 8.0),
                                     icon: Icon(
                                       Icons.arrow_back,
                                       color: Colors.white,
@@ -179,7 +179,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                 ),
                                 Flexible(
                                   child: IconButton(
-                                    padding: EdgeInsets.only(left: 8.0),
+                                    padding: const EdgeInsets.only(left: 8.0),
                                     icon: Icon(
                                       Icons.arrow_forward,
                                       color: Colors.white,
@@ -230,17 +230,17 @@ class DirectionsPanelState extends State<DirectionsPanel> {
             height: 100,
             child: Column(
               children: <Widget>[
-                Text('Error in getting directions'),
+                const Text('Error in getting directions'),
                 IconButton(
                   alignment: Alignment.topRight,
-                  padding: EdgeInsets.only(top: 5.0, right: 5.0),
+                  padding: const EdgeInsets.only(top: 5.0, right: 5.0),
                   iconSize: screenWidth / 14,
                   icon: Icon(
                     Icons.close,
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    showDialog(
+                    showDialog<AlertDialog>(
                       context: context,
                       builder: (BuildContext context) => exitNavAlert(context),
                       barrierDismissible: false,
@@ -255,20 +255,20 @@ class DirectionsPanelState extends State<DirectionsPanel> {
     );
   }
 
-  AlertDialog exitNavAlert(context) {
+  AlertDialog exitNavAlert(BuildContext context) {
     return AlertDialog(
-      title: Text('Exit navigation?'),
+      title: const Text('Exit navigation?'),
       actions: <Widget>[
         FlatButton(
-          child: Text('Yes'),
+          child: const Text('Yes'),
           onPressed: () {
             Navigator.pop(context, true);
             hidePanel();
-            BlocProvider.of<MapBloc>(context).add(DirectionLinesEvent(null));
+            BlocProvider.of<MapBloc>(context).add(const DirectionLinesEvent(null));
           },
         ),
         FlatButton(
-          child: Text('No'),
+          child: const Text('No'),
           onPressed: () {
             Navigator.pop(context, true);
           },
@@ -278,8 +278,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
   }
 
   Widget getIcon(IconType type, double size) {
-    var icon;
-    var flip = false;
+    IconData icon;
+    bool flip = false;
     switch (type) {
       case IconType.left:
         icon = Icons.subdirectory_arrow_right;

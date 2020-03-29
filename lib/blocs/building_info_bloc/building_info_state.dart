@@ -1,5 +1,4 @@
-import 'package:concordia_go/models/concordia_building.dart';
-import 'package:meta/meta.dart';
+part of 'building_info_bloc.dart';
 
 @immutable
 abstract class BuildingInfoState {
@@ -9,10 +8,10 @@ abstract class BuildingInfoState {
 class InitialBuildingInfoState extends BuildingInfoState {}
 
 class ConcordiaBuildingInfoState extends BuildingInfoState {
+  const ConcordiaBuildingInfoState(this._building, this._moreInfo);
+
   final ConcordiaBuilding _building;
   final bool _moreInfo;
-
-  const ConcordiaBuildingInfoState(this._building, this._moreInfo);
 
   ConcordiaBuilding get building => _building;
 
@@ -20,11 +19,11 @@ class ConcordiaBuildingInfoState extends BuildingInfoState {
 }
 
 class ConcordiaRoomInfoState extends BuildingInfoState {
+  const ConcordiaRoomInfoState(this._building, this._floor, this._room);
+
   final ConcordiaBuilding _building;
   final String _floor;
   final String _room;
-
-  const ConcordiaRoomInfoState(this._building, this._floor, this._room);
 
   ConcordiaBuilding get building => _building;
 

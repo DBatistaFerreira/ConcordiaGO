@@ -1,5 +1,4 @@
-import 'package:concordia_go/utilities/direction.dart';
-import 'package:meta/meta.dart';
+part of 'directions_bloc.dart';
 
 @immutable
 abstract class DirectionsState {}
@@ -7,10 +6,10 @@ abstract class DirectionsState {}
 class InitialDirectionsState extends DirectionsState {}
 
 class InstructionState extends DirectionsState {
+  InstructionState(this._step, this._directionsList);
+
   final Direction _step;
   final List<Direction> _directionsList;
-
-  InstructionState(this._step, this._directionsList);
 
   Direction get step => _step;
 

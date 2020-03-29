@@ -1,8 +1,4 @@
-import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/blocs/building_info_bloc/building_info_state.dart';
-import 'package:meta/meta.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart'
-    as concordia_constants;
+part of 'building_info_bloc.dart';
 
 @immutable
 abstract class BuildingInfoEvent {
@@ -12,24 +8,23 @@ abstract class BuildingInfoEvent {
 }
 
 class ConcordiaBuildingInfoEvent extends BuildingInfoEvent {
+  const ConcordiaBuildingInfoEvent(this._buildingCode, this._moreInfo);
+
   final String _buildingCode;
   final bool _moreInfo;
 
-  const ConcordiaBuildingInfoEvent(this._buildingCode, this._moreInfo);
-
   @override
   BuildingInfoState createState() {
-    return ConcordiaBuildingInfoState(
-        concordia_constants.buildings[_buildingCode], _moreInfo);
+    return ConcordiaBuildingInfoState(concordia_constants.buildings[_buildingCode], _moreInfo);
   }
 }
 
 class ConcordiaRoomInfoEvent extends BuildingInfoEvent {
+  const ConcordiaRoomInfoEvent(this._buildingCode, this._floor, this._room);
+
   final String _room;
   final String _floor;
   final String _buildingCode;
-
-  const ConcordiaRoomInfoEvent(this._buildingCode, this._floor, this._room);
 
   @override
   BuildingInfoState createState() {

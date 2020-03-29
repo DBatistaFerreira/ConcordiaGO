@@ -1,12 +1,4 @@
-import 'dart:async';
-
-import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/models/node.dart';
-import 'package:concordia_go/services/indoor_path_service.dart';
-import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:concordia_go/utilities/floor_maps_lib.dart' as floor_maps;
+part of 'map_bloc.dart';
 
 abstract class MapEvent {
   const MapEvent();
@@ -15,11 +7,11 @@ abstract class MapEvent {
 }
 
 class MoveCameraEvent extends MapEvent {
+  const MoveCameraEvent(this._coordinates, this._zoom, this._showMarker);
+
   final LatLng _coordinates;
   final double _zoom;
   final bool _showMarker;
-
-  const MoveCameraEvent(this._coordinates, this._zoom, this._showMarker);
 
   @override
   Future<MapState> createState() async {
@@ -28,9 +20,9 @@ class MoveCameraEvent extends MapEvent {
 }
 
 class SelectConcordiaBuildingEvent extends MapEvent {
-  final String _buildingCode;
-
   const SelectConcordiaBuildingEvent(this._buildingCode);
+
+  final String _buildingCode;
 
   @override
   Future<MapState> createState() async {
@@ -40,25 +32,25 @@ class SelectConcordiaBuildingEvent extends MapEvent {
 }
 
 class SwitchCampusEvent extends MapEvent {
-  final LatLng _currentCameraPosition;
-
   const SwitchCampusEvent(this._currentCameraPosition);
+
+  final LatLng _currentCameraPosition;
 
   @override
   Future<MapState> createState() async {
-    var coordinates;
-    await getFurthestCampus().then((value) => coordinates = value);
+    LatLng coordinates;
+    await getFurthestCampus().then((LatLng value) => coordinates = value);
 
     return BasicMapState(coordinates, concordia_constants.campusZoomLevel, false);
   }
 
   Future<LatLng> getFurthestCampus() async {
-    LatLng sgwCoordinates = concordia_constants.sgwCampus['coordinates'];
-    LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'];
+    final LatLng sgwCoordinates = concordia_constants.sgwCampus['coordinates'] as LatLng;
+    final LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'] as LatLng;
 
-    var distanceToSGW = await Geolocator().distanceBetween(_currentCameraPosition.latitude,
+    final double distanceToSGW = await Geolocator().distanceBetween(_currentCameraPosition.latitude,
         _currentCameraPosition.longitude, sgwCoordinates.latitude, sgwCoordinates.longitude);
-    var distanceToLoyola = await Geolocator().distanceBetween(_currentCameraPosition.latitude,
+    final double distanceToLoyola = await Geolocator().distanceBetween(_currentCameraPosition.latitude,
         _currentCameraPosition.longitude, loyolaCoordinates.latitude, loyolaCoordinates.longitude);
 
     return distanceToLoyola > distanceToSGW ? loyolaCoordinates : sgwCoordinates;
@@ -66,9 +58,9 @@ class SwitchCampusEvent extends MapEvent {
 }
 
 class DirectionLinesEvent extends MapEvent {
-  final Set<Polyline> _directionPolylines;
-
   const DirectionLinesEvent(this._directionPolylines);
+
+  final Set<Polyline> _directionPolylines;
 
   @override
   Future<MapState> createState() async {
@@ -77,28 +69,26 @@ class DirectionLinesEvent extends MapEvent {
 }
 
 class FloorChange extends MapEvent {
+  const FloorChange(this._buildingCode, this._floorLevel, [this._paths, this._showDrawer = false]);
+
   final String _floorLevel;
   final Map<String, List<Node>> _paths;
   final String _buildingCode;
   final bool _showDrawer;
 
-  const FloorChange(this._buildingCode, this._floorLevel, [this._paths, this._showDrawer = false]);
-
   @override
   Future<MapState> createState() async {
-    var floorCode = _buildingCode + _floorLevel;
-    var svgFile = floor_maps.floorPlan[floorCode];
+    final String floorCode = _buildingCode + _floorLevel;
+    String svgFile = floor_maps.floorPlan[floorCode];
     if (_paths != null && isPathOnFloorLevel()) {
-      List<List<int>> pathMap = List();
-      for (var path in _paths[_floorLevel]) {
+      final List<List<int>> pathMap = <List<int>>[];
+      for (final Node path in _paths[_floorLevel]) {
         pathMap.add(floor_maps.nodeGraph[floorCode][path.getId()]);
       }
       svgFile = IndoorPathService.parse(svgFile, pathMap);
     }
-    return IndoorMap(_buildingCode, _floorLevel, svgFile, _showDrawer, this._paths);
+    return IndoorMap(_buildingCode, _floorLevel, svgFile, _showDrawer, _paths);
   }
 
-  bool isPathOnFloorLevel() {
-    return (_paths[_floorLevel] != null);
-  }
+  bool isPathOnFloorLevel() => _paths[_floorLevel] != null;
 }

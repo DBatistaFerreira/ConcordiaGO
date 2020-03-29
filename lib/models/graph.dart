@@ -2,8 +2,40 @@ import 'node.dart';
 
 /// A weighted graph containing nodes and edges.
 class Graph {
+  // region constructors
+  /// Default constructor to initialize this graph with the values passed.
+  Graph(String buildingCode, List<List<int>> edges, List<String> edgeIndices) {
+    _buildingCode = buildingCode;
+    _nodes = <String, Node>{};
+    _edges = edges;
+    _edgeIndices = edgeIndices;
+  }
+
+  /// Constructor to initialize this graph with empty values for all variables.
+  Graph.withNothing() {
+    _buildingCode = '';
+    _nodes = <String, Node>{};
+    _edges = <List<int>>[];
+    _edgeIndices = <String>[];
+  }
+
+  Graph.withNodes(String buildingCode, Map<String, Node> nodes, List<List<int>> edges, List<String> edgeIndices) {
+    _buildingCode = buildingCode;
+    _nodes = nodes;
+    _edges = edges;
+    _edgeIndices = edgeIndices;
+  }
+
+  /// Constructor to initialize this graph from another graph passed.
+  Graph.fromGraph(Graph graph) {
+    _buildingCode = graph.getName();
+    _nodes = graph.getNodes();
+    _edges = graph.getEdges();
+    _edgeIndices = graph.getEdgeIndices();
+  }
+  // endregion constructors
   /// The letters of the building code for this graph.
-  String _building_code;
+  String _buildingCode;
   /*
   key:value pair list of nodes on the graph.
   key = the id number of the node.
@@ -29,45 +61,12 @@ class Graph {
   value = index in the 2D matrix.
    */
   /// The map of the indices in the 2D matrix of the edges on this graph.
-  List<String> _edge_indices;
-
-  // region constructors
-  /// Default constructor to initialize this graph with the values passed.
-  Graph(String building_code, List<List<int>> edges, List<String> edge_indices) {
-    _building_code = building_code;
-    _nodes = <String, Node>{};
-    _edges = edges;
-    _edge_indices = edge_indices;
-  }
-
-  /// Constructor to initialize this graph with empty values for all variables.
-  Graph.withNothing() {
-    _building_code = '';
-    _nodes = <String, Node>{};
-    _edges = <List<int>>[];
-    _edge_indices = <String>[];
-  }
-
-  Graph.withNodes(String building_code, Map<String, Node> nodes, List<List<int>> edges, List<String> edge_indices) {
-    _building_code = building_code;
-    _nodes = nodes;
-    _edges = edges;
-    _edge_indices = edge_indices;
-  }
-
-  /// Constructor to initialize this graph from another graph passed.
-  Graph.fromGraph(Graph graph) {
-    _building_code = graph.getName();
-    _nodes = graph.getNodes();
-    _edges = graph.getEdges();
-    _edge_indices = graph.getEdgeIndices();
-  }
-  // endregion constructors
+  List<String> _edgeIndices;
 
   // region getters
   /// Returns the building code letters of this graph.
   String getName() {
-    return _building_code;
+    return _buildingCode;
   }
 
   /// Returns the [node] map of this graph.
@@ -77,21 +76,22 @@ class Graph {
 
   /// Returns the index of the [node] on this graph.
   int getIndex(Node node) {
-    return _edge_indices.indexOf(node.getId());
+    return _edgeIndices.indexOf(node.getId());
   }
 
   /// Returns the [node] of this graph as a list.
   List<Node> getNodesAsList() {
-    var list = <Node>[];
-    _nodes.forEach((k, v) => list.add(Node(v.getId())));
+    final List<Node> list = <Node>[];
+    _nodes.forEach((String k, Node v) => list.add(Node(v.getId())));
 
     return list;
   }
 
   /// Returns the [node] IDs of this graph as a list of strings.
   List<String> getNodeIDsAsList() {
-    var idList = <String>[];
-    for (var id in _nodes.keys) {
+    final List<String> idList = <String>[];
+    // ignore: prefer_foreach
+    for (final String id in _nodes.keys) {
       idList.add(id);
     }
 
@@ -100,12 +100,12 @@ class Graph {
 
   /// Returns a list of [node]s that are connected to the [node] passed.
   List<Node> getConnectedNodes(Node node) {
-    var connected = <Node>[];
+    final List<Node> connected = <Node>[];
 
-    var index = 0;
-    for (var weight in _edges[_edge_indices.indexOf(node.getId())]) {
+    int index = 0;
+    for (final int weight in _edges[_edgeIndices.indexOf(node.getId())]) {
       if (weight > 0) {
-        connected.add(_nodes[_edge_indices[index]]);
+        connected.add(_nodes[_edgeIndices[index]]);
       }
       index++;
     }
@@ -114,7 +114,7 @@ class Graph {
   }
 
   int getWeight(Node from, Node to) {
-    return _edges[_edge_indices.indexOf(from.getId())][_edge_indices.indexOf(to.getId())];
+    return _edges[_edgeIndices.indexOf(from.getId())][_edgeIndices.indexOf(to.getId())];
   }
 
 /*  /// Returns a list of [node] IDs that are connected to the [node] ID passed.
@@ -131,14 +131,14 @@ class Graph {
 
   /// Returns the map of indices for the 2D edge matrix of this graph.
   List<String> getEdgeIndices() {
-    return _edge_indices;
+    return _edgeIndices;
   }
   // endregion getters
 
   // region setters
   /// Sets the building code of this graph to the building code passed.
-  void setName(String building_code) {
-    _building_code = building_code;
+  void setName(String buildingCode) {
+    _buildingCode = buildingCode;
   }
 
   /// Sets the [node] map of this graph to the [node] map passed.
@@ -147,8 +147,8 @@ class Graph {
   }
 
   /// Sets the [node] map of this graph from the edge indices passed.
-  void setNodesFromEdgeIndices(List<String> edge_indices) {
-    for (var id in edge_indices) {
+  void setNodesFromEdgeIndices(List<String> edgeIndices) {
+    for (final String id in edgeIndices) {
       _nodes[id] = Node(id);
     }
   }
@@ -159,8 +159,8 @@ class Graph {
   }
 
   /// Sets the map of indices for the 2D edge matrix of this graph to the map of indices for the 2D edge matrix passed.
-  void setEdgeIndices(List<String> edge_indices) {
-    _edge_indices = edge_indices;
+  void setEdgeIndices(List<String> edgeIndices) {
+    _edgeIndices = edgeIndices;
   }
   // endregion setters
 }

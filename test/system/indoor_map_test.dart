@@ -15,8 +15,8 @@ void main() {
   testWidgets(
     'IndoorMap',
     (WidgetTester tester) async {
-      var mapBloc;
-      var buildingInfoBloc;
+      MapBloc mapBloc;
+      BuildingInfoBloc buildingInfoBloc;
 
       // pump Application to set screenHeight and screenWidth
       await tester.pumpWidget(Application());
@@ -25,10 +25,10 @@ void main() {
         MultiBlocProvider(
           providers: [
             BlocProvider<MapBloc>(
-              create: (context) => mapBloc = MapBloc(),
+              create: (BuildContext context) => mapBloc = MapBloc(),
             ),
             BlocProvider<BuildingInfoBloc>(
-              create: (context) => buildingInfoBloc = BuildingInfoBloc(),
+              create: (BuildContext context) => buildingInfoBloc = BuildingInfoBloc(),
             )
           ],
           child: MaterialApp(
@@ -40,25 +40,25 @@ void main() {
       mapBloc.add(FloorChange(
           'H',
           '8',
-          {
-            '8': [Node('100820'), Node('100825')]
+          <String, List<Node>>{
+            '8': <Node>[Node('100820'), Node('100825')]
           },
           true));
       await tester.pump();
-      await tester.pump(Duration(milliseconds: 50));
+      await tester.pump(const Duration(milliseconds: 50));
 
       RoomInfoSheet.buildInfoSheet(scaffoldKey.currentState, indoorContext);
       await tester.pump();
 
-      buildingInfoBloc.add(ConcordiaRoomInfoEvent('H', '8', '100820'));
+      buildingInfoBloc.add(const ConcordiaRoomInfoEvent('H', '8', '100820'));
       await tester.pump();
 
       mapBloc.add(FloorChange(
           'H',
           '1',
-          {
-            '1': [Node('000002'), Node('000001')],
-            '9': [Node('000001'), Node('000002')]
+          <String, List<Node>>{
+            '1': <Node>[Node('000002'), Node('000001')],
+            '9': <Node>[Node('000001'), Node('000002')]
           },
           true));
       await tester.pump();

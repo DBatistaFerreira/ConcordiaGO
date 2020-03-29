@@ -17,32 +17,32 @@ void main() {
   testWidgets(
     'Test HomeScreen components including GoogleMap, BuildingInfoSheet, SearchBar, and SearchResults',
     (WidgetTester tester) async {
-      var buildingInfoBloc;
+      BuildingInfoBloc buildingInfoBloc;
 
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [
             BlocProvider<MapBloc>(
-              create: (context) => MapBloc(),
+              create: (BuildContext context) => MapBloc(),
             ),
             BlocProvider<BuildingInfoBloc>(
-              create: (context) => buildingInfoBloc = BuildingInfoBloc(),
+              create: (BuildContext context) => buildingInfoBloc = BuildingInfoBloc(),
             ),
             BlocProvider<DirectionsBloc>(
-              create: (context) => DirectionsBloc(OutdoorPathService.instance),
+              create: (BuildContext context) => DirectionsBloc(OutdoorPathService.instance),
             ),
             BlocProvider<SearchBloc>(
-              create: (context) => SearchBloc(),
+              create: (BuildContext context) => SearchBloc(),
             ),
           ],
           child: MaterialApp(
             title: applicationName,
             initialRoute: '/',
             routes: {
-              '/': (context) => HomeScreen(),
-              '/sgwbuildings': (context) => CampusBuildingListMenu(Campus.SGW),
-              '/loyolabuildings': (context) => CampusBuildingListMenu(Campus.Loyola),
-              '/indoormap': (context) => IndoorMapScreen(),
+              '/': (BuildContext context) => HomeScreen(),
+              '/sgwbuildings': (BuildContext context) => CampusBuildingListMenu(Campus.SGW),
+              '/loyolabuildings': (BuildContext context) => CampusBuildingListMenu(Campus.Loyola),
+              '/indoormap': (BuildContext context) => IndoorMapScreen(),
             },
           ),
         ),
@@ -58,7 +58,7 @@ void main() {
       await tester.pump();
 
       // test less info building info sheet
-      buildingInfoBloc.add(ConcordiaBuildingInfoEvent('H', false));
+      buildingInfoBloc.add(const ConcordiaBuildingInfoEvent('H', false));
       await tester.pump();
 
       expect(find.byType(ListTile), findsOneWidget);
@@ -66,7 +66,7 @@ void main() {
       expect(find.byType(IconButton), findsNWidgets(4));
 
       // test more info building sheet
-      buildingInfoBloc.add(ConcordiaBuildingInfoEvent('H', true));
+      buildingInfoBloc.add(const ConcordiaBuildingInfoEvent('H', true));
       await tester.pump();
 
       expect(find.byType(ExpansionTile), findsNWidgets(3));
@@ -82,7 +82,7 @@ void main() {
 
       // region Test SearchBar and SearchResults
       // test search bar is there
-      var searchBar = find.byType(TextField);
+      final Finder searchBar = find.byType(TextField);
       expect(searchBar, findsOneWidget);
       expect(find.byType(SearchBar), findsOneWidget);
 

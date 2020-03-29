@@ -1,5 +1,6 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/direction_object.dart';
+import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
 import 'package:concordia_go/widgets/component/building_info_sheet.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchResults extends StatefulWidget {
-  SearchResults();
+  const SearchResults();
 
   @override
   _SearchResultsState createState() => _SearchResultsState();
@@ -36,8 +37,8 @@ class _SearchResultsState extends State<SearchResults> {
       BlocProvider.of<MapBloc>(context).add(FloorChange(
           result.building.code,
           result.floor,
-          {
-            result.floor: [result.node]
+          <String, List<Node>>{
+            result.floor: <Node>[result.node]
           },
           true));
       BlocProvider.of<BuildingInfoBloc>(context)
@@ -63,9 +64,9 @@ class _SearchResultsState extends State<SearchResults> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchState>(
-      builder: (context, state) {
+      builder: (BuildContext context, SearchState state) {
         if (state is SearchResultsState) {
-          var _results = state.results;
+          final List<Dobject> _results = state.results;
           return Container(
             color: Colors.white,
             child: Column(
@@ -73,24 +74,25 @@ class _SearchResultsState extends State<SearchResults> {
                 Container(
                   height: screenHeight / 10,
                 ),
-                state.searchType == SearchType.source
-                    ? ListTile(
-                        trailing: Icon(Icons.gps_fixed),
-                        title: Text('Your Location'),
-                        onTap: () {
-                          BlocProvider.of<SearchBloc>(context)
-                              .add(SearchDirectionsEvent(source: Dobject.hotspot(currentLocation, 'Your Location')));
-                        },
-                      )
-                    : Container(
-                        height: 0,
-                      ),
+                if (state.searchType == SearchType.source)
+                  ListTile(
+                    trailing: Icon(Icons.gps_fixed),
+                    title: const Text('Your Location'),
+                    onTap: () {
+                      BlocProvider.of<SearchBloc>(context)
+                          .add(SearchDirectionsEvent(source: Dobject.hotspot(currentLocation, 'Your Location')));
+                    },
+                  )
+                else
+                  Container(
+                    height: 0,
+                  ),
                 Flexible(
                   child: _results.isNotEmpty
                       ? ListView.builder(
                           itemCount: _results == null ? 0 : _results.length,
-                          itemBuilder: (context, index) {
-                            var _result = _results[index];
+                          itemBuilder: (BuildContext context, int index) {
+                            final Dobject _result = _results[index];
 
                             return Container(
                               height: 60,
@@ -107,7 +109,7 @@ class _SearchResultsState extends State<SearchResults> {
                                     ),
                                   ),
                                   onTap: () {
-                                    BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
+                                    BlocProvider.of<SearchBloc>(context).add(const EndSearchEvent());
                                     _onTap(_result, state.searchType);
                                     if (!FocusScope.of(context).hasPrimaryFocus) {
                                       FocusScope.of(context).unfocus();
@@ -119,7 +121,7 @@ class _SearchResultsState extends State<SearchResults> {
                           },
                         )
                       : Container(
-                          padding: EdgeInsets.all(50.0),
+                          padding: const EdgeInsets.all(50.0),
                           child: Text(
                             'No results',
                             style: TextStyle(

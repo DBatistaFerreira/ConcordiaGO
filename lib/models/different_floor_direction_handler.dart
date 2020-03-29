@@ -20,33 +20,37 @@ class DifferentFloorDirectionHandler implements DirectionHandler {
   @override
   void handle(DirectionRequest request) {
     if (canHandle(request)) {
-      var source_building_code = request.source.building.code + request.source.floor;
-      var destination_building_code = request.destination.building.code + request.destination.floor;
+      final String sourceBuildingCode = request.source.building.code + request.source.floor;
+      final String destinationBuildingCode = request.destination.building.code + request.destination.floor;
 
-      var source_graph =
-          Graph(source_building_code, cc.edges[source_building_code], cc.edge_indices[source_building_code]);
-      source_graph.setNodesFromEdgeIndices(cc.edge_indices[source_building_code]);
+      final Graph sourceGraph =
+          Graph(sourceBuildingCode, cc.edges[sourceBuildingCode], cc.edge_indices[sourceBuildingCode]);
+      sourceGraph.setNodesFromEdgeIndices(cc.edge_indices[sourceBuildingCode]);
 
-      var destination_graph = Graph(
-          destination_building_code, cc.edges[destination_building_code], cc.edge_indices[destination_building_code]);
-      destination_graph.setNodesFromEdgeIndices(cc.edge_indices[destination_building_code]);
+      final Graph destinationGraph =
+          Graph(destinationBuildingCode, cc.edges[destinationBuildingCode], cc.edge_indices[destinationBuildingCode]);
+      destinationGraph.setNodesFromEdgeIndices(cc.edge_indices[destinationBuildingCode]);
 
-      var escalator_node;
+      Node escalatorNode;
       if (int.parse(request.source.floor) > int.parse(request.destination.floor)) {
-        escalator_node = Node('120000');
+        escalatorNode = Node('120000');
       } else {
-        escalator_node = Node('120001');
+        escalatorNode = Node('120001');
       }
 
-      var source_algorithm = DShortestPath(source_graph, request.source.node, escalator_node);
-      var destination_algorithm = DShortestPath(destination_graph, escalator_node, request.destination.node);
+      final DShortestPath sourceAlgorithm = DShortestPath(sourceGraph, request.source.node, escalatorNode);
+      final DShortestPath destinationAlgorithm =
+          DShortestPath(destinationGraph, escalatorNode, request.destination.node);
 
-      var source_shortest_path = source_algorithm.calcShortestPath();
-      var destination_shortest_path = destination_algorithm.calcShortestPath();
+      final List<Node> sourceShortestPath = sourceAlgorithm.calcShortestPath();
+      final List<Node> destinationShortestPath = destinationAlgorithm.calcShortestPath();
 
       Navigator.pushNamed(mapContext, '/indoormap');
-      BlocProvider.of<MapBloc>(mapContext).add(FloorChange(request.source.building.code, request.source.floor,
-          {request.source.floor: source_shortest_path, request.destination.floor: destination_shortest_path}));
+      BlocProvider.of<MapBloc>(mapContext).add(FloorChange(
+          request.source.building.code, request.source.floor, <String, List<Node>>{
+        request.source.floor: sourceShortestPath,
+        request.destination.floor: destinationShortestPath
+      }));
     } else {
       _nextHandler.handle(request);
     }

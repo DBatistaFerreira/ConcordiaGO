@@ -18,8 +18,8 @@ class DirectionsSearch extends StatefulWidget {
 class DirectionsSearchState extends State<DirectionsSearch> {
   Dobject source;
   Dobject destination;
-  TextEditingController _startTextController = TextEditingController();
-  TextEditingController _destTextController = TextEditingController();
+  final TextEditingController _startTextController = TextEditingController();
+  final TextEditingController _destTextController = TextEditingController();
 
   ModeOfTransport getModeOfTransportFromButton(List<bool> selection) {
     if (selection[0]) {
@@ -34,11 +34,11 @@ class DirectionsSearchState extends State<DirectionsSearch> {
   }
 
   @override
-  Widget build(context) {
-    var isSelected = [true, false, false, false];
+  Widget build(BuildContext context) {
+    final List<bool> isSelected = <bool>[true, false, false, false];
 
     return BlocListener<SearchBloc, SearchState>(
-      listener: (context, state) {
+      listener: (BuildContext context, SearchState state) {
         if (state is SearchDirectionsState) {
           source = state.source ?? source;
           destination = state.destination ?? destination;
@@ -47,7 +47,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
         }
       },
       child: BlocBuilder<SearchBloc, SearchState>(
-        builder: (context, state) {
+        builder: (BuildContext context, SearchState state) {
           if (state is SearchDirectionsState) {
             return Container(
               height: screenHeight / 3,
@@ -57,7 +57,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         readOnly: true,
                         showCursor: false,
@@ -84,7 +84,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         readOnly: true,
                         showCursor: false,
@@ -140,7 +140,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                           ),
                         ),
                       ],
-                      onPressed: (index) {
+                      onPressed: (int index) {
                         for (int i = 0; i < isSelected.length; i++) {
                           if (i == index) {
                             isSelected[i] = true;
@@ -172,7 +172,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                               size: screenWidth / 12,
                             ),
                             onPressed: () {
-                              BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
+                              BlocProvider.of<SearchBloc>(context).add(const EndSearchEvent());
                             },
                           ),
                         ),
@@ -186,11 +186,11 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                             ),
                             onPressed: () {
                               if (source != null && destination != null) {
-                                BlocProvider.of<SearchBloc>(context).add(EndSearchEvent());
+                                BlocProvider.of<SearchBloc>(context).add(const EndSearchEvent());
                                 OutdoorPathService.instance.clearAll();
                                 source.transportMode = getModeOfTransportFromButton(isSelected);
                                 destination.transportMode = getModeOfTransportFromButton(isSelected);
-                                var request = DirectionRequest(source, destination);
+                                final DirectionRequest request = DirectionRequest(source, destination);
                                 DirectionChain.instance.head.handle(request);
                               }
                             },
@@ -198,7 +198,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                               Icons.directions,
                               size: screenWidth / 12,
                             ),
-                            label: Text(
+                            label: const Text(
                               'Go',
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.black, fontSize: 16.0),

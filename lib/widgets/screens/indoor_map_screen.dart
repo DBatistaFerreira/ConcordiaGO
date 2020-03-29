@@ -15,24 +15,24 @@ import 'package:photo_view/photo_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 BuildContext indoorContext;
-final _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 GlobalKey<ScaffoldState> get scaffoldKey => _scaffoldKey;
 
 class IndoorMapScreen extends StatefulWidget {
-  IndoorMapScreen();
+  const IndoorMapScreen();
 
   @override
   State<IndoorMapScreen> createState() => IndoorMapState();
 }
 
 class IndoorMapState extends State<IndoorMapScreen> {
+  IndoorMapState();
+
   String _floorSVG = floorPlan['H1'];
   String _buildingCode = 'H';
   String _floorLevel = '1';
   Map<String, List<Node>> _paths;
   bool _showDrawer = false;
-
-  IndoorMapState();
 
   @override
   void initState() {
@@ -55,7 +55,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
       body: Stack(
         children: <Widget>[
           BlocBuilder<MapBloc, MapState>(
-            builder: (context, state) {
+            builder: (BuildContext context, MapState state) {
               if (state is IndoorMap) {
                 _floorSVG = state.svgFile;
                 _buildingCode = state.buildingCode;
@@ -78,7 +78,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
           ),
           Align(
             alignment: Alignment.topRight,
-            child: FloorSelectionDropdown(),
+            child: const FloorSelectionDropdown(),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -92,19 +92,19 @@ class IndoorMapState extends State<IndoorMapScreen> {
 
   Widget stopNavigationButton() {
     return BlocBuilder<MapBloc, MapState>(
-      builder: (context, state) {
+      builder: (BuildContext context, MapState state) {
         if (state is IndoorMap) {
           _paths = state.paths;
           _floorLevel = state.floorLevel;
         }
         if (_paths != null) {
           return Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Container(
               height: screenHeight / 16,
               width: application_constants.screenWidth / 2,
               child: FlatButton(
-                padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                 color: concordiaRed,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14.0),
@@ -146,7 +146,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
 
   Widget exitBuildingButton() {
     return BlocBuilder<MapBloc, MapState>(
-      builder: (context, state) {
+      builder: (BuildContext context, MapState state) {
         if (state is IndoorMap) {
           _paths = state.paths;
           _floorLevel = state.floorLevel;
@@ -154,13 +154,13 @@ class IndoorMapState extends State<IndoorMapScreen> {
         if (_paths != null) {
           if (outdoorRequestHolder != null && _floorLevel == '1') {
             return Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: Container(
                 alignment: Alignment.center,
                 height: screenHeight / 16,
                 width: application_constants.screenWidth / 6,
                 child: FlatButton(
-                  padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                  padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                   color: concordiaRed,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14.0),

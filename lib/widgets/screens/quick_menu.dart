@@ -22,30 +22,30 @@ class QuickMenuState extends State<QuickMenu> {
                 'Quick Menu',
                 style: TextStyle(color: Colors.white, fontSize: 20.0),
               ),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: concordiaRed,
               ),
             ),
           ),
           ListTile(
             leading: Icon(Icons.flag),
-            title: Text('Your Next Class'),
+            title: const Text('Your Next Class'),
             onTap: () {
               Navigator.pop(context);
-              // TODO
+              // TODO(Noorzada): add link
             },
           ),
           ListTile(
             leading: Icon(Icons.favorite),
-            title: Text('Favorite Places'),
+            title: const Text('Favorite Places'),
             onTap: () {
               Navigator.pop(context);
-              // TODO
+              // TODO(Noorzada): add link
             },
           ),
           ListTile(
             leading: Icon(Icons.school),
-            title: Text('SGW Campus'),
+            title: const Text('SGW Campus'),
             onTap: () {
               Navigator.pop(context);
               Navigator.pushNamed(context, '/sgwbuildings');
@@ -53,7 +53,7 @@ class QuickMenuState extends State<QuickMenu> {
           ),
           ListTile(
             leading: Icon(Icons.school),
-            title: Text('Loyola Campus'),
+            title: const Text('Loyola Campus'),
             onTap: () {
               Navigator.pop(context);
               Navigator.pushNamed(context, '/loyolabuildings');
@@ -61,20 +61,20 @@ class QuickMenuState extends State<QuickMenu> {
           ),
           ListTile(
             leading: Icon(Icons.new_releases),
-            title: Text('Points of Interest'),
-            // TODO
+            title: const Text('Points of Interest'),
+            // TODO(Noorzada): add link
           ),
           ListTile(
               leading: Icon(Icons.calendar_today),
-              title: Text('My Schedule'),
+              title: const Text('My Schedule'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/calendars');
               }),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Settings'),
-            // TODO
+            title: const Text('Settings'),
+            // TODO(Noorzada): add link
           ),
         ],
       ),

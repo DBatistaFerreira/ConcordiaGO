@@ -16,14 +16,14 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
   @override
   void handle(DirectionRequest request) {
     if (canHandle(request)) {
-      var exitNode = Node('990000');
-      var exitIndoorDobject = Dobject.indoor(exitNode, request.source.building, '1');
-      var indoorExitRequest = DirectionRequest(request.source, exitIndoorDobject);
+      final Node exitNode = Node('990000');
+      final Dobject exitIndoorDobject = Dobject.indoor(exitNode, request.source.building, '1');
+      final DirectionRequest indoorExitRequest = DirectionRequest(request.source, exitIndoorDobject);
 
-      var source_outdoor_dobject = Dobject.building(request.source.building);
-      var outdoorRequest = DirectionRequest(source_outdoor_dobject, request.destination);
+      final Dobject sourceOutdoorDobject = Dobject.building(request.source.building);
+      final DirectionRequest outdoorRequest = DirectionRequest(sourceOutdoorDobject, request.destination);
 
-      // TODO: implement outdoor request to get to destination
+      // TODO(username): implement outdoor request to get to destination
 
       DirectionChain.instance.head.handle(indoorExitRequest);
       outdoorRequestHolder = outdoorRequest;
@@ -35,7 +35,7 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
   /// Returns `true` if the request involves directions from rooms in different buildings.
   @override
   bool canHandle(DirectionRequest request) {
-    return (_endsIndoor(request) || _endsOutdoor(request));
+    return _endsIndoor(request) || _endsOutdoor(request);
   }
 
   bool _endsIndoor(DirectionRequest request) {
@@ -44,6 +44,6 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
   }
 
   bool _endsOutdoor(DirectionRequest request) {
-    return (request.source.isIndoor() && request.destination.isOutdoor());
+    return request.source.isIndoor() && request.destination.isOutdoor();
   }
 }

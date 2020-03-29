@@ -10,8 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: avoid_classes_with_only_static_members
 class BuildingInfoSheet {
-  static PersistentBottomSheetController bottomSheetController;
+  static PersistentBottomSheetController<BlocBuilder<BuildingInfoBloc, BuildingInfoState>> bottomSheetController;
 
   static double listTileHeight = screenHeight / 12;
   static double tileFontSize = 14.0;
@@ -23,20 +24,20 @@ class BuildingInfoSheet {
       backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
         return BlocBuilder<BuildingInfoBloc, BuildingInfoState>(
-          builder: (context, state) {
-            var sheetHeight = (2 * screenHeight / 12) + (screenHeight / 11);
+          builder: (BuildContext context, BuildingInfoState state) {
+            double sheetHeight = (2 * screenHeight / 12) + (screenHeight / 11);
 
             if (state is ConcordiaBuildingInfoState) {
-              var building = state.building;
+              final ConcordiaBuilding building = state.building;
               if (state.moreInfo) {
                 sheetHeight = (4 * screenHeight / 12) + (screenHeight / 11) + (3 * 58);
               }
               return Container(
                 height: sheetHeight,
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     buildingInfoHeader(context, building),
-                    !state.moreInfo ? buildingInfoAddress(building) : buildingInfoList(context, building),
+                    if (!state.moreInfo) buildingInfoAddress(building) else buildingInfoList(context, building),
                     buildingInfoFooter(context, building, state.moreInfo),
                   ],
                 ),
@@ -45,7 +46,7 @@ class BuildingInfoSheet {
               return Container(
                 height: sheetHeight,
                 color: Colors.white,
-                child: Center(
+                child: const Center(
                   child: Text('Failed to load building info.'),
                 ),
               );
@@ -67,7 +68,7 @@ class BuildingInfoSheet {
             Icons.transit_enterexit,
             color: concordiaRed,
           ),
-          label: Text(
+          label: const Text(
             'Indoor',
             textAlign: TextAlign.center,
             style: TextStyle(color: concordiaRed, fontSize: 16.0),
@@ -85,7 +86,7 @@ class BuildingInfoSheet {
 
   static Widget buildingInfoHeader(BuildContext context, ConcordiaBuilding building) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: concordiaRed,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(18.0),
@@ -95,7 +96,7 @@ class BuildingInfoSheet {
       height: screenHeight / 11,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Padding(
             padding: EdgeInsets.only(left: building.code.length == 2 ? 13.0 : 21.0, right: 20.0),
             child: Text(
@@ -107,7 +108,7 @@ class BuildingInfoSheet {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 Text(
                   building.name,
                   style: TextStyle(color: Colors.white, fontSize: 18),
@@ -155,7 +156,7 @@ class BuildingInfoSheet {
       child: Container(
         color: Colors.white,
         child: ListView(
-          children: [
+          children: <Widget>[
             Container(
               height: listTileHeight,
               child: Material(
@@ -170,7 +171,7 @@ class BuildingInfoSheet {
                     style: TextStyle(fontSize: tileFontSize),
                     overflow: TextOverflow.fade,
                   ),
-                  onTap: () => {},
+                  onTap: () => <dynamic>{},
                 ),
               ),
             ),
@@ -225,7 +226,7 @@ class BuildingInfoSheet {
                 ),
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.only(bottom: 5.0),
+                    padding: const EdgeInsets.only(bottom: 5.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: building.hours.length > 1
@@ -233,12 +234,12 @@ class BuildingInfoSheet {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: building.hours.keys.map((key) => Text(key)).toList(),
+                                children: building.hours.keys.map((String key) => Text(key)).toList(),
                               ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: building.hours.values.map((value) => Text(value)).toList(),
+                                children: building.hours.values.map((String value) => Text(value)).toList(),
                               )
                             ]
                           : <Widget>[
@@ -262,10 +263,10 @@ class BuildingInfoSheet {
                 ),
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.fromLTRB(40.0, 5.0, 40.0, 5.0),
+                    padding: const EdgeInsets.fromLTRB(40.0, 5.0, 40.0, 5.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: building.departments.map((item) => Text('•   ' + item)).toList(),
+                      children: building.departments.map((String item) => Text('•   ' + item)).toList(),
                     ),
                   ),
                 ],
@@ -284,10 +285,10 @@ class BuildingInfoSheet {
                 ),
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.fromLTRB(40.0, 5.0, 40.0, 5.0),
+                    padding: const EdgeInsets.fromLTRB(40.0, 5.0, 40.0, 5.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: building.services.map((item) => Text('•   ' + item)).toList(),
+                      children: building.services.map((String item) => Text('•   ' + item)).toList(),
                     ),
                   ),
                 ],
@@ -305,10 +306,10 @@ class BuildingInfoSheet {
       color: concordiaRed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          moreInfo ? lessButton(context, building.code) : moreButton(context, building.code),
+        children: <Widget>[
+          if (moreInfo) lessButton(context, building.code) else moreButton(context, building.code),
           Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: Container(
               height: screenHeight / 18,
               width: 70,
@@ -339,7 +340,7 @@ class BuildingInfoSheet {
 
   static Widget moreButton(BuildContext context, String buildingCode) {
     return Padding(
-      padding: EdgeInsets.only(left: 12.0),
+      padding: const EdgeInsets.only(left: 12.0),
       child: IconButton(
         color: Colors.white,
         icon: Icon(
@@ -356,7 +357,7 @@ class BuildingInfoSheet {
 
   static Widget lessButton(BuildContext context, String buildingCode) {
     return Padding(
-      padding: EdgeInsets.only(left: 12.0),
+      padding: const EdgeInsets.only(left: 12.0),
       child: IconButton(
         icon: Icon(
           Icons.arrow_back,
@@ -370,7 +371,7 @@ class BuildingInfoSheet {
     );
   }
 
-  static void _launchUrl(url) async {
+  static Future<void> _launchUrl(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {

@@ -1,7 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:concordia_go/blocs/search_bloc/search_bloc.dart';
-import 'package:concordia_go/blocs/search_bloc/search_event.dart';
-import 'package:concordia_go/blocs/search_bloc/search_state.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:flutter_test/flutter_test.dart';
 

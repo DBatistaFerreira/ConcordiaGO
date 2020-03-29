@@ -16,9 +16,7 @@ void main() {
   var deviceCalendarPlugin = MockDeviceCalendarPlugin();
   var calendarsPageWidget = MaterialApp(
       home: BlocProvider<CalendarBloc>(
-          create: (context) => CalendarBloc(),
-          child:
-              CalendarsPage(deviceCalendarPlugin, key: Key('calendarsPage'))));
+          create: (context) => CalendarBloc(), child: CalendarsPage(deviceCalendarPlugin, key: Key('calendarsPage'))));
   final calendars = Result<UnmodifiableListView<Calendar>>();
   calendars.data = UnmodifiableListView([
     Calendar(
@@ -32,33 +30,24 @@ void main() {
   ]);
   final resultPermissions = Result<bool>();
 
-  testWidgets('Choose Calendar Page Widget with Permission',
-      (WidgetTester tester) async {
+  testWidgets('Choose Calendar Page Widget with Permission', (WidgetTester tester) async {
     resultPermissions.data = true;
-    when(deviceCalendarPlugin.hasPermissions())
-        .thenAnswer((_) async => await resultPermissions);
-    when(deviceCalendarPlugin.retrieveCalendars())
-        .thenAnswer((_) async => await calendars);
+    when(deviceCalendarPlugin.hasPermissions()).thenAnswer((_) async => await resultPermissions);
+    when(deviceCalendarPlugin.retrieveCalendars()).thenAnswer((_) async => await calendars);
 
     await tester.pumpWidget(calendarsPageWidget); // runs init
-    await tester
-        .pumpWidget(calendarsPageWidget); // loads the rest of the widget
-    await tester.tap(
-        find.text('test')); // Throws an error if test calendar does not exist
+    await tester.pumpWidget(calendarsPageWidget); // loads the rest of the widget
+    await tester.tap(find.text('test')); // Throws an error if test calendar does not exist
     await tester.pumpWidget(calendarsPageWidget);
   });
 
-  testWidgets('Choose Calendar Page Widget without Permission',
-      (WidgetTester tester) async {
+  testWidgets('Choose Calendar Page Widget without Permission', (WidgetTester tester) async {
     resultPermissions.data = false;
-    when(deviceCalendarPlugin.hasPermissions())
-        .thenAnswer((_) async => await resultPermissions);
-    when(deviceCalendarPlugin.requestPermissions())
-        .thenAnswer((_) async => await resultPermissions);
+    when(deviceCalendarPlugin.hasPermissions()).thenAnswer((_) async => await resultPermissions);
+    when(deviceCalendarPlugin.requestPermissions()).thenAnswer((_) async => await resultPermissions);
 
     await tester.pumpWidget(calendarsPageWidget); // runs init
-    await tester
-        .pumpWidget(calendarsPageWidget); // loads the rest of the widget
+    await tester.pumpWidget(calendarsPageWidget); // loads the rest of the widget
   });
 
   testWidgets('Choose Event Page Widget', (WidgetTester tester) async {
@@ -90,22 +79,17 @@ void main() {
           deviceCalendarPlugin,
           key: Key('calendarsPage')),
     ));
-    when(deviceCalendarPlugin.retrieveEvents(any, any))
-        .thenAnswer((_) async => await result);
+    when(deviceCalendarPlugin.retrieveEvents(any, any)).thenAnswer((_) async => await result);
 
     await tester.pumpWidget(widget); // runs init
     await tester.pumpWidget(widget); // loads the rest of the widget
-    await tester.tap(
-        find.text('class 101')); // Throws an error if class 101 does not exist
+    await tester.tap(find.text('class 101')); // Throws an error if class 101 does not exist
   });
 
   testWidgets('Event Widget', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
-        home: EventItem(
-            Event('123', start: DateTime.now(), end: DateTime.now()),
-            null,
-            true),
+        home: EventItem(Event('123', start: DateTime.now(), end: DateTime.now()), null, true),
       ),
     );
   });

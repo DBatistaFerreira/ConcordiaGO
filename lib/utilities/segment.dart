@@ -1,13 +1,13 @@
 import 'package:concordia_go/utilities/direction.dart';
 
 class Segment {
-  Direction mainDirective;
-  List<Direction> substeps;
-  bool hasSubstep;
-
   Segment(this.mainDirective) {
     substeps = <Direction>[];
   }
+
+  Direction mainDirective;
+  List<Direction> substeps;
+  bool hasSubstep;
 
   void addSubstep(Direction substep) {
     hasSubstep = true;

@@ -13,9 +13,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location_permissions/location_permissions.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import '../component/google_maps_component.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
+import '../component/google_maps_component.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -34,15 +34,15 @@ class HomePageState extends State<HomeScreen> {
   }
 
   Future<void> _initGeolocationServices() async {
-    var permission = await LocationPermissions().checkPermissionStatus();
+    final PermissionStatus permission = await LocationPermissions().checkPermissionStatus();
 
     if (permission == PermissionStatus.granted) {
-      Position position = await Geolocator().getCurrentPosition();
+      final Position position = await Geolocator().getCurrentPosition();
       currentLocation = LatLng(position.latitude, position.longitude);
 
       Geolocator()
           .getPositionStream()
-          .listen((position) => currentLocation = LatLng(position.latitude, position.longitude));
+          .listen((Position position) => currentLocation = LatLng(position.latitude, position.longitude));
     } else {
       await LocationPermissions().requestPermissions();
     }
@@ -70,7 +70,7 @@ class HomePageState extends State<HomeScreen> {
             GoogleMapsComponent(),
             floatingMapButtons(),
             DirectionsSearch(),
-            SearchResults(),
+            const SearchResults(),
             SearchBar(),
           ],
         ),
@@ -92,13 +92,13 @@ class HomePageState extends State<HomeScreen> {
           Container(
             height: screenHeight / 11,
             width: screenHeight / 11,
-            padding: EdgeInsets.all(6.0),
+            padding: const EdgeInsets.all(6.0),
             child: myLocationButton(),
           ),
           Container(
             height: screenHeight / 11,
             width: screenHeight / 11,
-            padding: EdgeInsets.all(6.0),
+            padding: const EdgeInsets.all(6.0),
             child: switchCampusButton(),
           ),
         ],
@@ -109,7 +109,7 @@ class HomePageState extends State<HomeScreen> {
   Widget switchCampusButton() {
     return RawMaterialButton(
       fillColor: concordiaRed,
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
       elevation: 10.0,
       child: Icon(
         Icons.sync,
@@ -125,7 +125,7 @@ class HomePageState extends State<HomeScreen> {
   Widget myLocationButton() {
     return RawMaterialButton(
       fillColor: concordiaRed,
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
       elevation: 10.0,
       child: Icon(
         Icons.gps_fixed,
@@ -135,12 +135,12 @@ class HomePageState extends State<HomeScreen> {
       onPressed: () {
         if (currentLocation == null) {
           LocationPermissions().checkPermissionStatus().then(
-            (value) {
+            (PermissionStatus value) {
               if (value != PermissionStatus.granted) {
                 Scaffold.of(mapContext).showSnackBar(
                   SnackBar(
-                    content: Text('Location permissions are required.'),
-                    duration: Duration(seconds: 3),
+                    content: const Text('Location permissions are required.'),
+                    duration: const Duration(seconds: 3),
                     action: SnackBarAction(
                       label: 'ALLOW',
                       onPressed: () => _initGeolocationServices(),
@@ -148,7 +148,7 @@ class HomePageState extends State<HomeScreen> {
                   ),
                 );
               } else {
-                _initGeolocationServices().then((value) => BlocProvider.of<MapBloc>(context)
+                _initGeolocationServices().then((_) => BlocProvider.of<MapBloc>(context)
                     .add(MoveCameraEvent(currentLocation, concordia_constants.poiZoomLevel, false)));
               }
             },

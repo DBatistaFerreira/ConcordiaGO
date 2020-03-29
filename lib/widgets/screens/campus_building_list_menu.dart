@@ -10,25 +10,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CampusBuildingListMenu extends StatefulWidget {
-  final Campus campus;
+  const CampusBuildingListMenu(this.campus);
 
-  CampusBuildingListMenu(this.campus);
+  final Campus campus;
 
   @override
   State<CampusBuildingListMenu> createState() => CampusBuildingListMenuState(campus);
 }
 
 class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
-  final Campus campus;
-
   CampusBuildingListMenuState(this.campus);
+
+  final Campus campus;
 
   @override
   Widget build(BuildContext context) {
-    var buildingList = <ConcordiaBuilding>[];
+    final List<ConcordiaBuilding> buildingList = <ConcordiaBuilding>[];
 
     concordia_constants.buildings.forEach(
-      (code, building) {
+      (String code, ConcordiaBuilding building) {
         if (building.campus == campus) {
           buildingList.add(building);
         }
@@ -65,7 +65,7 @@ class CampusBuildingListMenuState extends State<CampusBuildingListMenu> {
             child: ListView.builder(
               shrinkWrap: true,
               itemCount: buildingList.length,
-              itemBuilder: (context, index) {
+              itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   leading: Container(
                     height: application_constants.initialedIconSize,

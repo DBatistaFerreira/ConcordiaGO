@@ -10,15 +10,15 @@ class SchedulerService {
 
   int scheduleNextShuttleTime(String currentTimeInStringFormat, String departureCampus) {
     isShuttlePossible = false;
-    var currentTime = stringTimeToInt(currentTimeInStringFormat);
-    var currentDay = getCurrentWeekDay();
-    var todaysShuttleTimes = ((concordia_constants.shuttleStops[concordia_constants.campusSGW]
-        [concordia_constants.shuttleSchedule] as List)[currentDay - 1] as List);
+    final int currentTime = stringTimeToInt(currentTimeInStringFormat);
+    final int currentDay = getCurrentWeekDay();
+    final List<int> todaysShuttleTimes = (concordia_constants.shuttleStops[concordia_constants.campusSGW]
+        [concordia_constants.shuttleSchedule] as List<int>)[currentDay - 1] as List<int>;
     todaysShuttleTimes.isEmpty ? isShuttlePossible = false : isShuttlePossible = true;
     if (isShuttlePossible == false) {
       return -1;
     }
-    var i = 0;
+    int i = 0;
     while (todaysShuttleTimes[i] < currentTime) {
       i++;
     }
@@ -27,13 +27,13 @@ class SchedulerService {
   }
 
   String intTimeToString(int timeInIntFormat) {
-    var minutes = timeInIntFormat.remainder(60);
-    var hours = (timeInIntFormat / 60).floor();
-    var newTime;
+    final num minutes = timeInIntFormat.remainder(60);
+    final int hours = (timeInIntFormat / 60).floor();
+    String newTime;
     if (minutes < 10) {
-      newTime = "${hours}:0${minutes}";
+      newTime = '$hours:0$minutes';
     } else {
-      newTime = "${hours}:${minutes}";
+      newTime = '$hours:$minutes';
     }
     return newTime;
   }
@@ -43,24 +43,24 @@ class SchedulerService {
     nextShuttleTime = 0;
   }
 
-  String calculateTotalArrivalTime(walkToShuttleStop, walkToDestination, String departureCampus) {
-    var currentTime = getCurrentTime();
-    var currentTimeInIntFormat = currentTime.hour * 60 + currentTime.minute;
-    var busDepartureTime = scheduleNextShuttleTime(intTimeToString(walkToShuttleStop), departureCampus);
+  String calculateTotalArrivalTime(int walkToShuttleStop, int walkToDestination, String departureCampus) {
+    final DateTime currentTime = getCurrentTime();
+    final int currentTimeInIntFormat = currentTime.hour * 60 + currentTime.minute;
+    final int busDepartureTime = scheduleNextShuttleTime(intTimeToString(walkToShuttleStop), departureCampus);
     if (busDepartureTime == -1) {
       return 'No Buses';
     }
-    int totalTime = currentTimeInIntFormat +
+    final int totalTime = currentTimeInIntFormat +
         (busDepartureTime - currentTimeInIntFormat) +
         (walkToDestination - currentTimeInIntFormat) +
         30;
     return intTimeToString(totalTime);
   }
 
-  String calculateNewTime(String timeInStringFormat, timeToAdd) {
-    var brokenTimeValues = timeInStringFormat.split(':');
-    var hours = int.parse(brokenTimeValues[0]);
-    var minutes = int.parse(brokenTimeValues[1]) + timeToAdd;
+  String calculateNewTime(String timeInStringFormat, int timeToAdd) {
+    final List<String> brokenTimeValues = timeInStringFormat.split(':');
+    int hours = int.parse(brokenTimeValues[0]);
+    int minutes = int.parse(brokenTimeValues[1]) + timeToAdd;
     while (minutes > 59) {
       hours++;
       minutes -= 60;
@@ -68,47 +68,45 @@ class SchedulerService {
     if (hours > 23) {
       hours -= 24;
     }
-    var newTime;
+    String newTime;
     if (minutes < 10) {
-      newTime = "${hours}:0${minutes}";
+      newTime = '$hours:0$minutes';
     } else {
-      newTime = "${hours}:${minutes}";
+      newTime = '$hours:$minutes';
     }
     return newTime;
   }
 
   int stringTimeToInt(String timeInStringFormat) {
-    var timeInMinutes;
-    var brokenTimeValues = timeInStringFormat.split(':');
+    int timeInMinutes;
+    final List<String> brokenTimeValues = timeInStringFormat.split(':');
     timeInMinutes = int.parse(brokenTimeValues[0]) * 60 + int.parse(brokenTimeValues[1]);
     return timeInMinutes;
   }
 
-  String calculateArrivalTimeinStringFormat(durationJSON) {
-    durationJSON;
-    List<String> durationToSplit = durationJSON.split(' ');
-    var duration;
+  String calculateArrivalTimeinStringFormat(String durationJSON) {
+    final List<String> durationToSplit = durationJSON.split(' ');
+    int duration;
     if (durationToSplit.length == 2) {
       duration = int.parse(durationToSplit[0]);
     } else {
       duration = int.parse(durationToSplit[0]) * 60 + int.parse(durationToSplit[2]);
     }
-    var currentTime = getCurrentTime();
-    var newDuration = Duration(days: 0, hours: 0, minutes: duration);
-    var calculated_time = currentTime.add(newDuration);
-    var arrival_time;
-    if (calculated_time.minute > 9) {
-      arrival_time = '${calculated_time.hour.toString()}:${calculated_time.minute.toString()}';
+    final DateTime currentTime = getCurrentTime();
+    final Duration newDuration = Duration(days: 0, hours: 0, minutes: duration);
+    final DateTime calculatedTime = currentTime.add(newDuration);
+    String arrivalTime;
+    if (calculatedTime.minute > 9) {
+      arrivalTime = '${calculatedTime.hour.toString()}:${calculatedTime.minute.toString()}';
     } else {
-      arrival_time = '${calculated_time.hour.toString()}:0${calculated_time.minute.toString()}';
+      arrivalTime = '${calculatedTime.hour.toString()}:0${calculatedTime.minute.toString()}';
     }
-    return arrival_time;
+    return arrivalTime;
   }
 
-  int calculateArrivalTimeInIntFormat(durationJSON) {
-    durationJSON;
-    List<String> durationToSplit = durationJSON.split(' ');
-    var duration;
+  int calculateArrivalTimeInIntFormat(String durationJSON) {
+    final List<String> durationToSplit = durationJSON.split(' ');
+    int duration;
     if (durationToSplit.length == 2) {
       duration = int.parse(durationToSplit[0]);
     } else if (durationToSplit[1] == 'hour' || durationToSplit[1] == 'hours') {

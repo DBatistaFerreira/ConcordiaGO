@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:concordia_go/models/concordia_building.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/blocs/bloc.dart';
@@ -17,7 +18,7 @@ BuildContext mapContext;
 LatLng currentCameraPosition;
 
 class GoogleMapsComponentState extends State<GoogleMapsComponent> {
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
   Set<Polygon> _buildingShapes = <Polygon>{};
   Set<Polyline> _polylines = <Polyline>{};
 
@@ -28,8 +29,8 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
   }
 
   Set<Polygon> _createBuildingShapes() {
-    var buildingPolygons = <Polygon>{};
-    for (var building in concordia_constants.buildings.values) {
+    final Set<Polygon> buildingPolygons = <Polygon>{};
+    for (final ConcordiaBuilding building in concordia_constants.buildings.values) {
       buildingPolygons.add(
         Polygon(
           points: building.vertices,
@@ -61,7 +62,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         BlocListener<MapBloc, MapState>(
-          listener: (context, state) {
+          listener: (BuildContext context, MapState state) {
             if (state is BasicMapState) {
               _animateCamera(state.cameraPosition, state.zoom);
             } else if (state is ConcordiaMapState) {
@@ -72,24 +73,24 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
             }
           },
           child: BlocBuilder<MapBloc, MapState>(
-            builder: (context, state) {
+            builder: (BuildContext context, MapState state) {
               return Expanded(
                 child: GoogleMap(
                   mapType: MapType.normal,
                   initialCameraPosition: CameraPosition(
-                    target: concordia_constants.sgwCampus['coordinates'],
+                    target: concordia_constants.sgwCampus['coordinates'] as LatLng,
                     zoom: 15.5,
                   ),
                   onMapCreated: (GoogleMapController controller) {
                     _controller.complete(controller);
-                    currentCameraPosition = concordia_constants.sgwCampus['coordinates'];
+                    currentCameraPosition = concordia_constants.sgwCampus['coordinates'] as LatLng;
                   },
                   myLocationEnabled: true,
                   myLocationButtonEnabled: false,
                   buildingsEnabled: false,
-                  // TODO: Extract marker logic to methods
+                  // TODO(username): Extract marker logic to methods
                   markers: state is ConcordiaMapState
-                      ? {
+                      ? <Marker>{
                           Marker(
                             markerId: MarkerId(state.buildingCode),
                             position: state.cameraPosition,
@@ -102,7 +103,7 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                           ),
                         }
                       : state is BasicMapState && state.showMarker == true
-                          ? {
+                          ? <Marker>{
                               Marker(
                                 markerId: MarkerId('POI'),
                                 position: state.cameraPosition,
@@ -111,10 +112,10 @@ class GoogleMapsComponentState extends State<GoogleMapsComponent> {
                           : null,
                   polylines: _polylines,
                   polygons: _buildingShapes,
-                  onCameraMove: (value) {
+                  onCameraMove: (CameraPosition value) {
                     currentCameraPosition = value.target;
                   },
-                  onTap: (value) {
+                  onTap: (LatLng value) {
                     if (!FocusScope.of(context).hasPrimaryFocus) {
                       FocusScope.of(context).unfocus();
                     }

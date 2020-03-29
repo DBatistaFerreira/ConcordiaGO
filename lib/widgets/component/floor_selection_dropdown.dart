@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/blocs/bloc.dart';
 
 class FloorSelectionDropdown extends StatefulWidget {
-  FloorSelectionDropdown({Key key}) : super(key: key);
+  const FloorSelectionDropdown({Key key}) : super(key: key);
 
   @override
   FloorSelectionDropdownState createState() => FloorSelectionDropdownState();
@@ -20,16 +20,16 @@ class FloorSelectionDropdownState extends State<FloorSelectionDropdown> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
-        padding: EdgeInsets.all(3.0),
+        padding: const EdgeInsets.all(3.0),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15.0),
           border: Border.all(color: application_constants.concordiaRed, style: BorderStyle.solid, width: 1.80),
         ),
         child: BlocBuilder<MapBloc, MapState>(
-          builder: (context, state) {
+          builder: (BuildContext context, MapState state) {
             if (state is IndoorMap) {
               dropdownValue = state.floorLevel;
               _buildingCode = state.buildingCode;

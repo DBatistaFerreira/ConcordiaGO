@@ -2,8 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:concordia_go/models/classroom.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:concordia_go/blocs/building_info_bloc/building_info_bloc.dart';
-import 'package:concordia_go/blocs/building_info_bloc/building_info_event.dart';
-import 'package:concordia_go/blocs/building_info_bloc/building_info_state.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
 
 void main() {

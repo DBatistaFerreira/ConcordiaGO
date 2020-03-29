@@ -1,6 +1,4 @@
-import 'package:concordia_go/models/direction_object.dart';
-import 'package:concordia_go/widgets/component/search_bar.dart';
-import 'package:meta/meta.dart';
+part of 'search_bloc.dart';
 
 @immutable
 abstract class SearchState {
@@ -10,10 +8,10 @@ abstract class SearchState {
 class InitialSearchState extends SearchState {}
 
 class SearchResultsState extends SearchState {
+  const SearchResultsState(this._results, this._searchType);
+
   final List<Dobject> _results;
   final SearchType _searchType;
-
-  const SearchResultsState(this._results, this._searchType);
 
   List<Dobject> get results => _results;
 
@@ -25,8 +23,8 @@ class NotSearchingState extends SearchState {
 }
 
 class SearchDirectionsState extends SearchState {
+  const SearchDirectionsState(this.source, this.destination);
+
   final Dobject source;
   final Dobject destination;
-
-  const SearchDirectionsState(this.source, this.destination);
 }
