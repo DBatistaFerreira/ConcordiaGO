@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/blocs/bloc.dart';
-import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart'
+    as application_constants;
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 
 void main() {
@@ -33,6 +34,9 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<SearchBloc>(
           create: (context) => SearchBloc(),
+        ),
+        BlocProvider<CalendarBloc>(
+          create: (context) => CalendarBloc(),
         ),
       ],
       child: MaterialApp(

@@ -12,7 +12,8 @@ class Direction {
   IconType icons;
   String destination;
 
-  Direction(this.instruction, this.coordinate, this.transitType, this.distance, this.arrivalTime, this.destination) {
+  Direction(this.instruction, this.coordinate, this.transitType, this.distance,
+      this.arrivalTime, this.destination) {
     var exp = RegExp(r'<[^>]*>', multiLine: true, caseSensitive: true);
 
     instruction = instruction.replaceAll(exp, '');
