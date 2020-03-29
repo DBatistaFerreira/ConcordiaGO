@@ -1,6 +1,7 @@
 import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/direction_request.dart';
 import 'package:concordia_go/models/same_floor_direction_handler.dart';
+import 'package:concordia_go/services/direction_chain.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -304,8 +305,7 @@ class OutdoorPathService {
   Direction getNextInstruction() {
     if (_currentInstruction == _singleDirections.length - 1) {
       if (dobjectList.isNotEmpty) {
-        SameFloorDirectionHandler sameFloorDirectionHandler = SameFloorDirectionHandler();
-        sameFloorDirectionHandler.handle(DirectionRequest(dobjectList[0], dobjectList[1]));
+        DirectionChain.instance.head.handle(DirectionRequest(dobjectList[0], dobjectList[1]));
       } else {
         //End Navigation clearAll()
       }
