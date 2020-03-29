@@ -262,7 +262,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
         FlatButton(
           child: const Text('Yes'),
           onPressed: () {
-            Navigator.pop(context, true);
+            Navigator.of(context).pop();
             hidePanel();
             BlocProvider.of<MapBloc>(context).add(const DirectionLinesEvent(null));
           },
@@ -270,7 +270,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
         FlatButton(
           child: const Text('No'),
           onPressed: () {
-            Navigator.pop(context, true);
+            Navigator.of(context).pop();
           },
         ),
       ],
