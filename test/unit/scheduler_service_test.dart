@@ -49,7 +49,7 @@ void main() {
   });
 
   test('Get Current Time', () {
-    expect(SchedulerService.instance.getCurrentTime(), DateTime.now());
+    expect((SchedulerService.instance.getCurrentTime().difference(DateTime.now()).inMilliseconds) < 9000, true);
   });
 
   test('getCurrentWeekDay', () {
