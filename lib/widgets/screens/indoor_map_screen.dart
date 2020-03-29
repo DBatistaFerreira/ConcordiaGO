@@ -127,6 +127,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
                 ),
                 onPressed: () {
                   BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode, _floorLevel));
+                  hidePanel();
                   setState(
                     () {
                       outdoorRequestHolder = null;
@@ -134,13 +135,6 @@ class IndoorMapState extends State<IndoorMapScreen> {
                   );
                 },
               ),
-              onPressed: () {
-                BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode, _floorLevel));
-                hidePanel();
-                setState(() {
-                  outdoorRequestHolder=null;
-                });
-              },
             ),
           );
         }
