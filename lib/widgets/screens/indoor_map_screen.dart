@@ -1,5 +1,7 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/node.dart';
+import 'package:concordia_go/services/direction_chain.dart';
+import 'package:concordia_go/services/indoor_path_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/floor_maps_lib.dart';
@@ -80,6 +82,10 @@ class IndoorMapState extends State<IndoorMapScreen> {
               alignment: Alignment.bottomCenter,
               child: stopNavigationButton(),
             ),
+            Align(
+              alignment: Alignment.topCenter,
+              child:exitBuildingButton(_floorLevel)
+            )
           ],
         ));
   }
@@ -103,8 +109,8 @@ class IndoorMapState extends State<IndoorMapScreen> {
                 borderRadius: BorderRadius.circular(14.0),
               ),
               child: Align(
+                alignment: Alignment.center,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Icon(
                       Icons.cancel,
@@ -121,6 +127,9 @@ class IndoorMapState extends State<IndoorMapScreen> {
               ),
               onPressed: () {
                 BlocProvider.of<MapBloc>(context).add(FloorChange(_buildingCode, _floorLevel));
+                setState(() {
+                  outdoorRequestHolder=null;
+                });
               },
             ),
           ),
@@ -129,6 +138,51 @@ class IndoorMapState extends State<IndoorMapScreen> {
       return Container();
     });
   }
+
+  Widget exitBuildingButton(String level) {
+    return BlocBuilder<MapBloc, MapState>(builder: (context, state) {
+    if (state is IndoorMap) {
+    _paths = state.paths;
+    _floorLevel = state.floorLevel;
+    }
+    if (_paths != null) {
+      if (outdoorRequestHolder != null && _floorLevel == '1') {
+        return Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Container(
+            alignment: Alignment.center,
+            height: screenHeight / 16,
+            width: application_constants.screenWidth / 6,
+            child: FlatButton(
+              padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+              color: concordiaRed,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Align(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Icon(
+                      Icons.exit_to_app,
+                      color: Colors.white,
+                      size: 32,
+                    )
+                  ],
+                ),
+              ),
+              onPressed: () {
+                DirectionChain.instance.head.handle(outdoorRequestHolder);
+                Navigator.pop(context);
+                outdoorRequestHolder = null;
+              },
+            ),
+          ),
+        );
+      }
+    }
+      return Container();
+  });}
 
   void buildInfoSheet(bool showDrawer) {
     if (showDrawer) {
