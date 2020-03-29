@@ -1485,17 +1485,17 @@ final rooms = [
   // endregion H building rooms
 
   //Region MB building Rooms
-  Classroom(buildings['MB'], '1', '115'),
-  Classroom(buildings['MB'], '1', '130'),
+//  Classroom(buildings['MB'], '1', '115'),
+//  Classroom(buildings['MB'], '1', '130'),
   Classroom(buildings['MB'], '1', '210'),
-  Classroom(buildings['MB'], '1', '301'),
-  Classroom(buildings['MB'], '1', '347'),
-  Classroom(buildings['MB'], '1', '349'),
-  Classroom(buildings['MB'], '1', '410'),
-  Classroom(buildings['MB'], '1', '424'),
-  Classroom(buildings['MB'], '1', '432'),
-  Classroom(buildings['MB'], '1', '437'),
-  Classroom(buildings['MB'], '1', '493'),
+//  Classroom(buildings['MB'], '1', '301'),
+//  Classroom(buildings['MB'], '1', '347'),
+//  Classroom(buildings['MB'], '1', '349'),
+//  Classroom(buildings['MB'], '1', '410'),
+//  Classroom(buildings['MB'], '1', '424'),
+//  Classroom(buildings['MB'], '1', '432'),
+//  Classroom(buildings['MB'], '1', '437'),
+//  Classroom(buildings['MB'], '1', '493'),
 
 ];
 
