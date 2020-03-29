@@ -18,7 +18,13 @@ class SearchService {
 
     if (query.isNotEmpty) {
       for (var room in rooms) {
-        var name = room.building.code + room.number;
+        var name;
+        if (room.building.code == 'MB') {
+          name = room.building.code + room.floor + '.' + room.number;
+        } else {
+          name = room.building.code + room.number;
+        }
+
         if (name.toLowerCase().contains(query.toLowerCase().replaceAll(' ', ''))) {
           searchResults.add(Dobject.indoor(room.node, room.building, room.floor, name));
         }
