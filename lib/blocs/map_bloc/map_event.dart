@@ -39,12 +39,12 @@ class SwitchCampusEvent extends MapEvent {
   @override
   Future<MapState> createState() async {
     LatLng coordinates;
-    await getFurthestCampus().then((LatLng value) => coordinates = value);
+    await _getFurthestCampus().then((LatLng value) => coordinates = value);
 
     return BasicMapState(coordinates, concordia_constants.campusZoomLevel, false);
   }
 
-  Future<LatLng> getFurthestCampus() async {
+  Future<LatLng> _getFurthestCampus() async {
     final LatLng sgwCoordinates = concordia_constants.sgwCampus['coordinates'] as LatLng;
     final LatLng loyolaCoordinates = concordia_constants.loyolaCampus['coordinates'] as LatLng;
 

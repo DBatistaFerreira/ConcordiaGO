@@ -80,7 +80,8 @@ class OutdoorPathService {
         arrivalTime = returnedValues[concordia_constants.arrival_time][concordia_constants.text]
             as String; //Arrival time extraction from API
       } catch (Exception) {
-        arrivalTime = calculateArrivalTime(returnedValues[concordia_constants.duration][concordia_constants.text] as String);
+        arrivalTime =
+            calculateArrivalTime(returnedValues[concordia_constants.duration][concordia_constants.text] as String);
       }
       final List<LatLng> pointArray =
           myPoints.decode(returnedSteps[i][concordia_constants.polyline][concordia_constants.points] as String)
