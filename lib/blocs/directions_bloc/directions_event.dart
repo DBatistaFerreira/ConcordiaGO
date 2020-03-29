@@ -52,8 +52,10 @@ class NextInstructionEvent extends DirectionsEvent {
   @override
   Future<DirectionsState> createState(OutdoorPathService outdoorPathService) async {
     Direction newInstruction = await outdoorPathService.getNextInstruction();
-    BlocProvider.of<MapBloc>(mc)
-        .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
+    if (!outdoorPathService.isLastInstruction()) {
+      BlocProvider.of<MapBloc>(mc)
+          .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
+    }
     return InstructionState(newInstruction, _state.directionsList);
   }
 }

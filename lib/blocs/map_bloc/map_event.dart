@@ -78,7 +78,7 @@ class DirectionLinesEvent extends MapEvent {
 
 class FloorChange extends MapEvent {
   final String _floorLevel;
-  final Map<String,List<Node>> _paths;
+  final Map<String, List<Node>> _paths;
   final String _buildingCode;
   final bool _showDrawer;
 
@@ -86,9 +86,9 @@ class FloorChange extends MapEvent {
 
   @override
   Future<MapState> createState() async {
-    var floorCode = _buildingCode+_floorLevel;
+    var floorCode = _buildingCode + _floorLevel;
     var svgFile = floor_maps.floorPlan[floorCode];
-    if (_paths != null&&isPathOnFloorLevel()) {
+    if (_paths != null && isPathOnFloorLevel()) {
       List<List<int>> pathMap = List();
       for (var path in _paths[_floorLevel]) {
         pathMap.add(floor_maps.nodeGraph[floorCode][path.getId()]);
@@ -97,7 +97,8 @@ class FloorChange extends MapEvent {
     }
     return IndoorMap(_buildingCode, _floorLevel, svgFile, _showDrawer, this._paths);
   }
-  bool isPathOnFloorLevel(){
-    return (_paths[_floorLevel]!=null);
+
+  bool isPathOnFloorLevel() {
+    return (_paths[_floorLevel] != null);
   }
 }

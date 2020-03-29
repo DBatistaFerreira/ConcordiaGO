@@ -565,4 +565,8 @@ class OutdoorPathService {
   void singleDirections(List<Direction> value) {
     _singleDirections = value;
   }
+
+  bool isLastInstruction() {
+    return _currentInstruction == _singleDirections.length - 1;
+  }
 }
