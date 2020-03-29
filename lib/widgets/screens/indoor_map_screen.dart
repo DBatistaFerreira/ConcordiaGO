@@ -15,6 +15,8 @@ import 'package:photo_view/photo_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 BuildContext indoorContext;
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+GlobalKey<ScaffoldState> get scaffoldKey => _scaffoldKey;
 
 class IndoorMapScreen extends StatefulWidget {
   IndoorMapScreen();
@@ -28,7 +30,6 @@ class IndoorMapState extends State<IndoorMapScreen> {
   String _buildingCode = 'H';
   String _floorLevel = '1';
   Map<String, List<Node>> _paths;
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _showDrawer = false;
 
   IndoorMapState();
