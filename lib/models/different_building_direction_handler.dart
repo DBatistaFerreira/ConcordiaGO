@@ -20,7 +20,6 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
       var exitIndoorDobject = Dobject.indoor(exitNode, request.source.building, '1');
       var indoorExitRequest = DirectionRequest(request.source, exitIndoorDobject);
 
-
       var source_outdoor_dobject = Dobject.building(request.source.building);
       var outdoorRequest = DirectionRequest(source_outdoor_dobject, request.destination);
 
@@ -28,7 +27,6 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
 
       DirectionChain.instance.head.handle(indoorExitRequest);
       outdoorRequestHolder = outdoorRequest;
-
     } else {
       _nextHandler.handle(request);
     }
