@@ -2,6 +2,8 @@ import 'package:concordia_go/models/direction_handler.dart';
 import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/direction_request.dart';
 import 'package:concordia_go/models/node.dart';
+import 'package:concordia_go/services/direction_chain.dart';
+import 'package:concordia_go/services/indoor_path_service.dart';
 
 class DifferentBuildingDirectionHandler implements DirectionHandler {
   DirectionHandler _nextHandler;
@@ -18,12 +20,14 @@ class DifferentBuildingDirectionHandler implements DirectionHandler {
       var exitIndoorDobject = Dobject.indoor(exitNode, request.source.building, '1');
       var indoorExitRequest = DirectionRequest(request.source, exitIndoorDobject);
 
-      // TODO: implement indoor request to exit building
 
       var source_outdoor_dobject = Dobject.building(request.source.building);
       var outdoorRequest = DirectionRequest(source_outdoor_dobject, request.destination);
 
       // TODO: implement outdoor request to get to destination
+
+      DirectionChain.instance.head.handle(indoorExitRequest);
+      outdoorRequestHolder = outdoorRequest;
 
     } else {
       _nextHandler.handle(request);

@@ -1,4 +1,7 @@
+import 'package:concordia_go/models/direction_request.dart';
 import 'package:xml/xml.dart' as xml;
+
+DirectionRequest outdoorRequestHolder;
 
 class IndoorPathService {
   static String parse(String documentFile, List<List<int>> nodeCoordinates) {
