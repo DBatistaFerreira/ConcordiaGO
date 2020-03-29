@@ -557,11 +557,6 @@ class OutdoorPathService {
     }
   }
 
-  /*
-  *
-  * METHODS ONLY FOR TESTING
-  *
-  */
   void singleDirections(List<Direction> value) {
     _singleDirections = value;
   }
