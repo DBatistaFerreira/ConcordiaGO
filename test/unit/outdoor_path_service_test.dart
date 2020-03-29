@@ -8,38 +8,38 @@ import 'package:google_maps_util/google_maps_util.dart';
 import 'package:concordia_go/utilities/constant_json.dart' as json;
 
 void main() {
-  OutdoorPathService.instance.clearAll();
+  OutdoorPathService outdoorPathService = OutdoorPathService.instance;
+  outdoorPathService.clearAll();
+
   test('Direction Type Selection', () async {
     expect(
-        await OutdoorPathService.instance
-            .getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.walking),
+        await outdoorPathService.getDirections(
+            45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.walking),
         1);
     expect(
-        await OutdoorPathService.instance
-            .getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.driving),
+        await outdoorPathService.getDirections(
+            45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.driving),
         2);
     expect(
-        await OutdoorPathService.instance
-            .getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.transit),
+        await outdoorPathService.getDirections(
+            45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.transit),
         3);
     expect(
-        await OutdoorPathService.instance
-            .getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.shuttle),
+        await outdoorPathService.getDirections(
+            45.456547, -73.9024, 45.456294, -73.9032, 'Test', ModeOfTransport.shuttle),
         4);
-    expect(await OutdoorPathService.instance.getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', 'testing'),
-        -1);
+    expect(await outdoorPathService.getDirections(45.456547, -73.9024, 45.456294, -73.9032, 'Test', 'testing'), -1);
   });
 
   test('JSON to Direction', () {
-    OutdoorPathService.instance.clearAll();
+    outdoorPathService.clearAll();
     var mockJSON = {
       'html_instructions': 'testInstruction1',
       "start_location": {"lat": 45.5284097, "lng": -73.7968983},
       "distance": {"text": "24.8 km", "value": 24793},
     };
 
-    Direction testDirection =
-        OutdoorPathService.instance.toDirection(mockJSON, ModeOfTransport.walking, '0:00', 'TestHall');
+    Direction testDirection = outdoorPathService.toDirection(mockJSON, ModeOfTransport.walking, '0:00', 'TestHall');
     expect(testDirection.instruction, 'testInstruction1');
     expect(testDirection.coordinate.latitude, 45.5284097);
     expect(testDirection.coordinate.longitude, -73.7968983);
@@ -55,8 +55,7 @@ void main() {
       "name": "Berri-UQAM"
     };
 
-    Direction testDirection =
-        OutdoorPathService.instance.endTransit(mockJSON, ModeOfTransport.walking, '0:00', 'TestHall');
+    Direction testDirection = outdoorPathService.endTransit(mockJSON, ModeOfTransport.walking, '0:00', 'TestHall');
     expect(testDirection.instruction, 'Get off at Berri-UQAM');
     expect(testDirection.coordinate.latitude, 45.515212);
     expect(testDirection.coordinate.longitude, -73.561050);
@@ -66,11 +65,11 @@ void main() {
   });
 
   test('PolyLine Creation and Handling', () {
-    OutdoorPathService.instance.clearAll();
+    outdoorPathService.clearAll();
     var testPoints = PolyUtil();
-    expect(OutdoorPathService.instance.getPolylines(), []);
-    OutdoorPathService.instance.addNewPolyline(Colors.pink, testPoints.decode("ymmtGrgabM|AmCj@lAd@jALHNArA}@"), 0);
-    var savedPolylines = OutdoorPathService.instance.getPolylines();
+    expect(outdoorPathService.getPolylines(), []);
+    outdoorPathService.addNewPolyline(Colors.pink, testPoints.decode("ymmtGrgabM|AmCj@lAd@jALHNArA}@"), 0);
+    var savedPolylines = outdoorPathService.getPolylines();
     expect(savedPolylines.elementAt(0).points.contains(LatLng(45.457730000000005, -73.90346000000001)), true);
     expect(savedPolylines.elementAt(0).points.contains(LatLng(45.456700000000005, -73.90356000000001)), true);
     expect(savedPolylines.elementAt(0).points.contains(LatLng(45.457730000000005, -73.90346005000001)), false);
@@ -78,20 +77,20 @@ void main() {
   });
 
   test('Route Getter', () {
-    OutdoorPathService.instance.clearAll();
+    outdoorPathService.clearAll();
     List<Direction> directionsList = List<Direction>();
     directionsList.add(Direction("test1", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
     directionsList.add(Direction("test2", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
     directionsList.add(Direction("test3", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
     directionsList.add(Direction("test4", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
     directionsList.add(Direction("test5", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
-    OutdoorPathService.instance.singleDirections(directionsList);
+    outdoorPathService.singleDirections(directionsList);
 
-    expect(OutdoorPathService.instance.getRoute(), directionsList);
+    expect(outdoorPathService.getRoute(), directionsList);
   });
 
   test('Single Direction Getters', () {
-    OutdoorPathService.instance.clearAll();
+    outdoorPathService.clearAll();
     List<Direction> directionsList = List<Direction>();
     var directions = [
       Direction("test1", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"),
@@ -103,34 +102,46 @@ void main() {
     for (int i = 0; i < directions.length; i++) {
       directionsList.add(directions[i]);
     }
-    OutdoorPathService.instance.singleDirections(directionsList);
+    outdoorPathService.singleDirections(directionsList);
 
-    expect(OutdoorPathService.instance.getRoute(), directionsList);
-    expect(OutdoorPathService.instance.getFirstInstruction(), directions[0]);
-    expect(OutdoorPathService.instance.getNextInstruction(), directions[1]);
-    expect(OutdoorPathService.instance.getPreviousInstruction(), directions[0]);
-    expect(OutdoorPathService.instance.getNextInstruction(), directions[1]);
-    expect(OutdoorPathService.instance.getNextInstruction(), directions[2]);
-    expect(OutdoorPathService.instance.getNextInstruction(), directions[3]);
-    expect(OutdoorPathService.instance.getNextInstruction(), directions[4]);
-    expect(OutdoorPathService.instance.getNextInstruction(), directions[4]);
+    expect(outdoorPathService.getRoute(), directionsList);
+    expect(outdoorPathService.getFirstInstruction(), directions[0]);
+    expect(outdoorPathService.getNextInstruction(), directions[1]);
+    expect(outdoorPathService.getPreviousInstruction(), directions[0]);
+    expect(outdoorPathService.getNextInstruction(), directions[1]);
+    expect(outdoorPathService.getNextInstruction(), directions[2]);
+    expect(outdoorPathService.getNextInstruction(), directions[3]);
+    expect(outdoorPathService.getNextInstruction(), directions[4]);
   });
 
   test('Calculate New Arrival Time', () {
-    OutdoorPathService.instance.clearAll();
-    expect(OutdoorPathService.instance.calculateArrivalTime('2 mins'),
+    outdoorPathService.clearAll();
+    expect(outdoorPathService.calculateArrivalTime('2 mins'),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 2));
-    expect(OutdoorPathService.instance.calculateArrivalTime('2 hours 4 mins'),
+    expect(outdoorPathService.calculateArrivalTime('2 hours 4 mins'),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 124));
-    expect(OutdoorPathService.instance.calculateArrivalTime('0 min'),
+    expect(outdoorPathService.calculateArrivalTime('0 min'),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 0));
-    expect(OutdoorPathService.instance.calculateArrivalTime('8 hours 15 min'),
+    expect(outdoorPathService.calculateArrivalTime('8 hours 15 min'),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 495));
   });
 
   test('Create Walking Path', () {
-    OutdoorPathService.instance.clearAll();
-    expect(OutdoorPathService.instance.addWalkingPath(json.testJSON, 'Test Hall', 0),
+    outdoorPathService.clearAll();
+    expect(outdoorPathService.addWalkingPath(json.testJSON, 'Test Hall', 0),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 6));
+  });
+
+  test('Check if current instruction is last instruction', () {
+    outdoorPathService.clearAll();
+    List<Direction> directionsList = List<Direction>();
+    directionsList.add(Direction("test1", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
+    directionsList.add(Direction("test2", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
+
+    outdoorPathService.singleDirections(directionsList);
+    assert(!outdoorPathService.isLastInstruction());
+
+    outdoorPathService.getNextInstruction();
+    assert(outdoorPathService.isLastInstruction());
   });
 }
