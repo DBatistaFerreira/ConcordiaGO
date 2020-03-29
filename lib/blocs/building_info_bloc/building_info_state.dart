@@ -21,12 +21,14 @@ class ConcordiaBuildingInfoState extends BuildingInfoState {
 
 class ConcordiaRoomInfoState extends BuildingInfoState {
   final ConcordiaBuilding _building;
-  final String _room;
   final String _floor;
+  final String _room;
 
   const ConcordiaRoomInfoState(this._building, this._floor, this._room);
 
   ConcordiaBuilding get building => _building;
-  String get room => _room;
+
   String get floor => _floor;
+
+  String get room => _room;
 }

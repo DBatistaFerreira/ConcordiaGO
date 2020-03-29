@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mockito/mockito.dart';
 
+// region OutdoorPathService Mock
 class MockOutdoorPathService extends Mock implements OutdoorPathService {
   @override
   Future<int> getDirections(startLat, startLng, endLat, endLng, buildingDestination, modeOfTransport) async {
@@ -27,29 +28,50 @@ class MockOutdoorPathService extends Mock implements OutdoorPathService {
     return null;
   }
 }
+// endregion
 
 void main() {
-  final mockOutdoorPathService = MockOutdoorPathService();
+  // region DirectionsBloc Event to State tests
+  group('DirectionsBloc event to state tests', () {
+    final mockOutdoorPathService = MockOutdoorPathService();
 
-  blocTest(
-    'GetDirections event yields InstructionUpdate',
-    build: () async => DirectionsBloc(mockOutdoorPathService),
-    act: (bloc) => bloc.add(
-        GetDirectionsEvent(LatLng(0, 0), LatLng(0, 0), 'Atlantic Ocean under West Africa', ModeOfTransport.transit)),
-    expect: [],
-  );
+    blocTest(
+      'GetDirections event yields InstructionUpdate',
+      build: () async => DirectionsBloc(mockOutdoorPathService),
+      act: (bloc) => bloc.add(
+          GetDirectionsEvent(LatLng(0, 0), LatLng(0, 0), 'Atlantic Ocean under West Africa', ModeOfTransport.transit)),
+      expect: [],
+    );
 
-  blocTest(
-    'NextDirection event yields InstructionUpdate',
-    build: () async => DirectionsBloc(mockOutdoorPathService),
-    act: (bloc) => bloc.add(NextInstructionEvent()),
-    expect: [],
-  );
+    blocTest(
+      'NextDirection event yields InstructionUpdate',
+      build: () async => DirectionsBloc(mockOutdoorPathService),
+      act: (bloc) => bloc.add(NextInstructionEvent()),
+      expect: [],
+    );
 
-  blocTest(
-    'PreviousDirection event yields InstructionUpdate',
-    build: () async => DirectionsBloc(mockOutdoorPathService),
-    act: (bloc) => bloc.add(PreviousInstructionEvent()),
-    expect: [],
-  );
+    blocTest(
+      'PreviousDirection event yields InstructionUpdate',
+      build: () async => DirectionsBloc(mockOutdoorPathService),
+      act: (bloc) => bloc.add(PreviousInstructionEvent()),
+      expect: [],
+    );
+  });
+  // endregion
+
+  // region DirectionsState tests
+  group('DirectionsState tests for constructor and getter', () {
+    test('InstructionState test', () {
+      List<Direction> directionsList = List<Direction>();
+      directionsList.add(Direction("test1", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
+      directionsList.add(Direction("test2", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
+      directionsList.add(Direction("test3", LatLng(1, 2), ModeOfTransport.walking, "2.5km", "0:00", "Test Building"));
+
+      var state = InstructionState(directionsList[1], directionsList);
+
+      expect(state.step.instruction, 'test2');
+      expect(state.directionsList, directionsList);
+    });
+  });
+  // endregion
 }

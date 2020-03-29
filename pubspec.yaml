@@ -23,7 +23,6 @@ dependencies:
   flutter_svg: ^0.17.2
   xml: ^3.5.0
   location_permissions: ^2.0.5
-  mockito: ^4.1.1
   validators: ^2.0.0+1
   device_calendar: ^3.0.0+3
   intl: any
