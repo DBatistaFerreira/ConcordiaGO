@@ -1,6 +1,5 @@
 import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/direction_request.dart';
-import 'package:concordia_go/models/same_floor_direction_handler.dart';
 import 'package:concordia_go/services/direction_chain.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
@@ -39,8 +38,7 @@ class OutdoorPathService {
   * Update in Sprint 3 will change its layout to provide a more testable class
    */
 
-  Future<int> getDirections(
-      startLat, startLng, endLat, endLng, buildingDestination, modeOfTransport) async {
+  Future<int> getDirections(startLat, startLng, endLat, endLng, buildingDestination, modeOfTransport) async {
     switch (modeOfTransport) {
       case ModeOfTransport.walking:
         await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
