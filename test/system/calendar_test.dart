@@ -13,8 +13,8 @@ import 'package:concordia_go/blocs/calendar_bloc/calendar_bloc.dart';
 class MockDeviceCalendarPlugin extends Mock implements DeviceCalendarPlugin {}
 
 void main() {
-  MockDeviceCalendarPlugin deviceCalendarPlugin = MockDeviceCalendarPlugin();
-  MaterialApp calendarsPageWidget = MaterialApp(
+  var deviceCalendarPlugin = MockDeviceCalendarPlugin();
+  var calendarsPageWidget = MaterialApp(
       home: BlocProvider<CalendarBloc>(
           create: (context) => CalendarBloc(),
           child:
@@ -22,13 +22,13 @@ void main() {
   final calendars = Result<UnmodifiableListView<Calendar>>();
   calendars.data = UnmodifiableListView([
     Calendar(
-        name: "test",
+        name: 'test',
         isReadOnly: false,
         isDefault: true,
         color: 1,
-        id: "123",
-        accountType: "google",
-        accountName: "test")
+        id: '123',
+        accountType: 'google',
+        accountName: 'test')
   ]);
   final resultPermissions = Result<bool>();
 
@@ -44,7 +44,7 @@ void main() {
     await tester
         .pumpWidget(calendarsPageWidget); // loads the rest of the widget
     await tester.tap(
-        find.text("test")); // Throws an error if test calendar does not exist
+        find.text('test')); // Throws an error if test calendar does not exist
     await tester.pumpWidget(calendarsPageWidget);
   });
 
@@ -64,14 +64,14 @@ void main() {
   testWidgets('Choose Event Page Widget', (WidgetTester tester) async {
     final result = Result<UnmodifiableListView<Event>>();
     result.data = UnmodifiableListView([
-      Event("test",
-          eventId: "123",
+      Event('test',
+          eventId: '123',
           end: DateTime.now(),
           start: DateTime.now(),
           allDay: false,
           attendees: [],
-          description: "test",
-          title: "class 101",
+          description: 'test',
+          title: 'class 101',
           recurrenceRule: null)
     ]);
 
@@ -80,13 +80,13 @@ void main() {
       create: (context) => CalendarBloc(),
       child: CalendarEventsPage(
           Calendar(
-              accountName: "test",
-              accountType: "test",
+              accountName: 'test',
+              accountType: 'test',
               color: 1,
-              id: "1234",
+              id: '1234',
               isDefault: true,
               isReadOnly: false,
-              name: "Test"),
+              name: 'Test'),
           deviceCalendarPlugin,
           key: Key('calendarsPage')),
     ));
@@ -96,14 +96,14 @@ void main() {
     await tester.pumpWidget(widget); // runs init
     await tester.pumpWidget(widget); // loads the rest of the widget
     await tester.tap(
-        find.text("class 101")); // Throws an error if class 101 does not exist
+        find.text('class 101')); // Throws an error if class 101 does not exist
   });
 
   testWidgets('Event Widget', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: EventItem(
-            Event("123", start: DateTime.now(), end: DateTime.now()),
+            Event('123', start: DateTime.now(), end: DateTime.now()),
             null,
             true),
       ),
