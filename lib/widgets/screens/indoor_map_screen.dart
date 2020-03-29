@@ -76,16 +76,17 @@ class IndoorMapState extends State<IndoorMapScreen> {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: FloorSelectionDropdown(),
+              child: Column(
+                children: <Widget>[
+                  FloorSelectionDropdown(),
+                  exitBuildingButton()
+                ],
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: stopNavigationButton(),
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child:exitBuildingButton(_floorLevel)
-            )
           ],
         ));
   }
@@ -139,7 +140,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
     });
   }
 
-  Widget exitBuildingButton(String level) {
+  Widget exitBuildingButton() {
     return BlocBuilder<MapBloc, MapState>(builder: (context, state) {
     if (state is IndoorMap) {
     _paths = state.paths;
