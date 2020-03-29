@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/direction_request.dart';
 import 'package:concordia_go/services/direction_chain.dart';
@@ -12,8 +14,9 @@ import 'package:concordia_go/utilities/journey.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_constants;
 import 'package:concordia_go/services/scheduler_service.dart';
+Map<String, String> env = Platform.environment;
 
-var _apiKey = api_key; // create a local file (NOT added to git) to store the API key
+var _apiKey = env["GOOGLE_API"]; // create a local file (NOT added to git) to store the API key
 
 class OutdoorPathService {
   OutdoorPathService._privateConstructor();
