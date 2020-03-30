@@ -1,5 +1,4 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:meta/meta.dart';
+part of 'building_info_bloc.dart';
 
 @immutable
 abstract class BuildingInfoState {
@@ -8,42 +7,27 @@ abstract class BuildingInfoState {
 
 class InitialBuildingInfoState extends BuildingInfoState {}
 
-class BuildingInfo extends BuildingInfoState {
-  final String buildingCode;
-  final String buildingName;
-  final String campus;
-  final String address;
-  final LatLng coordinates;
-  final Map<String, String> hours;
-  final bool expandHours;
-  final bool fromToggle;
+class ConcordiaBuildingInfoState extends BuildingInfoState {
+  const ConcordiaBuildingInfoState(this._building, this._moreInfo);
 
-  const BuildingInfo(
-    this.buildingCode,
-    this.buildingName,
-    this.campus,
-    this.address,
-    this.coordinates,
-    this.hours,
-    this.expandHours,
-    this.fromToggle,
-  );
+  final ConcordiaBuilding _building;
+  final bool _moreInfo;
 
-  BuildingInfo toggleHours(bool expandHours) {
-    return BuildingInfo(
-      buildingCode,
-      buildingName,
-      campus,
-      address,
-      coordinates,
-      hours,
-      expandHours,
-      true,
-    );
-  }
+  ConcordiaBuilding get building => _building;
 
-  @override
-  String toString() {
-    return 'BuildingInfo{buildingCode: $buildingCode, buildingName: $buildingName, campus: $campus, address: $address, coordinates: $coordinates, hours: $hours, expandHours: $expandHours, fromToggle: $fromToggle}';
-  }
+  bool get moreInfo => _moreInfo;
+}
+
+class ConcordiaRoomInfoState extends BuildingInfoState {
+  const ConcordiaRoomInfoState(this._building, this._floor, this._room);
+
+  final ConcordiaBuilding _building;
+  final String _floor;
+  final String _room;
+
+  ConcordiaBuilding get building => _building;
+
+  String get floor => _floor;
+
+  String get room => _room;
 }

@@ -1,31 +1,65 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+part of 'map_bloc.dart';
 
 abstract class MapState {
   const MapState();
 }
 
-class InitialMap extends MapState {
-  final markers = null;
-  const InitialMap();
+class InitialMapState extends MapState {
+  const InitialMapState();
 }
 
-class MapNoMarker extends MapState {
-  final LatLng cameraPosition;
-  final double zoom;
+class BasicMapState extends MapState {
+  const BasicMapState(this._cameraPosition, this._zoom, this._showMarker);
 
-  const MapNoMarker(this.cameraPosition, this.zoom);
+  final LatLng _cameraPosition;
+  final double _zoom;
+  final bool _showMarker;
+
+  LatLng get cameraPosition => _cameraPosition;
+
+  double get zoom => _zoom;
+
+  bool get showMarker => _showMarker;
 }
 
-class MapWithMarker extends MapState {
-  final String buildingCode;
-  final LatLng cameraPosition;
-  final double zoom;
+class ConcordiaMapState extends MapState {
+  const ConcordiaMapState(this._buildingCode, this._cameraPosition, this._zoom);
 
-  const MapWithMarker(this.buildingCode, this.cameraPosition, this.zoom);
+  final String _buildingCode;
+  final LatLng _cameraPosition;
+  final double _zoom;
+
+  String get buildingCode => _buildingCode;
+
+  LatLng get cameraPosition => _cameraPosition;
+
+  double get zoom => _zoom;
 }
 
-class DirectionMap extends MapState {
-  final Set<Polyline> directionLines;
+class DirectionMapState extends MapState {
+  const DirectionMapState(this._directionLines);
 
-  const DirectionMap(this.directionLines);
+  final Set<Polyline> _directionLines;
+
+  Set<Polyline> get directionLines => _directionLines;
+}
+
+class IndoorMap extends MapState {
+  const IndoorMap(this._buildingCode, this._floorLevel, this._svgFile, this._showDrawer, this._paths);
+
+  final String _svgFile;
+  final String _floorLevel;
+  final String _buildingCode;
+  final bool _showDrawer;
+  final Map<String, List<Node>> _paths;
+
+  String get svgFile => _svgFile;
+
+  String get floorLevel => _floorLevel;
+
+  String get buildingCode => _buildingCode;
+
+  bool get showDrawer => _showDrawer;
+
+  Map<String, List<Node>> get paths => _paths;
 }

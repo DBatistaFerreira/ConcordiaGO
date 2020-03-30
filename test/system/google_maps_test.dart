@@ -23,7 +23,7 @@ void main() {
     await tester.tap(menu);
     await tester.pump();
 
-    var sgwCampus = find.text("SGW Campus");
+    var sgwCampus = find.text('SGW Campus');
     await tester.tap(sgwCampus);
     await tester.pump();
     var sgwCampusBuildings = find.byType(ListTile);
@@ -32,7 +32,7 @@ void main() {
 
     await tester.tap(menu);
     await tester.pump();
-    var loyolaCampus = find.text("Loyola Campus");
+    var loyolaCampus = find.text('Loyola Campus');
     await tester.tap(loyolaCampus);
     await tester.pump();
     var loyolaCampusBuildings = find.byType(ListTile);

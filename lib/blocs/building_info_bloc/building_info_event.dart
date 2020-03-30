@@ -1,18 +1,33 @@
-import 'package:meta/meta.dart';
+part of 'building_info_bloc.dart';
 
 @immutable
 abstract class BuildingInfoEvent {
   const BuildingInfoEvent();
+
+  BuildingInfoState createState();
 }
 
-class ConcordiaBuildingInfo extends BuildingInfoEvent {
-  final buildingCode;
+class ConcordiaBuildingInfoEvent extends BuildingInfoEvent {
+  const ConcordiaBuildingInfoEvent(this._buildingCode, this._moreInfo);
 
-  const ConcordiaBuildingInfo(this.buildingCode);
+  final String _buildingCode;
+  final bool _moreInfo;
+
+  @override
+  BuildingInfoState createState() {
+    return ConcordiaBuildingInfoState(concordia_constants.buildings[_buildingCode], _moreInfo);
+  }
 }
 
-class ToggleHoursEvent extends BuildingInfoEvent {
-  final bool expandHours;
+class ConcordiaRoomInfoEvent extends BuildingInfoEvent {
+  const ConcordiaRoomInfoEvent(this._buildingCode, this._floor, this._room);
 
-  const ToggleHoursEvent(this.expandHours);
+  final String _room;
+  final String _floor;
+  final String _buildingCode;
+
+  @override
+  BuildingInfoState createState() {
+    return ConcordiaRoomInfoState(concordia_constants.buildings[_buildingCode], _floor, _room);
+  }
 }
