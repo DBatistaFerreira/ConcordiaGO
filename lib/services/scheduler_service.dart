@@ -13,7 +13,7 @@ class SchedulerService {
     final int currentTime = stringTimeToInt(currentTimeInStringFormat);
     final int currentDay = getCurrentWeekDay();
     final List<int> todaysShuttleTimes = (concordia_constants.shuttleStops[concordia_constants.campusSGW]
-        [concordia_constants.shuttleSchedule] as List<int>)[currentDay - 1] as List<int>;
+        [concordia_constants.shuttleSchedule])[currentDay - 1] as List<int>;
     todaysShuttleTimes.isEmpty ? isShuttlePossible = false : isShuttlePossible = true;
     if (isShuttlePossible == false) {
       return -1;
