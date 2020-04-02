@@ -32,6 +32,17 @@ const String campusLoyola = 'Loyola';
 const String stopCoordinates = 'stopCoordinates';
 const String shuttlePath = 'shuttlePathPolyLine';
 const String shuttleSchedule = 'departureSchedule';
+const String restaurantHotspot = 'restaurants near me';
+const String shoppingHotspot = 'shopping near me';
+const String groceryHotspot = 'grocery store near me';
+const String results = 'results';
+const String address = 'formatted_address';
+const String geometry = 'geometry';
+const String icon = 'icon';
+const String opening_hours = 'opening_hours';
+const String open_now = 'open_now';
+const String price_level = 'price_level';
+const String rating = 'rating';
 
 const Map<String, Object> sgwCampus = <String, dynamic>{
   'name': 'Sir George Williams Campus',
