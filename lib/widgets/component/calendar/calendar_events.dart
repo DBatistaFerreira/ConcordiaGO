@@ -47,7 +47,8 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
         //backgroundColor: application_constants.concordiaRed,
         preferredSize: Size.fromHeight(screenHeight / 12),
         child: AppBar(
-          title: Image.asset('assets/logo.png', height: screenHeight / 12),
+          centerTitle: true,
+          title: Image.asset(concordiaGOHeader, height: screenHeight / 12),
           backgroundColor: application_constants.concordiaRed,
         ),
       ),
