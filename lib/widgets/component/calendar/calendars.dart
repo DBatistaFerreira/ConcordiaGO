@@ -69,11 +69,18 @@ class _CalendarsPageState extends State<CalendarsPage> {
                 return GestureDetector(
                   key: Key('${_calendars.indexWhere((Calendar calendar) => calendar.id == _calendars[index].id)}'),
                   onTap: () async {
-                    await Navigator.push(context,
-                        MaterialPageRoute<CalendarEventsPage>(builder: (BuildContext context) {
-                      return CalendarEventsPage(_calendars[index], _deviceCalendarPlugin,
-                          key: const Key('calendarEventsPage'));
-                    }));
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute<CalendarEventsPage>(
+                        builder: (BuildContext context) {
+                          return CalendarEventsPage(
+                            _calendars[index],
+                            _deviceCalendarPlugin,
+                            key: const Key('calendarEventsPage'),
+                          );
+                        },
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),

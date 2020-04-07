@@ -51,7 +51,7 @@ class Application extends StatelessWidget {
           '/calendars': (BuildContext context) =>
               CalendarsPage(DeviceCalendarPlugin(), key: const Key('calendarsPage')),
           '/indoormap': (BuildContext context) => const IndoorMapScreen(),
-          '/pointsofinterest': (BuildContext context) => const OutdoorPOIMenu(),
+          '/pointsofinterest': (BuildContext context) => const POIMenu(),
         },
       ),
     );
