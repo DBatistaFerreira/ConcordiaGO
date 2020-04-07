@@ -62,8 +62,10 @@ class QuickMenuState extends State<QuickMenu> {
           ListTile(
             leading: Icon(Icons.new_releases),
             title: const Text('Points of Interest'),
-            // TODO(Noorzada): add link
-          ),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/pointsofinterest');
+              }),
           ListTile(
               leading: Icon(Icons.calendar_today),
               title: const Text('My Schedule'),
