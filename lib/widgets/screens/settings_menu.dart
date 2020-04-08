@@ -1,4 +1,5 @@
-import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart'
+    as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,10 @@ class SettingsMenu extends StatefulWidget {
 }
 
 class SettingsMenuState extends State<SettingsMenu> {
-var testBool = false;
+  var testBool = false;
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight / 12),
@@ -59,25 +60,28 @@ var testBool = false;
                   ),
                   alignment: Alignment.centerLeft,
                 ),
+                const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      'Accessibility',
+                      'Prioritize elevators',
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: 'Raleway',
-                        color: Colors.grey,
-                        //fontWeight: FontWeight.bold,
-                        fontSize: application_constants.listElementTextSize,
+                        color: Colors.black,
+                        fontSize: 18,
                       ),
                     ),
-                    Switch(value: testBool,
-                      onChanged: (newValue){
-                      setState(() {
-                        testBool=newValue;
-                      });
-                      },),
+                    Switch(
+                      value: testBool,
+                      onChanged: (bool newValue) {
+                        setState(() {
+                          testBool = newValue;
+                        });
+                      },
+                      activeColor: application_constants.concordiaRed,
+                    ),
                   ],
                 ),
               ],
