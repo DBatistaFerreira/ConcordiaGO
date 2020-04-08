@@ -24,6 +24,15 @@ class HotspotSearchService {
   }
 
   Hotspot hotspotBuilder(Map hotspotMap, HotspotType locationType) {
+    bool isOpen = true;
+    if (hotspotMap[concordia_constants.opening_hours] != null){
+      isOpen = hotspotMap[concordia_constants.opening_hours][concordia_constants.open_now] as bool;
+    }
+    dynamic priceLevel =  0;
+    if (hotspotMap[concordia_constants.price_level] != null){
+      priceLevel = hotspotMap[concordia_constants.price_level];
+    }
+
     return Hotspot(
       address: hotspotMap[concordia_constants.address] as String,
       coordinates: LatLng(
@@ -33,9 +42,9 @@ class HotspotSearchService {
               as double),
       name: hotspotMap[concordia_constants.name] as String,
       hotspotType: locationType,
-      isOpen: hotspotMap[concordia_constants.opening_hours][concordia_constants.open_now] as bool,
-      priceLevel: hotspotMap[concordia_constants.price_level] as int,
-      rating: hotspotMap[concordia_constants.rating] as double,
+      isOpen: isOpen,
+      priceLevel: priceLevel,
+      rating: hotspotMap[concordia_constants.rating],
     );
   }
 

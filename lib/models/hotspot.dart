@@ -10,7 +10,7 @@ class Hotspot {
   LatLng coordinates;
   String name;
   bool isOpen;
-  int priceLevel;
-  double rating;
+  dynamic priceLevel;
+  dynamic rating;
   HotspotType hotspotType;
 }

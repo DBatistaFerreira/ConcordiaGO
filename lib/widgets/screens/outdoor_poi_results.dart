@@ -43,7 +43,7 @@ class _OutdoorPOIResultsState extends State<OutdoorPOIResults> {
                         Row(
                           children: <Widget>[
                             Text(_results[index].name),
-                            Text(priceToString(_results[index].priceLevel)),
+                            Text(priceToString(_results[index].priceLevel as int)),
                           ],
                         ),
                         Text(_results[index].address),
