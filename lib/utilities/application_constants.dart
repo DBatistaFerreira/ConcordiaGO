@@ -3,7 +3,7 @@ library application_constants;
 import 'dart:ui';
 
 const String applicationName = 'ConcordiaGO';
-Color concordiaRed = Color(0xff800206);
+const Color concordiaRed = Color(0xff800206);
 
 const String concordiaGOHeader = 'assets/headers/ConcordiaGOHeader.png';
 const String concordiaGOLogo = 'assets/logos/ConcordiaGOLogo.png';
