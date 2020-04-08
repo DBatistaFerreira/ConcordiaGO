@@ -91,13 +91,13 @@ class POIMenuState extends State<POIMenu> {
                     style: TextStyle(fontSize: fontSize),
                   ),
                   onTap: () {
-                    hotspotSearchService.setHotspotList(HotspotType.Restaurant).then(
+                    hotspotSearchService.setHotspotList(HotspotType.Restaurants).then(
                       (void value) {
                         Navigator.push(
                           context,
                           MaterialPageRoute<OutdoorPOIResults>(
                             builder: (BuildContext context) =>
-                                OutdoorPOIResults(hotspotSearchService.hotspotList, HotspotType.Restaurant),
+                                OutdoorPOIResults(hotspotSearchService.hotspotList, HotspotType.Restaurants),
                           ),
                         );
                       },

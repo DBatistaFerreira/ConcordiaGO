@@ -1,6 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-enum HotspotType { Restaurant, Grocery, Shopping }
+enum HotspotType { Restaurants, Grocery, Shopping }
 
 class Hotspot {
   Hotspot(

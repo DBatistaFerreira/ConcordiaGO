@@ -45,8 +45,9 @@ class NextInstructionEvent extends DirectionsEvent {
 
   @override
   Future<DirectionsState> createState(OutdoorPathService outdoorPathService) async {
+    final bool moveCamera = !outdoorPathService.isLastInstruction();
     final Direction newInstruction = outdoorPathService.getNextInstruction();
-    if (!outdoorPathService.isLastInstruction()) {
+    if (moveCamera) {
       BlocProvider.of<MapBloc>(mc)
           .add(MoveCameraEvent(newInstruction.coordinate, concordia_constants.navZoomLevel, false));
     }

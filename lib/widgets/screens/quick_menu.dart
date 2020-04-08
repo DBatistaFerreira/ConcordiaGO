@@ -36,14 +36,6 @@ class QuickMenuState extends State<QuickMenu> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: const Text('Favorite Places'),
-            onTap: () {
-              Navigator.pop(context);
-              // TODO(Noorzada): add link
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.school),
             title: const Text('SGW Campus'),
             onTap: () {
@@ -60,8 +52,8 @@ class QuickMenuState extends State<QuickMenu> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.new_releases),
-            title: const Text('Points of Interest'),
+              leading: Icon(Icons.new_releases),
+              title: const Text('Points of Interest'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/pointsofinterest');

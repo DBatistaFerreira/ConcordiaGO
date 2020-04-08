@@ -56,7 +56,7 @@ class HotspotSearchService {
   }
 
   String getQuery(HotspotType locationType) {
-    if (locationType == HotspotType.Restaurant) {
+    if (locationType == HotspotType.Restaurants) {
       return concordia_constants.restaurantHotspot;
     }
     if (locationType == HotspotType.Grocery) {
