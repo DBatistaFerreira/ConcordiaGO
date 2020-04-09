@@ -1,3 +1,4 @@
+import 'package:concordia_go/services/shared_preferences_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart'
     as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
@@ -12,7 +13,7 @@ class SettingsMenu extends StatefulWidget {
 }
 
 class SettingsMenuState extends State<SettingsMenu> {
-  var testBool = false;
+  bool prioritizeElevators = false;
 
   @override
   Widget build(BuildContext context) {
@@ -73,14 +74,19 @@ class SettingsMenuState extends State<SettingsMenu> {
                         fontSize: 18,
                       ),
                     ),
-                    Switch(
-                      value: testBool,
-                      onChanged: (bool newValue) {
-                        setState(() {
-                          testBool = newValue;
-                        });
-                      },
-                      activeColor: application_constants.concordiaRed,
+                    FutureBuilder<bool>(
+                      future: SharedPreferencesService.getPrioritizeElevatorBool(),
+                      builder: (context, snapshot) {
+                        return Switch(
+                          value: snapshot.hasData?snapshot.data:prioritizeElevators,
+                          onChanged: (bool newValue) async {
+                            prioritizeElevators = newValue;
+                            await SharedPreferencesService.setPrioritizeElevatorBool(newValue);
+                            setState(() {});
+                          },
+                          activeColor: application_constants.concordiaRed,
+                        );
+                      }
                     ),
                   ],
                 ),
