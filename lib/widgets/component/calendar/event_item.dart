@@ -21,13 +21,14 @@ class EventItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)
-                //child: FlutterLogo(),
-                ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+            ),
             ListTile(
-                title: Text(_calendarEvent.title ?? ''),
-                subtitle: Text(_calendarEvent.description ?? ''),
-                trailing: _isFirst ? const Text('My next class') : const Text('')),
+              title: Text(_calendarEvent.title ?? ''),
+              subtitle: Text(_calendarEvent.description ?? ''),
+              trailing: _isFirst ? const Text('My next class') : const Text(''),
+            ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
@@ -55,7 +56,9 @@ class EventItem extends StatelessWidget {
                           width: _eventFieldNameWidth,
                           child: const Text('Ends'),
                         ),
-                        Text(_calendarEvent.end == null ? '' : DateFormat.yMd().add_jm().format(_calendarEvent.end)),
+                        Text(
+                          _calendarEvent.end == null ? '' : DateFormat.yMd().add_jm().format(_calendarEvent.end),
+                        ),
                       ],
                     ),
                   ),
