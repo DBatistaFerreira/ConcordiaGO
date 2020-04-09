@@ -75,16 +75,16 @@ class SettingsMenuState extends State<SettingsMenu> {
                         fontSize: 18,
                       ),
                     ),
-                    FutureBuilder<bool>(
-                        future: SharedPreferencesService.getPrioritizeElevatorBool(),
+                    FutureBuilder<String>(
+                        future: SharedPreferencesService.getPreferredWashroom(),
                         builder: (context, snapshot) {
                           return DropdownButton<String>(
-                            value: preferredWashroom,
                             elevation: 16,
-                            onChanged: (String newValue) {
-                              setState(() {
-                                preferredWashroom = newValue;
-                              });
+                            value: snapshot.hasData?snapshot.data:preferredWashroom,
+                            onChanged: (String newValue) async {
+                              preferredWashroom = newValue;
+                              await SharedPreferencesService.setPreferredWashroom(newValue);
+                              setState(() {});
                             },
                             items: <String>['Male', 'Female']
                                 .map<DropdownMenuItem<String>>((String value) {
