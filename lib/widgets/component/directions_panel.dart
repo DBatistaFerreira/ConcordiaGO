@@ -15,9 +15,11 @@ class DirectionsPanel extends StatefulWidget {
 }
 
 class DirectionsPanelState extends State<DirectionsPanel> {
+
+  final OutdoorPathService outdoorPathService = OutdoorPathService.instance;
+
   @override
   Widget build(BuildContext context) {
-    final OutdoorPathService outdoorPathService = OutdoorPathService.instance;
 
     return BlocBuilder<DirectionsBloc, DirectionsState>(
       builder: (BuildContext context, DirectionsState state) {
@@ -184,10 +186,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                 Flexible(
                                   child: IconButton(
                                     padding: const EdgeInsets.only(left: 8.0),
-                                    icon: Icon(
-                                      !outdoorPathService.isLastInstruction() ? Icons.arrow_forward : Icons.flag,
-                                      color: Colors.white,
-                                    ),
+                                    icon: getRightIcon(),
                                     iconSize: screenWidth / 8,
                                     onPressed: () {
                                       BlocProvider.of<DirectionsBloc>(context).add(NextInstructionEvent());
@@ -329,6 +328,27 @@ class DirectionsPanelState extends State<DirectionsPanel> {
         icon,
         color: Colors.white,
         size: size,
+      );
+    }
+  }
+
+  Icon getRightIcon() {
+    if(outdoorPathService.isLastInstruction()) {
+      if(outdoorPathService.dobjectList.isEmpty) {
+        return Icon(
+          Icons.flag,
+          color: Colors.white,
+        );
+      } else {
+        return Icon(
+          Icons.exit_to_app,
+          color: Colors.white,
+        );
+      }
+    } else {
+      return Icon(
+        Icons.arrow_forward,
+        color: Colors.white,
       );
     }
   }

@@ -113,6 +113,7 @@ class IndoorMapState extends State<IndoorMapScreen> {
                 child: Align(
                   alignment: Alignment.center,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Icon(
                         Icons.cancel,
@@ -121,7 +122,6 @@ class IndoorMapState extends State<IndoorMapScreen> {
                       ),
                       Text(
                         'Stop navigation',
-                        textAlign: TextAlign.right,
                         style: TextStyle(color: Colors.white, fontSize: 16.0),
                       ),
                     ],
