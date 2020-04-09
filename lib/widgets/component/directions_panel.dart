@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/direction.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,9 +17,12 @@ class DirectionsPanel extends StatefulWidget {
 class DirectionsPanelState extends State<DirectionsPanel> {
   @override
   Widget build(BuildContext context) {
+    final OutdoorPathService outdoorPathService = OutdoorPathService.instance;
+
     return BlocBuilder<DirectionsBloc, DirectionsState>(
       builder: (BuildContext context, DirectionsState state) {
         if (state is InstructionState) {
+
           return Container(
             color: concordiaRed,
             child: Row(
@@ -168,7 +172,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                   child: IconButton(
                                     padding: const EdgeInsets.only(right: 8.0),
                                     icon: Icon(
-                                      Icons.arrow_back,
+                                      !outdoorPathService.isFirstInstruction() ? Icons.arrow_back : Icons.my_location,
                                       color: Colors.white,
                                     ),
                                     iconSize: screenWidth / 8,
@@ -181,7 +185,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                   child: IconButton(
                                     padding: const EdgeInsets.only(left: 8.0),
                                     icon: Icon(
-                                      Icons.arrow_forward,
+                                      !outdoorPathService.isLastInstruction() ? Icons.arrow_forward : Icons.flag,
                                       color: Colors.white,
                                     ),
                                     iconSize: screenWidth / 8,

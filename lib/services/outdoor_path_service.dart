@@ -589,4 +589,8 @@ class OutdoorPathService {
   bool isLastInstruction() {
     return _currentInstruction == _singleDirections.length - 1;
   }
+
+  bool isFirstInstruction() {
+    return _currentInstruction == 0;
+  }
 }
