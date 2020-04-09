@@ -7,14 +7,14 @@ class SharedPreferencesService {
   static const String _kPrioritizeElevators = 'prioritizeElevators';
 
   // Getter for the prioritize elevator boolean
-  static Future<bool> getLanguageCode() async {
+  static Future<bool> getPrioritizeElevatorBool() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     return prefs.getBool(_kPrioritizeElevators) ?? false;
   }
 
   // Setter for the prioritize elevator boolean
-  static Future<bool> setLanguageCode(bool value) async {
+  static Future<bool> setPrioritizeElevatorBool(bool value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     return prefs.setBool(_kPrioritizeElevators, value);
