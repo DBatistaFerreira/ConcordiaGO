@@ -76,25 +76,19 @@ class POIMenuState extends State<POIMenu> {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.local_drink, size: iconSize),
-                  title: const Text(
-                    'Water Foutain',
-                    style: TextStyle(fontSize: fontSize),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // TODO(Noorzada): add link
-                  },
-                ),
-                ListTile(
                   leading: Icon(Icons.unfold_more, size: iconSize),
                   title: const Text(
                     'Elevators',
                     style: TextStyle(fontSize: fontSize),
                   ),
-                  onTap: () {
+                  onTap: () async {
                     Navigator.pop(context);
-                    //TODO(Noorzada): add link
+                    BlocProvider.of<SearchBloc>(context).add(
+                      SearchDirectionsEvent(
+                        source: Dobject.building(buildings['H']),
+                        destination: Dobject.indoorHotspot(Node('130000'), 'Elevator'),
+                      ),
+                    );
                   },
                 ),
                 ListTile(

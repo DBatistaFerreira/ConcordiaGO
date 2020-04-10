@@ -74,7 +74,7 @@ class Dobject {
   }
 
   bool isIndoorHotspot(){
-    if(node!=null&&node.getId().substring(0,2)=='15'){
+    if(node!=null&&(node.getId().substring(0,2)=='15'||node.getId().substring(0,2)=='13')){
       return true;
     }
     return false;
