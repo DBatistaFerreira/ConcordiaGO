@@ -11,7 +11,6 @@ class Dobject {
     floor = null;
     name = null;
     transportMode = null;
-    isIndoorHotspot = false;
   }
 
   Dobject.indoor(this.node, this.building, this.floor, [this.name]) {
@@ -28,7 +27,7 @@ class Dobject {
 
   Dobject.outdoor({this.node, this.building, this.coordinates, this.floor, this.name, this.transportMode});
 
-  Dobject.indoorHotspot(this.node,this.name, {this.isIndoorHotspot=true});
+  Dobject.indoorHotspot(this.node,this.name);
 
   Node node;
   ConcordiaBuilding building;
@@ -36,7 +35,6 @@ class Dobject {
   String floor;
   String name;
   ModeOfTransport transportMode;
-  bool isIndoorHotspot=false;
 
   bool hasNode() {
     return node != null;
@@ -73,6 +71,13 @@ class Dobject {
   bool isOutdoor() {
     // TODO(username): implement is outdoor checks
     return true;
+  }
+
+  bool isIndoorHotspot(){
+    if(node!=null&&node.getId().substring(0,2)=='15'){
+      return true;
+    }
+    return false;
   }
 
   // The only building that can handle Indoor POIs is Hall

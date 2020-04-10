@@ -42,6 +42,6 @@ class SameFloorDirectionHandler implements DirectionHandler {
   bool canHandle(DirectionRequest request) {
     return (request.source.isIndoor() && request.destination.isIndoor()) &&
         (request.source.building.code == request.destination.building.code) &&
-        (request.source.floor == request.destination.floor)||request.destination.isIndoorHotspot!=null&&request.destination.isIndoorHotspot;
+        (request.source.floor == request.destination.floor)||request.destination.isIndoorHotspot();
   }
 }

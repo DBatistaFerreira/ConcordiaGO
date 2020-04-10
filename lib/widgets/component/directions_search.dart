@@ -193,62 +193,19 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                             ),
                             onPressed: () {
                               if (source != null && destination != null) {
-                                if (destination.isIndoorHotspot) {
-                                  if (source.canHandleIndoorPOI()) {
-                                    if (source.isBuilding()) {
-                                      source = Dobject.indoor(
-                                          Node('990000'),
-                                          source.building,
-                                          availableIndoorFloors[
-                                              source.building.code][0]);
-                                    }
-                                    BlocProvider.of<SearchBloc>(context)
-                                        .add(const EndSearchEvent());
-                                    OutdoorPathService.instance.clearAll();
-                                    source.transportMode =
-                                        getModeOfTransportFromButton(
-                                            isSelected);
-                                    destination.transportMode =
-                                        getModeOfTransportFromButton(
-                                            isSelected);
-                                    final DirectionRequest request =
-                                        DirectionRequest(source, destination);
-                                    DirectionChain.instance.head
-                                        .handle(request);
-                                  } else {
-                                    showDialog<void>(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      // user must tap button!
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: const Text('Feature unavailable'),
-                                          content: const Text(
-                                              'This feature is currently only available from Hall Building. Please select a valid startpoint.'),
-                                          actions: <Widget>[
-                                            FlatButton(
-                                              child: const Text('Okay'),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  }
-                                } else {
-                                  BlocProvider.of<SearchBloc>(context)
-                                      .add(const EndSearchEvent());
-                                  OutdoorPathService.instance.clearAll();
-                                  source.transportMode =
-                                      getModeOfTransportFromButton(isSelected);
-                                  destination.transportMode =
-                                      getModeOfTransportFromButton(isSelected);
-                                  final DirectionRequest request =
-                                      DirectionRequest(source, destination);
-                                  DirectionChain.instance.head.handle(request);
+                                if (destination.isIndoorHotspot()) {
+                                  if (!handleIndoorPOI()) return null;
                                 }
+                                BlocProvider.of<SearchBloc>(context)
+                                    .add(const EndSearchEvent());
+                                OutdoorPathService.instance.clearAll();
+                                source.transportMode =
+                                    getModeOfTransportFromButton(isSelected);
+                                destination.transportMode =
+                                    getModeOfTransportFromButton(isSelected);
+                                final DirectionRequest request =
+                                    DirectionRequest(source, destination);
+                                DirectionChain.instance.head.handle(request);
                               }
                             },
                             icon: Icon(
@@ -276,6 +233,42 @@ class DirectionsSearchState extends State<DirectionsSearch> {
           }
         },
       ),
+    );
+  }
+
+  bool handleIndoorPOI() {
+    if (source.canHandleIndoorPOI()) {
+      if (source.isBuilding()) {
+        source = Dobject.indoor(Node('990000'), source.building,
+            availableIndoorFloors[source.building.code][0]);
+      }
+      return true;
+    } else {
+      showAlert('Feature unavailable',
+          'This feature is currently only available from Hall Building. Please select a valid startpoint.');
+      return false;
+    }
+  }
+
+  void showAlert(String title, String message) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            FlatButton(
+              child: const Text('Okay'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
