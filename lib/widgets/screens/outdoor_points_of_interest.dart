@@ -1,10 +1,17 @@
+import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/hotspot.dart';
+import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/services/hotspot_search_service.dart';
+import 'package:concordia_go/services/shared_preferences_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
+import 'package:concordia_go/utilities/concordia_constants.dart';
+import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:concordia_go/widgets/screens/outdoor_poi_results.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class POIMenu extends StatefulWidget {
   const POIMenu();
@@ -57,9 +64,15 @@ class POIMenuState extends State<POIMenu> {
                     'Washroom',
                     style: TextStyle(fontSize: fontSize),
                   ),
-                  onTap: () {
+                  onTap: () async {
                     Navigator.pop(context);
-                    // TODO(Noorzada): add link
+                    var preferredWashroom = await SharedPreferencesService.getPreferredWashroom();
+                    BlocProvider.of<SearchBloc>(context).add(
+                      SearchDirectionsEvent(
+                        source: Dobject.building(buildings['H']),
+                        destination: Dobject.indoorHotspot(Node(preferredWashroom=='Male'?'150001':'150000'), 'Washroom'),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
