@@ -25,7 +25,7 @@ class POIMenuState extends State<POIMenu> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight / 12),
         child: AppBar(
-          title: Image.asset('assets/logo.png', height: screenHeight / 12),
+          title: Image.asset(concordiaGOHeader, height: screenHeight / 12),
           backgroundColor: application_constants.concordiaRed,
         ),
       ),
@@ -105,13 +105,43 @@ class POIMenuState extends State<POIMenu> {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.shopping_cart, size: iconSize),
+                  leading: Icon(Icons.shopping_basket, size: iconSize),
                   title: const Text(
                     'Shops',
                     style: TextStyle(fontSize: fontSize),
                   ),
                   onTap: () {
-                    //TODO
+                    hotspotSearchService.setHotspotList(HotspotType.Shopping).then(
+                          (void value) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<OutdoorPOIResults>(
+                            builder: (BuildContext context) =>
+                                OutdoorPOIResults(hotspotSearchService.hotspotList, HotspotType.Shopping),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.shopping_cart, size: iconSize),
+                  title: const Text(
+                    'Grocery Stores',
+                    style: TextStyle(fontSize: fontSize),
+                  ),
+                  onTap: () {
+                    hotspotSearchService.setHotspotList(HotspotType.Grocery).then(
+                          (void value) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<OutdoorPOIResults>(
+                            builder: (BuildContext context) =>
+                                OutdoorPOIResults(hotspotSearchService.hotspotList, HotspotType.Grocery),
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
               ],
