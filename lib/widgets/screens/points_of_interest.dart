@@ -65,7 +65,7 @@ class POIMenuState extends State<POIMenu> {
                 ListTile(
                   leading: Icon(Icons.local_drink, size: iconSize),
                   title: const Text(
-                    'Water Foutain',
+                    'Water Fountain',
                     style: TextStyle(fontSize: fontSize),
                   ),
                   onTap: () {
@@ -87,7 +87,7 @@ class POIMenuState extends State<POIMenu> {
                 ListTile(
                   leading: Icon(Icons.restaurant, size: iconSize),
                   title: const Text(
-                    'Food',
+                    'Restaurants',
                     style: TextStyle(fontSize: fontSize),
                   ),
                   onTap: () {
@@ -107,12 +107,12 @@ class POIMenuState extends State<POIMenu> {
                 ListTile(
                   leading: Icon(Icons.shopping_basket, size: iconSize),
                   title: const Text(
-                    'Shops',
+                    'Shopping',
                     style: TextStyle(fontSize: fontSize),
                   ),
                   onTap: () {
                     hotspotSearchService.setHotspotList(HotspotType.Shopping).then(
-                          (void value) {
+                      (void value) {
                         Navigator.push(
                           context,
                           MaterialPageRoute<OutdoorPOIResults>(
@@ -127,12 +127,12 @@ class POIMenuState extends State<POIMenu> {
                 ListTile(
                   leading: Icon(Icons.shopping_cart, size: iconSize),
                   title: const Text(
-                    'Grocery Stores',
+                    'Grocery',
                     style: TextStyle(fontSize: fontSize),
                   ),
                   onTap: () {
                     hotspotSearchService.setHotspotList(HotspotType.Grocery).then(
-                          (void value) {
+                      (void value) {
                         Navigator.push(
                           context,
                           MaterialPageRoute<OutdoorPOIResults>(

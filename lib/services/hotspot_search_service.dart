@@ -25,11 +25,13 @@ class HotspotSearchService {
 
   Hotspot hotspotBuilder(Map hotspotMap, HotspotType locationType) {
     bool isOpen = true;
-    if (hotspotMap[concordia_constants.opening_hours] != null){
-      isOpen = hotspotMap[concordia_constants.opening_hours][concordia_constants.open_now] as bool;
+    if (hotspotMap[concordia_constants.opening_hours] != null) {
+      if (hotspotMap[concordia_constants.opening_hours][concordia_constants.open_now] != null) {
+        isOpen = hotspotMap[concordia_constants.opening_hours][concordia_constants.open_now] as bool;
+      }
     }
-    dynamic priceLevel =  0;
-    if (hotspotMap[concordia_constants.price_level] != null){
+    dynamic priceLevel = 0;
+    if (hotspotMap[concordia_constants.price_level] != null) {
       priceLevel = hotspotMap[concordia_constants.price_level];
     }
 
@@ -56,15 +58,16 @@ class HotspotSearchService {
   }
 
   String getQuery(HotspotType locationType) {
-    if (locationType == HotspotType.Restaurants) {
-      return concordia_constants.restaurantHotspot;
+    switch (locationType) {
+      case HotspotType.Restaurants:
+        return concordia_constants.restaurantHotspot;
+        break;
+      case HotspotType.Grocery:
+        return concordia_constants.groceryHotspot;
+      case HotspotType.Shopping:
+        return concordia_constants.shoppingHotspot;
+      default:
+        return '';
     }
-    if (locationType == HotspotType.Grocery) {
-      return concordia_constants.groceryHotspot;
-    }
-    if (locationType == HotspotType.Shopping) {
-      return concordia_constants.shoppingHotspot;
-    }
-    return '';
   }
 }
