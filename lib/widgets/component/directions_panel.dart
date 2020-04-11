@@ -20,11 +20,9 @@ class DirectionsPanelState extends State<DirectionsPanel> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<DirectionsBloc, DirectionsState>(
       builder: (BuildContext context, DirectionsState state) {
         if (state is InstructionState) {
-
           return Container(
             color: concordiaRed,
             child: Row(
