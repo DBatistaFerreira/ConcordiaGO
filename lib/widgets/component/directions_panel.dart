@@ -15,7 +15,6 @@ class DirectionsPanel extends StatefulWidget {
 }
 
 class DirectionsPanelState extends State<DirectionsPanel> {
-
   final OutdoorPathService outdoorPathService = OutdoorPathService.instance;
 
   @override
@@ -331,8 +330,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
   }
 
   Icon getRightIcon() {
-    if(outdoorPathService.isLastInstruction()) {
-      if(outdoorPathService.dobjectList.isEmpty) {
+    if (outdoorPathService.isLastInstruction()) {
+      if (outdoorPathService.dobjectList.isEmpty) {
         return Icon(
           Icons.flag,
           color: Colors.white,
