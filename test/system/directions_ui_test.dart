@@ -31,7 +31,7 @@ void main() {
   testWidgets(
     'test directions search and direction panel widgets',
     (WidgetTester tester) async {
-      var searchBloc;
+      SearchBloc searchBloc;
 
       var blocProvider = MultiBlocProvider(
         providers: [
@@ -83,7 +83,7 @@ void main() {
       await tester.pump();
 
       expect(find.text('Test Building'), findsOneWidget);
-      expect(find.byIcon(Icons.arrow_back), findsOneWidget);
+      expect(find.byIcon(Icons.my_location), findsOneWidget);
       expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
       expect(find.byIcon(Icons.location_on), findsOneWidget);
 
