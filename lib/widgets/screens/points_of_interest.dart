@@ -81,7 +81,7 @@ class POIMenuState extends State<POIMenu> {
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    //TODO(Noorzada): add link
+                    // TODO(Noorzada): add link
                   },
                 ),
                 ListTile(
