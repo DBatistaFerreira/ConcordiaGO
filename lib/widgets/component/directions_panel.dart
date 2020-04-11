@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/direction.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,9 @@ class DirectionsPanel extends StatefulWidget {
 }
 
 class DirectionsPanelState extends State<DirectionsPanel> {
+
+  final OutdoorPathService outdoorPathService = OutdoorPathService.instance;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DirectionsBloc, DirectionsState>(
@@ -168,7 +172,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                   child: IconButton(
                                     padding: const EdgeInsets.only(right: 8.0),
                                     icon: Icon(
-                                      Icons.arrow_back,
+                                      !outdoorPathService.isFirstInstruction() ? Icons.arrow_back : Icons.my_location,
                                       color: Colors.white,
                                     ),
                                     iconSize: screenWidth / 8,
@@ -180,10 +184,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                                 Flexible(
                                   child: IconButton(
                                     padding: const EdgeInsets.only(left: 8.0),
-                                    icon: Icon(
-                                      Icons.arrow_forward,
-                                      color: Colors.white,
-                                    ),
+                                    icon: getRightIcon(),
                                     iconSize: screenWidth / 8,
                                     onPressed: () {
                                       BlocProvider.of<DirectionsBloc>(context).add(NextInstructionEvent());
@@ -325,6 +326,27 @@ class DirectionsPanelState extends State<DirectionsPanel> {
         icon,
         color: Colors.white,
         size: size,
+      );
+    }
+  }
+
+  Icon getRightIcon() {
+    if(outdoorPathService.isLastInstruction()) {
+      if(outdoorPathService.dobjectList.isEmpty) {
+        return Icon(
+          Icons.flag,
+          color: Colors.white,
+        );
+      } else {
+        return Icon(
+          Icons.exit_to_app,
+          color: Colors.white,
+        );
+      }
+    } else {
+      return Icon(
+        Icons.arrow_forward,
+        color: Colors.white,
       );
     }
   }
