@@ -19,11 +19,11 @@ class HotspotSearchService {
     final dynamic jsonReturn = await googlePlacesRequest(locationType);
     final List<dynamic> hotspotMap = jsonReturn[concordia_constants.results] as List<dynamic>;
     for (int i = 0; i < hotspotMap.length; i++) {
-      hotspotList.add(hotspotBuilder(hotspotMap[i] as Map, locationType));
+      hotspotList.add(hotspotBuilder(hotspotMap[i] as Map<dynamic, dynamic> , locationType));
     }
   }
 
-  Hotspot hotspotBuilder(Map hotspotMap, HotspotType locationType) {
+  Hotspot hotspotBuilder(Map<dynamic, dynamic> hotspotMap, HotspotType locationType) {
     bool isOpen = true;
     if (hotspotMap[concordia_constants.opening_hours] != null) {
       if (hotspotMap[concordia_constants.opening_hours][concordia_constants.open_now] != null) {
