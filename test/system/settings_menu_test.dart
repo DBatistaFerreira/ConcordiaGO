@@ -25,11 +25,16 @@ void main() {
       // Find Page title
       expect(find.text('Settings'), findsOneWidget);
       expect(find.text('Accessibility'), findsOneWidget);
+      expect(find.text('General'), findsOneWidget);
 
       // Find Prioritize elevators setting
       expect(find.text('Prioritize elevators'), findsOneWidget);
       expect(find.byWidgetPredicate((Widget widget) => widget is Switch), findsOneWidget);
 
+      // Find Prioritize elevators setting
+      expect(find.text('Preferred washroom'), findsOneWidget);
+      expect(find.text('Male'), findsOneWidget);
+      expect(find.byWidgetPredicate((Widget widget) => widget is DropdownButton), findsOneWidget);
     },
   );
 }
