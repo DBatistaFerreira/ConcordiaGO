@@ -47,6 +47,9 @@ void main() {
           BlocProvider<SearchBloc>(
             create: (context) => searchBloc = SearchBloc(),
           ),
+          BlocProvider<CalendarBloc>(
+            create: (context) => CalendarBloc(),
+          )
         ],
         child: MaterialApp(
           title: applicationName,

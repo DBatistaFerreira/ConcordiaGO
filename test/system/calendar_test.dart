@@ -15,8 +15,14 @@ class MockDeviceCalendarPlugin extends Mock implements DeviceCalendarPlugin {}
 void main() {
   var deviceCalendarPlugin = MockDeviceCalendarPlugin();
   var calendarsPageWidget = MaterialApp(
-      home: BlocProvider<CalendarBloc>(
-          create: (context) => CalendarBloc(), child: CalendarsPage(deviceCalendarPlugin, key: Key('calendarsPage'))));
+    home: BlocProvider<CalendarBloc>(
+      create: (context) => CalendarBloc(),
+      child: CalendarsPage(
+        deviceCalendarPlugin,
+        key: Key('calendarsPage'),
+      ),
+    ),
+  );
   final calendars = Result<UnmodifiableListView<Calendar>>();
   calendars.data = UnmodifiableListView([
     Calendar(
@@ -26,7 +32,7 @@ void main() {
         color: 1,
         id: '123',
         accountType: 'google',
-        accountName: 'test')
+        accountName: 'test'),
   ]);
   final resultPermissions = Result<bool>();
 
@@ -65,9 +71,9 @@ void main() {
     ]);
 
     var widget = MaterialApp(
-        home: BlocProvider<CalendarBloc>(
-      create: (context) => CalendarBloc(),
-      child: CalendarEventsPage(
+      home: BlocProvider<CalendarBloc>(
+        create: (context) => CalendarBloc(),
+        child: CalendarEventsPage(
           Calendar(
               accountName: 'test',
               accountType: 'test',
@@ -77,8 +83,10 @@ void main() {
               isReadOnly: false,
               name: 'Test'),
           deviceCalendarPlugin,
-          key: Key('calendarsPage')),
-    ));
+          key: Key('calendarsPage'),
+        ),
+      ),
+    );
     when(deviceCalendarPlugin.retrieveEvents(any, any)).thenAnswer((_) async => await result);
 
     await tester.pumpWidget(widget); // runs init
