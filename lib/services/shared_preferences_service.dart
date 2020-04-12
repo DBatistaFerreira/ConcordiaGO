@@ -25,7 +25,7 @@ class SharedPreferencesService {
   }
 
   // Update prioritize elevator boolean
-  static void updatePrioritizeElevatorBool() async {
-    prioritizeElevators = await getPrioritizeElevatorBool();
+  static Future<bool> updatePrioritizeElevatorBool() async {
+    return prioritizeElevators = await getPrioritizeElevatorBool();
   }
 }

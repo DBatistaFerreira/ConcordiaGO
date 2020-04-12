@@ -76,7 +76,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                     ),
                     FutureBuilder<bool>(
                       future: SharedPreferencesService.getPrioritizeElevatorBool(),
-                      builder: (context, snapshot) {
+                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                         return Switch(
                           value: snapshot.hasData?snapshot.data:prioritizeElevators,
                           onChanged: (bool newValue) async {
