@@ -47,6 +47,9 @@ void main() {
           BlocProvider<SearchBloc>(
             create: (context) => searchBloc = SearchBloc(),
           ),
+          BlocProvider<CalendarBloc>(
+            create: (context) => CalendarBloc(),
+          )
         ],
         child: MaterialApp(
           title: applicationName,
@@ -72,9 +75,9 @@ void main() {
       expect(find.text(dest.name), findsOneWidget);
       expect(find.byType(ToggleButtons), findsOneWidget);
 
-      var shuttle = find.byIcon(Icons.directions_bus);
-      expect(shuttle, findsOneWidget);
-      await tester.tap(shuttle);
+      var driving = find.byIcon(Icons.directions_car);
+      expect(driving, findsOneWidget);
+      await tester.tap(driving);
       await tester.pump();
 
       var go = find.byIcon(Icons.directions);
@@ -96,7 +99,7 @@ void main() {
       expect(confirmExit, findsOneWidget);
       await tester.tap(confirmExit);
       await tester.pump();
-      await tester.pump(Duration(milliseconds: 500));
+      await tester.pump(const Duration(milliseconds: 500));
 
       expect(find.text('Test Building'), findsNothing);
       expect(find.byIcon(Icons.arrow_back), findsNothing);

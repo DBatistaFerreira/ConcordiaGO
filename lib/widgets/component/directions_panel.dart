@@ -15,7 +15,6 @@ class DirectionsPanel extends StatefulWidget {
 }
 
 class DirectionsPanelState extends State<DirectionsPanel> {
-
   final OutdoorPathService outdoorPathService = OutdoorPathService.instance;
 
   @override
@@ -25,195 +24,222 @@ class DirectionsPanelState extends State<DirectionsPanel> {
         if (state is InstructionState) {
           return Container(
             color: concordiaRed,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
               children: <Widget>[
                 Expanded(
-                  flex: 2,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
-                        flex: 2,
-                        child: Container(
-                          color: concordiaRed,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 15.0, left: 5.0),
-                            child: Align(
-                              alignment: Alignment.topCenter,
-                              child: getIcon(state.step.icons, screenWidth / 8),
-                            ),
-                          ),
+                        flex: 1,
+                        child: Container(),
+                      ),
+                      Expanded(
+                        flex: 6,
+                        child: Icon(
+                          Icons.keyboard_arrow_up,
+                          color: Colors.white,
+                          size: screenWidth / 12,
                         ),
                       ),
                       Expanded(
                         flex: 1,
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Icon(
-                              Icons.location_on,
-                              color: Colors.white,
-                              size: screenWidth / 12,
-                            ),
+                        child: IconButton(
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(0.0),
+                          iconSize: screenWidth / 14,
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.white,
                           ),
+                          onPressed: () {
+                            showDialog<AlertDialog>(
+                              context: context,
+                              builder: (BuildContext context) => exitNavAlert(context),
+                              barrierDismissible: false,
+                            );
+                          },
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
                 Expanded(
-                  flex: 7,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  flex: 6,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
                         flex: 2,
-                        child: Container(
-                          color: concordiaRed,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 15.0, left: 10.0),
-                            child: Text(
-                              state.step.instruction,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                state.step.destination,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                ),
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          color: concordiaRed,
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                flex: 3,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                color: concordiaRed,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(top: 4.0, left: 5.0),
+                                  child: Align(
+                                    alignment: Alignment.topCenter,
+                                    child: getIcon(state.step.icons, screenWidth / 8),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.location_on,
+                                    color: Colors.white,
+                                    size: screenWidth / 12,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 7,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                color: concordiaRed,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 4.0, left: 10.0),
+                                  child: Text(
+                                    state.step.instruction,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      state.step.distance,
+                                      state.step.destination,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 20,
+                                        fontSize: 16,
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                color: concordiaRed,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                      flex: 3,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 5.0, left: 6.0),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            state.step.distance,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ),
-                              Expanded(
-                                flex: 1,
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 5.0, right: 8.0),
                                 child: Align(
-                                  alignment: Alignment.topRight,
-                                  child: IconButton(
-                                    alignment: Alignment.topRight,
-                                    padding: const EdgeInsets.only(top: 5.0, right: 5.0),
-                                    iconSize: screenWidth / 14,
-                                    icon: Icon(
-                                      Icons.close,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {
-                                      showDialog<AlertDialog>(
-                                        context: context,
-                                        builder: (BuildContext context) => exitNavAlert(context),
-                                        barrierDismissible: false,
-                                      );
-                                    },
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Flexible(
+                                        child: IconButton(
+                                          padding: const EdgeInsets.only(right: 8.0),
+                                          icon: Icon(
+                                            !outdoorPathService.isFirstInstruction()
+                                                ? Icons.arrow_back
+                                                : Icons.my_location,
+                                            color: Colors.white,
+                                          ),
+                                          iconSize: screenWidth / 8,
+                                          onPressed: () {
+                                            BlocProvider.of<DirectionsBloc>(context).add(PreviousInstructionEvent());
+                                          },
+                                        ),
+                                      ),
+                                      Flexible(
+                                        child: IconButton(
+                                          padding: const EdgeInsets.only(left: 8.0),
+                                          icon: getRightIcon(),
+                                          iconSize: screenWidth / 8,
+                                          onPressed: () {
+                                            BlocProvider.of<DirectionsBloc>(context).add(NextInstructionEvent());
+                                          },
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5.0, right: 8.0),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Row(
-                              children: <Widget>[
-                                Flexible(
-                                  child: IconButton(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    icon: Icon(
-                                      !outdoorPathService.isFirstInstruction() ? Icons.arrow_back : Icons.my_location,
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    'Arrive at',
+                                    style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: 16,
                                     ),
-                                    iconSize: screenWidth / 8,
-                                    onPressed: () {
-                                      BlocProvider.of<DirectionsBloc>(context).add(PreviousInstructionEvent());
-                                    },
                                   ),
-                                ),
-                                Flexible(
-                                  child: IconButton(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    icon: getRightIcon(),
-                                    iconSize: screenWidth / 8,
-                                    onPressed: () {
-                                      BlocProvider.of<DirectionsBloc>(context).add(NextInstructionEvent());
-                                    },
+                                  Text(
+                                    state.step.arrivalTime,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Arrive at',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                              ),
-                            ),
-                            Text(
-                              state.step.arrivalTime,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
+                                ],
                               ),
                             ),
                           ],
@@ -331,8 +357,8 @@ class DirectionsPanelState extends State<DirectionsPanel> {
   }
 
   Icon getRightIcon() {
-    if(outdoorPathService.isLastInstruction()) {
-      if(outdoorPathService.dobjectList.isEmpty) {
+    if (outdoorPathService.isLastInstruction()) {
+      if (outdoorPathService.dobjectList.isEmpty) {
         return Icon(
           Icons.flag,
           color: Colors.white,

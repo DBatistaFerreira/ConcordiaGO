@@ -42,4 +42,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/headers/ConcordiaGOHeader.png
+    - assets/headers/ConcordiaGOHeader_Blue.png
+    - assets/headers/ConcordiaGOHeader_DarkGreen.png
+    - assets/headers/ConcordiaGOHeader_Magenta.png
+    - assets/headers/ConcordiaGOHeader_NeonGreen.png
+    - assets/headers/ConcordiaGOHeader_Orange.png
+    - assets/headers/ConcordiaGOHeader_Purple.png
+    - assets/headers/ConcordiaGOHeader_Yellow.png
     - assets/logos/ConcordiaGOLogo.png
