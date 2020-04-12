@@ -52,7 +52,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                   child: const Text(
                     'Accessibility',
                     textAlign: TextAlign.left,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Raleway',
                       color: Colors.grey,
                       //fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                     const Text(
                       'Prioritize elevators',
                       textAlign: TextAlign.left,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Raleway',
                         color: Colors.black,
                         fontSize: 18,
