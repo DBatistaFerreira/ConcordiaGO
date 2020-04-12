@@ -68,7 +68,6 @@ class QuickMenuState extends State<QuickMenu> {
           ListTile(
             leading: Icon(Icons.settings),
             title: const Text('Settings'),
-            // TODO(Noorzada): add link
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/settings');

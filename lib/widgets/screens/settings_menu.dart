@@ -77,7 +77,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                     ),
                     FutureBuilder<String>(
                         future: SharedPreferencesService.getPreferredWashroom(),
-                        builder: (context, snapshot) {
+                        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                           return DropdownButton<String>(
                             elevation: 16,
                             value: snapshot.hasData?snapshot.data:preferredWashroom,
@@ -128,7 +128,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                     ),
                     FutureBuilder<bool>(
                       future: SharedPreferencesService.getPrioritizeElevatorBool(),
-                      builder: (context, snapshot) {
+                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                         return Switch(
                           value: snapshot.hasData?snapshot.data:prioritizeElevators,
                           onChanged: (bool newValue) async {
