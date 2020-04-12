@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/models/classroom.dart';
+import 'package:concordia_go/utilities/concordia_constants.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 
@@ -75,8 +75,9 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
               child: ListView.builder(
                 itemCount: _calendarEvents?.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                  final bool _isFirst = index == 0;
-                  return EventItem(_calendarEvents[index], _onTapped, _isFirst);
+                    return EventItem(
+                        _calendarEvents[index], _onTapped, index == 0,
+                        validateEvent(_calendarEvents[index]));
                 },
               ),
             )
@@ -87,9 +88,9 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
     );
   }
 
-  Future<void> _onTapped(Event event) async {
-    if (event != null) {
-      BlocProvider.of<CalendarBloc>(context).add(GetClass(event));
+  Future<void> _onTapped(Classroom classroom) async {
+    if (classroom != null) {
+    // TODO(Waqar): add classroom directions
     }
     final HomeScreen refreshEvents =
         await Navigator.push(context, MaterialPageRoute<HomeScreen>(builder: (BuildContext context) => HomeScreen()));
@@ -104,7 +105,23 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
     final Result<UnmodifiableListView<Event>> calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
         _calendar.id, RetrieveEventsParams(startDate: startDate, endDate: endDate));
     setState(() {
-      _calendarEvents = calendarEventsResult?.data;
+      _calendarEvents = calendarEventsResult?.data?.where((Event e) => validateEvent(e) != null)?.toList();
     });
   }
+}
+
+Classroom validateEvent(Event event) {
+  final List<String> classroomInfo = event.location.split('-');
+  if(buildings.containsKey(classroomInfo[0])){
+    final Classroom classroom = Classroom(buildings[classroomInfo[0]], classroomInfo[1], classroomInfo[2]);
+    if(rooms.contains(classroom)){
+      return classroom;
+    }else{
+      return null;
+    }
+  }else{
+    return null;
+  }
+
+
 }

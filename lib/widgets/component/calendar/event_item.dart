@@ -1,13 +1,15 @@
+import 'package:concordia_go/models/classroom.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class EventItem extends StatelessWidget {
-  const EventItem(this._calendarEvent, this._onTapped, this._isFirst);
+  const EventItem(this._calendarEvent, this._onTapped, this._isFirst, this.classroom);
 
   final Event _calendarEvent;
-  final Function(Event) _onTapped;
+  final Function(Classroom) _onTapped;
   final bool _isFirst;
+  final Classroom classroom;
 
   double get _eventFieldNameWidth => 75.0;
 
@@ -15,7 +17,7 @@ class EventItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _onTapped(_calendarEvent);
+        _onTapped(classroom);
       },
       child: Card(
         child: Column(

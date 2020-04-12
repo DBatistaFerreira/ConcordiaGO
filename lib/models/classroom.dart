@@ -18,4 +18,12 @@ class Classroom {
   String get floor => _floor;
 
   String get number => _number;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is Classroom &&
+              _building == other._building &&
+              _floor == other._floor &&
+              _number == other._number;
 }
