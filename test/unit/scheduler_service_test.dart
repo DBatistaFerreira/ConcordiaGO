@@ -32,15 +32,16 @@ void main() {
   });
 
   test('Calculate New Arrival Time in String Format ', () {
-    expect(SchedulerService.instance.calculateArrivalTimeinStringFormat('2 mins'),
+    expect(SchedulerService.instance.calculateArrivalTimeInStringFormat('2 mins'),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 2));
-    expect(SchedulerService.instance.calculateArrivalTimeinStringFormat('2 hours 4 mins'),
+    expect(SchedulerService.instance.calculateArrivalTimeInStringFormat('2 hours 4 mins'),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 124));
-    expect(SchedulerService.instance.calculateArrivalTimeinStringFormat('0 min'),
+    expect(SchedulerService.instance.calculateArrivalTimeInStringFormat('0 min'),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 0));
-    expect(SchedulerService.instance.calculateArrivalTimeinStringFormat('8 hours 15 min'),
+    expect(SchedulerService.instance.calculateArrivalTimeInStringFormat('8 hours 15 min'),
         SchedulerService.instance.calculateNewTime(SchedulerService.instance.stringTime(), 495));
   });
+
   test('Calculate New Arrival Time in Int Format', () {
     expect(SchedulerService.instance.calculateArrivalTimeInIntFormat('2 days 4 hours'), 3120);
     expect(SchedulerService.instance.calculateArrivalTimeInIntFormat('1 day 4 hours'), 1680);

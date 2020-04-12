@@ -76,7 +76,7 @@ class HomePageState extends State<HomeScreen> {
           ],
         ),
         collapsed: DirectionsPanel(),
-        minHeight: screenHeight / 3.5,
+        minHeight: screenHeight / 3.3,
         maxHeight: screenHeight / 1.4,
       ),
       drawer: QuickMenu(),

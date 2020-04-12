@@ -22,14 +22,12 @@ void main() {
     scaffoldKey.currentState.openDrawer();
     await tester.pump();
 
-    final favoritePlaces = find.byIcon(Icons.favorite);
     final campuses = find.byIcon(Icons.school);
     final yourNextClass = find.byIcon(Icons.flag);
     final pointsOfInterest = find.byIcon(Icons.new_releases);
     final mySchedule = find.byIcon(Icons.calendar_today);
     final settings = find.byIcon(Icons.settings);
 
-    expect(favoritePlaces, findsOneWidget);
     expect(campuses, findsNWidgets(2));
     expect(yourNextClass, findsOneWidget);
     expect(pointsOfInterest, findsOneWidget);
