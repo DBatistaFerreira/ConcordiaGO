@@ -1,4 +1,5 @@
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/services/shared_preferences_service.dart';
 import 'package:concordia_go/widgets/component/directions_list.dart';
 import 'package:concordia_go/widgets/component/directions_panel.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
@@ -31,6 +32,7 @@ class HomePageState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _initGeolocationServices();
+    SharedPreferencesService.updatePrioritizeElevatorBool();
   }
 
   Future<void> _initGeolocationServices() async {
