@@ -421,7 +421,7 @@ class OutdoorPathService {
       // await walkingDirections(startLat, startLng, endLat, endLng, buildingDestination);
       addWalkingPath(values, buildingDestination, 0);
       setDirections();
-    } else if(SchedulerService.instance.getCurrentWeekDay() > 5){
+    } else if (SchedulerService.instance.getCurrentWeekDay() > 5) {
       await transitDirections(startLat, startLng, endLat, endLng, buildingDestination);
     } else {
       sgwToLoyola = await isSgwCloser(startLat, startLng);

@@ -189,8 +189,11 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                               if (source != null && destination != null) {
                                 BlocProvider.of<SearchBloc>(context).add(const EndSearchEvent());
                                 OutdoorPathService.instance.clearAll();
-                                if(SchedulerService.instance.getCurrentWeekDay() > 5 && isSelected[3]){
-                                  showDialog<AlertDialog>(context: context, builder: (BuildContext context) => shuttleUnavailable());
+                                if (SchedulerService.instance.getCurrentWeekDay() > 5 && isSelected[3]) {
+                                  showDialog<AlertDialog>(
+                                    context: context,
+                                    builder: (BuildContext context) => shuttleUnavailable(),
+                                  );
                                 }
                                 source.transportMode = getModeOfTransportFromButton(isSelected);
                                 destination.transportMode = getModeOfTransportFromButton(isSelected);
@@ -225,17 +228,16 @@ class DirectionsSearchState extends State<DirectionsSearch> {
     );
   }
 
-  AlertDialog shuttleUnavailable(){
+  AlertDialog shuttleUnavailable() {
     return AlertDialog(
       title: const Text('Shuttle unavailable'),
       content: const Text('Concordia Shuttle Services are not available on weekends. Rerouting to public transit.'),
       actions: <Widget>[
         FlatButton(
-        child: const Text('Continue'),
-        onPressed : (){
-          Navigator.of(context).pop();
-        }
-        ),
+            child: const Text('Continue'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
       ],
     );
   }
