@@ -62,7 +62,7 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                '${_calendar.name} events',
+                'My Schedule',
                 style: TextStyle(
                   fontFamily: 'Raleway',
                   color: Colors.white,
@@ -79,9 +79,8 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
               child: ListView.builder(
                 itemCount: _calendarEvents?.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                    return EventItem(
-                        _calendarEvents[index], _onTapped, index == 0,
-                        validateEvent(_calendarEvents[index]));
+                  return EventItem(
+                      _calendarEvents[index], _onTapped, index == 0, validateEvent(_calendarEvents[index]));
                 },
               ),
             )
@@ -97,8 +96,9 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
       Navigator.pop(context);
       Navigator.pop(context);
       final Dobject source = Dobject.hotspot(currentLocation, 'Your Location');
-      final Dobject destination = Dobject.indoor(classroom.node, classroom.building, classroom.floor, classroom.building.code+classroom.number);
-      BlocProvider.of<SearchBloc>(mapContext).add(SearchDirectionsEvent(source : source, destination: destination));
+      final Dobject destination = Dobject.indoor(
+          classroom.node, classroom.building, classroom.floor, classroom.building.code + classroom.number);
+      BlocProvider.of<SearchBloc>(mapContext).add(SearchDirectionsEvent(source: source, destination: destination));
     }
   }
 
@@ -115,16 +115,11 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
 
 Classroom validateEvent(Event event) {
   final List<String> classroomInfo = event.location.split('-');
-  if(buildings.containsKey(classroomInfo[0])){
+  if (buildings.containsKey(classroomInfo[0])) {
     final Classroom classroom = Classroom(buildings[classroomInfo[0]], classroomInfo[1], classroomInfo[2]);
-    if(rooms.contains(classroom)){
+    if (rooms.contains(classroom)) {
       return classroom;
-    }else{
-      return null;
     }
-  }else{
-    return null;
   }
-
-
+  return null;
 }

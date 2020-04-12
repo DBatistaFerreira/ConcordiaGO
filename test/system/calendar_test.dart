@@ -1,14 +1,12 @@
 import 'dart:collection';
 
 import 'package:concordia_go/widgets/component/calendar/calendar_events.dart';
-import 'package:concordia_go/widgets/component/calendar/calendars.dart';
 import 'package:concordia_go/widgets/component/calendar/event_item.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:concordia_go/blocs/calendar_bloc/calendar_bloc.dart';
 
 class MockDeviceCalendarPlugin extends Mock implements DeviceCalendarPlugin {}
 
