@@ -3,6 +3,7 @@ import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/direction_request.dart';
 import 'package:concordia_go/services/direction_chain.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
+import 'package:concordia_go/services/scheduler_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/direction.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
@@ -188,6 +189,9 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                               if (source != null && destination != null) {
                                 BlocProvider.of<SearchBloc>(context).add(const EndSearchEvent());
                                 OutdoorPathService.instance.clearAll();
+                                if(SchedulerService.instance.getCurrentWeekDay() > 5 && isSelected[3]){
+                                  showDialog<AlertDialog>(context: context, builder: (BuildContext context) => shuttleUnavailable());
+                                }
                                 source.transportMode = getModeOfTransportFromButton(isSelected);
                                 destination.transportMode = getModeOfTransportFromButton(isSelected);
                                 final DirectionRequest request = DirectionRequest(source, destination);
@@ -218,6 +222,21 @@ class DirectionsSearchState extends State<DirectionsSearch> {
           }
         },
       ),
+    );
+  }
+
+  AlertDialog shuttleUnavailable(){
+    return AlertDialog(
+      title: const Text('Shuttle unavailable'),
+      content: const Text('Concordia Shuttle Services are not available on weekends. Rerouting to public transit.'),
+      actions: <Widget>[
+        FlatButton(
+        child: const Text('Continue'),
+        onPressed : (){
+          Navigator.of(context).pop();
+        }
+        ),
+      ],
     );
   }
 }
