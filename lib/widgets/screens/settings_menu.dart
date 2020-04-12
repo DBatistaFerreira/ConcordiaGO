@@ -49,10 +49,10 @@ class SettingsMenuState extends State<SettingsMenu> {
             child: Column(
               children: <Widget>[
                 Align(
-                  child: Text(
+                  child: const Text(
                     'Accessibility',
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Raleway',
                       color: Colors.grey,
                       //fontWeight: FontWeight.bold,
@@ -65,10 +65,10 @@ class SettingsMenuState extends State<SettingsMenu> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
+                    const Text(
                       'Prioritize elevators',
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Raleway',
                         color: Colors.black,
                         fontSize: 18,
