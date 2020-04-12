@@ -40,14 +40,14 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                         child: Icon(
                           Icons.keyboard_arrow_up,
                           color: Colors.white,
-                          size: 25.0,
+                          size: screenWidth / 12,
                         ),
                       ),
                       Expanded(
                         flex: 1,
                         child: IconButton(
-                          alignment: Alignment.topRight,
-                          padding: const EdgeInsets.only(top: 0.5, right: 6.0),
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(0.0),
                           iconSize: screenWidth / 14,
                           icon: Icon(
                             Icons.close,
@@ -66,7 +66,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                   ),
                 ),
                 Expanded(
-                  flex: 8,
+                  flex: 6,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -80,7 +80,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                               child: Container(
                                 color: concordiaRed,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top: 6.0, left: 5.0),
+                                  padding: const EdgeInsets.only(top: 4.0, left: 5.0),
                                   child: Align(
                                     alignment: Alignment.topCenter,
                                     child: getIcon(state.step.icons, screenWidth / 8),
@@ -115,7 +115,7 @@ class DirectionsPanelState extends State<DirectionsPanel> {
                               child: Container(
                                 color: concordiaRed,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top: 6.0, left: 10.0),
+                                  padding: const EdgeInsets.only(top: 4.0, left: 10.0),
                                   child: Text(
                                     state.step.instruction,
                                     style: TextStyle(
