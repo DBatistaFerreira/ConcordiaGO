@@ -1,13 +1,17 @@
 import 'dart:async';
 import 'dart:collection';
 
+import 'package:concordia_go/blocs/search_bloc/search_bloc.dart';
 import 'package:concordia_go/models/classroom.dart';
+import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
+import 'package:concordia_go/widgets/component/google_maps_component.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'event_item.dart';
 
@@ -90,12 +94,11 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
 
   Future<void> _onTapped(Classroom classroom) async {
     if (classroom != null) {
-    // TODO(Waqar): add classroom directions
-    }
-    final HomeScreen refreshEvents =
-        await Navigator.push(context, MaterialPageRoute<HomeScreen>(builder: (BuildContext context) => HomeScreen()));
-    if (refreshEvents != null) {
-      await _retrieveCalendarEvents();
+      Navigator.pop(context);
+      Navigator.pop(context);
+      final Dobject source = Dobject.hotspot(currentLocation, 'Your Location');
+      final Dobject destination = Dobject.indoor(classroom.node, classroom.building, classroom.floor, classroom.building.code+classroom.number);
+      BlocProvider.of<SearchBloc>(mapContext).add(SearchDirectionsEvent(source : source, destination: destination));
     }
   }
 

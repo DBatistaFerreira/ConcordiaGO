@@ -32,7 +32,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: const Text('Your Next Class'),
             onTap: () {
               Navigator.pop(context);
-              // TODO(Noorzada): add link
+              // TODO(Jake): add link
             },
           ),
           ListTile(
