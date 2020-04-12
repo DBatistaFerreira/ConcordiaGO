@@ -476,7 +476,7 @@ class OutdoorPathService {
     final PolyUtil myPoints = PolyUtil();
     final dynamic returnedValues = pathJSON[concordia_constants.route][0][concordia_constants.legs][0];
     final List<dynamic> returnedSteps = returnedValues[concordia_constants.steps] as List<dynamic>;
-    final String arrivalTime = schedulerService.calculateArrivalTimeinStringFormat(
+    final String arrivalTime = schedulerService.calculateArrivalTimeInStringFormat(
         returnedValues[concordia_constants.duration][concordia_constants.text] as String);
     for (int i = 0; i < returnedSteps.length; i++) {
       bool subInstruction = true;

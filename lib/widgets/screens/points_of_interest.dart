@@ -25,6 +25,7 @@ class POIMenuState extends State<POIMenu> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight / 12),
         child: AppBar(
+          centerTitle: true,
           title: Image.asset(concordiaGOHeader, height: screenHeight / 12),
           backgroundColor: application_constants.concordiaRed,
         ),

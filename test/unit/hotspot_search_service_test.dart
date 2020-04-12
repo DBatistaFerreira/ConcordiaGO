@@ -5,6 +5,7 @@ import 'package:concordia_go/utilities/concordia_constants.dart' as concordia_co
 
 void main() {
   final HotspotSearchService hotspotSearchService = HotspotSearchService.instance;
+
   final Map<String, Object> testMap = {
     'formatted_address': '3420 Jean Yves St, Kirkland, Quebec H9J 2R6, Canada',
     'geometry': {
@@ -47,6 +48,7 @@ void main() {
   });
 
   test('getQueryType Test', () async {
+    expect(hotspotSearchService.getQuery(HotspotType.Restaurants), concordia_constants.restaurantHotspot);
     expect(hotspotSearchService.getQuery(HotspotType.Grocery), concordia_constants.groceryHotspot);
     expect(hotspotSearchService.getQuery(HotspotType.Shopping), concordia_constants.shoppingHotspot);
   });
