@@ -122,7 +122,7 @@ class _SearchResultsState extends State<SearchResults> {
                         )
                       : Container(
                           padding: const EdgeInsets.all(50.0),
-                          child: Text(
+                          child: const Text(
                             'No results',
                             style: TextStyle(
                               color: Colors.grey,

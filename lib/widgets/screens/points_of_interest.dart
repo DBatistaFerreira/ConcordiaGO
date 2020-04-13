@@ -7,7 +7,6 @@ import 'package:concordia_go/services/shared_preferences_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart';
-import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:concordia_go/widgets/screens/outdoor_poi_results.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +31,8 @@ class POIMenuState extends State<POIMenu> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight / 12),
         child: AppBar(
-          title: Image.asset('assets/logo.png', height: screenHeight / 12),
+          centerTitle: true,
+          title: Image.asset(concordiaGOHeader, height: screenHeight / 12),
           backgroundColor: application_constants.concordiaRed,
         ),
       ),
@@ -66,7 +66,7 @@ class POIMenuState extends State<POIMenu> {
                   ),
                   onTap: () async {
                     Navigator.pop(context);
-                    var preferredWashroom = await SharedPreferencesService.getPreferredWashroom();
+                    final String preferredWashroom = await SharedPreferencesService.getPreferredWashroom();
                     BlocProvider.of<SearchBloc>(context).add(
                       SearchDirectionsEvent(
                         source: Dobject.building(buildings['H']),
@@ -94,7 +94,7 @@ class POIMenuState extends State<POIMenu> {
                 ListTile(
                   leading: Icon(Icons.restaurant, size: iconSize),
                   title: const Text(
-                    'Food',
+                    'Restaurants',
                     style: TextStyle(fontSize: fontSize),
                   ),
                   onTap: () {
@@ -112,13 +112,43 @@ class POIMenuState extends State<POIMenu> {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.shopping_cart, size: iconSize),
+                  leading: Icon(Icons.shopping_basket, size: iconSize),
                   title: const Text(
-                    'Shops',
+                    'Shopping',
                     style: TextStyle(fontSize: fontSize),
                   ),
                   onTap: () {
-                    //TODO
+                    hotspotSearchService.setHotspotList(HotspotType.Shopping).then(
+                      (void value) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<OutdoorPOIResults>(
+                            builder: (BuildContext context) =>
+                                OutdoorPOIResults(hotspotSearchService.hotspotList, HotspotType.Shopping),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.shopping_cart, size: iconSize),
+                  title: const Text(
+                    'Grocery',
+                    style: TextStyle(fontSize: fontSize),
+                  ),
+                  onTap: () {
+                    hotspotSearchService.setHotspotList(HotspotType.Grocery).then(
+                      (void value) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<OutdoorPOIResults>(
+                            builder: (BuildContext context) =>
+                                OutdoorPOIResults(hotspotSearchService.hotspotList, HotspotType.Grocery),
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
               ],

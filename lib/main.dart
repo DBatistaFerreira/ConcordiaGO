@@ -3,7 +3,7 @@ import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
 import 'package:concordia_go/widgets/screens/indoor_map_screen.dart';
 import 'package:concordia_go/widgets/screens/settings_menu.dart';
-import 'package:concordia_go/widgets/screens/outdoor_points_of_interest.dart';
+import 'package:concordia_go/widgets/screens/points_of_interest.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:concordia_go/widgets/component/calendar/calendars.dart';
 import 'package:flutter/cupertino.dart';

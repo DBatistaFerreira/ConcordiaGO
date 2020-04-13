@@ -66,7 +66,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
+                   const Text(
                       'Preferred washroom',
                       textAlign: TextAlign.left,
                       style: TextStyle(
@@ -117,7 +117,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
+                    const Text(
                       'Prioritize elevators',
                       textAlign: TextAlign.left,
                       style: TextStyle(

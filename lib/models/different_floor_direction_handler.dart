@@ -4,6 +4,7 @@ import 'package:concordia_go/models/direction_request.dart';
 import 'package:concordia_go/models/shortest_path.dart';
 import 'package:concordia_go/models/graph.dart';
 import 'package:concordia_go/models/node.dart';
+import 'package:concordia_go/services/shared_preferences_service.dart';
 import 'package:concordia_go/utilities/concordia_constants.dart' as cc;
 import 'package:concordia_go/widgets/component/google_maps_component.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,16 +32,21 @@ class DifferentFloorDirectionHandler implements DirectionHandler {
           Graph(destinationBuildingCode, cc.edges[destinationBuildingCode], cc.edge_indices[destinationBuildingCode]);
       destinationGraph.setNodesFromEdgeIndices(cc.edge_indices[destinationBuildingCode]);
 
-      Node escalatorNode;
-      if (int.parse(request.source.floor) > int.parse(request.destination.floor)) {
-        escalatorNode = Node('120000');
-      } else {
-        escalatorNode = Node('120001');
+      Node floorChangerNode;
+      if(SharedPreferencesService.prioritizeElevators){
+        floorChangerNode = Node('130000');
+      }
+      else {
+        if (int.parse(request.source.floor) > int.parse(request.destination.floor)) {
+          floorChangerNode = Node('120000');
+        } else {
+          floorChangerNode = Node('120001');
+        }
       }
 
-      final DShortestPath sourceAlgorithm = DShortestPath(sourceGraph, request.source.node, escalatorNode);
+      final DShortestPath sourceAlgorithm = DShortestPath(sourceGraph, request.source.node, floorChangerNode);
       final DShortestPath destinationAlgorithm =
-          DShortestPath(destinationGraph, escalatorNode, request.destination.node);
+          DShortestPath(destinationGraph, floorChangerNode, request.destination.node);
 
       final List<Node> sourceShortestPath = sourceAlgorithm.calcShortestPath();
       final List<Node> destinationShortestPath = destinationAlgorithm.calcShortestPath();
