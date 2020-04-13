@@ -94,7 +94,6 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
   Future<void> _onTapped(Classroom classroom) async {
     if (classroom != null) {
       Navigator.pop(context);
-      Navigator.pop(context);
       final Dobject source = Dobject.hotspot(currentLocation, 'Your Location');
       final Dobject destination = Dobject.indoor(
           classroom.node, classroom.building, classroom.floor, classroom.building.code + classroom.number);
@@ -104,7 +103,7 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
 
   Future<void> _retrieveCalendarEvents() async {
     final DateTime startDate = DateTime.now().add(const Duration(days: 0));
-    final DateTime endDate = DateTime.now().add(const Duration(days: 30));
+    final DateTime endDate = DateTime.now().add(const Duration(days: 1));
     final Result<UnmodifiableListView<Event>> calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
         _calendar.id, RetrieveEventsParams(startDate: startDate, endDate: endDate));
     setState(() {
@@ -114,7 +113,7 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
 }
 
 Classroom validateEvent(Event event) {
-  final List<String> classroomInfo = event.location.split('-');
+  final List<String> classroomInfo = event?.location?.split('-');
   if (buildings.containsKey(classroomInfo[0])) {
     final Classroom classroom = Classroom(buildings[classroomInfo[0]], classroomInfo[1], classroomInfo[2]);
     if (rooms.contains(classroom)) {

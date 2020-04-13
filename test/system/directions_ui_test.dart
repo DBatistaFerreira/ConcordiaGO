@@ -31,7 +31,7 @@ void main() {
   testWidgets(
     'test directions search and direction panel widgets',
     (WidgetTester tester) async {
-      var searchBloc;
+      SearchBloc searchBloc;
 
       var blocProvider = MultiBlocProvider(
         providers: [

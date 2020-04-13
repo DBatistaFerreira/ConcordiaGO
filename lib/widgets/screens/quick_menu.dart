@@ -56,11 +56,13 @@ class QuickMenuState extends State<QuickMenu> {
               if (_calendar != null) {
                 Navigator.pop(context);
                 final Classroom classroom = await _retrieveFirstCalendarEvent();
-                final Dobject source = Dobject.hotspot(currentLocation, 'Your Location');
-                final Dobject destination = Dobject.indoor(
-                    classroom.node, classroom.building, classroom.floor, classroom.building.code + classroom.number);
-                BlocProvider.of<SearchBloc>(mapContext)
-                    .add(SearchDirectionsEvent(source: source, destination: destination));
+                if (classroom != null) {
+                  final Dobject source = Dobject.hotspot(currentLocation, 'Your Location');
+                  final Dobject destination = Dobject.indoor(
+                      classroom.node, classroom.building, classroom.floor, classroom.building.code + classroom.number);
+                  BlocProvider.of<SearchBloc>(mapContext)
+                      .add(SearchDirectionsEvent(source: source, destination: destination));
+                }
               } else {
                 showAlert('No Calendars Found!',
                     "You must have a calendar named 'School' on your device (not case sensitive)");
@@ -104,6 +106,7 @@ class QuickMenuState extends State<QuickMenu> {
                   await _retrieveCalendars();
                 }
                 if (_calendar != null) {
+                  Navigator.pop(context);
                   await Navigator.push(context, MaterialPageRoute<CalendarEventsPage>(builder: (BuildContext context) {
                     return CalendarEventsPage(_calendar, _deviceCalendarPlugin, key: const Key('calendarEventsPage'));
                   }));
@@ -127,7 +130,19 @@ class QuickMenuState extends State<QuickMenu> {
     final DateTime endDate = DateTime.now().add(const Duration(days: 1));
     final Result<UnmodifiableListView<Event>> calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
         _calendar.id, RetrieveEventsParams(startDate: startDate, endDate: endDate));
-    return validateEvent(calendarEventsResult?.data?.where((Event e) => validateEvent(e) != null)?.toList()[0]);
+    if (calendarEventsResult?.data != null && calendarEventsResult.data.isNotEmpty) {
+      final List<Event> valideEvents =
+          calendarEventsResult?.data?.where((Event e) => validateEvent(e) != null)?.toList();
+      if (valideEvents.isNotEmpty) {
+        return validateEvent(valideEvents[0]);
+      } else {
+        showAlert('No Classes found for today!',
+            "No classes were found in the 'school' schedule, make sure your location follows BuildingCode-Floor-RoomNumber (H-8-801)");
+      }
+    } else {
+      showAlert('No Events found for today!', "No events were found in the 'school' schedule");
+    }
+    return null;
   }
 
   Future<void> _retrieveCalendars() async {
@@ -141,8 +156,14 @@ class QuickMenuState extends State<QuickMenu> {
       }
 
       final Result<UnmodifiableListView<Calendar>> calendarsResult = await _deviceCalendarPlugin.retrieveCalendars();
+      final List<Calendar> calendar =
+          calendarsResult?.data?.where((Calendar e) => e?.name?.toLowerCase() == 'school')?.toList();
       setState(() {
-        _calendar = calendarsResult?.data?.where((Calendar e) => e?.name?.toLowerCase() == 'school')?.toList()[0];
+        if (calendar.isNotEmpty) {
+          _calendar = calendar[0];
+        } else {
+          _calendar = null;
+        }
       });
     } on Exception catch (e) {
       print(e);
@@ -152,8 +173,7 @@ class QuickMenuState extends State<QuickMenu> {
   void showAlert(String title, String message) {
     showDialog<void>(
       context: context,
-      barrierDismissible: false,
-      // user must tap button!
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(title),
