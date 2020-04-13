@@ -7,7 +7,6 @@ import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
 import 'package:concordia_go/widgets/screens/indoor_map_screen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
@@ -53,20 +52,17 @@ void main() {
     scaffoldKey.currentState.openDrawer();
     await tester.pump();
 
-    final favoritePlaces = find.byIcon(Icons.favorite);
     final campuses = find.byIcon(Icons.school);
     final yourNextClass = find.byIcon(Icons.flag);
     final pointsOfInterest = find.byIcon(Icons.new_releases);
     final mySchedule = find.byIcon(Icons.calendar_today);
     final settings = find.byIcon(Icons.settings);
 
-    expect(favoritePlaces, findsOneWidget);
     expect(campuses, findsNWidgets(2));
     expect(yourNextClass, findsOneWidget);
     expect(pointsOfInterest, findsOneWidget);
     expect(mySchedule, findsOneWidget);
     expect(settings, findsOneWidget);
-    await tester.tap(favoritePlaces);
     await tester.tap(settings);
     await tester.tap(pointsOfInterest);
   });

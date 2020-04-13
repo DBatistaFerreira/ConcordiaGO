@@ -84,7 +84,7 @@ class SchedulerService {
     return timeInMinutes;
   }
 
-  String calculateArrivalTimeinStringFormat(String durationJSON) {
+  String calculateArrivalTimeInStringFormat(String durationJSON) {
     final List<String> durationToSplit = durationJSON.split(' ');
     int duration;
     if (durationToSplit.length == 2) {

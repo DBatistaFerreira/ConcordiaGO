@@ -72,9 +72,9 @@ void main() {
       expect(find.text(dest.name), findsOneWidget);
       expect(find.byType(ToggleButtons), findsOneWidget);
 
-      var shuttle = find.byIcon(Icons.directions_bus);
-      expect(shuttle, findsOneWidget);
-      await tester.tap(shuttle);
+      var driving = find.byIcon(Icons.directions_car);
+      expect(driving, findsOneWidget);
+      await tester.tap(driving);
       await tester.pump();
 
       var go = find.byIcon(Icons.directions);
@@ -83,7 +83,7 @@ void main() {
       await tester.pump();
 
       expect(find.text('Test Building'), findsOneWidget);
-      expect(find.byIcon(Icons.arrow_back), findsOneWidget);
+      expect(find.byIcon(Icons.my_location), findsOneWidget);
       expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
       expect(find.byIcon(Icons.location_on), findsOneWidget);
 
@@ -96,7 +96,7 @@ void main() {
       expect(confirmExit, findsOneWidget);
       await tester.tap(confirmExit);
       await tester.pump();
-      await tester.pump(Duration(milliseconds: 500));
+      await tester.pump(const Duration(milliseconds: 500));
 
       expect(find.text('Test Building'), findsNothing);
       expect(find.byIcon(Icons.arrow_back), findsNothing);

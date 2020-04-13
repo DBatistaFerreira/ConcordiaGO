@@ -39,6 +39,12 @@ void main() {
     await tester.tap(loyolaCampusBuildings.at(1));
     await tester.pump();
 
+    await tester.tap(menu);
+    await tester.pump();
+    var mySchedule = find.text('My Schedule');
+    await tester.tap(mySchedule);
+    await tester.pump();
+
     var searchBar = find.byType(SearchBar);
     expect(searchBar, findsOneWidget);
     await tester.tap(searchBar);

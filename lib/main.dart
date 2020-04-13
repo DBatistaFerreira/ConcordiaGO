@@ -2,6 +2,8 @@ import 'package:concordia_go/models/concordia_building.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
 import 'package:concordia_go/widgets/screens/campus_building_list_menu.dart';
 import 'package:concordia_go/widgets/screens/indoor_map_screen.dart';
+import 'package:concordia_go/widgets/screens/settings_menu.dart';
+import 'package:concordia_go/widgets/screens/points_of_interest.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,6 +45,8 @@ class Application extends StatelessWidget {
           '/sgwbuildings': (BuildContext context) => const CampusBuildingListMenu(Campus.SGW),
           '/loyolabuildings': (BuildContext context) => const CampusBuildingListMenu(Campus.Loyola),
           '/indoormap': (BuildContext context) => const IndoorMapScreen(),
+          '/settings': (BuildContext context) => const SettingsMenu(),
+          '/pointsofinterest': (BuildContext context) => const POIMenu(),
         },
       ),
     );
