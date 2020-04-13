@@ -10,9 +10,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 class MockDeviceCalendarPlugin extends Mock implements DeviceCalendarPlugin {}
-class MockBlockProvider extends Mock implements SearchBloc {
 
-}
+class MockBlockProvider extends Mock implements SearchBloc {}
 
 void main() {
   final DeviceCalendarPlugin deviceCalendarPlugin = MockDeviceCalendarPlugin();
@@ -40,24 +39,22 @@ void main() {
         title: 'class 101',
         recurrenceRule: null);
     event.location = 'H-8-801';
-    result.data = UnmodifiableListView<Event>(<Event>[
-      event
-    ]);
+    result.data = UnmodifiableListView<Event>(<Event>[event]);
     final MaterialApp widget = MaterialApp(
         home: BlocProvider<SearchBloc>(
-          create: (BuildContext context) => MockBlockProvider(),
-          child: CalendarEventsPage(
-              Calendar(
-                  accountName: 'test',
-                  accountType: 'test',
-                  color: 1,
-                  id: '1234',
-                  isDefault: true,
-                  isReadOnly: false,
-                  name: 'Test'),
-              deviceCalendarPlugin,
-              key: const Key('calendarsPage')),
-        ));
+      create: (BuildContext context) => MockBlockProvider(),
+      child: CalendarEventsPage(
+          Calendar(
+              accountName: 'test',
+              accountType: 'test',
+              color: 1,
+              id: '1234',
+              isDefault: true,
+              isReadOnly: false,
+              name: 'Test'),
+          deviceCalendarPlugin,
+          key: const Key('calendarsPage')),
+    ));
     when(deviceCalendarPlugin.retrieveEvents(any, any)).thenAnswer((_) async => result);
 
     await tester.pumpWidget(widget); // runs init

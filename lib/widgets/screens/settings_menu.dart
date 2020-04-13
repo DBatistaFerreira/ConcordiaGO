@@ -1,6 +1,5 @@
 import 'package:concordia_go/services/shared_preferences_service.dart';
-import 'package:concordia_go/utilities/application_constants.dart'
-    as application_constants;
+import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +65,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                   const Text(
+                    const Text(
                       'Preferred washroom',
                       textAlign: TextAlign.left,
                       style: TextStyle(
@@ -80,26 +79,25 @@ class SettingsMenuState extends State<SettingsMenu> {
                         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                           return DropdownButton<String>(
                             elevation: 16,
-                            value: snapshot.hasData?snapshot.data:preferredWashroom,
+                            value: snapshot.hasData ? snapshot.data : preferredWashroom,
                             onChanged: (String newValue) async {
                               preferredWashroom = newValue;
                               await SharedPreferencesService.setPreferredWashroom(newValue);
                               setState(() {});
                             },
-                            items: <String>['Male', 'Female']
-                                .map<DropdownMenuItem<String>>((String value) {
+                            items: <String>['Male', 'Female'].map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
                               );
-                            })
-                                .toList(),
+                            }).toList(),
                           );
-                        }
-                    ),
+                        }),
                   ],
                 ),
-                Divider(color: Colors.white,),
+                Divider(
+                  color: Colors.white,
+                ),
                 Align(
                   child: const Text(
                     'Accessibility',
@@ -127,19 +125,18 @@ class SettingsMenuState extends State<SettingsMenu> {
                       ),
                     ),
                     FutureBuilder<bool>(
-                      future: SharedPreferencesService.getPrioritizeElevatorBool(),
-                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                        return Switch(
-                          value: snapshot.hasData?snapshot.data:prioritizeElevators,
-                          onChanged: (bool newValue) async {
-                            prioritizeElevators = newValue;
-                            await SharedPreferencesService.setPrioritizeElevatorBool(newValue);
-                            setState(() {});
-                          },
-                          activeColor: application_constants.concordiaRed,
-                        );
-                      }
-                    ),
+                        future: SharedPreferencesService.getPrioritizeElevatorBool(),
+                        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                          return Switch(
+                            value: snapshot.hasData ? snapshot.data : prioritizeElevators,
+                            onChanged: (bool newValue) async {
+                              prioritizeElevators = newValue;
+                              await SharedPreferencesService.setPrioritizeElevatorBool(newValue);
+                              setState(() {});
+                            },
+                            activeColor: application_constants.concordiaRed,
+                          );
+                        }),
                   ],
                 ),
               ],

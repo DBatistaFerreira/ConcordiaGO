@@ -19,7 +19,7 @@ class HotspotSearchService {
     final dynamic jsonReturn = await googlePlacesRequest(locationType);
     final List<dynamic> hotspotMap = jsonReturn[concordia_constants.results] as List<dynamic>;
     for (int i = 0; i < hotspotMap.length; i++) {
-      hotspotList.add(hotspotBuilder(hotspotMap[i] as Map<dynamic, dynamic> , locationType));
+      hotspotList.add(hotspotBuilder(hotspotMap[i] as Map<dynamic, dynamic>, locationType));
     }
   }
 

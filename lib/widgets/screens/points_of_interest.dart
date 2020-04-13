@@ -70,7 +70,8 @@ class POIMenuState extends State<POIMenu> {
                     BlocProvider.of<SearchBloc>(context).add(
                       SearchDirectionsEvent(
                         source: Dobject.building(buildings['H']),
-                        destination: Dobject.indoorHotspot(Node(preferredWashroom=='Male'?'150001':'150000'), 'Washroom'),
+                        destination:
+                            Dobject.indoorHotspot(Node(preferredWashroom == 'Male' ? '150001' : '150000'), 'Washroom'),
                       ),
                     );
                   },

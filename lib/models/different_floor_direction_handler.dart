@@ -33,10 +33,9 @@ class DifferentFloorDirectionHandler implements DirectionHandler {
       destinationGraph.setNodesFromEdgeIndices(cc.edge_indices[destinationBuildingCode]);
 
       Node floorChangerNode;
-      if(SharedPreferencesService.prioritizeElevators){
+      if (SharedPreferencesService.prioritizeElevators) {
         floorChangerNode = Node('130000');
-      }
-      else {
+      } else {
         if (int.parse(request.source.floor) > int.parse(request.destination.floor)) {
           floorChangerNode = Node('120000');
         } else {
