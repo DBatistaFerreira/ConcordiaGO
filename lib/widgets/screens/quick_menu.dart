@@ -48,7 +48,7 @@ class QuickMenuState extends State<QuickMenu> {
           ),
           ListTile(
             leading: Icon(Icons.flag),
-            title: const Text('Your Next Class'),
+            title: const Text(yourNextClass),
             onTap: () async {
               if (_calendar == null) {
                 await _retrieveCalendars();

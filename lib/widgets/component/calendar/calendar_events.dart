@@ -62,7 +62,7 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                'My Schedule',
+                mySchedule,
                 style: TextStyle(
                   fontFamily: 'Raleway',
                   color: Colors.white,
