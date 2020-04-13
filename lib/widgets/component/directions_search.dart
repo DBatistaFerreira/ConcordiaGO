@@ -78,8 +78,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                           fillColor: Colors.white,
                         ),
                         onTap: () {
-                          BlocProvider.of<SearchBloc>(context)
-                              .add(QueryChangeEvent('', SearchType.source));
+                          BlocProvider.of<SearchBloc>(context).add(QueryChangeEvent('', SearchType.source));
                           FocusScope.of(context).requestFocus(focus);
                         },
                       ),
@@ -106,8 +105,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                           fillColor: Colors.white,
                         ),
                         onTap: () {
-                          BlocProvider.of<SearchBloc>(context).add(
-                              QueryChangeEvent('', SearchType.destination));
+                          BlocProvider.of<SearchBloc>(context).add(QueryChangeEvent('', SearchType.destination));
                           FocusScope.of(context).requestFocus(focus);
                         },
                       ),
@@ -153,9 +151,8 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                             isSelected[i] = false;
                           }
                         }
-                        BlocProvider.of<SearchBloc>(context).add(
-                            SearchDirectionsEvent(
-                                source: source, destination: destination));
+                        BlocProvider.of<SearchBloc>(context)
+                            .add(SearchDirectionsEvent(source: source, destination: destination));
                       },
                       isSelected: isSelected,
                       renderBorder: false,
@@ -178,8 +175,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                               size: screenWidth / 12,
                             ),
                             onPressed: () {
-                              BlocProvider.of<SearchBloc>(context)
-                                  .add(const EndSearchEvent());
+                              BlocProvider.of<SearchBloc>(context).add(const EndSearchEvent());
                             },
                           ),
                         ),
@@ -198,8 +194,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                                     return null;
                                   }
                                 }
-                                BlocProvider.of<SearchBloc>(context)
-                                    .add(const EndSearchEvent());
+                                BlocProvider.of<SearchBloc>(context).add(const EndSearchEvent());
                                 OutdoorPathService.instance.clearAll();
                                 if (SchedulerService.instance.getCurrentWeekDay() > 5 && isSelected[3]) {
                                   showDialog<AlertDialog>(
@@ -220,8 +215,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                             label: const Text(
                               'Go',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 16.0),
+                              style: TextStyle(color: Colors.black, fontSize: 16.0),
                             ),
                           ),
                         ),
@@ -244,8 +238,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
   bool handleIndoorPOI() {
     if (source.canHandleIndoorPOI()) {
       if (source.isBuilding()) {
-        source = Dobject.indoor(Node('990000'), source.building,
-            availableIndoorFloors[source.building.code][0]);
+        source = Dobject.indoor(Node('990000'), source.building, availableIndoorFloors[source.building.code][0]);
       }
       return true;
     } else {
@@ -276,6 +269,7 @@ class DirectionsSearchState extends State<DirectionsSearch> {
       },
     );
   }
+
   AlertDialog shuttleUnavailable() {
     return AlertDialog(
       title: const Text('Shuttle unavailable'),

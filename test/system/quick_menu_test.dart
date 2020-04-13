@@ -18,36 +18,34 @@ void main() {
   testWidgets('Quick Menu', (WidgetTester tester) async {
     final scaffoldKey = GlobalKey<ScaffoldState>();
 
-    await tester.pumpWidget(
-        MultiBlocProvider(
-          providers: <BlocProvider<dynamic>>[
-            BlocProvider<MapBloc>(
-              create: (BuildContext context) => MapBloc(),
-            ),
-            BlocProvider<BuildingInfoBloc>(
-              create: (BuildContext context) => BuildingInfoBloc(),
-            ),
-            BlocProvider<DirectionsBloc>(
-              create: (BuildContext context) => DirectionsBloc(OutdoorPathService.instance),
-            ),
-            BlocProvider<SearchBloc>(
-              create: (BuildContext context) => SearchBloc(),
-            ),
-          ],
-          child: MaterialApp(
-            title: application_constants.applicationName,
-            routes: <String, Widget Function(BuildContext)>{
-              '/sgwbuildings': (BuildContext context) => const CampusBuildingListMenu(Campus.SGW),
-              '/loyolabuildings': (BuildContext context) => const CampusBuildingListMenu(Campus.Loyola),
-              '/indoormap': (BuildContext context) => const IndoorMapScreen(),
-            },
-            home: Scaffold(
-              key: scaffoldKey,
-              drawer: QuickMenu(),
-            ),
-          ),
-        )
-    );
+    await tester.pumpWidget(MultiBlocProvider(
+      providers: <BlocProvider<dynamic>>[
+        BlocProvider<MapBloc>(
+          create: (BuildContext context) => MapBloc(),
+        ),
+        BlocProvider<BuildingInfoBloc>(
+          create: (BuildContext context) => BuildingInfoBloc(),
+        ),
+        BlocProvider<DirectionsBloc>(
+          create: (BuildContext context) => DirectionsBloc(OutdoorPathService.instance),
+        ),
+        BlocProvider<SearchBloc>(
+          create: (BuildContext context) => SearchBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        title: application_constants.applicationName,
+        routes: <String, Widget Function(BuildContext)>{
+          '/sgwbuildings': (BuildContext context) => const CampusBuildingListMenu(Campus.SGW),
+          '/loyolabuildings': (BuildContext context) => const CampusBuildingListMenu(Campus.Loyola),
+          '/indoormap': (BuildContext context) => const IndoorMapScreen(),
+        },
+        home: Scaffold(
+          key: scaffoldKey,
+          drawer: QuickMenu(),
+        ),
+      ),
+    ));
 
     scaffoldKey.currentState.openDrawer();
     await tester.pump();

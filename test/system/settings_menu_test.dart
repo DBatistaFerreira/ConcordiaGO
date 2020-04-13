@@ -15,7 +15,7 @@ void main() {
 
   testWidgets(
     'Settings Menu',
-        (WidgetTester tester) async {
+    (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: SettingsMenu(),

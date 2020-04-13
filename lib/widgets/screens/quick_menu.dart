@@ -50,22 +50,14 @@ class QuickMenuState extends State<QuickMenu> {
             leading: Icon(Icons.flag),
             title: const Text(yourNextClass),
             onTap: () async {
-              if (_calendar == null) {
-                await _retrieveCalendars();
-              }
-              if (_calendar != null) {
-                Navigator.pop(context);
-                final Classroom classroom = await _retrieveFirstCalendarEvent();
-                if (classroom != null) {
-                  final Dobject source = Dobject.hotspot(currentLocation, 'Your Location');
-                  final Dobject destination = Dobject.indoor(
-                      classroom.node, classroom.building, classroom.floor, classroom.building.code + classroom.number);
-                  BlocProvider.of<SearchBloc>(mapContext)
-                      .add(SearchDirectionsEvent(source: source, destination: destination));
-                }
-              } else {
-                showAlert('No Calendars Found!',
-                    "You must have a calendar named 'School' on your device (not case sensitive)");
+              await _retrieveCalendars();
+              final Classroom classroom = await _retrieveFirstCalendarEvent();
+              if (classroom != null) {
+                final Dobject source = Dobject.hotspot(currentLocation, 'Your Location');
+                final Dobject destination = Dobject.indoor(
+                    classroom.node, classroom.building, classroom.floor, classroom.building.code + classroom.number);
+                BlocProvider.of<SearchBloc>(mapContext)
+                    .add(SearchDirectionsEvent(source: source, destination: destination));
               }
             },
           ),
@@ -96,26 +88,18 @@ class QuickMenuState extends State<QuickMenu> {
               leading: Icon(Icons.calendar_today),
               title: const Text('My Schedule'),
               onTap: () async {
-                if (_calendar == null) {
-                  await _retrieveCalendars();
-                }
-                if (_calendar != null) {
-                  Navigator.pop(context);
-                  await Navigator.push(context, MaterialPageRoute<CalendarEventsPage>(builder: (BuildContext context) {
-                    return CalendarEventsPage(_calendar, _deviceCalendarPlugin, key: const Key('calendarEventsPage'));
-                  }));
-                } else {
-                  showAlert('No Calendars Found!',
-                      "You must have a calendar named 'School' on your device (not case sensitive)");
-                }
+                await _retrieveCalendars();
+                await Navigator.push(context, MaterialPageRoute<CalendarEventsPage>(builder: (BuildContext context) {
+                  return CalendarEventsPage(_calendar, _deviceCalendarPlugin, key: const Key('calendarEventsPage'));
+                }));
               }),
           ListTile(
             leading: Icon(Icons.settings),
             title: const Text('Settings'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/settings');
-              },
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/settings');
+            },
           ),
         ],
       ),
@@ -153,15 +137,33 @@ class QuickMenuState extends State<QuickMenu> {
       }
 
       final Result<UnmodifiableListView<Calendar>> calendarsResult = await _deviceCalendarPlugin.retrieveCalendars();
-      final List<Calendar> calendar =
-          calendarsResult?.data?.where((Calendar e) => e?.name?.toLowerCase() == 'school')?.toList();
-      setState(() {
-        if (calendar.isNotEmpty) {
-          _calendar = calendar[0];
-        } else {
-          _calendar = null;
-        }
-      });
+      final List<Calendar> calendar = calendarsResult?.data;
+      await showDialog<void>(
+          context: context,
+          barrierDismissible: true,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Pick a Calendar from the list'),
+              actions: <Widget>[
+                DropdownButton<Calendar>(
+                  hint: const Text('Choose Calendar'),
+                  onChanged: (Calendar newValue) {
+                    setState(() {
+                      _calendar = newValue;
+                      Navigator.of(context).pop();
+                    });
+                  },
+                  items: calendar.map((Calendar calendar) {
+                    return DropdownMenuItem<Calendar>(
+                      child: SizedBox(
+                          width: screenWidth / 1.5, child: Text(calendar.name, overflow: TextOverflow.ellipsis)),
+                      value: calendar,
+                    );
+                  }).toList(),
+                ),
+              ],
+            );
+          });
     } on Exception catch (e) {
       print(e);
     }
