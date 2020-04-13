@@ -22,3 +22,7 @@ const double initialedIconSize = 42.0;
 
 double screenHeight;
 double screenWidth;
+
+const String mySchedule = 'My Schedule';
+const String yourNextClass = 'yourNextClass';
+
