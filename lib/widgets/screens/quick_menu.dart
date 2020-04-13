@@ -51,7 +51,7 @@ class QuickMenuState extends State<QuickMenu> {
             title: const Text('Your Next Class'),
             onTap: () async {
               if (_calendar == null) {
-                _retrieveCalendars();
+                await _retrieveCalendars();
               }
               if (_calendar != null) {
                 Navigator.pop(context);
@@ -101,7 +101,7 @@ class QuickMenuState extends State<QuickMenu> {
               title: const Text('My Schedule'),
               onTap: () async {
                 if (_calendar == null) {
-                  _retrieveCalendars();
+                  await _retrieveCalendars();
                 }
                 if (_calendar != null) {
                   await Navigator.push(context, MaterialPageRoute<CalendarEventsPage>(builder: (BuildContext context) {
