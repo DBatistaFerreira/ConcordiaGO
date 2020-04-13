@@ -1,10 +1,13 @@
 import 'package:concordia_go/blocs/bloc.dart';
 import 'package:concordia_go/models/direction_object.dart';
 import 'package:concordia_go/models/direction_request.dart';
+import 'package:concordia_go/models/node.dart';
 import 'package:concordia_go/services/direction_chain.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
+import 'package:concordia_go/services/scheduler_service.dart';
 import 'package:concordia_go/utilities/application_constants.dart';
 import 'package:concordia_go/utilities/direction.dart';
+import 'package:concordia_go/utilities/floor_maps_lib.dart';
 import 'package:concordia_go/widgets/component/search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -186,8 +189,19 @@ class DirectionsSearchState extends State<DirectionsSearch> {
                             ),
                             onPressed: () {
                               if (source != null && destination != null) {
+                                if (destination.isIndoorHotspot()) {
+                                  if (!handleIndoorPOI()) {
+                                    return null;
+                                  }
+                                }
                                 BlocProvider.of<SearchBloc>(context).add(const EndSearchEvent());
                                 OutdoorPathService.instance.clearAll();
+                                if (SchedulerService.instance.getCurrentWeekDay() > 5 && isSelected[3]) {
+                                  showDialog<AlertDialog>(
+                                    context: context,
+                                    builder: (BuildContext context) => shuttleUnavailable(),
+                                  );
+                                }
                                 source.transportMode = getModeOfTransportFromButton(isSelected);
                                 destination.transportMode = getModeOfTransportFromButton(isSelected);
                                 final DirectionRequest request = DirectionRequest(source, destination);
@@ -218,6 +232,55 @@ class DirectionsSearchState extends State<DirectionsSearch> {
           }
         },
       ),
+    );
+  }
+
+  bool handleIndoorPOI() {
+    if (source.canHandleIndoorPOI()) {
+      if (source.isBuilding()) {
+        source = Dobject.indoor(Node('990000'), source.building, availableIndoorFloors[source.building.code][0]);
+      }
+      return true;
+    } else {
+      showAlert('Feature unavailable',
+          'This feature is currently only available from Hall Building. Please select a valid startpoint.');
+      return false;
+    }
+  }
+
+  void showAlert(String title, String message) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            FlatButton(
+              child: const Text('Okay'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  AlertDialog shuttleUnavailable() {
+    return AlertDialog(
+      title: const Text('Shuttle unavailable'),
+      content: const Text('Concordia Shuttle Services are not available on weekends. Rerouting to public transit.'),
+      actions: <Widget>[
+        FlatButton(
+            child: const Text('Continue'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+      ],
     );
   }
 }

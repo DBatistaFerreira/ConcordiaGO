@@ -68,7 +68,7 @@ void main() {
   test('PolyLine Creation and Handling', () {
     outdoorPathService.clearAll();
     final PolyUtil testPoints = PolyUtil();
-    expect(outdoorPathService.getPolylines(), []);
+    expect(outdoorPathService.getPolylines(), <Polyline>{});
     outdoorPathService.addNewPolyline(
         Colors.pink, testPoints.decode('ymmtGrgabM|AmCj@lAd@jALHNArA}@') as List<LatLng>, '0');
     final Set<Polyline> savedPolylines = outdoorPathService.getPolylines();

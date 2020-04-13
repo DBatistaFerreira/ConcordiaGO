@@ -26,6 +26,7 @@ dependencies:
   validators: ^2.0.0+1
   device_calendar: ^3.0.0+3
   intl: any
+  shared_preferences: ^0.5.6+3
 
 dev_dependencies:
   flutter_test:
@@ -41,4 +42,12 @@ flutter_launcher_name:
 flutter:
   uses-material-design: true
   assets:
-    - assets/logo.png
+    - assets/headers/ConcordiaGOHeader.png
+    - assets/headers/ConcordiaGOHeader_Blue.png
+    - assets/headers/ConcordiaGOHeader_DarkGreen.png
+    - assets/headers/ConcordiaGOHeader_Magenta.png
+    - assets/headers/ConcordiaGOHeader_NeonGreen.png
+    - assets/headers/ConcordiaGOHeader_Orange.png
+    - assets/headers/ConcordiaGOHeader_Purple.png
+    - assets/headers/ConcordiaGOHeader_Yellow.png
+    - assets/logos/ConcordiaGOLogo.png

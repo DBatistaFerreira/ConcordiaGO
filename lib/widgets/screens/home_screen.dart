@@ -1,4 +1,5 @@
 import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/services/shared_preferences_service.dart';
 import 'package:concordia_go/widgets/component/directions_list.dart';
 import 'package:concordia_go/widgets/component/directions_panel.dart';
 import 'package:concordia_go/services/outdoor_path_service.dart';
@@ -31,6 +32,7 @@ class HomePageState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _initGeolocationServices();
+    SharedPreferencesService.updatePrioritizeElevatorBool();
   }
 
   Future<void> _initGeolocationServices() async {
@@ -58,7 +60,8 @@ class HomePageState extends State<HomeScreen> {
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(screenHeight / 12),
           child: AppBar(
-            title: Image.asset('assets/logo.png', height: screenHeight / 12),
+            centerTitle: true,
+            title: Image.asset(concordiaGOHeader, height: screenHeight / 12),
             backgroundColor: concordiaRed,
           )),
       body: SlidingUpPanel(
@@ -75,7 +78,7 @@ class HomePageState extends State<HomeScreen> {
           ],
         ),
         collapsed: DirectionsPanel(),
-        minHeight: screenHeight / 3.5,
+        minHeight: screenHeight / 3.3,
         maxHeight: screenHeight / 1.4,
       ),
       drawer: QuickMenu(),

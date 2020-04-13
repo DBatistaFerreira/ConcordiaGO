@@ -1,13 +1,17 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:concordia_go/blocs/bloc.dart';
+import 'package:concordia_go/blocs/search_bloc/search_bloc.dart';
+import 'package:concordia_go/models/classroom.dart';
+import 'package:concordia_go/models/direction_object.dart';
+import 'package:concordia_go/utilities/concordia_constants.dart';
+import 'package:concordia_go/widgets/component/google_maps_component.dart';
 import 'package:concordia_go/widgets/screens/home_screen.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:concordia_go/utilities/application_constants.dart' as application_constants;
 import 'package:concordia_go/utilities/application_constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'event_item.dart';
 
@@ -47,7 +51,8 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
         //backgroundColor: application_constants.concordiaRed,
         preferredSize: Size.fromHeight(screenHeight / 12),
         child: AppBar(
-          title: Image.asset('assets/logo.png', height: screenHeight / 12),
+          centerTitle: true,
+          title: Image.asset(concordiaGOHeader, height: screenHeight / 12),
           backgroundColor: application_constants.concordiaRed,
         ),
       ),
@@ -57,7 +62,7 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                '${_calendar.name} events',
+                mySchedule,
                 style: TextStyle(
                   fontFamily: 'Raleway',
                   color: Colors.white,
@@ -74,8 +79,8 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
               child: ListView.builder(
                 itemCount: _calendarEvents?.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                  final bool _isFirst = index == 0;
-                  return EventItem(_calendarEvents[index], _onTapped, _isFirst);
+                  return EventItem(
+                      _calendarEvents[index], _onTapped, index == 0, validateEvent(_calendarEvents[index]));
                 },
               ),
             )
@@ -86,24 +91,34 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
     );
   }
 
-  Future<void> _onTapped(Event event) async {
-    if (event != null) {
-      BlocProvider.of<CalendarBloc>(context).add(GetClass(event));
-    }
-    final HomeScreen refreshEvents =
-        await Navigator.push(context, MaterialPageRoute<HomeScreen>(builder: (BuildContext context) => HomeScreen()));
-    if (refreshEvents != null) {
-      await _retrieveCalendarEvents();
+  Future<void> _onTapped(Classroom classroom) async {
+    if (classroom != null) {
+      Navigator.pop(context);
+      final Dobject source = Dobject.hotspot(currentLocation, 'Your Location');
+      final Dobject destination = Dobject.indoor(
+          classroom.node, classroom.building, classroom.floor, classroom.building.code + classroom.number);
+      BlocProvider.of<SearchBloc>(mapContext).add(SearchDirectionsEvent(source: source, destination: destination));
     }
   }
 
   Future<void> _retrieveCalendarEvents() async {
     final DateTime startDate = DateTime.now().add(const Duration(days: 0));
-    final DateTime endDate = DateTime.now().add(const Duration(days: 30));
+    final DateTime endDate = DateTime.now().add(const Duration(days: 1));
     final Result<UnmodifiableListView<Event>> calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
         _calendar.id, RetrieveEventsParams(startDate: startDate, endDate: endDate));
     setState(() {
-      _calendarEvents = calendarEventsResult?.data;
+      _calendarEvents = calendarEventsResult?.data?.where((Event e) => validateEvent(e) != null)?.toList();
     });
   }
+}
+
+Classroom validateEvent(Event event) {
+  final List<String> classroomInfo = event?.location?.split('-');
+  if (buildings.containsKey(classroomInfo[0])) {
+    final Classroom classroom = Classroom(buildings[classroomInfo[0]], classroomInfo[1], classroomInfo[2]);
+    if (rooms.contains(classroom)) {
+      return classroom;
+    }
+  }
+  return null;
 }
