@@ -24,5 +24,5 @@ double screenHeight;
 double screenWidth;
 
 const String mySchedule = 'My Schedule';
-const String yourNextClass = 'yourNextClass';
+const String yourNextClass = 'Your Next Class';
 
