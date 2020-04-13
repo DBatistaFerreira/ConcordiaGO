@@ -919,11 +919,9 @@ final List<Classroom> rooms = <Classroom>[
 
   /// H8
   Classroom(buildings['H'], '8', '801'),
-  Classroom(buildings['H'], '8', '802'),
   Classroom(buildings['H'], '8', '803'),
   Classroom(buildings['H'], '8', '805'),
   Classroom(buildings['H'], '8', '807'),
-  Classroom(buildings['H'], '8', '810'),
   Classroom(buildings['H'], '8', '811'),
   Classroom(buildings['H'], '8', '813'),
   Classroom(buildings['H'], '8', '815'),
@@ -961,11 +959,9 @@ final List<Classroom> rooms = <Classroom>[
   Classroom(buildings['H'], '8', '867'),
 
   /// H9
-  Classroom(buildings['H'], '9', '902'),
   Classroom(buildings['H'], '9', '903'),
   Classroom(buildings['H'], '9', '907'),
   Classroom(buildings['H'], '9', '909'),
-  Classroom(buildings['H'], '9', '910'),
   Classroom(buildings['H'], '9', '911'),
   Classroom(buildings['H'], '9', '913'),
   Classroom(buildings['H'], '9', '914'),
@@ -1399,8 +1395,8 @@ const Map<String, List<String>> edge_indices = <String, List<String>>{
     '140000', // 17
     '180000', // 18
     '100110', // 19
-    '100112', // 20
-    '100114', // 21
+    '150001', // 20
+    '150000', // 21
     '170000', // 22
     '130000', // 23
     '120000', // 24
@@ -1461,11 +1457,11 @@ const Map<String, List<String>> edge_indices = <String, List<String>>{
     '140000', // 43
     '140001', // 44
     '100801', // 45
-    '100802', // 46
+    '150000', // 46
     '100803', // 47
     '100805', // 48
     '100807', // 49
-    '100810', // 50
+    '150001', // 50
     '100811', // 51
     '100813', // 52
     '100815', // 53
@@ -1553,11 +1549,11 @@ const Map<String, List<String>> edge_indices = <String, List<String>>{
     '000037', // 37
     '000038', // 38
     '000039', // 39
-    '100902', // 40
+    '150000', // 40
     '100903', // 41
     '100907', // 42
     '100909', // 43
-    '100910', // 44
+    '150001', // 44
     '100911', // 45
     '100913', // 46
     '100914', // 47

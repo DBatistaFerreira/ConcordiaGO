@@ -19,7 +19,6 @@ void main() {
     final restaurants = find.text('Restaurants');
 
     expect(find.text('Washroom'), findsOneWidget);
-    expect(find.text('Water Fountain'), findsOneWidget);
     expect(find.text('Elevators'), findsOneWidget);
     expect(restaurants, findsOneWidget);
     expect(find.text('Shopping'), findsOneWidget);

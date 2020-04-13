@@ -14,6 +14,7 @@ class SettingsMenu extends StatefulWidget {
 
 class SettingsMenuState extends State<SettingsMenu> {
   bool prioritizeElevators = false;
+  String preferredWashroom = 'Male';
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,57 @@ class SettingsMenuState extends State<SettingsMenu> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
+                Align(
+                  child: const Text(
+                    'General',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontFamily: 'Raleway',
+                      color: Colors.grey,
+                      //fontWeight: FontWeight.bold,
+                      fontSize: application_constants.listElementTextSize,
+                    ),
+                  ),
+                  alignment: Alignment.centerLeft,
+                ),
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                   const Text(
+                      'Preferred washroom',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Raleway',
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
+                    ),
+                    FutureBuilder<String>(
+                        future: SharedPreferencesService.getPreferredWashroom(),
+                        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                          return DropdownButton<String>(
+                            elevation: 16,
+                            value: snapshot.hasData?snapshot.data:preferredWashroom,
+                            onChanged: (String newValue) async {
+                              preferredWashroom = newValue;
+                              await SharedPreferencesService.setPreferredWashroom(newValue);
+                              setState(() {});
+                            },
+                            items: <String>['Male', 'Female']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            })
+                                .toList(),
+                          );
+                        }
+                    ),
+                  ],
+                ),
+                Divider(color: Colors.white,),
                 Align(
                   child: const Text(
                     'Accessibility',
