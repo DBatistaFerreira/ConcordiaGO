@@ -50,7 +50,7 @@ class SettingsMenuState extends State<SettingsMenu> {
             child: Column(
               children: <Widget>[
                 Align(
-                  child: Text(
+                  child: const Text(
                     'General',
                     textAlign: TextAlign.left,
                     style: TextStyle(
@@ -101,7 +101,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                 ),
                 Divider(color: Colors.white,),
                 Align(
-                  child: Text(
+                  child: const Text(
                     'Accessibility',
                     textAlign: TextAlign.left,
                     style: TextStyle(
