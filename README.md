@@ -4,6 +4,4 @@
 [![codecov](https://codecov.io/gh/Pwnagebird/ConcordiaGo/branch/master/graph/badge.svg)](https://codecov.io/gh/Pwnagebird/ConcordiaGo)
 
 
-A mobile app helping Concordians discover their campus, coming soon to you! Developed using Flutter and Google APIs
-
-* Please note that release 1 will be added to the master branch after sprint #1 in a few weeks time
+A mobile app helping Concordians discover their campus. Developed using Flutter and Google APIs!
